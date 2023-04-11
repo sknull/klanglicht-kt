@@ -1,0 +1,3495 @@
+{
+  "scenes" : [ {
+    "name" : "",
+    "sceneId" : 0,
+    "fixtures" : [ 48, 1, 35, 21, 7, 29, 15 ],
+    "parameterSets" : {
+      "parameterSets" : [ {
+        "@type" : "ParameterSet",
+        "manufacturer" : "Cameo",
+        "model" : "Flat PAR Can RGB 10 IR",
+        "mode" : "6-Channel Mode",
+        "baseChannel" : 1,
+        "parameters" : {
+          "Macro" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGB 10 IR",
+            "mode" : "6-Channel Mode",
+            "channelType" : "MACRO",
+            "offset" : 5,
+            "name" : "Macro",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "MasterDimmer" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGB 10 IR",
+            "mode" : "6-Channel Mode",
+            "channelType" : "MASTER_DIMMER",
+            "offset" : 0,
+            "name" : "MasterDimmer",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 255
+            }
+          },
+          "Rgb" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGB 10 IR",
+            "mode" : "6-Channel Mode",
+            "channelType" : "RGB",
+            "offset" : -1,
+            "name" : "Rgb",
+            "value" : {
+              "@type" : "RGBColor",
+              "hex" : 0,
+              "red" : 0,
+              "green" : 0,
+              "blue" : 0,
+              "h" : 0.0,
+              "s" : 100.0,
+              "v" : 0.0,
+              "a" : 0.0,
+              "b" : 0.0,
+              "x" : 0.0,
+              "y" : 0.0,
+              "z" : 0.0
+            }
+          },
+          "Stroboscope" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGB 10 IR",
+            "mode" : "6-Channel Mode",
+            "channelType" : "STROBOSCOPE",
+            "offset" : 1,
+            "name" : "Stroboscope",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          }
+        }
+      }, {
+        "@type" : "ParameterSet",
+        "manufacturer" : "Cameo",
+        "model" : "Flat PAR Can RGBW",
+        "mode" : "8-Channel Mode",
+        "baseChannel" : 7,
+        "parameters" : {
+          "Macro" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGBW",
+            "mode" : "8-Channel Mode",
+            "channelType" : "MACRO",
+            "offset" : 6,
+            "name" : "Macro",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "MasterDimmer" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGBW",
+            "mode" : "8-Channel Mode",
+            "channelType" : "MASTER_DIMMER",
+            "offset" : 0,
+            "name" : "MasterDimmer",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 255
+            }
+          },
+          "Rgbw" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGBW",
+            "mode" : "8-Channel Mode",
+            "channelType" : "RGBW",
+            "offset" : -2,
+            "name" : "Rgbw",
+            "value" : {
+              "@type" : "RGBWColor",
+              "hex" : 0,
+              "red" : 0,
+              "green" : 0,
+              "blue" : 0,
+              "h" : 0.0,
+              "s" : 100.0,
+              "v" : 0.0,
+              "a" : 0.0,
+              "b" : 0.0,
+              "x" : 0.0,
+              "y" : 0.0,
+              "z" : 0.0,
+              "white" : 0
+            }
+          },
+          "SoundToLight" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGBW",
+            "mode" : "8-Channel Mode",
+            "channelType" : "SOUND_TO_LIGHT",
+            "offset" : 7,
+            "name" : "SoundToLight",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "Stroboscope" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGBW",
+            "mode" : "8-Channel Mode",
+            "channelType" : "STROBOSCOPE",
+            "offset" : 1,
+            "name" : "Stroboscope",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          }
+        }
+      }, {
+        "@type" : "ParameterSet",
+        "manufacturer" : "Cameo",
+        "model" : "Flat PAR Can RGB 10 IR",
+        "mode" : "6-Channel Mode",
+        "baseChannel" : 15,
+        "parameters" : {
+          "Macro" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGB 10 IR",
+            "mode" : "6-Channel Mode",
+            "channelType" : "MACRO",
+            "offset" : 5,
+            "name" : "Macro",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "MasterDimmer" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGB 10 IR",
+            "mode" : "6-Channel Mode",
+            "channelType" : "MASTER_DIMMER",
+            "offset" : 0,
+            "name" : "MasterDimmer",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 255
+            }
+          },
+          "Rgb" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGB 10 IR",
+            "mode" : "6-Channel Mode",
+            "channelType" : "RGB",
+            "offset" : -1,
+            "name" : "Rgb",
+            "value" : {
+              "@type" : "RGBColor",
+              "hex" : 0,
+              "red" : 0,
+              "green" : 0,
+              "blue" : 0,
+              "h" : 0.0,
+              "s" : 100.0,
+              "v" : 0.0,
+              "a" : 0.0,
+              "b" : 0.0,
+              "x" : 0.0,
+              "y" : 0.0,
+              "z" : 0.0
+            }
+          },
+          "Stroboscope" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGB 10 IR",
+            "mode" : "6-Channel Mode",
+            "channelType" : "STROBOSCOPE",
+            "offset" : 1,
+            "name" : "Stroboscope",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          }
+        }
+      }, {
+        "@type" : "ParameterSet",
+        "manufacturer" : "Cameo",
+        "model" : "Flat PAR Can RGBW",
+        "mode" : "8-Channel Mode",
+        "baseChannel" : 21,
+        "parameters" : {
+          "Macro" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGBW",
+            "mode" : "8-Channel Mode",
+            "channelType" : "MACRO",
+            "offset" : 6,
+            "name" : "Macro",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "MasterDimmer" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGBW",
+            "mode" : "8-Channel Mode",
+            "channelType" : "MASTER_DIMMER",
+            "offset" : 0,
+            "name" : "MasterDimmer",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 255
+            }
+          },
+          "Rgbw" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGBW",
+            "mode" : "8-Channel Mode",
+            "channelType" : "RGBW",
+            "offset" : -2,
+            "name" : "Rgbw",
+            "value" : {
+              "@type" : "RGBWColor",
+              "hex" : 0,
+              "red" : 0,
+              "green" : 0,
+              "blue" : 0,
+              "h" : 0.0,
+              "s" : 100.0,
+              "v" : 0.0,
+              "a" : 0.0,
+              "b" : 0.0,
+              "x" : 0.0,
+              "y" : 0.0,
+              "z" : 0.0,
+              "white" : 0
+            }
+          },
+          "SoundToLight" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGBW",
+            "mode" : "8-Channel Mode",
+            "channelType" : "SOUND_TO_LIGHT",
+            "offset" : 7,
+            "name" : "SoundToLight",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "Stroboscope" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGBW",
+            "mode" : "8-Channel Mode",
+            "channelType" : "STROBOSCOPE",
+            "offset" : 1,
+            "name" : "Stroboscope",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          }
+        }
+      }, {
+        "@type" : "ParameterSet",
+        "manufacturer" : "Cameo",
+        "model" : "Flat PAR Can RGB 10 IR",
+        "mode" : "6-Channel Mode",
+        "baseChannel" : 29,
+        "parameters" : {
+          "Macro" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGB 10 IR",
+            "mode" : "6-Channel Mode",
+            "channelType" : "MACRO",
+            "offset" : 5,
+            "name" : "Macro",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "MasterDimmer" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGB 10 IR",
+            "mode" : "6-Channel Mode",
+            "channelType" : "MASTER_DIMMER",
+            "offset" : 0,
+            "name" : "MasterDimmer",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 255
+            }
+          },
+          "Rgb" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGB 10 IR",
+            "mode" : "6-Channel Mode",
+            "channelType" : "RGB",
+            "offset" : -1,
+            "name" : "Rgb",
+            "value" : {
+              "@type" : "RGBColor",
+              "hex" : 0,
+              "red" : 0,
+              "green" : 0,
+              "blue" : 0,
+              "h" : 0.0,
+              "s" : 100.0,
+              "v" : 0.0,
+              "a" : 0.0,
+              "b" : 0.0,
+              "x" : 0.0,
+              "y" : 0.0,
+              "z" : 0.0
+            }
+          },
+          "Stroboscope" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGB 10 IR",
+            "mode" : "6-Channel Mode",
+            "channelType" : "STROBOSCOPE",
+            "offset" : 1,
+            "name" : "Stroboscope",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          }
+        }
+      }, {
+        "@type" : "ParameterSet",
+        "manufacturer" : "Renkforce",
+        "model" : "Moving Head GM107",
+        "mode" : "13-Channel Mode",
+        "baseChannel" : 35,
+        "parameters" : {
+          "AutoMode" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "AUTO_MODE",
+            "offset" : 11,
+            "name" : "AutoMode",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "ColorMode" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "COLOR_MODE",
+            "offset" : 10,
+            "name" : "ColorMode",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "Reset" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "RESET",
+            "offset" : 12,
+            "name" : "Reset",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "Rgbw" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "RGBW",
+            "offset" : -2,
+            "name" : "Rgbw",
+            "value" : {
+              "@type" : "RGBWColor",
+              "hex" : 0,
+              "red" : 0,
+              "green" : 0,
+              "blue" : 0,
+              "h" : 0.0,
+              "s" : 100.0,
+              "v" : 0.0,
+              "a" : 0.0,
+              "b" : 0.0,
+              "x" : 0.0,
+              "y" : 0.0,
+              "z" : 0.0,
+              "white" : 0
+            }
+          },
+          "Rotation" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "ROTATION",
+            "offset" : -5,
+            "name" : "Rotation",
+            "value" : {
+              "@type" : "Rotation",
+              "panDegrees" : 360.0,
+              "tiltDegrees" : 0.0
+            }
+          },
+          "Speed" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "SPEED",
+            "offset" : 4,
+            "name" : "Speed",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "Stroboscope" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "STROBOSCOPE",
+            "offset" : 5,
+            "name" : "Stroboscope",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          }
+        }
+      }, {
+        "@type" : "ParameterSet",
+        "manufacturer" : "Renkforce",
+        "model" : "Moving Head GM107",
+        "mode" : "13-Channel Mode",
+        "baseChannel" : 48,
+        "parameters" : {
+          "AutoMode" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "AUTO_MODE",
+            "offset" : 11,
+            "name" : "AutoMode",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "ColorMode" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "COLOR_MODE",
+            "offset" : 10,
+            "name" : "ColorMode",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "Reset" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "RESET",
+            "offset" : 12,
+            "name" : "Reset",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "Rgbw" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "RGBW",
+            "offset" : -2,
+            "name" : "Rgbw",
+            "value" : {
+              "@type" : "RGBWColor",
+              "hex" : 0,
+              "red" : 0,
+              "green" : 0,
+              "blue" : 0,
+              "h" : 0.0,
+              "s" : 100.0,
+              "v" : 0.0,
+              "a" : 0.0,
+              "b" : 0.0,
+              "x" : 0.0,
+              "y" : 0.0,
+              "z" : 0.0,
+              "white" : 0
+            }
+          },
+          "Rotation" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "ROTATION",
+            "offset" : -5,
+            "name" : "Rotation",
+            "value" : {
+              "@type" : "Rotation",
+              "panDegrees" : 360.0,
+              "tiltDegrees" : 0.0
+            }
+          },
+          "Speed" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "SPEED",
+            "offset" : 4,
+            "name" : "Speed",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "Stroboscope" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "STROBOSCOPE",
+            "offset" : 5,
+            "name" : "Stroboscope",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          }
+        }
+      } ]
+    },
+    "transformation" : "FADE",
+    "fadeDuration" : 1000,
+    "stepDuration" : 0,
+    "pause" : 3000
+  }, {
+    "name" : "",
+    "sceneId" : 1,
+    "fixtures" : [ 48, 1, 35, 21, 7, 29, 15 ],
+    "parameterSets" : {
+      "parameterSets" : [ {
+        "@type" : "ParameterSet",
+        "manufacturer" : "Cameo",
+        "model" : "Flat PAR Can RGB 10 IR",
+        "mode" : "6-Channel Mode",
+        "baseChannel" : 1,
+        "parameters" : {
+          "Macro" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGB 10 IR",
+            "mode" : "6-Channel Mode",
+            "channelType" : "MACRO",
+            "offset" : 5,
+            "name" : "Macro",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "MasterDimmer" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGB 10 IR",
+            "mode" : "6-Channel Mode",
+            "channelType" : "MASTER_DIMMER",
+            "offset" : 0,
+            "name" : "MasterDimmer",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 255
+            }
+          },
+          "Rgb" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGB 10 IR",
+            "mode" : "6-Channel Mode",
+            "channelType" : "RGB",
+            "offset" : -1,
+            "name" : "Rgb",
+            "value" : {
+              "@type" : "RGBColor",
+              "hex" : 16711680,
+              "red" : 255,
+              "green" : 0,
+              "blue" : 0,
+              "h" : 0.0,
+              "s" : 100.0,
+              "v" : 100.0,
+              "a" : 80.10930952982204,
+              "b" : 67.22006831026425,
+              "x" : 0.7570538068686308,
+              "y" : 0.5968351878089867,
+              "z" : 0.2607348462576654
+            }
+          },
+          "Stroboscope" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGB 10 IR",
+            "mode" : "6-Channel Mode",
+            "channelType" : "STROBOSCOPE",
+            "offset" : 1,
+            "name" : "Stroboscope",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          }
+        }
+      }, {
+        "@type" : "ParameterSet",
+        "manufacturer" : "Cameo",
+        "model" : "Flat PAR Can RGBW",
+        "mode" : "8-Channel Mode",
+        "baseChannel" : 7,
+        "parameters" : {
+          "Macro" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGBW",
+            "mode" : "8-Channel Mode",
+            "channelType" : "MACRO",
+            "offset" : 6,
+            "name" : "Macro",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "MasterDimmer" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGBW",
+            "mode" : "8-Channel Mode",
+            "channelType" : "MASTER_DIMMER",
+            "offset" : 0,
+            "name" : "MasterDimmer",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 255
+            }
+          },
+          "Rgbw" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGBW",
+            "mode" : "8-Channel Mode",
+            "channelType" : "RGBW",
+            "offset" : -2,
+            "name" : "Rgbw",
+            "value" : {
+              "@type" : "RGBWColor",
+              "hex" : 0,
+              "red" : 0,
+              "green" : 0,
+              "blue" : 0,
+              "h" : 0.0,
+              "s" : 100.0,
+              "v" : 0.0,
+              "a" : 0.0,
+              "b" : 0.0,
+              "x" : 0.0,
+              "y" : 0.0,
+              "z" : 0.0,
+              "white" : 0
+            }
+          },
+          "SoundToLight" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGBW",
+            "mode" : "8-Channel Mode",
+            "channelType" : "SOUND_TO_LIGHT",
+            "offset" : 7,
+            "name" : "SoundToLight",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "Stroboscope" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGBW",
+            "mode" : "8-Channel Mode",
+            "channelType" : "STROBOSCOPE",
+            "offset" : 1,
+            "name" : "Stroboscope",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          }
+        }
+      }, {
+        "@type" : "ParameterSet",
+        "manufacturer" : "Cameo",
+        "model" : "Flat PAR Can RGB 10 IR",
+        "mode" : "6-Channel Mode",
+        "baseChannel" : 15,
+        "parameters" : {
+          "Macro" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGB 10 IR",
+            "mode" : "6-Channel Mode",
+            "channelType" : "MACRO",
+            "offset" : 5,
+            "name" : "Macro",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "MasterDimmer" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGB 10 IR",
+            "mode" : "6-Channel Mode",
+            "channelType" : "MASTER_DIMMER",
+            "offset" : 0,
+            "name" : "MasterDimmer",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 255
+            }
+          },
+          "Rgb" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGB 10 IR",
+            "mode" : "6-Channel Mode",
+            "channelType" : "RGB",
+            "offset" : -1,
+            "name" : "Rgb",
+            "value" : {
+              "@type" : "RGBColor",
+              "hex" : 0,
+              "red" : 0,
+              "green" : 0,
+              "blue" : 0,
+              "h" : 0.0,
+              "s" : 100.0,
+              "v" : 0.0,
+              "a" : 0.0,
+              "b" : 0.0,
+              "x" : 0.0,
+              "y" : 0.0,
+              "z" : 0.0
+            }
+          },
+          "Stroboscope" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGB 10 IR",
+            "mode" : "6-Channel Mode",
+            "channelType" : "STROBOSCOPE",
+            "offset" : 1,
+            "name" : "Stroboscope",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          }
+        }
+      }, {
+        "@type" : "ParameterSet",
+        "manufacturer" : "Cameo",
+        "model" : "Flat PAR Can RGBW",
+        "mode" : "8-Channel Mode",
+        "baseChannel" : 21,
+        "parameters" : {
+          "Macro" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGBW",
+            "mode" : "8-Channel Mode",
+            "channelType" : "MACRO",
+            "offset" : 6,
+            "name" : "Macro",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "MasterDimmer" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGBW",
+            "mode" : "8-Channel Mode",
+            "channelType" : "MASTER_DIMMER",
+            "offset" : 0,
+            "name" : "MasterDimmer",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 255
+            }
+          },
+          "Rgbw" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGBW",
+            "mode" : "8-Channel Mode",
+            "channelType" : "RGBW",
+            "offset" : -2,
+            "name" : "Rgbw",
+            "value" : {
+              "@type" : "RGBWColor",
+              "hex" : 0,
+              "red" : 0,
+              "green" : 0,
+              "blue" : 0,
+              "h" : 0.0,
+              "s" : 100.0,
+              "v" : 0.0,
+              "a" : 0.0,
+              "b" : 0.0,
+              "x" : 0.0,
+              "y" : 0.0,
+              "z" : 0.0,
+              "white" : 0
+            }
+          },
+          "SoundToLight" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGBW",
+            "mode" : "8-Channel Mode",
+            "channelType" : "SOUND_TO_LIGHT",
+            "offset" : 7,
+            "name" : "SoundToLight",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "Stroboscope" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGBW",
+            "mode" : "8-Channel Mode",
+            "channelType" : "STROBOSCOPE",
+            "offset" : 1,
+            "name" : "Stroboscope",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          }
+        }
+      }, {
+        "@type" : "ParameterSet",
+        "manufacturer" : "Cameo",
+        "model" : "Flat PAR Can RGB 10 IR",
+        "mode" : "6-Channel Mode",
+        "baseChannel" : 29,
+        "parameters" : {
+          "Macro" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGB 10 IR",
+            "mode" : "6-Channel Mode",
+            "channelType" : "MACRO",
+            "offset" : 5,
+            "name" : "Macro",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "MasterDimmer" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGB 10 IR",
+            "mode" : "6-Channel Mode",
+            "channelType" : "MASTER_DIMMER",
+            "offset" : 0,
+            "name" : "MasterDimmer",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 255
+            }
+          },
+          "Rgb" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGB 10 IR",
+            "mode" : "6-Channel Mode",
+            "channelType" : "RGB",
+            "offset" : -1,
+            "name" : "Rgb",
+            "value" : {
+              "@type" : "RGBColor",
+              "hex" : 0,
+              "red" : 0,
+              "green" : 0,
+              "blue" : 0,
+              "h" : 0.0,
+              "s" : 100.0,
+              "v" : 0.0,
+              "a" : 0.0,
+              "b" : 0.0,
+              "x" : 0.0,
+              "y" : 0.0,
+              "z" : 0.0
+            }
+          },
+          "Stroboscope" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGB 10 IR",
+            "mode" : "6-Channel Mode",
+            "channelType" : "STROBOSCOPE",
+            "offset" : 1,
+            "name" : "Stroboscope",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          }
+        }
+      }, {
+        "@type" : "ParameterSet",
+        "manufacturer" : "Renkforce",
+        "model" : "Moving Head GM107",
+        "mode" : "13-Channel Mode",
+        "baseChannel" : 35,
+        "parameters" : {
+          "AutoMode" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "AUTO_MODE",
+            "offset" : 11,
+            "name" : "AutoMode",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "ColorMode" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "COLOR_MODE",
+            "offset" : 10,
+            "name" : "ColorMode",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "Reset" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "RESET",
+            "offset" : 12,
+            "name" : "Reset",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "Rgbw" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "RGBW",
+            "offset" : -2,
+            "name" : "Rgbw",
+            "value" : {
+              "@type" : "RGBWColor",
+              "hex" : 0,
+              "red" : 0,
+              "green" : 0,
+              "blue" : 0,
+              "h" : 0.0,
+              "s" : 100.0,
+              "v" : 0.0,
+              "a" : 0.0,
+              "b" : 0.0,
+              "x" : 0.0,
+              "y" : 0.0,
+              "z" : 0.0,
+              "white" : 0
+            }
+          },
+          "Rotation" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "ROTATION",
+            "offset" : -5,
+            "name" : "Rotation",
+            "value" : {
+              "@type" : "Rotation",
+              "panDegrees" : 360.0,
+              "tiltDegrees" : 0.0
+            }
+          },
+          "Speed" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "SPEED",
+            "offset" : 4,
+            "name" : "Speed",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "Stroboscope" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "STROBOSCOPE",
+            "offset" : 5,
+            "name" : "Stroboscope",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          }
+        }
+      }, {
+        "@type" : "ParameterSet",
+        "manufacturer" : "Renkforce",
+        "model" : "Moving Head GM107",
+        "mode" : "13-Channel Mode",
+        "baseChannel" : 48,
+        "parameters" : {
+          "AutoMode" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "AUTO_MODE",
+            "offset" : 11,
+            "name" : "AutoMode",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "ColorMode" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "COLOR_MODE",
+            "offset" : 10,
+            "name" : "ColorMode",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "Reset" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "RESET",
+            "offset" : 12,
+            "name" : "Reset",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "Rgbw" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "RGBW",
+            "offset" : -2,
+            "name" : "Rgbw",
+            "value" : {
+              "@type" : "RGBWColor",
+              "hex" : 0,
+              "red" : 0,
+              "green" : 0,
+              "blue" : 0,
+              "h" : 0.0,
+              "s" : 100.0,
+              "v" : 0.0,
+              "a" : 0.0,
+              "b" : 0.0,
+              "x" : 0.0,
+              "y" : 0.0,
+              "z" : 0.0,
+              "white" : 0
+            }
+          },
+          "Rotation" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "ROTATION",
+            "offset" : -5,
+            "name" : "Rotation",
+            "value" : {
+              "@type" : "Rotation",
+              "panDegrees" : 360.0,
+              "tiltDegrees" : 0.0
+            }
+          },
+          "Speed" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "SPEED",
+            "offset" : 4,
+            "name" : "Speed",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "Stroboscope" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "STROBOSCOPE",
+            "offset" : 5,
+            "name" : "Stroboscope",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          }
+        }
+      } ]
+    },
+    "transformation" : "FADE",
+    "fadeDuration" : 1000,
+    "stepDuration" : 0,
+    "pause" : 0
+  }, {
+    "name" : "",
+    "sceneId" : 2,
+    "fixtures" : [ 48, 1, 35, 21, 7, 29, 15 ],
+    "parameterSets" : {
+      "parameterSets" : [ {
+        "@type" : "ParameterSet",
+        "manufacturer" : "Cameo",
+        "model" : "Flat PAR Can RGB 10 IR",
+        "mode" : "6-Channel Mode",
+        "baseChannel" : 1,
+        "parameters" : {
+          "Macro" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGB 10 IR",
+            "mode" : "6-Channel Mode",
+            "channelType" : "MACRO",
+            "offset" : 5,
+            "name" : "Macro",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "MasterDimmer" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGB 10 IR",
+            "mode" : "6-Channel Mode",
+            "channelType" : "MASTER_DIMMER",
+            "offset" : 0,
+            "name" : "MasterDimmer",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 255
+            }
+          },
+          "Rgb" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGB 10 IR",
+            "mode" : "6-Channel Mode",
+            "channelType" : "RGB",
+            "offset" : -1,
+            "name" : "Rgb",
+            "value" : {
+              "@type" : "RGBColor",
+              "hex" : 65280,
+              "red" : 0,
+              "green" : 255,
+              "blue" : 0,
+              "h" : 120.0,
+              "s" : 100.0,
+              "v" : 100.0,
+              "a" : -86.18463649762525,
+              "b" : 83.18116474777854,
+              "x" : 0.7219154983284065,
+              "y" : 0.894284771323657,
+              "z" : 0.47837894758476435
+            }
+          },
+          "Stroboscope" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGB 10 IR",
+            "mode" : "6-Channel Mode",
+            "channelType" : "STROBOSCOPE",
+            "offset" : 1,
+            "name" : "Stroboscope",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          }
+        }
+      }, {
+        "@type" : "ParameterSet",
+        "manufacturer" : "Cameo",
+        "model" : "Flat PAR Can RGBW",
+        "mode" : "8-Channel Mode",
+        "baseChannel" : 7,
+        "parameters" : {
+          "Macro" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGBW",
+            "mode" : "8-Channel Mode",
+            "channelType" : "MACRO",
+            "offset" : 6,
+            "name" : "Macro",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "MasterDimmer" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGBW",
+            "mode" : "8-Channel Mode",
+            "channelType" : "MASTER_DIMMER",
+            "offset" : 0,
+            "name" : "MasterDimmer",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 255
+            }
+          },
+          "Rgbw" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGBW",
+            "mode" : "8-Channel Mode",
+            "channelType" : "RGBW",
+            "offset" : -2,
+            "name" : "Rgbw",
+            "value" : {
+              "@type" : "RGBWColor",
+              "hex" : 0,
+              "red" : 0,
+              "green" : 0,
+              "blue" : 0,
+              "h" : 0.0,
+              "s" : 100.0,
+              "v" : 0.0,
+              "a" : 0.0,
+              "b" : 0.0,
+              "x" : 0.0,
+              "y" : 0.0,
+              "z" : 0.0,
+              "white" : 0
+            }
+          },
+          "SoundToLight" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGBW",
+            "mode" : "8-Channel Mode",
+            "channelType" : "SOUND_TO_LIGHT",
+            "offset" : 7,
+            "name" : "SoundToLight",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "Stroboscope" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGBW",
+            "mode" : "8-Channel Mode",
+            "channelType" : "STROBOSCOPE",
+            "offset" : 1,
+            "name" : "Stroboscope",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          }
+        }
+      }, {
+        "@type" : "ParameterSet",
+        "manufacturer" : "Cameo",
+        "model" : "Flat PAR Can RGB 10 IR",
+        "mode" : "6-Channel Mode",
+        "baseChannel" : 15,
+        "parameters" : {
+          "Macro" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGB 10 IR",
+            "mode" : "6-Channel Mode",
+            "channelType" : "MACRO",
+            "offset" : 5,
+            "name" : "Macro",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "MasterDimmer" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGB 10 IR",
+            "mode" : "6-Channel Mode",
+            "channelType" : "MASTER_DIMMER",
+            "offset" : 0,
+            "name" : "MasterDimmer",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 255
+            }
+          },
+          "Rgb" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGB 10 IR",
+            "mode" : "6-Channel Mode",
+            "channelType" : "RGB",
+            "offset" : -1,
+            "name" : "Rgb",
+            "value" : {
+              "@type" : "RGBColor",
+              "hex" : 0,
+              "red" : 0,
+              "green" : 0,
+              "blue" : 0,
+              "h" : 0.0,
+              "s" : 100.0,
+              "v" : 0.0,
+              "a" : 0.0,
+              "b" : 0.0,
+              "x" : 0.0,
+              "y" : 0.0,
+              "z" : 0.0
+            }
+          },
+          "Stroboscope" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGB 10 IR",
+            "mode" : "6-Channel Mode",
+            "channelType" : "STROBOSCOPE",
+            "offset" : 1,
+            "name" : "Stroboscope",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          }
+        }
+      }, {
+        "@type" : "ParameterSet",
+        "manufacturer" : "Cameo",
+        "model" : "Flat PAR Can RGBW",
+        "mode" : "8-Channel Mode",
+        "baseChannel" : 21,
+        "parameters" : {
+          "Macro" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGBW",
+            "mode" : "8-Channel Mode",
+            "channelType" : "MACRO",
+            "offset" : 6,
+            "name" : "Macro",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "MasterDimmer" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGBW",
+            "mode" : "8-Channel Mode",
+            "channelType" : "MASTER_DIMMER",
+            "offset" : 0,
+            "name" : "MasterDimmer",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 255
+            }
+          },
+          "Rgbw" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGBW",
+            "mode" : "8-Channel Mode",
+            "channelType" : "RGBW",
+            "offset" : -2,
+            "name" : "Rgbw",
+            "value" : {
+              "@type" : "RGBWColor",
+              "hex" : 0,
+              "red" : 0,
+              "green" : 0,
+              "blue" : 0,
+              "h" : 0.0,
+              "s" : 100.0,
+              "v" : 0.0,
+              "a" : 0.0,
+              "b" : 0.0,
+              "x" : 0.0,
+              "y" : 0.0,
+              "z" : 0.0,
+              "white" : 0
+            }
+          },
+          "SoundToLight" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGBW",
+            "mode" : "8-Channel Mode",
+            "channelType" : "SOUND_TO_LIGHT",
+            "offset" : 7,
+            "name" : "SoundToLight",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "Stroboscope" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGBW",
+            "mode" : "8-Channel Mode",
+            "channelType" : "STROBOSCOPE",
+            "offset" : 1,
+            "name" : "Stroboscope",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          }
+        }
+      }, {
+        "@type" : "ParameterSet",
+        "manufacturer" : "Cameo",
+        "model" : "Flat PAR Can RGB 10 IR",
+        "mode" : "6-Channel Mode",
+        "baseChannel" : 29,
+        "parameters" : {
+          "Macro" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGB 10 IR",
+            "mode" : "6-Channel Mode",
+            "channelType" : "MACRO",
+            "offset" : 5,
+            "name" : "Macro",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "MasterDimmer" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGB 10 IR",
+            "mode" : "6-Channel Mode",
+            "channelType" : "MASTER_DIMMER",
+            "offset" : 0,
+            "name" : "MasterDimmer",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 255
+            }
+          },
+          "Rgb" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGB 10 IR",
+            "mode" : "6-Channel Mode",
+            "channelType" : "RGB",
+            "offset" : -1,
+            "name" : "Rgb",
+            "value" : {
+              "@type" : "RGBColor",
+              "hex" : 0,
+              "red" : 0,
+              "green" : 0,
+              "blue" : 0,
+              "h" : 0.0,
+              "s" : 100.0,
+              "v" : 0.0,
+              "a" : 0.0,
+              "b" : 0.0,
+              "x" : 0.0,
+              "y" : 0.0,
+              "z" : 0.0
+            }
+          },
+          "Stroboscope" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGB 10 IR",
+            "mode" : "6-Channel Mode",
+            "channelType" : "STROBOSCOPE",
+            "offset" : 1,
+            "name" : "Stroboscope",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          }
+        }
+      }, {
+        "@type" : "ParameterSet",
+        "manufacturer" : "Renkforce",
+        "model" : "Moving Head GM107",
+        "mode" : "13-Channel Mode",
+        "baseChannel" : 35,
+        "parameters" : {
+          "AutoMode" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "AUTO_MODE",
+            "offset" : 11,
+            "name" : "AutoMode",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "ColorMode" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "COLOR_MODE",
+            "offset" : 10,
+            "name" : "ColorMode",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "Reset" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "RESET",
+            "offset" : 12,
+            "name" : "Reset",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "Rgbw" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "RGBW",
+            "offset" : -2,
+            "name" : "Rgbw",
+            "value" : {
+              "@type" : "RGBWColor",
+              "hex" : 0,
+              "red" : 0,
+              "green" : 0,
+              "blue" : 0,
+              "h" : 0.0,
+              "s" : 100.0,
+              "v" : 0.0,
+              "a" : 0.0,
+              "b" : 0.0,
+              "x" : 0.0,
+              "y" : 0.0,
+              "z" : 0.0,
+              "white" : 0
+            }
+          },
+          "Rotation" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "ROTATION",
+            "offset" : -5,
+            "name" : "Rotation",
+            "value" : {
+              "@type" : "Rotation",
+              "panDegrees" : 360.0,
+              "tiltDegrees" : 0.0
+            }
+          },
+          "Speed" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "SPEED",
+            "offset" : 4,
+            "name" : "Speed",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "Stroboscope" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "STROBOSCOPE",
+            "offset" : 5,
+            "name" : "Stroboscope",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          }
+        }
+      }, {
+        "@type" : "ParameterSet",
+        "manufacturer" : "Renkforce",
+        "model" : "Moving Head GM107",
+        "mode" : "13-Channel Mode",
+        "baseChannel" : 48,
+        "parameters" : {
+          "AutoMode" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "AUTO_MODE",
+            "offset" : 11,
+            "name" : "AutoMode",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "ColorMode" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "COLOR_MODE",
+            "offset" : 10,
+            "name" : "ColorMode",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "Reset" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "RESET",
+            "offset" : 12,
+            "name" : "Reset",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "Rgbw" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "RGBW",
+            "offset" : -2,
+            "name" : "Rgbw",
+            "value" : {
+              "@type" : "RGBWColor",
+              "hex" : 0,
+              "red" : 0,
+              "green" : 0,
+              "blue" : 0,
+              "h" : 0.0,
+              "s" : 100.0,
+              "v" : 0.0,
+              "a" : 0.0,
+              "b" : 0.0,
+              "x" : 0.0,
+              "y" : 0.0,
+              "z" : 0.0,
+              "white" : 0
+            }
+          },
+          "Rotation" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "ROTATION",
+            "offset" : -5,
+            "name" : "Rotation",
+            "value" : {
+              "@type" : "Rotation",
+              "panDegrees" : 360.0,
+              "tiltDegrees" : 0.0
+            }
+          },
+          "Speed" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "SPEED",
+            "offset" : 4,
+            "name" : "Speed",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "Stroboscope" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "STROBOSCOPE",
+            "offset" : 5,
+            "name" : "Stroboscope",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          }
+        }
+      } ]
+    },
+    "transformation" : "FADE",
+    "fadeDuration" : 1000,
+    "stepDuration" : 0,
+    "pause" : 0
+  }, {
+    "name" : "",
+    "sceneId" : 3,
+    "fixtures" : [ 48, 1, 35, 21, 7, 29, 15 ],
+    "parameterSets" : {
+      "parameterSets" : [ {
+        "@type" : "ParameterSet",
+        "manufacturer" : "Cameo",
+        "model" : "Flat PAR Can RGB 10 IR",
+        "mode" : "6-Channel Mode",
+        "baseChannel" : 1,
+        "parameters" : {
+          "Macro" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGB 10 IR",
+            "mode" : "6-Channel Mode",
+            "channelType" : "MACRO",
+            "offset" : 5,
+            "name" : "Macro",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "MasterDimmer" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGB 10 IR",
+            "mode" : "6-Channel Mode",
+            "channelType" : "MASTER_DIMMER",
+            "offset" : 0,
+            "name" : "MasterDimmer",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 255
+            }
+          },
+          "Rgb" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGB 10 IR",
+            "mode" : "6-Channel Mode",
+            "channelType" : "RGB",
+            "offset" : -1,
+            "name" : "Rgb",
+            "value" : {
+              "@type" : "RGBColor",
+              "hex" : 255,
+              "red" : 0,
+              "green" : 0,
+              "blue" : 255,
+              "h" : 240.0,
+              "s" : 100.0,
+              "v" : 100.0,
+              "a" : 79.19666178930935,
+              "b" : -107.86368104495168,
+              "x" : 0.5747949327790453,
+              "y" : 0.41640160920042657,
+              "z" : 0.955720014425185
+            }
+          },
+          "Stroboscope" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGB 10 IR",
+            "mode" : "6-Channel Mode",
+            "channelType" : "STROBOSCOPE",
+            "offset" : 1,
+            "name" : "Stroboscope",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          }
+        }
+      }, {
+        "@type" : "ParameterSet",
+        "manufacturer" : "Cameo",
+        "model" : "Flat PAR Can RGBW",
+        "mode" : "8-Channel Mode",
+        "baseChannel" : 7,
+        "parameters" : {
+          "Macro" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGBW",
+            "mode" : "8-Channel Mode",
+            "channelType" : "MACRO",
+            "offset" : 6,
+            "name" : "Macro",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "MasterDimmer" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGBW",
+            "mode" : "8-Channel Mode",
+            "channelType" : "MASTER_DIMMER",
+            "offset" : 0,
+            "name" : "MasterDimmer",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 255
+            }
+          },
+          "Rgbw" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGBW",
+            "mode" : "8-Channel Mode",
+            "channelType" : "RGBW",
+            "offset" : -2,
+            "name" : "Rgbw",
+            "value" : {
+              "@type" : "RGBWColor",
+              "hex" : 0,
+              "red" : 0,
+              "green" : 0,
+              "blue" : 0,
+              "h" : 0.0,
+              "s" : 100.0,
+              "v" : 0.0,
+              "a" : 0.0,
+              "b" : 0.0,
+              "x" : 0.0,
+              "y" : 0.0,
+              "z" : 0.0,
+              "white" : 0
+            }
+          },
+          "SoundToLight" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGBW",
+            "mode" : "8-Channel Mode",
+            "channelType" : "SOUND_TO_LIGHT",
+            "offset" : 7,
+            "name" : "SoundToLight",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "Stroboscope" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGBW",
+            "mode" : "8-Channel Mode",
+            "channelType" : "STROBOSCOPE",
+            "offset" : 1,
+            "name" : "Stroboscope",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          }
+        }
+      }, {
+        "@type" : "ParameterSet",
+        "manufacturer" : "Cameo",
+        "model" : "Flat PAR Can RGB 10 IR",
+        "mode" : "6-Channel Mode",
+        "baseChannel" : 15,
+        "parameters" : {
+          "Macro" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGB 10 IR",
+            "mode" : "6-Channel Mode",
+            "channelType" : "MACRO",
+            "offset" : 5,
+            "name" : "Macro",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "MasterDimmer" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGB 10 IR",
+            "mode" : "6-Channel Mode",
+            "channelType" : "MASTER_DIMMER",
+            "offset" : 0,
+            "name" : "MasterDimmer",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 255
+            }
+          },
+          "Rgb" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGB 10 IR",
+            "mode" : "6-Channel Mode",
+            "channelType" : "RGB",
+            "offset" : -1,
+            "name" : "Rgb",
+            "value" : {
+              "@type" : "RGBColor",
+              "hex" : 0,
+              "red" : 0,
+              "green" : 0,
+              "blue" : 0,
+              "h" : 0.0,
+              "s" : 100.0,
+              "v" : 0.0,
+              "a" : 0.0,
+              "b" : 0.0,
+              "x" : 0.0,
+              "y" : 0.0,
+              "z" : 0.0
+            }
+          },
+          "Stroboscope" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGB 10 IR",
+            "mode" : "6-Channel Mode",
+            "channelType" : "STROBOSCOPE",
+            "offset" : 1,
+            "name" : "Stroboscope",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          }
+        }
+      }, {
+        "@type" : "ParameterSet",
+        "manufacturer" : "Cameo",
+        "model" : "Flat PAR Can RGBW",
+        "mode" : "8-Channel Mode",
+        "baseChannel" : 21,
+        "parameters" : {
+          "Macro" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGBW",
+            "mode" : "8-Channel Mode",
+            "channelType" : "MACRO",
+            "offset" : 6,
+            "name" : "Macro",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "MasterDimmer" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGBW",
+            "mode" : "8-Channel Mode",
+            "channelType" : "MASTER_DIMMER",
+            "offset" : 0,
+            "name" : "MasterDimmer",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 255
+            }
+          },
+          "Rgbw" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGBW",
+            "mode" : "8-Channel Mode",
+            "channelType" : "RGBW",
+            "offset" : -2,
+            "name" : "Rgbw",
+            "value" : {
+              "@type" : "RGBWColor",
+              "hex" : 0,
+              "red" : 0,
+              "green" : 0,
+              "blue" : 0,
+              "h" : 0.0,
+              "s" : 100.0,
+              "v" : 0.0,
+              "a" : 0.0,
+              "b" : 0.0,
+              "x" : 0.0,
+              "y" : 0.0,
+              "z" : 0.0,
+              "white" : 0
+            }
+          },
+          "SoundToLight" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGBW",
+            "mode" : "8-Channel Mode",
+            "channelType" : "SOUND_TO_LIGHT",
+            "offset" : 7,
+            "name" : "SoundToLight",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "Stroboscope" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGBW",
+            "mode" : "8-Channel Mode",
+            "channelType" : "STROBOSCOPE",
+            "offset" : 1,
+            "name" : "Stroboscope",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          }
+        }
+      }, {
+        "@type" : "ParameterSet",
+        "manufacturer" : "Cameo",
+        "model" : "Flat PAR Can RGB 10 IR",
+        "mode" : "6-Channel Mode",
+        "baseChannel" : 29,
+        "parameters" : {
+          "Macro" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGB 10 IR",
+            "mode" : "6-Channel Mode",
+            "channelType" : "MACRO",
+            "offset" : 5,
+            "name" : "Macro",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "MasterDimmer" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGB 10 IR",
+            "mode" : "6-Channel Mode",
+            "channelType" : "MASTER_DIMMER",
+            "offset" : 0,
+            "name" : "MasterDimmer",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 255
+            }
+          },
+          "Rgb" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGB 10 IR",
+            "mode" : "6-Channel Mode",
+            "channelType" : "RGB",
+            "offset" : -1,
+            "name" : "Rgb",
+            "value" : {
+              "@type" : "RGBColor",
+              "hex" : 0,
+              "red" : 0,
+              "green" : 0,
+              "blue" : 0,
+              "h" : 0.0,
+              "s" : 100.0,
+              "v" : 0.0,
+              "a" : 0.0,
+              "b" : 0.0,
+              "x" : 0.0,
+              "y" : 0.0,
+              "z" : 0.0
+            }
+          },
+          "Stroboscope" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGB 10 IR",
+            "mode" : "6-Channel Mode",
+            "channelType" : "STROBOSCOPE",
+            "offset" : 1,
+            "name" : "Stroboscope",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          }
+        }
+      }, {
+        "@type" : "ParameterSet",
+        "manufacturer" : "Renkforce",
+        "model" : "Moving Head GM107",
+        "mode" : "13-Channel Mode",
+        "baseChannel" : 35,
+        "parameters" : {
+          "AutoMode" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "AUTO_MODE",
+            "offset" : 11,
+            "name" : "AutoMode",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "ColorMode" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "COLOR_MODE",
+            "offset" : 10,
+            "name" : "ColorMode",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "Reset" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "RESET",
+            "offset" : 12,
+            "name" : "Reset",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "Rgbw" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "RGBW",
+            "offset" : -2,
+            "name" : "Rgbw",
+            "value" : {
+              "@type" : "RGBWColor",
+              "hex" : 0,
+              "red" : 0,
+              "green" : 0,
+              "blue" : 0,
+              "h" : 0.0,
+              "s" : 100.0,
+              "v" : 0.0,
+              "a" : 0.0,
+              "b" : 0.0,
+              "x" : 0.0,
+              "y" : 0.0,
+              "z" : 0.0,
+              "white" : 0
+            }
+          },
+          "Rotation" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "ROTATION",
+            "offset" : -5,
+            "name" : "Rotation",
+            "value" : {
+              "@type" : "Rotation",
+              "panDegrees" : 360.0,
+              "tiltDegrees" : 0.0
+            }
+          },
+          "Speed" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "SPEED",
+            "offset" : 4,
+            "name" : "Speed",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "Stroboscope" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "STROBOSCOPE",
+            "offset" : 5,
+            "name" : "Stroboscope",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          }
+        }
+      }, {
+        "@type" : "ParameterSet",
+        "manufacturer" : "Renkforce",
+        "model" : "Moving Head GM107",
+        "mode" : "13-Channel Mode",
+        "baseChannel" : 48,
+        "parameters" : {
+          "AutoMode" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "AUTO_MODE",
+            "offset" : 11,
+            "name" : "AutoMode",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "ColorMode" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "COLOR_MODE",
+            "offset" : 10,
+            "name" : "ColorMode",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "Reset" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "RESET",
+            "offset" : 12,
+            "name" : "Reset",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "Rgbw" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "RGBW",
+            "offset" : -2,
+            "name" : "Rgbw",
+            "value" : {
+              "@type" : "RGBWColor",
+              "hex" : 0,
+              "red" : 0,
+              "green" : 0,
+              "blue" : 0,
+              "h" : 0.0,
+              "s" : 100.0,
+              "v" : 0.0,
+              "a" : 0.0,
+              "b" : 0.0,
+              "x" : 0.0,
+              "y" : 0.0,
+              "z" : 0.0,
+              "white" : 0
+            }
+          },
+          "Rotation" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "ROTATION",
+            "offset" : -5,
+            "name" : "Rotation",
+            "value" : {
+              "@type" : "Rotation",
+              "panDegrees" : 360.0,
+              "tiltDegrees" : 0.0
+            }
+          },
+          "Speed" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "SPEED",
+            "offset" : 4,
+            "name" : "Speed",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "Stroboscope" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "STROBOSCOPE",
+            "offset" : 5,
+            "name" : "Stroboscope",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          }
+        }
+      } ]
+    },
+    "transformation" : "FADE",
+    "fadeDuration" : 1000,
+    "stepDuration" : 0,
+    "pause" : 0
+  }, {
+    "name" : "",
+    "sceneId" : 4,
+    "fixtures" : [ 48, 1, 35, 21, 7, 29, 15 ],
+    "parameterSets" : {
+      "parameterSets" : [ {
+        "@type" : "ParameterSet",
+        "manufacturer" : "Cameo",
+        "model" : "Flat PAR Can RGB 10 IR",
+        "mode" : "6-Channel Mode",
+        "baseChannel" : 1,
+        "parameters" : {
+          "Macro" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGB 10 IR",
+            "mode" : "6-Channel Mode",
+            "channelType" : "MACRO",
+            "offset" : 5,
+            "name" : "Macro",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "MasterDimmer" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGB 10 IR",
+            "mode" : "6-Channel Mode",
+            "channelType" : "MASTER_DIMMER",
+            "offset" : 0,
+            "name" : "MasterDimmer",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 255
+            }
+          },
+          "Rgb" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGB 10 IR",
+            "mode" : "6-Channel Mode",
+            "channelType" : "RGB",
+            "offset" : -1,
+            "name" : "Rgb",
+            "value" : {
+              "@type" : "RGBColor",
+              "hex" : 16776960,
+              "red" : 255,
+              "green" : 255,
+              "blue" : 0,
+              "h" : 60.0,
+              "s" : 100.0,
+              "v" : 100.0,
+              "a" : -21.555908334832285,
+              "b" : 94.48248544644461,
+              "x" : 0.9322178986863465,
+              "y" : 0.9753297153560111,
+              "z" : 0.502917288123788
+            }
+          },
+          "Stroboscope" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGB 10 IR",
+            "mode" : "6-Channel Mode",
+            "channelType" : "STROBOSCOPE",
+            "offset" : 1,
+            "name" : "Stroboscope",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          }
+        }
+      }, {
+        "@type" : "ParameterSet",
+        "manufacturer" : "Cameo",
+        "model" : "Flat PAR Can RGBW",
+        "mode" : "8-Channel Mode",
+        "baseChannel" : 7,
+        "parameters" : {
+          "Macro" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGBW",
+            "mode" : "8-Channel Mode",
+            "channelType" : "MACRO",
+            "offset" : 6,
+            "name" : "Macro",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "MasterDimmer" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGBW",
+            "mode" : "8-Channel Mode",
+            "channelType" : "MASTER_DIMMER",
+            "offset" : 0,
+            "name" : "MasterDimmer",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 255
+            }
+          },
+          "Rgbw" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGBW",
+            "mode" : "8-Channel Mode",
+            "channelType" : "RGBW",
+            "offset" : -2,
+            "name" : "Rgbw",
+            "value" : {
+              "@type" : "RGBWColor",
+              "hex" : 0,
+              "red" : 0,
+              "green" : 0,
+              "blue" : 0,
+              "h" : 0.0,
+              "s" : 100.0,
+              "v" : 0.0,
+              "a" : 0.0,
+              "b" : 0.0,
+              "x" : 0.0,
+              "y" : 0.0,
+              "z" : 0.0,
+              "white" : 0
+            }
+          },
+          "SoundToLight" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGBW",
+            "mode" : "8-Channel Mode",
+            "channelType" : "SOUND_TO_LIGHT",
+            "offset" : 7,
+            "name" : "SoundToLight",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "Stroboscope" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGBW",
+            "mode" : "8-Channel Mode",
+            "channelType" : "STROBOSCOPE",
+            "offset" : 1,
+            "name" : "Stroboscope",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          }
+        }
+      }, {
+        "@type" : "ParameterSet",
+        "manufacturer" : "Cameo",
+        "model" : "Flat PAR Can RGB 10 IR",
+        "mode" : "6-Channel Mode",
+        "baseChannel" : 15,
+        "parameters" : {
+          "Macro" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGB 10 IR",
+            "mode" : "6-Channel Mode",
+            "channelType" : "MACRO",
+            "offset" : 5,
+            "name" : "Macro",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "MasterDimmer" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGB 10 IR",
+            "mode" : "6-Channel Mode",
+            "channelType" : "MASTER_DIMMER",
+            "offset" : 0,
+            "name" : "MasterDimmer",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 255
+            }
+          },
+          "Rgb" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGB 10 IR",
+            "mode" : "6-Channel Mode",
+            "channelType" : "RGB",
+            "offset" : -1,
+            "name" : "Rgb",
+            "value" : {
+              "@type" : "RGBColor",
+              "hex" : 0,
+              "red" : 0,
+              "green" : 0,
+              "blue" : 0,
+              "h" : 0.0,
+              "s" : 100.0,
+              "v" : 0.0,
+              "a" : 0.0,
+              "b" : 0.0,
+              "x" : 0.0,
+              "y" : 0.0,
+              "z" : 0.0
+            }
+          },
+          "Stroboscope" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGB 10 IR",
+            "mode" : "6-Channel Mode",
+            "channelType" : "STROBOSCOPE",
+            "offset" : 1,
+            "name" : "Stroboscope",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          }
+        }
+      }, {
+        "@type" : "ParameterSet",
+        "manufacturer" : "Cameo",
+        "model" : "Flat PAR Can RGBW",
+        "mode" : "8-Channel Mode",
+        "baseChannel" : 21,
+        "parameters" : {
+          "Macro" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGBW",
+            "mode" : "8-Channel Mode",
+            "channelType" : "MACRO",
+            "offset" : 6,
+            "name" : "Macro",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "MasterDimmer" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGBW",
+            "mode" : "8-Channel Mode",
+            "channelType" : "MASTER_DIMMER",
+            "offset" : 0,
+            "name" : "MasterDimmer",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 255
+            }
+          },
+          "Rgbw" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGBW",
+            "mode" : "8-Channel Mode",
+            "channelType" : "RGBW",
+            "offset" : -2,
+            "name" : "Rgbw",
+            "value" : {
+              "@type" : "RGBWColor",
+              "hex" : 0,
+              "red" : 0,
+              "green" : 0,
+              "blue" : 0,
+              "h" : 0.0,
+              "s" : 100.0,
+              "v" : 0.0,
+              "a" : 0.0,
+              "b" : 0.0,
+              "x" : 0.0,
+              "y" : 0.0,
+              "z" : 0.0,
+              "white" : 0
+            }
+          },
+          "SoundToLight" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGBW",
+            "mode" : "8-Channel Mode",
+            "channelType" : "SOUND_TO_LIGHT",
+            "offset" : 7,
+            "name" : "SoundToLight",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "Stroboscope" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGBW",
+            "mode" : "8-Channel Mode",
+            "channelType" : "STROBOSCOPE",
+            "offset" : 1,
+            "name" : "Stroboscope",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          }
+        }
+      }, {
+        "@type" : "ParameterSet",
+        "manufacturer" : "Cameo",
+        "model" : "Flat PAR Can RGB 10 IR",
+        "mode" : "6-Channel Mode",
+        "baseChannel" : 29,
+        "parameters" : {
+          "Macro" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGB 10 IR",
+            "mode" : "6-Channel Mode",
+            "channelType" : "MACRO",
+            "offset" : 5,
+            "name" : "Macro",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "MasterDimmer" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGB 10 IR",
+            "mode" : "6-Channel Mode",
+            "channelType" : "MASTER_DIMMER",
+            "offset" : 0,
+            "name" : "MasterDimmer",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 255
+            }
+          },
+          "Rgb" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGB 10 IR",
+            "mode" : "6-Channel Mode",
+            "channelType" : "RGB",
+            "offset" : -1,
+            "name" : "Rgb",
+            "value" : {
+              "@type" : "RGBColor",
+              "hex" : 0,
+              "red" : 0,
+              "green" : 0,
+              "blue" : 0,
+              "h" : 0.0,
+              "s" : 100.0,
+              "v" : 0.0,
+              "a" : 0.0,
+              "b" : 0.0,
+              "x" : 0.0,
+              "y" : 0.0,
+              "z" : 0.0
+            }
+          },
+          "Stroboscope" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGB 10 IR",
+            "mode" : "6-Channel Mode",
+            "channelType" : "STROBOSCOPE",
+            "offset" : 1,
+            "name" : "Stroboscope",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          }
+        }
+      }, {
+        "@type" : "ParameterSet",
+        "manufacturer" : "Renkforce",
+        "model" : "Moving Head GM107",
+        "mode" : "13-Channel Mode",
+        "baseChannel" : 35,
+        "parameters" : {
+          "AutoMode" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "AUTO_MODE",
+            "offset" : 11,
+            "name" : "AutoMode",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "ColorMode" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "COLOR_MODE",
+            "offset" : 10,
+            "name" : "ColorMode",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "Reset" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "RESET",
+            "offset" : 12,
+            "name" : "Reset",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "Rgbw" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "RGBW",
+            "offset" : -2,
+            "name" : "Rgbw",
+            "value" : {
+              "@type" : "RGBWColor",
+              "hex" : 0,
+              "red" : 0,
+              "green" : 0,
+              "blue" : 0,
+              "h" : 0.0,
+              "s" : 100.0,
+              "v" : 0.0,
+              "a" : 0.0,
+              "b" : 0.0,
+              "x" : 0.0,
+              "y" : 0.0,
+              "z" : 0.0,
+              "white" : 0
+            }
+          },
+          "Rotation" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "ROTATION",
+            "offset" : -5,
+            "name" : "Rotation",
+            "value" : {
+              "@type" : "Rotation",
+              "panDegrees" : 360.0,
+              "tiltDegrees" : 0.0
+            }
+          },
+          "Speed" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "SPEED",
+            "offset" : 4,
+            "name" : "Speed",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "Stroboscope" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "STROBOSCOPE",
+            "offset" : 5,
+            "name" : "Stroboscope",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          }
+        }
+      }, {
+        "@type" : "ParameterSet",
+        "manufacturer" : "Renkforce",
+        "model" : "Moving Head GM107",
+        "mode" : "13-Channel Mode",
+        "baseChannel" : 48,
+        "parameters" : {
+          "AutoMode" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "AUTO_MODE",
+            "offset" : 11,
+            "name" : "AutoMode",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "ColorMode" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "COLOR_MODE",
+            "offset" : 10,
+            "name" : "ColorMode",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "Reset" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "RESET",
+            "offset" : 12,
+            "name" : "Reset",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "Rgbw" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "RGBW",
+            "offset" : -2,
+            "name" : "Rgbw",
+            "value" : {
+              "@type" : "RGBWColor",
+              "hex" : 0,
+              "red" : 0,
+              "green" : 0,
+              "blue" : 0,
+              "h" : 0.0,
+              "s" : 100.0,
+              "v" : 0.0,
+              "a" : 0.0,
+              "b" : 0.0,
+              "x" : 0.0,
+              "y" : 0.0,
+              "z" : 0.0,
+              "white" : 0
+            }
+          },
+          "Rotation" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "ROTATION",
+            "offset" : -5,
+            "name" : "Rotation",
+            "value" : {
+              "@type" : "Rotation",
+              "panDegrees" : 360.0,
+              "tiltDegrees" : 0.0
+            }
+          },
+          "Speed" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "SPEED",
+            "offset" : 4,
+            "name" : "Speed",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "Stroboscope" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "STROBOSCOPE",
+            "offset" : 5,
+            "name" : "Stroboscope",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          }
+        }
+      } ]
+    },
+    "transformation" : "FADE",
+    "fadeDuration" : 1000,
+    "stepDuration" : 0,
+    "pause" : 0
+  }, {
+    "name" : "",
+    "sceneId" : 5,
+    "fixtures" : [ 48, 1, 35, 21, 7, 29, 15 ],
+    "parameterSets" : {
+      "parameterSets" : [ {
+        "@type" : "ParameterSet",
+        "manufacturer" : "Cameo",
+        "model" : "Flat PAR Can RGB 10 IR",
+        "mode" : "6-Channel Mode",
+        "baseChannel" : 1,
+        "parameters" : {
+          "Macro" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGB 10 IR",
+            "mode" : "6-Channel Mode",
+            "channelType" : "MACRO",
+            "offset" : 5,
+            "name" : "Macro",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "MasterDimmer" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGB 10 IR",
+            "mode" : "6-Channel Mode",
+            "channelType" : "MASTER_DIMMER",
+            "offset" : 0,
+            "name" : "MasterDimmer",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 255
+            }
+          },
+          "Rgb" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGB 10 IR",
+            "mode" : "6-Channel Mode",
+            "channelType" : "RGB",
+            "offset" : -1,
+            "name" : "Rgb",
+            "value" : {
+              "@type" : "RGBColor",
+              "hex" : 65535,
+              "red" : 0,
+              "green" : 255,
+              "blue" : 255,
+              "h" : 180.0,
+              "s" : 100.0,
+              "v" : 100.0,
+              "a" : -48.079618466228716,
+              "b" : -14.138127754846131,
+              "x" : 0.8272590484939514,
+              "y" : 0.9234182854264088,
+              "z" : 0.9941089242006395
+            }
+          },
+          "Stroboscope" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGB 10 IR",
+            "mode" : "6-Channel Mode",
+            "channelType" : "STROBOSCOPE",
+            "offset" : 1,
+            "name" : "Stroboscope",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          }
+        }
+      }, {
+        "@type" : "ParameterSet",
+        "manufacturer" : "Cameo",
+        "model" : "Flat PAR Can RGBW",
+        "mode" : "8-Channel Mode",
+        "baseChannel" : 7,
+        "parameters" : {
+          "Macro" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGBW",
+            "mode" : "8-Channel Mode",
+            "channelType" : "MACRO",
+            "offset" : 6,
+            "name" : "Macro",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "MasterDimmer" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGBW",
+            "mode" : "8-Channel Mode",
+            "channelType" : "MASTER_DIMMER",
+            "offset" : 0,
+            "name" : "MasterDimmer",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 255
+            }
+          },
+          "Rgbw" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGBW",
+            "mode" : "8-Channel Mode",
+            "channelType" : "RGBW",
+            "offset" : -2,
+            "name" : "Rgbw",
+            "value" : {
+              "@type" : "RGBWColor",
+              "hex" : 0,
+              "red" : 0,
+              "green" : 0,
+              "blue" : 0,
+              "h" : 0.0,
+              "s" : 100.0,
+              "v" : 0.0,
+              "a" : 0.0,
+              "b" : 0.0,
+              "x" : 0.0,
+              "y" : 0.0,
+              "z" : 0.0,
+              "white" : 0
+            }
+          },
+          "SoundToLight" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGBW",
+            "mode" : "8-Channel Mode",
+            "channelType" : "SOUND_TO_LIGHT",
+            "offset" : 7,
+            "name" : "SoundToLight",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "Stroboscope" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGBW",
+            "mode" : "8-Channel Mode",
+            "channelType" : "STROBOSCOPE",
+            "offset" : 1,
+            "name" : "Stroboscope",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          }
+        }
+      }, {
+        "@type" : "ParameterSet",
+        "manufacturer" : "Cameo",
+        "model" : "Flat PAR Can RGB 10 IR",
+        "mode" : "6-Channel Mode",
+        "baseChannel" : 15,
+        "parameters" : {
+          "Macro" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGB 10 IR",
+            "mode" : "6-Channel Mode",
+            "channelType" : "MACRO",
+            "offset" : 5,
+            "name" : "Macro",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "MasterDimmer" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGB 10 IR",
+            "mode" : "6-Channel Mode",
+            "channelType" : "MASTER_DIMMER",
+            "offset" : 0,
+            "name" : "MasterDimmer",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 255
+            }
+          },
+          "Rgb" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGB 10 IR",
+            "mode" : "6-Channel Mode",
+            "channelType" : "RGB",
+            "offset" : -1,
+            "name" : "Rgb",
+            "value" : {
+              "@type" : "RGBColor",
+              "hex" : 0,
+              "red" : 0,
+              "green" : 0,
+              "blue" : 0,
+              "h" : 0.0,
+              "s" : 100.0,
+              "v" : 0.0,
+              "a" : 0.0,
+              "b" : 0.0,
+              "x" : 0.0,
+              "y" : 0.0,
+              "z" : 0.0
+            }
+          },
+          "Stroboscope" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGB 10 IR",
+            "mode" : "6-Channel Mode",
+            "channelType" : "STROBOSCOPE",
+            "offset" : 1,
+            "name" : "Stroboscope",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          }
+        }
+      }, {
+        "@type" : "ParameterSet",
+        "manufacturer" : "Cameo",
+        "model" : "Flat PAR Can RGBW",
+        "mode" : "8-Channel Mode",
+        "baseChannel" : 21,
+        "parameters" : {
+          "Macro" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGBW",
+            "mode" : "8-Channel Mode",
+            "channelType" : "MACRO",
+            "offset" : 6,
+            "name" : "Macro",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "MasterDimmer" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGBW",
+            "mode" : "8-Channel Mode",
+            "channelType" : "MASTER_DIMMER",
+            "offset" : 0,
+            "name" : "MasterDimmer",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 255
+            }
+          },
+          "Rgbw" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGBW",
+            "mode" : "8-Channel Mode",
+            "channelType" : "RGBW",
+            "offset" : -2,
+            "name" : "Rgbw",
+            "value" : {
+              "@type" : "RGBWColor",
+              "hex" : 0,
+              "red" : 0,
+              "green" : 0,
+              "blue" : 0,
+              "h" : 0.0,
+              "s" : 100.0,
+              "v" : 0.0,
+              "a" : 0.0,
+              "b" : 0.0,
+              "x" : 0.0,
+              "y" : 0.0,
+              "z" : 0.0,
+              "white" : 0
+            }
+          },
+          "SoundToLight" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGBW",
+            "mode" : "8-Channel Mode",
+            "channelType" : "SOUND_TO_LIGHT",
+            "offset" : 7,
+            "name" : "SoundToLight",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "Stroboscope" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGBW",
+            "mode" : "8-Channel Mode",
+            "channelType" : "STROBOSCOPE",
+            "offset" : 1,
+            "name" : "Stroboscope",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          }
+        }
+      }, {
+        "@type" : "ParameterSet",
+        "manufacturer" : "Cameo",
+        "model" : "Flat PAR Can RGB 10 IR",
+        "mode" : "6-Channel Mode",
+        "baseChannel" : 29,
+        "parameters" : {
+          "Macro" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGB 10 IR",
+            "mode" : "6-Channel Mode",
+            "channelType" : "MACRO",
+            "offset" : 5,
+            "name" : "Macro",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "MasterDimmer" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGB 10 IR",
+            "mode" : "6-Channel Mode",
+            "channelType" : "MASTER_DIMMER",
+            "offset" : 0,
+            "name" : "MasterDimmer",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 255
+            }
+          },
+          "Rgb" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGB 10 IR",
+            "mode" : "6-Channel Mode",
+            "channelType" : "RGB",
+            "offset" : -1,
+            "name" : "Rgb",
+            "value" : {
+              "@type" : "RGBColor",
+              "hex" : 0,
+              "red" : 0,
+              "green" : 0,
+              "blue" : 0,
+              "h" : 0.0,
+              "s" : 100.0,
+              "v" : 0.0,
+              "a" : 0.0,
+              "b" : 0.0,
+              "x" : 0.0,
+              "y" : 0.0,
+              "z" : 0.0
+            }
+          },
+          "Stroboscope" : {
+            "manufacturer" : "Cameo",
+            "model" : "Flat PAR Can RGB 10 IR",
+            "mode" : "6-Channel Mode",
+            "channelType" : "STROBOSCOPE",
+            "offset" : 1,
+            "name" : "Stroboscope",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          }
+        }
+      }, {
+        "@type" : "ParameterSet",
+        "manufacturer" : "Renkforce",
+        "model" : "Moving Head GM107",
+        "mode" : "13-Channel Mode",
+        "baseChannel" : 35,
+        "parameters" : {
+          "AutoMode" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "AUTO_MODE",
+            "offset" : 11,
+            "name" : "AutoMode",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "ColorMode" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "COLOR_MODE",
+            "offset" : 10,
+            "name" : "ColorMode",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "Reset" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "RESET",
+            "offset" : 12,
+            "name" : "Reset",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "Rgbw" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "RGBW",
+            "offset" : -2,
+            "name" : "Rgbw",
+            "value" : {
+              "@type" : "RGBWColor",
+              "hex" : 0,
+              "red" : 0,
+              "green" : 0,
+              "blue" : 0,
+              "h" : 0.0,
+              "s" : 100.0,
+              "v" : 0.0,
+              "a" : 0.0,
+              "b" : 0.0,
+              "x" : 0.0,
+              "y" : 0.0,
+              "z" : 0.0,
+              "white" : 0
+            }
+          },
+          "Rotation" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "ROTATION",
+            "offset" : -5,
+            "name" : "Rotation",
+            "value" : {
+              "@type" : "Rotation",
+              "panDegrees" : 360.0,
+              "tiltDegrees" : 0.0
+            }
+          },
+          "Speed" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "SPEED",
+            "offset" : 4,
+            "name" : "Speed",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "Stroboscope" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "STROBOSCOPE",
+            "offset" : 5,
+            "name" : "Stroboscope",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          }
+        }
+      }, {
+        "@type" : "ParameterSet",
+        "manufacturer" : "Renkforce",
+        "model" : "Moving Head GM107",
+        "mode" : "13-Channel Mode",
+        "baseChannel" : 48,
+        "parameters" : {
+          "AutoMode" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "AUTO_MODE",
+            "offset" : 11,
+            "name" : "AutoMode",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "ColorMode" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "COLOR_MODE",
+            "offset" : 10,
+            "name" : "ColorMode",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "Reset" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "RESET",
+            "offset" : 12,
+            "name" : "Reset",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "Rgbw" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "RGBW",
+            "offset" : -2,
+            "name" : "Rgbw",
+            "value" : {
+              "@type" : "RGBWColor",
+              "hex" : 0,
+              "red" : 0,
+              "green" : 0,
+              "blue" : 0,
+              "h" : 0.0,
+              "s" : 100.0,
+              "v" : 0.0,
+              "a" : 0.0,
+              "b" : 0.0,
+              "x" : 0.0,
+              "y" : 0.0,
+              "z" : 0.0,
+              "white" : 0
+            }
+          },
+          "Rotation" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "ROTATION",
+            "offset" : -5,
+            "name" : "Rotation",
+            "value" : {
+              "@type" : "Rotation",
+              "panDegrees" : 360.0,
+              "tiltDegrees" : 0.0
+            }
+          },
+          "Speed" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "SPEED",
+            "offset" : 4,
+            "name" : "Speed",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          },
+          "Stroboscope" : {
+            "manufacturer" : "Renkforce",
+            "model" : "Moving Head GM107",
+            "mode" : "13-Channel Mode",
+            "channelType" : "STROBOSCOPE",
+            "offset" : 5,
+            "name" : "Stroboscope",
+            "value" : {
+              "@type" : "DmxRawValue",
+              "value" : 0
+            }
+          }
+        }
+      } ]
+    },
+    "transformation" : "FADE",
+    "fadeDuration" : 1000,
+    "stepDuration" : 0,
+    "pause" : 0
+  } ]
+}

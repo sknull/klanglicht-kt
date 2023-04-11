@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <packaging>pom</packaging>
+
+  <groupId>de.visualdigits.kotlin</groupId>
+  <artifactId>lighting3-kt</artifactId>
+  <version>${revision}</version>
+
+  <name>klanglicht-kt</name>
+
+  <modules>
+    <module>klanglicht-core</module>
+    <module>klanglicht-rest</module>
+  </modules>
+
+  <properties>
+	  <revision>1.0-SNAPSHOT</revision>
+
+    <java-version>11</java-version>
+    <compilerVersion>11</compilerVersion>
+    <project.build.source>11</project.build.source>
+    <project.build.target>11</project.build.target>
+    <kotlin.compiler.jvmTarget>11</kotlin.compiler.jvmTarget>
+
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+    <kotlin.code.style>official</kotlin.code.style>
+
+    <version.jackson>2.14.1</version.jackson>
+    <version.kotlin>1.8.20</version.kotlin>
+    <version.log4j>1.2.17</version.log4j>
+    <version.slf4j>2.0.5</version.slf4j>
+    <version.junit.jupiter>5.9.2</version.junit.jupiter>
+  </properties>
+
+  <repositories>
+    <repository>
+      <id>mavenCentral</id>
+      <url>https://repo1.maven.org/maven2/</url>
+    </repository>
+  </repositories>
+
+  <dependencies>
+    <!-- kotlin -->
+    <dependency>
+      <groupId>org.jetbrains.kotlin</groupId>
+      <artifactId>kotlin-stdlib</artifactId>
+      <version>${version.kotlin}</version>
+    </dependency>
+
+    <!-- logging -->
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-reload4j</artifactId>
+      <version>${version.slf4j}</version>
+    </dependency>
+    <dependency>
+      <groupId>log4j</groupId>
+      <artifactId>log4j</artifactId>
+      <version>${version.log4j}</version>
+    </dependency>
+
+    <!-- testing -->
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-api</artifactId>
+      <version>${version.junit.jupiter}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-engine</artifactId>
+      <version>${version.junit.jupiter}</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <sourceDirectory>src/main/kotlin</sourceDirectory>
+    <testSourceDirectory>src/test/kotlin</testSourceDirectory>
+    <plugins>
+      <plugin>
+        <groupId>org.jetbrains.kotlin</groupId>
+        <artifactId>kotlin-maven-plugin</artifactId>
+        <version>${version.kotlin}</version>
+        <configuration>
+          <languageVersion>1.7</languageVersion>
+          <jvmTarget>${kotlin.compiler.jvmTarget}</jvmTarget>
+        </configuration>
+        <executions>
+          <execution>
+            <id>compile</id>
+            <phase>compile</phase>
+            <goals>
+              <goal>compile</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>test-compile</id>
+            <phase>test-compile</phase>
+            <goals>
+              <goal>test-compile</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+	  
+      <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.22.2</version>
+      </plugin>
+	  
+      <plugin>
+        <artifactId>maven-failsafe-plugin</artifactId>
+        <version>2.22.2</version>
+      </plugin>
+	  
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.10.1</version>
+        <configuration>
+          <source>${project.build.source}</source>
+          <target>${project.build.target}</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>

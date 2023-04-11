@@ -1,0 +1,15 @@
+{
+  "name": "Test Red",
+  "parameterSet": [
+    {
+      "baseChannel": 15,
+      "parameters": {
+        "MasterDimmer": 0,
+        "Stroboscope": 0,
+        "Red": 255,
+        "Green": 240,
+        "Blue": 0
+      }
+    }
+  ]
+}
