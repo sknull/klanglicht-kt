@@ -6,7 +6,7 @@
   <packaging>pom</packaging>
 
   <groupId>de.visualdigits.kotlin</groupId>
-  <artifactId>lighting3-kt</artifactId>
+  <artifactId>klanglicht-kt</artifactId>
   <version>${revision}</version>
 
   <name>klanglicht-kt</name>
