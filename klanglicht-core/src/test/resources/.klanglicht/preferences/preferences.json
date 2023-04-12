@@ -5,7 +5,7 @@
   "remoteUrl" : null,
   "lightmanagerUrl" : "http://192.168.178.28",
   "yamahaReceiverUrl" : "http://192.168.178.21",
-  "stageSetupName" : "wohnzimmer",
+  "stageSetupName" : "test",
   "stageParameters": {
 		"shellyDevices": {
 			"Starwars": {
