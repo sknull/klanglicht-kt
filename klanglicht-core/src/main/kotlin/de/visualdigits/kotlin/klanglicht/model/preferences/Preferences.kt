@@ -16,6 +16,7 @@ data class Preferences(
     val dividerPositions: List<Double> = listOf(),
     val dmxFrameTime: Int? = null,
     val dmxPort: String? = null,
+    val dmxInterfaceType: DMXInterfaceType? = null,
     val fonts: List<Font> = listOf(),
     val lightmanagerUrl: String? = null,
     val pushEnabled: Boolean = false,
@@ -54,7 +55,7 @@ data class Preferences(
                         }
                     }
                 }
-                dmxInterface = DMXInterface.load(DMXInterfaceType.Eurolite512Pro)
+                dmxInterface = DMXInterface.load(preferences?.dmxInterfaceType?:DMXInterfaceType.Dummy)
                 dmxInterface?.open(preferences?.dmxPort!!)
             }
             return preferences!!

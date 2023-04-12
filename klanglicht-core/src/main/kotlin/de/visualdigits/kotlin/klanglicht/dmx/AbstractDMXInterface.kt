@@ -27,7 +27,9 @@ abstract class AbstractDMXInterface : DMXInterface {
         return dmxFrame.data
     }
 
-    override fun write(dmxFrame: DmxFrame) {}
+    override fun write(dmxFrame: DmxFrame) {
+        println("### writing frame: $dmxFrame")
+    }
 
     override fun setChannel(channel: Int, value: Int) {
         dmxFrame.set(channel, value)

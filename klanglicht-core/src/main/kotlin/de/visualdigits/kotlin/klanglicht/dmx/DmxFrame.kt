@@ -32,7 +32,7 @@ class DmxFrame(
     }
 
     override fun toString(): String {
-        return "DMXFrameEurolite512Pro []"
+        return "DmxFrame [${dump()}]"
     }
 
     fun frame(): ByteArray = Bytes.concat(header, data, footer)
