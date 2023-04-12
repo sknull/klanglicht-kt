@@ -3,7 +3,6 @@ package de.visualdigits.kotlin.klanglicht.model.preferences
 import com.fasterxml.jackson.module.kotlin.jacksonMapperBuilder
 import de.visualdigits.kotlin.klanglicht.dmx.DMXInterface
 import de.visualdigits.kotlin.klanglicht.dmx.DMXInterfaceType
-import de.visualdigits.kotlin.klanglicht.dmx.DmxFrame
 import de.visualdigits.kotlin.klanglicht.model.fixture.Channel
 import de.visualdigits.kotlin.klanglicht.model.fixture.Fixtures
 import de.visualdigits.kotlin.klanglicht.model.parameter.Scene
@@ -38,12 +37,10 @@ data class Preferences(
 
         private val fixtures: MutableMap<Int, List<Channel>> = mutableMapOf()
 
-        fun instance(): Preferences = preferences!!
-
-        fun load(klanglichtDir: File): Preferences {
-            if (preferences == null) {
+        fun instance(klanglichtDir: File? = null, preferencesFileName: String = "preferences.json"): Preferences {
+            if (preferences == null && klanglichtDir != null) {
                 preferences = mapper.readValue(
-                        Paths.get(klanglichtDir.canonicalPath, "preferences", "preferences.json").toFile(),
+                        Paths.get(klanglichtDir.canonicalPath, "preferences", preferencesFileName).toFile(),
                         Preferences::class.java
                     )
                 val fixtures = Fixtures.load(klanglichtDir)
@@ -60,22 +57,34 @@ data class Preferences(
             }
             return preferences!!
         }
+    }
 
-        fun writeSceneData(sceneFile: File) {
-            dmxInterface?.write(sceneData(sceneFile))
-        }
+    /**
+     * Writes the given scene into the internal dmx frame of the interface.
+     */
+    fun setSceneFile(sceneFile: File) {
+        setScene(Scene.load(sceneFile))
+    }
 
-        fun sceneData(sceneFile: File): DmxFrame {
-            val dmxFrame = DmxFrame()
-            Scene.load(sceneFile).parameterSet.forEach { parameterSet ->
-                val bc = parameterSet.baseChannel
-                val bytes = (fixtures[bc]?.map { channel ->
-                        (parameterSet.parameters[channel.name]?:0).toByte()
-                    }?:listOf())
-                    .toByteArray()
-                dmxFrame.set(bc, bytes)
-            }
-            return dmxFrame
+    /**
+     * Writes the given scene into the internal dmx frame of the interface.
+     */
+    fun setScene(scene: Scene) {
+        scene.parameterSet.forEach { parameterSet ->
+            val bc = parameterSet.baseChannel
+            val bytes = (fixtures[bc]?.map { channel ->
+                (parameterSet.parameters[channel.name]?:0).toByte()
+            }?:listOf())
+                .toByteArray()
+            dmxInterface?.dmxFrame!!.set(bc, bytes)
         }
+    }
+
+    /**
+     * Writes the internal dmx frame data to the interface.
+     */
+    fun write() {
+        // todo Only needed until we have a repeater thread.
+        dmxInterface?.write()
     }
 }

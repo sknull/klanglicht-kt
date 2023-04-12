@@ -1,7 +1,7 @@
 package de.visualdigits.kotlin.klanglicht.dmx
 
 
-class DMXInterfaceDummy() : AbstractDMXInterface() {
+class DMXInterfaceDummy : DMXInterface() {
 
     override fun toString(): String {
         return repr()
@@ -16,7 +16,7 @@ class DMXInterfaceDummy() : AbstractDMXInterface() {
     }
 
     override fun write() {
-        println(toString())
+        println("### write frame: ${dmxFrame.dump()}")
     }
 
     override fun read(): ByteArray {

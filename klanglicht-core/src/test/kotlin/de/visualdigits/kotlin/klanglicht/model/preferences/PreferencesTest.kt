@@ -8,7 +8,9 @@ internal class PreferencesTest {
 
     @Test
     fun testReadModel() {
-        Preferences.load(File(ClassLoader.getSystemResource(".klanglicht").toURI()))
+        Preferences.instance(
+            klanglichtDir = File(ClassLoader.getSystemResource(".klanglicht").toURI())
+        )
 
         assertNotNull(Preferences.instance())
     }

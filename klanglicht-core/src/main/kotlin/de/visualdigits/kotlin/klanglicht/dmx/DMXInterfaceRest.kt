@@ -1,6 +1,6 @@
 package de.visualdigits.kotlin.klanglicht.dmx
 
-class DMXInterfaceRest() : AbstractDMXInterface() {
+class DMXInterfaceRest : DMXInterface() {
 
     override fun toString(): String {
         return repr()

@@ -1,88 +1,16 @@
 package de.visualdigits.kotlin.klanglicht.dmx
 
+import jssc.SerialPort
+import jssc.SerialPortException
+import org.apache.commons.lang3.StringUtils
+import java.lang.IllegalArgumentException
 
-interface DMXInterface {
 
-    /**
-     * Opens the given serial port for communication with the physical device.
-     *
-     * @param portName The port name (i.e. 'COM9'.
-     */
-    fun open(portName: String)
+open class DMXInterface {
 
-    /**
-     * Closes the current serial port.
-     */
-    fun close()
+    val dmxFrame = DmxFrame()
 
-    /**
-     * Writes the current internal data bytes to the device.
-     */
-    fun write()
-
-    /**
-     * Writes the given data bytes to the device.
-     *
-     * @param data The frame data to write.
-     */
-    fun write(data: ByteArray)
-
-    /**
-     * Writes the given data bytes to the device.
-     *
-     * @param dmxFrame The frame data to write.
-     */
-    fun write(dmxFrame: DmxFrame)
-
-    /**
-     * Returns the current frame data.
-     */
-    fun read(): ByteArray?
-
-    /**
-     * Clears all 512 DMX channels in the internal data bytes by setting to 0.
-     */
-    fun clearChannels()
-
-    /**
-     * Sets the given DMX channel in the internal data bytes to the given value.
-     *
-     * @param channel The channel to set [1..512].
-     * @param value The value to set [0..255].
-     */
-    fun setChannel(channel: Int, value: Int)
-
-    /**
-     * Sets the given DMX channel in the internal data bytes to the given value.
-     *
-     * @param baseChannel The base channel to set [1..512].
-     * @param data The bytes to set.
-     */
-    fun setData(baseChannel: Int, data: ByteArray)
-
-    /**
-     * Returns the currently set value of the given DMX channel.<br></br>
-     * This method does not actually read from the device but returns
-     * the current value form the internal data bytes.
-     *
-     * @param channel The DMX channel to retrieve [1..512].
-     * @return byte
-     */
-    fun getChannel(channel: Int): Int
-
-    /**
-     * Initializes a new DMX frame appropriate for the target device.
-     */
-    fun initFrame()
-
-    /**
-     * Sets all channels to 0.
-     */
-    fun clear()
-
-    fun repr(): String?
-
-    fun isOpen(): Boolean
+    private var serialPort: SerialPort? = null
 
     companion object {
 
@@ -93,7 +21,7 @@ interface DMXInterface {
         fun load(type: DMXInterfaceType): DMXInterface {
             if (dmxInterface == null) {
                 dmxInterface = when (type) {
-                    DMXInterfaceType.Eurolite512Pro -> DMXInterfaceEurolite512Pro()
+                    DMXInterfaceType.Serial -> DMXInterface()
                     DMXInterfaceType.Dummy -> DMXInterfaceDummy()
                     DMXInterfaceType.Rest -> DMXInterfaceRest()
                 }
@@ -101,4 +29,133 @@ interface DMXInterface {
             return dmxInterface!!
         }
     }
+
+    override fun toString(): String {
+        return dmxFrame.dump()
+    }
+
+    fun repr(): String {
+        val lst = ArrayList<String>()
+        for (b in dmxFrame.frame()) {
+            lst.add(StringUtils.leftPad(Integer.toHexString(b.toInt()), 8, '0'))
+        }
+        return lst.toString()
+    }
+
+    /**
+     * Opens the given serial port for communication with the physical device.
+     *
+     * @param portName The port name (i.e. 'COM9'.
+     */
+    open fun open(portName: String) {
+        if (serialPort == null && !StringUtils.isEmpty(portName)) {
+            try {
+                synchronized(this) {
+                    serialPort = SerialPort(portName)
+                    serialPort?.openPort()
+                    serialPort?.setParams(9600, 8, 1, 0)
+                }
+            } catch (e: Exception) {
+                System.err.println("Could not open DMX port '$portName'")
+            }
+        }
+    }
+
+    open fun isOpen(): Boolean {
+        synchronized(this) {
+            return serialPort?.isOpened == true
+        }
+    }
+
+    /**
+     * Closes the current serial port.
+     */
+    open fun close() {
+        if (isOpen()) {
+            try {
+                synchronized(this) {
+                    serialPort?.closePort()
+                }
+            } catch (e: SerialPortException) {
+                throw IllegalStateException("Could not close port", e)
+            }
+        }
+    }
+
+    /**
+     * This methid does not actually read from the interface as that one is write only.
+     * Instead it returns the current bytes frame the frame data.
+     */
+    open fun read(): ByteArray {
+        return dmxFrame.data
+    }
+
+    /**
+     * Writes the given data bytes to the device.
+     * The data bytes must be exactly 512 bytes long.
+     *
+     * @param data The frame data to write.
+     */
+    open fun write(data: ByteArray) {
+        if (data.size != 512) throw IllegalArgumentException("Data must be exactly 512 bytes long")
+        dmxFrame.set(0, data)
+        write()
+    }
+
+    /**
+     * Writes the current state of the internal dmx frame to the interface.
+     */
+    open fun write() {
+        if (isOpen()) {
+            try {
+                synchronized(this) {
+                    serialPort?.writeBytes(dmxFrame.frame())
+                }
+            } catch (e: SerialPortException) {
+                throw IllegalStateException("Could write dmxFrame to port", e)
+            }
+        } else {
+            throw IllegalStateException("Tried to write to non open port")
+        }
+    }
+
+    /**
+     * Sets the given DMX channel in the internal data bytes to the given value.
+     *
+     * @param channel The channel to set [1..512].
+     * @param value The value to set [0..255].
+     */
+    fun setChannel(channel: Int, value: Int) {
+        dmxFrame.set(channel, value)
+    }
+
+    /**
+     * Sets the given DMX channel in the internal data bytes to the given value.
+     *
+     * @param baseChannel The base channel to set [1..512].
+     * @param data The bytes to set.
+     */
+    fun setData(baseChannel: Int, data: ByteArray) {
+        dmxFrame.set(baseChannel, data)
+    }
+
+    /**
+     * Returns the currently set value of the given DMX channel.<br></br>
+     * This method does not actually read from the device but returns
+     * the current value form the internal data bytes.
+     *
+     * @param channel The DMX channel to retrieve [1..512].
+     * @return byte
+     */
+    fun getChannel(channel: Int): Int {
+        return dmxFrame.get(channel) // todo had offset of 4 - why?
+    }
+
+    /**
+     * Sets all channels to 0.
+     */
+    fun clear() {
+        dmxFrame.init()
+    }
 }
+

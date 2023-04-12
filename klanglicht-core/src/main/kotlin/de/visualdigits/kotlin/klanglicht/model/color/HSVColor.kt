@@ -82,4 +82,8 @@ class HSVColor(
     override fun toRGBA(): RGBAColor {
         return toRGB().toRGBA()
     }
+
+    override fun toColorParameter(): ColorParameter {
+        return toRGB().toColorParameter()
+    }
 }

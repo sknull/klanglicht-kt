@@ -42,9 +42,9 @@ open class RGBColor(
         val thisRGB = toRGB()
         val otherRGB = other.toRGB()
         val rgb = RGBColor(
-            red = min(255, (thisRGB.red + factor * otherRGB.red).roundToInt()),
-            green =  min(255, (thisRGB.green + factor * otherRGB.green).roundToInt()),
-            blue =  min(255, (thisRGB.blue + factor * otherRGB.blue).roundToInt())
+            red = min(255, (thisRGB.red + factor * (otherRGB.red - thisRGB.red)).roundToInt()),
+            green =  min(255, (thisRGB.green + factor * (otherRGB.green - thisRGB.green)).roundToInt()),
+            blue =  min(255, (thisRGB.blue + factor * (otherRGB.blue - thisRGB.blue)).roundToInt())
         )
         return rgb.convert()
     }
@@ -53,6 +53,8 @@ open class RGBColor(
         return when (T::class) {
             RGBWColor::class -> toRGBW() as T
             RGBAColor::class -> toRGBA() as T
+            HSVColor::class -> toHSV() as T
+            ColorParameter::class -> toColorParameter() as T
             else -> toRGB() as T
         }
     }
@@ -121,6 +123,16 @@ open class RGBColor(
             green = g - amber,
             blue = blue,
             amber = amber
+        )
+    }
+
+    override fun toColorParameter(): ColorParameter {
+        val color = toRGBW()
+        return ColorParameter(
+            red = color.red,
+            green = color.green,
+            blue = color.blue,
+            white = color.white
         )
     }
 

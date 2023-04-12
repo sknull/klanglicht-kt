@@ -37,6 +37,9 @@ class DmxFrame(
 
     fun frame(): ByteArray = Bytes.concat(header, data, footer)
 
+    /**
+     * Sets all data bytes to 0.
+     */
     fun init() {
         data.fill(0)
     }
