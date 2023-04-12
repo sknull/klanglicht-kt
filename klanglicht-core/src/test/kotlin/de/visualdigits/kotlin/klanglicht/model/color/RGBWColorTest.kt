@@ -50,7 +50,7 @@ internal class RGBWColorTest {
         val color1 = RGBWColor("#ff000000")
         val color2 = RGBWColor("#0000ff00")
         val mixed = color1.mix<RGBWColor>(color2, 0.5)
-        assertEquals("#ff008000", mixed.web())
+        assertEquals("#80008000", mixed.web())
     }
 
     @Test
