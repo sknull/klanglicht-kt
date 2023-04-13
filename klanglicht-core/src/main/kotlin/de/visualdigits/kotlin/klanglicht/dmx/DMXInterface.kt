@@ -3,7 +3,6 @@ package de.visualdigits.kotlin.klanglicht.dmx
 import jssc.SerialPort
 import jssc.SerialPortException
 import org.apache.commons.lang3.StringUtils
-import java.lang.IllegalArgumentException
 
 
 open class DMXInterface {
@@ -13,20 +12,12 @@ open class DMXInterface {
     private var serialPort: SerialPort? = null
 
     companion object {
-
-        private var dmxInterface: DMXInterface? = null
-
-        fun instance(): DMXInterface = dmxInterface!!
-
         fun load(type: DMXInterfaceType): DMXInterface {
-            if (dmxInterface == null) {
-                dmxInterface = when (type) {
-                    DMXInterfaceType.Serial -> DMXInterface()
-                    DMXInterfaceType.Dummy -> DMXInterfaceDummy()
-                    DMXInterfaceType.Rest -> DMXInterfaceRest()
-                }
+            return when (type) {
+                DMXInterfaceType.Serial -> DMXInterface()
+                DMXInterfaceType.Dummy -> DMXInterfaceDummy()
+                DMXInterfaceType.Rest -> DMXInterfaceRest()
             }
-            return dmxInterface!!
         }
     }
 
@@ -50,11 +41,9 @@ open class DMXInterface {
     open fun open(portName: String) {
         if (serialPort == null && !StringUtils.isEmpty(portName)) {
             try {
-                synchronized(this) {
-                    serialPort = SerialPort(portName)
-                    serialPort?.openPort()
-                    serialPort?.setParams(9600, 8, 1, 0)
-                }
+                serialPort = SerialPort(portName)
+                serialPort?.openPort()
+                serialPort?.setParams(9600, 8, 1, 0)
             } catch (e: Exception) {
                 System.err.println("Could not open DMX port '$portName'")
             }
@@ -62,9 +51,7 @@ open class DMXInterface {
     }
 
     open fun isOpen(): Boolean {
-        synchronized(this) {
-            return serialPort?.isOpened == true
-        }
+        return serialPort?.isOpened == true
     }
 
     /**
@@ -73,9 +60,7 @@ open class DMXInterface {
     open fun close() {
         if (isOpen()) {
             try {
-                synchronized(this) {
-                    serialPort?.closePort()
-                }
+                serialPort?.closePort()
             } catch (e: SerialPortException) {
                 throw IllegalStateException("Could not close port", e)
             }
@@ -108,9 +93,7 @@ open class DMXInterface {
     open fun write() {
         if (isOpen()) {
             try {
-                synchronized(this) {
-                    serialPort?.writeBytes(dmxFrame.frame())
-                }
+                serialPort?.writeBytes(dmxFrame.frame())
             } catch (e: SerialPortException) {
                 throw IllegalStateException("Could write dmxFrame to port", e)
             }

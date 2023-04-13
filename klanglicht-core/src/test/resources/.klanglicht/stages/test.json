@@ -5,5 +5,10 @@
     "model" : "Flat PAR Can RGB 10 IR",
     "mode" : "6-Channel Mode",
     "baseChannel" : 15
+  }, {
+    "manufacturer": "Renkforce",
+    "model": "Moving Head GM107",
+    "mode": "13-Channel Mode",
+    "baseChannel": 48
   } ]
 }

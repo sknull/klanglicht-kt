@@ -13,7 +13,7 @@ import java.nio.file.Paths
 
 data class Preferences(
     val dividerPositions: List<Double> = listOf(),
-    val dmxFrameTime: Int? = null,
+    val dmxFrameTime: Long? = null,
     val dmxPort: String? = null,
     val dmxInterfaceType: DMXInterfaceType? = null,
     val fonts: List<Font> = listOf(),

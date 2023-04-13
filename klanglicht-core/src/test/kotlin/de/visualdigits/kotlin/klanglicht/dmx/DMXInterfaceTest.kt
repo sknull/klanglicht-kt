@@ -6,6 +6,7 @@ import de.visualdigits.kotlin.klanglicht.model.color.RGBColor
 import de.visualdigits.kotlin.klanglicht.model.parameter.ParameterSet
 import de.visualdigits.kotlin.klanglicht.model.parameter.Scene
 import de.visualdigits.kotlin.klanglicht.model.preferences.Preferences
+import kotlinx.coroutines.*
 import org.junit.jupiter.api.Test
 import java.io.File
 import kotlin.math.ceil
@@ -67,6 +68,27 @@ internal class DMXInterfaceTest {
     }
 
     @Test
+    fun testMovinghead() {
+//        val repeater = Repeater.instance(prefs)
+        val repeater = Repeater(prefs)
+        repeater.start()
+
+        val color1 = RGBColor(
+            red = 255,
+            green = 0,
+            blue = 0
+        )
+        val color2 = RGBColor(
+            red = 0,
+            green = 255,
+            blue = 0
+        )
+        fade(48, color1, color2, 2000)
+
+        repeater.join()
+    }
+
+    @Test
     fun testInterfaceFromModel2() {
         val color1 = RGBColor(
             red = 255,
@@ -80,9 +102,17 @@ internal class DMXInterfaceTest {
         )
         val fadeDuration = 2000 // millis
 
+        fade(15, color1, color2, fadeDuration)
+    }
+
+    private fun fade(
+        baseChannel: Int,
+        color1: RGBColor,
+        color2: RGBColor,
+        fadeDuration: Int
+    ) {
         val dmxFrameTime = prefs.dmxFrameTime!! // millis
         val steps = ceil(fadeDuration.toDouble() / dmxFrameTime.toDouble()).toInt()
-        val start = System.currentTimeMillis()
         val step = 1.0 / steps
         for (f in 0..steps + 1) {
             val factor = step * f
@@ -91,7 +121,7 @@ internal class DMXInterfaceTest {
                 name = "test",
                 parameterSet = setOf(
                     ParameterSet(
-                        baseChannel = 15,
+                        baseChannel = baseChannel,
                         parameterObjects = setOf(
                             NamedParameter("MasterDimmer", 255),
                             NamedParameter("Stroboscope", 0),
@@ -101,11 +131,9 @@ internal class DMXInterfaceTest {
                 )
             )
             prefs.setScene(scene)
-            prefs.write()
+            Thread.sleep(dmxFrameTime)
+//            prefs.write()
         }
-        val stop = System.currentTimeMillis()
-
-        println("### durations: ${stop - start} millis")
     }
 
 }
