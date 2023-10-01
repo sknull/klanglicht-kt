@@ -1,0 +1,14 @@
+{
+	"name": "home-lab-rgb-movinghead", 
+	"fixtures": [{
+			"manufacturer": "Renkforce", 
+			"model": "Moving Head GM107", 
+			"mode": "13-Channel Mode", 
+			"baseChannel": 35
+		}, {
+			"manufacturer": "Renkforce", 
+			"model": "Moving Head GM107", 
+			"mode": "13-Channel Mode", 
+			"baseChannel": 48
+		}]
+}

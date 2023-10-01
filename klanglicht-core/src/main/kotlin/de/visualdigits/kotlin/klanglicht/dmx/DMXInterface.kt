@@ -1,5 +1,7 @@
 package de.visualdigits.kotlin.klanglicht.dmx
 
+import de.visualdigits.kotlin.klanglicht.model.dmx.DMXInterfaceType
+import de.visualdigits.kotlin.klanglicht.model.dmx.DmxFrame
 import jssc.SerialPort
 import jssc.SerialPortException
 import org.apache.commons.lang3.StringUtils

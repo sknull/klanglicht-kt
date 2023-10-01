@@ -1,6 +1,8 @@
 package de.visualdigits.kotlin.klanglicht.model.color
 
-interface Color {
+import de.visualdigits.kotlin.klanglicht.model.parameter.Parameter
+
+interface Color<T : Color<T>> : Parameter<T> {
 
     fun value(): Long
 
@@ -17,6 +19,4 @@ interface Color {
     fun toRGBW(): RGBWColor
 
     fun toRGBA(): RGBAColor
-
-    fun toColorParameter(): ColorParameter
 }

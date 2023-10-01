@@ -1,6 +1,9 @@
 package de.visualdigits.kotlin.klanglicht.model.color
 
+import de.visualdigits.kotlin.klanglicht.model.parameter.IntParameter
+import de.visualdigits.kotlin.klanglicht.model.parameter.Parameter
 import org.apache.commons.lang3.StringUtils
+import java.lang.IllegalArgumentException
 import kotlin.math.floor
 import kotlin.math.roundToInt
 
@@ -11,7 +14,7 @@ class HSVColor(
     var s: Int = 0,
     /** 0 -100 */
     var v: Int = 0
-) : Color {
+) : Color<HSVColor> {
 
     override fun toString(): String {
         return "[" + StringUtils.join(listOf(h, s, v), ", ") + "]"
@@ -19,6 +22,21 @@ class HSVColor(
 
     fun repr(): String {
         return "RGBColor(hex='${web()}', h=$h, s=$s , v=$v)"
+    }
+
+    override fun parameterMap(): Map<String, Int> {
+        val rgbColor = toRGB()
+        return mapOf(
+            "Red" to rgbColor.red,
+            "Green" to rgbColor.green,
+            "Blue" to rgbColor.blue,
+        )
+    }
+
+    override fun fade(other: Parameter<*>, factor: Double): HSVColor {
+        return if (other is HSVColor) {
+            other.toRGB().fade(other.toRGB(), factor).toHSV()
+        } else throw IllegalArgumentException("Cannot fade different parameter type")
     }
 
     override fun toRGB(): RGBColor {
@@ -51,10 +69,6 @@ class HSVColor(
         )
     }
 
-    inline fun <reified T : Color> mix(other: Color, factor: Double): T {
-        return toRGB().mix(other, factor)
-    }
-
     override fun value(): Long {
         return toRGB().value()
     }
@@ -81,9 +95,5 @@ class HSVColor(
 
     override fun toRGBA(): RGBAColor {
         return toRGB().toRGBA()
-    }
-
-    override fun toColorParameter(): ColorParameter {
-        return toRGB().toColorParameter()
     }
 }

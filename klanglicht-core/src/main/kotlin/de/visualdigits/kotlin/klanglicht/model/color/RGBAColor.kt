@@ -1,6 +1,8 @@
 package de.visualdigits.kotlin.klanglicht.model.color
 
+import de.visualdigits.kotlin.klanglicht.model.parameter.Parameter
 import org.apache.commons.lang3.StringUtils
+import java.lang.IllegalArgumentException
 import kotlin.math.min
 import kotlin.math.roundToInt
 import java.lang.Long.decode
@@ -10,7 +12,7 @@ class RGBAColor(
     green: Int = 0,
     blue: Int = 0,
     var amber: Int = 0
-) : RGBColor(red, green, blue) {
+) : RGBBaseColor<RGBAColor>(red, green, blue) {
 
     companion object {
         const val AMBER_RED = 255.0
@@ -35,12 +37,22 @@ class RGBAColor(
         return "RGBColor(hex='${web()}', r=$red, g=$green , b=$blue, a=$amber)"
     }
 
-    override fun toRGB(): RGBColor {
-        return RGBColor(
-            red = min(255, red + (amber / AMBER_FACTOR).roundToInt()),
-            green = min(255, green + (amber * AMBER_FACTOR).roundToInt()),
-            blue = blue
-        )
+    override fun parameterMap(): Map<String, Int> = mapOf(
+        "Red" to red,
+        "Green" to green,
+        "Blue" to blue,
+        "Amber" to amber
+    )
+
+    override fun fade(other: Parameter<*>, factor: Double): RGBAColor {
+        return if (other is RGBAColor) {
+            RGBAColor(
+                red = min(255, (red + factor * (other.red - red)).roundToInt()),
+                green =  min(255, (green + factor * (other.green - green)).roundToInt()),
+                blue =  min(255, (blue + factor * (other.blue - blue)).roundToInt()),
+                amber =  min(255, (amber + factor * (other.amber - amber)).roundToInt())
+            )
+        } else throw IllegalArgumentException("Cannot fade different parameter type")
     }
 
     override fun value(): Long = (red.toLong() shl 24) or (green.toLong() shl 16) or (blue.toLong() shl 8) or amber.toLong()
@@ -51,6 +63,14 @@ class RGBAColor(
 
     override fun ansiColor(): String {
         return toRGB().ansiColor()
+    }
+
+    override fun toRGB(): RGBColor {
+        return RGBColor(
+            red = min(255, red + (amber / AMBER_FACTOR).roundToInt()),
+            green = min(255, green + (amber * AMBER_FACTOR).roundToInt()),
+            blue = blue
+        )
     }
 
     override fun toHSV(): HSVColor {

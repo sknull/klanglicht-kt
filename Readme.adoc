@@ -38,8 +38,4 @@ A printout of the thread with those golden informations which kick started me on
 
 == Current State
 
-As I just started to convert the project to kotlin (the original Java code will remain private as ther is a lot of chaos...)
-the REST interface itself is not yet implemented (also because I do not know which framework I want to use.
-Spring boot seems not to be appropriate anymore along with kotlin and Micronaut seems to be abandonded and my
-current experience with the latter during my professional work life is not so good.
-
+For now things here are pretty basic as I start with implementing all models needed and basic interface access.

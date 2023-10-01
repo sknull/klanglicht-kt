@@ -1,5 +1,5 @@
 {
-  "dmxPort" : "COM5",
+  "dmxPort" : "COM8",
   "dmxInterfaceType" : "Dummy",
   "dmxFrameTime" : 40,
   "remoteUrl" : null,

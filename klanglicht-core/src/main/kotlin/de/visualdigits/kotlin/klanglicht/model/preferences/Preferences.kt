@@ -1,8 +1,9 @@
 package de.visualdigits.kotlin.klanglicht.model.preferences
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.module.kotlin.jacksonMapperBuilder
 import de.visualdigits.kotlin.klanglicht.dmx.DMXInterface
-import de.visualdigits.kotlin.klanglicht.dmx.DMXInterfaceType
+import de.visualdigits.kotlin.klanglicht.model.dmx.DMXInterfaceType
 import de.visualdigits.kotlin.klanglicht.model.fixture.Channel
 import de.visualdigits.kotlin.klanglicht.model.fixture.Fixtures
 import de.visualdigits.kotlin.klanglicht.model.parameter.Scene
@@ -11,6 +12,7 @@ import java.io.File
 import java.nio.file.Paths
 
 
+@JsonIgnoreProperties("klanglichtDir")
 data class Preferences(
     val dividerPositions: List<Double> = listOf(),
     val dmxFrameTime: Long? = null,
@@ -28,6 +30,9 @@ data class Preferences(
     val uiLanguage: String? = null,
     val yamahaReceiverUrl: String? = null
 ) {
+
+    var klanglichtDir: File? = null
+
     companion object {
         private val mapper = jacksonMapperBuilder().build()
 
@@ -43,6 +48,8 @@ data class Preferences(
                         Paths.get(klanglichtDir.canonicalPath, "preferences", preferencesFileName).toFile(),
                         Preferences::class.java
                     )
+                preferences?.klanglichtDir = klanglichtDir
+
                 val fixtures = Fixtures.load(klanglichtDir)
                 val stage = Stage.load(klanglichtDir, preferences?.stageSetupName!!)
                 stage.fixtures.forEach { stageFixture ->
@@ -52,7 +59,7 @@ data class Preferences(
                         }
                     }
                 }
-                dmxInterface = DMXInterface.load(preferences?.dmxInterfaceType?:DMXInterfaceType.Dummy)
+                dmxInterface = DMXInterface.load(preferences?.dmxInterfaceType?: DMXInterfaceType.Dummy)
                 dmxInterface?.open(preferences?.dmxPort!!)
             }
             return preferences!!
@@ -73,7 +80,7 @@ data class Preferences(
         scene.parameterSet.forEach { parameterSet ->
             val bc = parameterSet.baseChannel
             val bytes = (fixtures[bc]?.map { channel ->
-                (parameterSet.parameters[channel.name]?:0).toByte()
+                (parameterSet.parameterMap[channel.name]?:0).toByte()
             }?:listOf())
                 .toByteArray()
             dmxInterface?.dmxFrame!!.set(bc, bytes)

@@ -1,5 +1,8 @@
 package de.visualdigits.kotlin.klanglicht.model.parameter
 
-abstract class Parameter(
-    val parameterMap: MutableMap<String, Int> = mutableMapOf()
-) : MutableMap<String, Int> by parameterMap
+interface Parameter<T : Parameter<T>> {
+
+    fun parameterMap(): Map<String, Int>
+
+    fun fade(other: Parameter<*>, factor: Double): T
+}

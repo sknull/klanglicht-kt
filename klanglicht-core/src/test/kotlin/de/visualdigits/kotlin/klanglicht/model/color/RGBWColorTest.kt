@@ -49,7 +49,7 @@ internal class RGBWColorTest {
     fun mixTestTwoColors() {
         val color1 = RGBWColor("#ff000000")
         val color2 = RGBWColor("#0000ff00")
-        val mixed = color1.mix<RGBWColor>(color2, 0.5)
+        val mixed = color1.fade(color2, 0.5)
         assertEquals("#80008000", mixed.web())
     }
 
@@ -58,14 +58,14 @@ internal class RGBWColorTest {
         // tests that two colors containing white in different notations end up with white regardless of the facor
         val color1 = RGBWColor("#ffffff00")
         val color2 = RGBWColor("#000000ff")
-        assertEquals("#000000ff", color1.mix<RGBWColor>(color2, 0.1).web())
-        assertEquals("#000000ff", color1.mix<RGBWColor>(color2, 0.2).web())
-        assertEquals("#000000ff", color1.mix<RGBWColor>(color2, 0.3).web())
-        assertEquals("#000000ff", color1.mix<RGBWColor>(color2, 0.4).web())
-        assertEquals("#000000ff", color1.mix<RGBWColor>(color2, 0.5).web())
-        assertEquals("#000000ff", color1.mix<RGBWColor>(color2, 0.6).web())
-        assertEquals("#000000ff", color1.mix<RGBWColor>(color2, 0.7).web())
-        assertEquals("#000000ff", color1.mix<RGBWColor>(color2, 0.8).web())
-        assertEquals("#000000ff", color1.mix<RGBWColor>(color2, 0.9).web())
+        assertEquals("#000000ff", color1.fade(color2, 0.1).web())
+        assertEquals("#000000ff", color1.fade(color2, 0.2).web())
+        assertEquals("#000000ff", color1.fade(color2, 0.3).web())
+        assertEquals("#000000ff", color1.fade(color2, 0.4).web())
+        assertEquals("#000000ff", color1.fade(color2, 0.5).web())
+        assertEquals("#000000ff", color1.fade(color2, 0.6).web())
+        assertEquals("#000000ff", color1.fade(color2, 0.7).web())
+        assertEquals("#000000ff", color1.fade(color2, 0.8).web())
+        assertEquals("#000000ff", color1.fade(color2, 0.9).web())
     }
 }

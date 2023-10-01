@@ -1,12 +1,13 @@
 package de.visualdigits.kotlin.klanglicht.dmx
 
-import de.visualdigits.kotlin.klanglicht.model.color.ColorParameter
-import de.visualdigits.kotlin.klanglicht.model.color.NamedParameter
 import de.visualdigits.kotlin.klanglicht.model.color.RGBColor
+import de.visualdigits.kotlin.klanglicht.model.color.RGBWColor
+import de.visualdigits.kotlin.klanglicht.model.parameter.IntParameter
 import de.visualdigits.kotlin.klanglicht.model.parameter.ParameterSet
+import de.visualdigits.kotlin.klanglicht.model.parameter.RotationParameter
 import de.visualdigits.kotlin.klanglicht.model.parameter.Scene
 import de.visualdigits.kotlin.klanglicht.model.preferences.Preferences
-import kotlinx.coroutines.*
+import de.visualdigits.kotlin.klanglicht.model.stage.Stage
 import org.junit.jupiter.api.Test
 import java.io.File
 import kotlin.math.ceil
@@ -29,15 +30,13 @@ internal class DMXInterfaceTest {
     fun testInterfaceFromModel1() {
         val scene = Scene(
             name = "test",
-            parameterSet = setOf(
+            parameterSet = listOf(
                 ParameterSet(
                     baseChannel = 15,
-                    parameters = mutableMapOf(
-                        "MasterDimmer" to 255,
-                        "Stroboscope" to 0,
-                        "Red" to 255,
-                        "Green" to 0,
-                        "Blue" to 0
+                    parameters = mutableListOf(
+                        IntParameter("MasterDimmer", 255),
+                        IntParameter("Stroboscope", 0),
+                        RGBColor(255, 0, 0)
                     )
                 )
             )
@@ -50,15 +49,13 @@ internal class DMXInterfaceTest {
     fun testBlackout() {
         val scene = Scene(
             name = "test",
-            parameterSet = setOf(
+            parameterSet = listOf(
                 ParameterSet(
                     baseChannel = 15,
-                    parameters = mutableMapOf(
-                        "MasterDimmer" to 0,
-                        "Stroboscope" to 0,
-                        "Red" to 0,
-                        "Green" to 0,
-                        "Blue" to 0
+                    parameters = mutableListOf(
+                        IntParameter("MasterDimmer", 0),
+                        IntParameter("Stroboscope", 0),
+                        RGBColor()
                     )
                 )
             )
@@ -69,65 +66,96 @@ internal class DMXInterfaceTest {
 
     @Test
     fun testMovinghead() {
-//        val repeater = Repeater.instance(prefs)
+        val stage = Stage.load(prefs.klanglichtDir!!, "home-lab-movinghead")
+
         val repeater = Repeater(prefs)
         repeater.start()
 
-        val color1 = RGBColor(
-            red = 255,
-            green = 0,
-            blue = 0
-        )
-        val color2 = RGBColor(
-            red = 0,
-            green = 255,
-            blue = 0
-        )
-        fade(48, color1, color2, 2000)
+        testReset()
+
+        Thread.sleep(2000)
+
+        fade(stage)
 
         repeater.join()
     }
 
     @Test
-    fun testInterfaceFromModel2() {
-        val color1 = RGBColor(
-            red = 255,
-            green = 0,
-            blue = 0
+    fun testReset() {
+        val scene = Scene(
+            name = "test",
+            parameterSet = listOf(
+                ParameterSet(
+                    baseChannel = 35,
+                    parameters = mutableListOf(
+                        IntParameter("Speed", 0),
+                        IntParameter("Pan", 0),
+                        IntParameter("PanFine", 0),
+                        IntParameter("Tilt", 0),
+                        IntParameter("TiltFine", 0),
+                        RGBWColor()
+                    )
+                )
+            )
         )
-        val color2 = RGBColor(
-            red = 0,
-            green = 255,
-            blue = 0
-        )
-        val fadeDuration = 2000 // millis
+        prefs.setScene(scene)
+    }
 
-        fade(15, color1, color2, fadeDuration)
+    @Test
+    fun testRotation() {
+        val stage = Stage.load(prefs.klanglichtDir!!, "home-lab-movinghead")
+        val stageFixture = stage.fixtures.first()
+        val fixture = stageFixture.fixture!!
+
+        println(fixture.panoParameterSet(0.0).parameters.map { it.parameterMap().toString() })
+        println(fixture.panoParameterSet(90.0).parameters.map { it.parameterMap().toString() })
+        println(fixture.panoParameterSet(180.0).parameters.map { it.parameterMap().toString() })
+        println(fixture.panoParameterSet(360.0).parameters.map { it.parameterMap().toString() })
+        println(fixture.panoParameterSet(540.0).parameters.map { it.parameterMap().toString() })
+
+        println(fixture.tiltParameterSet(0.0).parameters.map { it.parameterMap().toString() })
+        println(fixture.tiltParameterSet(90.0).parameters.map { it.parameterMap().toString() })
+        println(fixture.tiltParameterSet(180.0).parameters.map { it.parameterMap().toString() })
     }
 
     private fun fade(
-        baseChannel: Int,
-        color1: RGBColor,
-        color2: RGBColor,
-        fadeDuration: Int
+        stage: Stage,
     ) {
+        val stageFixture = stage.fixtures.first()
+        val baseChannel = stageFixture.baseChannel
+        val fixture = stageFixture.fixture!!
+
+        val fadeDuration = 3000
+
+        val parameterSet1 = ParameterSet(
+            baseChannel = baseChannel,
+            parameters = mutableListOf(
+                RGBWColor(128, 0, 0, 0),
+                IntParameter("Speed", 0),
+                RotationParameter(fixture, 0.0, 0.0)
+            )
+        )
+
+        val parameterSet2 = ParameterSet(
+            baseChannel = baseChannel,
+            parameters = mutableListOf(
+                RGBWColor(0, 128, 0, 0),
+                IntParameter("Speed", 0),
+                RotationParameter(fixture, 80.0, 60.0)
+            )
+        )
+
         val dmxFrameTime = prefs.dmxFrameTime!! // millis
         val steps = ceil(fadeDuration.toDouble() / dmxFrameTime.toDouble()).toInt()
         val step = 1.0 / steps
-        for (f in 0..steps + 1) {
+        for (f in 0..steps) {
             val factor = step * f
-            val color = color1.mix<ColorParameter>(color2, min(1.0, factor))
+            val frame = parameterSet1.fade(parameterSet2, factor)
+//            println(frame.parameters.map { it.parameterMap().toString() })
             val scene = Scene(
-                name = "test",
-                parameterSet = setOf(
-                    ParameterSet(
-                        baseChannel = baseChannel,
-                        parameterObjects = setOf(
-                            NamedParameter("MasterDimmer", 255),
-                            NamedParameter("Stroboscope", 0),
-                            color
-                        )
-                    )
+                name = "frame_$f",
+                parameterSet = listOf(
+                    frame
                 )
             )
             prefs.setScene(scene)

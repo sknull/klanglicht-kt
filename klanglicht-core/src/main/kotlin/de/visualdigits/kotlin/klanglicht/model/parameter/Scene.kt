@@ -5,7 +5,7 @@ import java.io.File
 
 class Scene(
     val name: String,
-    val parameterSet: Set<ParameterSet>
+    val parameterSet: List<ParameterSet>
 ) {
     companion object {
         private val mapper = jacksonMapperBuilder().build()

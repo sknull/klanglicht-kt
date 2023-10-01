@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <packaging>jar</packaging>
+
+  <parent>
+    <groupId>de.visualdigits.kotlin</groupId>
+    <artifactId>klanglicht-kt</artifactId>
+    <version>${revision}</version>
+	<relativePath>../pom.xml</relativePath>
+  </parent>
+
+  <artifactId>klanglicht-yamaha</artifactId>
+  <version>${revision}</version>
+
+  <properties>
+    <version.feign>12.1</version.feign>
+  </properties>
+
+  <dependencies>
+    <!-- feign client -->
+    <dependency>
+      <groupId>io.github.openfeign</groupId>
+      <artifactId>feign-okhttp</artifactId>
+      <version>${version.feign}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.github.openfeign</groupId>
+      <artifactId>feign-gson</artifactId>
+      <version>${version.feign}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.github.openfeign</groupId>
+      <artifactId>feign-slf4j</artifactId>
+      <version>${version.feign}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.github.openfeign.form</groupId>
+      <artifactId>feign-form</artifactId>
+      <version>3.8.0</version>
+    </dependency>
+  </dependencies>
+</project>

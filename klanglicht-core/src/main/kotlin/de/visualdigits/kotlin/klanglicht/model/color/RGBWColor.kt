@@ -1,15 +1,18 @@
 package de.visualdigits.kotlin.klanglicht.model.color
 
+import de.visualdigits.kotlin.klanglicht.model.parameter.Parameter
 import org.apache.commons.lang3.StringUtils
+import java.lang.IllegalArgumentException
 import kotlin.math.min
 import java.lang.Long.decode
+import kotlin.math.roundToInt
 
 class RGBWColor(
     red: Int = 0,
     green: Int = 0,
     blue: Int = 0,
     var white: Int = 0
-) : RGBColor(red, green, blue) {
+) : RGBBaseColor<RGBWColor>(red, green, blue) {
 
     constructor(value: Long) : this(
         red = min(a = 255, b = (value and 0xff000000L shr 24).toInt()),
@@ -17,6 +20,8 @@ class RGBWColor(
         blue = min(a = 255, b = (value and 0x0000ff00L shr 8).toInt()),
         white = min(a = 255, b = (value and 0x000000ffL).toInt()),
     )
+
+    constructor(hex: String) : this(decode(if (hex.startsWith("#") || hex.startsWith("0x")) hex else "#$hex"))
 
     init {
         if (white == 0) {
@@ -27,8 +32,6 @@ class RGBWColor(
         }
     }
 
-    constructor(hex: String) : this(decode(if (hex.startsWith("#") || hex.startsWith("0x")) hex else "#$hex"))
-
     override fun toString(): String {
         return "[" + StringUtils.join(listOf(red, green, blue, white), ", ") + "]"
     }
@@ -37,12 +40,22 @@ class RGBWColor(
         return "RGBColor(hex='${web()}', r=$red, g=$green , b=$blue, w=$white)"
     }
 
-    override fun toRGB(): RGBColor {
-        return RGBColor(
-            red = min(255, red + white),
-            green = min(255, green + white),
-            blue = min(255, blue + white),
-        )
+    override fun parameterMap(): Map<String, Int> = mapOf(
+        "Red" to red,
+        "Green" to green,
+        "Blue" to blue,
+        "White" to white
+    )
+
+    override fun fade(other: Parameter<*>, factor: Double): RGBWColor {
+        return if (other is RGBWColor) {
+            RGBWColor(
+                red = min(255, (red + factor * (other.red - red)).roundToInt()),
+                green =  min(255, (green + factor * (other.green - green)).roundToInt()),
+                blue =  min(255, (blue + factor * (other.blue - blue)).roundToInt()),
+                white =  min(255, (white + factor * (other.white - white)).roundToInt())
+            )
+        } else throw IllegalArgumentException("Cannot fade different parameter type")
     }
 
     override fun value(): Long = (red.toLong() shl 24) or (green.toLong() shl 16) or (blue.toLong() shl 8) or white.toLong()
@@ -53,6 +66,14 @@ class RGBWColor(
 
     override fun ansiColor(): String {
         return toRGB().ansiColor()
+    }
+
+    override fun toRGB(): RGBColor {
+        return RGBColor(
+            red = min(255, red + white),
+            green = min(255, green + white),
+            blue = min(255, blue + white),
+        )
     }
 
     override fun toHSV(): HSVColor {

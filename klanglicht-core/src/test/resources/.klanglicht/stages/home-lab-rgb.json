@@ -1,0 +1,19 @@
+{
+	"name": "home-lab-rgb", 
+	"fixtures": [{
+			"manufacturer": "Cameo", 
+			"model": "Flat PAR Can RGB 10 IR", 
+			"mode": "6-Channel Mode", 
+			"baseChannel": 1
+		}, {
+			"manufacturer": "Cameo", 
+			"model": "Flat PAR Can RGB 10 IR", 
+			"mode": "6-Channel Mode", 
+			"baseChannel": 15
+		}, {
+			"manufacturer": "Cameo", 
+			"model": "Flat PAR Can RGB 10 IR", 
+			"mode": "6-Channel Mode", 
+			"baseChannel": 29
+		}]
+}
