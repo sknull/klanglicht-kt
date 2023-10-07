@@ -1,9 +1,13 @@
 package de.visualdigits.kotlin.klanglicht.model.dmx
 
+import org.slf4j.LoggerFactory
+
 class DmxRepeater(
     val dmxInterface: DMXInterface,
     val dmxFrameTime: Long
 ) : Thread("DMX Repeater") {
+
+    private var log = LoggerFactory.getLogger(DmxRepeater::class.java)
 
     private var loop = false
 
@@ -28,7 +32,7 @@ class DmxRepeater(
     override fun run() {
         running = true
         loop = true
-        println("### repeater started")
+        log.info("### repeater started")
         while (loop) {
             if (running) {
                 dmxInterface.write()
