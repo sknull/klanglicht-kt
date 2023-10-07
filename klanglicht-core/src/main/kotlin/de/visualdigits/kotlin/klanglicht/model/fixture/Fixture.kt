@@ -26,8 +26,9 @@ data class Fixture(
 
     companion object {
         fun load(klanglichtDir: File, fixtureName: String): Fixture {
+            val fn = if (fixtureName.endsWith(".json")) fixtureName else "$fixtureName.json"
             return jacksonMapperBuilder().build().readValue(
-                Paths.get(klanglichtDir.canonicalPath, "fixtures", "$fixtureName.json").toFile(),
+                Paths.get(klanglichtDir.canonicalPath, "fixtures", fn).toFile(),
                 Fixture::class.java
             )
         }

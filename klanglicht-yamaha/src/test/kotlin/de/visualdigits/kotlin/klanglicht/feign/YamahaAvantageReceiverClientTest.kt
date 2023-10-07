@@ -1,18 +1,27 @@
 package de.visualdigits.kotlin.klanglicht.feign
 
+import de.visualdigits.kotlin.klanglicht.model.preferences.Preferences
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
+import java.io.File
 
+@Disabled("for local testing only")
 internal class YamahaAvantageReceiverClientTest {
 
-    private val URL = "http://192.168.178.46"
+    private val preferences = Preferences.load(
+        klanglichtDir = File("../klanglicht-core/src/test/resources/.klanglicht"),
+        preferencesFileName = System.getenv("preferencesFileName")?:"preferences_livingroom.json"
+    )
 
-    @Test
-    fun testSet() {
-        val client = YamahaAvantageReceiverClient(URL)
-        val responseCode = client.setSurroundProgram("Sci-Fi")
-        assertEquals(0, responseCode.responseCode)
-    }
+    private val URL = preferences.serviceMap["receiver"]?.url?:""
+
+//    @Test
+//    fun testSet() {
+//        val client = YamahaAvantageReceiverClient(URL)
+//        val responseCode = client.setSurroundProgram("Sci-Fi")
+//        assertEquals(0, responseCode.responseCode)
+//    }
 
     @Test
     fun testInfo() {
@@ -32,6 +41,6 @@ internal class YamahaAvantageReceiverClientTest {
     fun testSoundProgramList() {
         val client = YamahaAvantageReceiverClient(URL)
         val soundProgramList = client.soundProgramList()
-        println(soundProgramList)
+        println(soundProgramList.soundProgramList.sorted().joinToString("\n"))
     }
 }

@@ -8,10 +8,11 @@ internal class PreferencesTest {
 
     @Test
     fun testReadModel() {
-        Preferences.instance(
-            klanglichtDir = File(ClassLoader.getSystemResource(".klanglicht").toURI())
+        val preferences = Preferences.load(
+            klanglichtDir = File(ClassLoader.getSystemResource(".klanglicht").toURI()),
+            preferencesFileName = "preferences_livingroom.json"
         )
 
-        assertNotNull(Preferences.instance())
+        assertNotNull(Preferences.preferences)
     }
 }

@@ -41,7 +41,7 @@ class RGBWAColor(
         "Amber" to amber
     )
 
-    override fun fade(other: Parameter<*>, factor: Double): RGBWAColor {
+    override fun fade(other: Any, factor: Double): RGBWAColor {
         return if (other is RGBWAColor) {
             RGBWAColor(
                 red = min(255, (red + factor * (other.red - red)).roundToInt()),
@@ -50,7 +50,7 @@ class RGBWAColor(
                 white =  min(255, (white + factor * (other.white - white)).roundToInt()),
                 amber =  min(255, (amber + factor * (other.amber - amber)).roundToInt())
             )
-        } else throw IllegalArgumentException("Cannot fade different parameter type")
+        } else throw IllegalArgumentException("Cannot not fade another type")
     }
 
     override fun value(): Long = (red.toLong() shl 32) or (green.toLong() shl 24) or (blue.toLong() shl 16) or (white.toLong() shl 8) or amber.toLong()

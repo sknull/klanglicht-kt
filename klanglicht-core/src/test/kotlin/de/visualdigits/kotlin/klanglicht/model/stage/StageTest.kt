@@ -6,15 +6,14 @@ import java.io.File
 
 class StageTest {
 
-    private val prefs = Preferences.instance(
+    private val prefs = Preferences.load(
         klanglichtDir = File(ClassLoader.getSystemResource(".klanglicht").toURI()),
-        preferencesFileName = System.getenv("preferencesFileName")?:"preferences.json"
+        preferencesFileName = "preferences_livingroom.json"
     )
 
     @Test
     fun testStage() {
-        val stage = Stage.load(prefs.klanglichtDir!!, "home-lab-movinghead")
-        stage.fixtures.forEach { stageFixture ->
+        prefs.dmx.devices.forEach { stageFixture ->
             val fixture = stageFixture.fixture!!
             println("${stageFixture.manufacturer}_${stageFixture.model}_${stageFixture.mode} [${stageFixture.baseChannel}] hasPano: ${fixture.hasPano()} [max value ${fixture.maxPanoValue()}] hasTilt: ${fixture.hasTilt()} [max value ${fixture.maxTiltValue()}]")
         }

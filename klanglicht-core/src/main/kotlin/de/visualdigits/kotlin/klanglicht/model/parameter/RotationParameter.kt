@@ -21,8 +21,7 @@ class RotationParameter(
     override fun parameterMap(): Map<String, Int> =
         fixture.panoParameterSet(panDegrees).parameterMap + fixture.tiltParameterSet(tiltDegrees).parameterMap
 
-
-    override fun fade(other: Parameter<*>, factor: Double): RotationParameter {
+    override fun fade(other: Any, factor: Double): RotationParameter {
         return if (other is RotationParameter) {
 
             // use great circle to determine intermediate steps

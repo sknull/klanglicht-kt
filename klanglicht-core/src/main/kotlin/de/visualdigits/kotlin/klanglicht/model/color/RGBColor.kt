@@ -18,13 +18,13 @@ class RGBColor(
         "Blue" to blue,
     )
 
-    override fun fade(other: Parameter<*>, factor: Double): RGBColor {
+    override fun fade(other: Any, factor: Double): RGBColor {
         return if (other is RGBColor) {
             RGBColor(
                 red = min(255, (red + factor * (other.red - red)).roundToInt()),
                 green =  min(255, (green + factor * (other.green - green)).roundToInt()),
                 blue =  min(255, (blue + factor * (other.blue - blue)).roundToInt())
             )
-        } else throw IllegalArgumentException("Cannot fade different parameter type")
+        } else throw IllegalArgumentException("Cannot not fade another type")
     }
 }

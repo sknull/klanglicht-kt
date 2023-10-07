@@ -1,8 +1,8 @@
 package de.visualdigits.kotlin.klanglicht.model.parameter
 
-interface Parameter<T : Parameter<T>> {
+interface Parameter<T : Parameter<T>> : Fadeable<T> {
 
     fun parameterMap(): Map<String, Int>
 
-    fun fade(other: Parameter<*>, factor: Double): T
+    override fun fade(other: Any, factor: Double): T
 }

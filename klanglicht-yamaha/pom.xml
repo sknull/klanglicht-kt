@@ -20,6 +20,13 @@
   </properties>
 
   <dependencies>
+    <!-- project dependencies -->
+    <dependency>
+      <groupId>de.visualdigits.kotlin</groupId>
+      <artifactId>klanglicht-core</artifactId>
+      <version>${revision}</version>
+    </dependency>
+
     <!-- feign client -->
     <dependency>
       <groupId>io.github.openfeign</groupId>

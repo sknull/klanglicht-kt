@@ -33,10 +33,10 @@ class HSVColor(
         )
     }
 
-    override fun fade(other: Parameter<*>, factor: Double): HSVColor {
+    override fun fade(other: Any, factor: Double): HSVColor {
         return if (other is HSVColor) {
             other.toRGB().fade(other.toRGB(), factor).toHSV()
-        } else throw IllegalArgumentException("Cannot fade different parameter type")
+        } else throw IllegalArgumentException("Cannot not fade another type")
     }
 
     override fun toRGB(): RGBColor {

@@ -13,7 +13,7 @@ import java.nio.charset.StandardCharsets
 class YamahaAvantageReceiverClient(val yamahaReceiverUrl: String) {
 
     fun deviceInfo(): DeviceInfo {
-        val deviceInfo = URL("$yamahaReceiverUrl/v1/system/getDeviceInfo").readText(StandardCharsets.UTF_8)
+        val deviceInfo = URL("$yamahaReceiverUrl/YamahaExtendedControl/v1/system/getDeviceInfo").readText(StandardCharsets.UTF_8)
         return mapper.readValue(deviceInfo, DeviceInfo::class.java)
     }
 

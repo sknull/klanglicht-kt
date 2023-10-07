@@ -1,9 +1,9 @@
 package de.visualdigits.kotlin.klanglicht.model.preferences
 
 
-data class ShellyDevice(
+data class Service(
     val name: String = "",
+    val manufacturer: String = "",
     val model: String = "",
-    val ipAddress: String = "",
-    val gain: Int = 0
+    val url: String = ""
 )

@@ -1,12 +1,14 @@
 package de.visualdigits.kotlin.klanglicht.model.parameter
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
+import de.visualdigits.kotlin.klanglicht.model.color.RGBAColor
+import java.lang.IllegalArgumentException
 
 @JsonIgnoreProperties("parameterValues")
 class ParameterSet(
     val baseChannel: Int = 0,
     val parameters: MutableList<Parameter<*>> = mutableListOf(),
-) {
+) : Fadeable<ParameterSet> {
 
     val parameterMap: MutableMap<String, Int> = mutableMapOf()
 
@@ -28,14 +30,16 @@ class ParameterSet(
         return this
     }
 
-    fun fade(other: ParameterSet, factor: Double): ParameterSet {
-        return ParameterSet(
-            baseChannel = baseChannel,
-            parameters = parameters
-                .zip(other.parameters)
-                .map { it.first.fade(it.second, factor) }
-                .toMutableList()
-        )
+    override fun fade(other: Any, factor: Double): ParameterSet {
+        return if (other is ParameterSet) {
+            ParameterSet(
+                baseChannel = baseChannel,
+                parameters = parameters
+                    .zip(other.parameters)
+                    .map { it.first.fade(it.second, factor) }
+                    .toMutableList()
+            )
+        } else throw IllegalArgumentException("Cannot not fade another type")
     }
 }
 

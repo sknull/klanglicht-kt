@@ -47,7 +47,7 @@ class RGBWColor(
         "White" to white
     )
 
-    override fun fade(other: Parameter<*>, factor: Double): RGBWColor {
+    override fun fade(other: Any, factor: Double): RGBWColor {
         return if (other is RGBWColor) {
             RGBWColor(
                 red = min(255, (red + factor * (other.red - red)).roundToInt()),
@@ -55,7 +55,7 @@ class RGBWColor(
                 blue =  min(255, (blue + factor * (other.blue - blue)).roundToInt()),
                 white =  min(255, (white + factor * (other.white - white)).roundToInt())
             )
-        } else throw IllegalArgumentException("Cannot fade different parameter type")
+        } else throw IllegalArgumentException("Cannot not fade another type")
     }
 
     override fun value(): Long = (red.toLong() shl 24) or (green.toLong() shl 16) or (blue.toLong() shl 8) or white.toLong()

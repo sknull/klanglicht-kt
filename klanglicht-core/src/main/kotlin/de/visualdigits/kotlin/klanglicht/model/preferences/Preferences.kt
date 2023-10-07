@@ -2,66 +2,69 @@ package de.visualdigits.kotlin.klanglicht.model.preferences
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.module.kotlin.jacksonMapperBuilder
-import de.visualdigits.kotlin.klanglicht.dmx.DMXInterface
-import de.visualdigits.kotlin.klanglicht.model.dmx.DMXInterfaceType
+import de.visualdigits.kotlin.klanglicht.model.dmx.DMXInterface
+import de.visualdigits.kotlin.klanglicht.model.dmx.DMXInterfaceDummy
 import de.visualdigits.kotlin.klanglicht.model.fixture.Channel
 import de.visualdigits.kotlin.klanglicht.model.fixture.Fixtures
 import de.visualdigits.kotlin.klanglicht.model.parameter.Scene
-import de.visualdigits.kotlin.klanglicht.model.stage.Stage
 import java.io.File
 import java.nio.file.Paths
 
 
-@JsonIgnoreProperties("klanglichtDir")
+@JsonIgnoreProperties("klanglichtDir", "dmxInterface", "fixtures", "serviceMap")
 data class Preferences(
-    val dividerPositions: List<Double> = listOf(),
-    val dmxFrameTime: Long? = null,
-    val dmxPort: String? = null,
-    val dmxInterfaceType: DMXInterfaceType? = null,
-    val fonts: List<Font> = listOf(),
-    val lightmanagerUrl: String? = null,
-    val pushEnabled: Boolean = false,
-    val pushIn: String? = null,
-    val pushOut: String? = null,
-    val remoteUrl: String? = null,
-    val stageParameters: StageParameters = StageParameters(),
-    val stagePositions: Map<String, StagePosition> = mapOf(),
-    val stageSetupName: String? = null,
-    val uiLanguage: String? = null,
-    val yamahaReceiverUrl: String? = null
+    val name: String = "",
+    val services: List<Service> = listOf(),
+    val shelly: Shelly = Shelly(),
+    val dmx: Dmx = Dmx()
 ) {
 
-    var klanglichtDir: File? = null
+    var klanglichtDir: File = File(".")
+
+    var dmxInterface: DMXInterface = DMXInterfaceDummy()
+
+    /** contains the list of channels for a given base dmx channel. */
+    var fixtures: Map<Int, List<Channel>> = mapOf()
+
+    var serviceMap: Map<String, Service> = mapOf()
+
+    fun init(klanglichtDir: File) {
+        this.klanglichtDir = klanglichtDir
+
+        val dmxFixtures = Fixtures.load(klanglichtDir)
+        fixtures = dmx.devices.mapNotNull { stageFixture ->
+            dmxFixtures.getFixture(stageFixture.manufacturer, stageFixture.model)
+                ?.let { fixture ->
+                    stageFixture.fixture = fixture
+                    fixture.channelsForMode(stageFixture.mode).let { channels -> Pair(stageFixture.baseChannel, channels) }?:null
+                }
+        }.toMap()
+
+        serviceMap = services.map { service ->
+            Pair(service.name, service)
+        }.toMap()
+
+        val dmxInterface = DMXInterface.load(dmx.interfaceType)
+        dmxInterface.open(dmx.port)
+        this.dmxInterface = dmxInterface
+    }
 
     companion object {
+
         private val mapper = jacksonMapperBuilder().build()
 
-        private var preferences: Preferences? = null
+        var preferences: Preferences? = null
 
-        private var dmxInterface: DMXInterface? = null
-
-        private val fixtures: MutableMap<Int, List<Channel>> = mutableMapOf()
-
-        fun instance(klanglichtDir: File? = null, preferencesFileName: String = "preferences.json"): Preferences {
-            if (preferences == null && klanglichtDir != null) {
-                preferences = mapper.readValue(
-                        Paths.get(klanglichtDir.canonicalPath, "preferences", preferencesFileName).toFile(),
-                        Preferences::class.java
-                    )
-                preferences?.klanglichtDir = klanglichtDir
-
-                val fixtures = Fixtures.load(klanglichtDir)
-                val stage = Stage.load(klanglichtDir, preferences?.stageSetupName!!)
-                stage.fixtures.forEach { stageFixture ->
-                    fixtures.getFixture(stageFixture.manufacturer, stageFixture.model)?.let {
-                        f -> f.channelsForMode(stageFixture.mode)?.let {
-                            c -> this.fixtures[stageFixture.baseChannel] = c
-                        }
-                    }
-                }
-                dmxInterface = DMXInterface.load(preferences?.dmxInterfaceType?: DMXInterfaceType.Dummy)
-                dmxInterface?.open(preferences?.dmxPort!!)
+        fun load(klanglichtDir: File, preferencesFileName: String = "preferences.json"): Preferences {
+            if (preferences == null) {
+                val prefs = mapper.readValue(
+                    Paths.get(klanglichtDir.canonicalPath, "preferences", preferencesFileName).toFile(),
+                    Preferences::class.java
+                )
+                prefs.init(klanglichtDir)
+                preferences = prefs
             }
+
             return preferences!!
         }
     }
@@ -69,29 +72,14 @@ data class Preferences(
     /**
      * Writes the given scene into the internal dmx frame of the interface.
      */
-    fun setSceneFile(sceneFile: File) {
-        setScene(Scene.load(sceneFile))
-    }
-
-    /**
-     * Writes the given scene into the internal dmx frame of the interface.
-     */
     fun setScene(scene: Scene) {
         scene.parameterSet.forEach { parameterSet ->
-            val bc = parameterSet.baseChannel
-            val bytes = (fixtures[bc]?.map { channel ->
+            val baseChannel = parameterSet.baseChannel
+            val bytes = (fixtures[baseChannel]?.map { channel ->
                 (parameterSet.parameterMap[channel.name]?:0).toByte()
             }?:listOf())
                 .toByteArray()
-            dmxInterface?.dmxFrame!!.set(bc, bytes)
+            dmxInterface.dmxFrame.set(baseChannel, bytes)
         }
-    }
-
-    /**
-     * Writes the internal dmx frame data to the interface.
-     */
-    fun write() {
-        // todo Only needed until we have a repeater thread.
-        dmxInterface?.write()
     }
 }

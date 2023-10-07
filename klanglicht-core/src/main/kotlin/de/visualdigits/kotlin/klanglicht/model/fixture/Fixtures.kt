@@ -16,7 +16,7 @@ class Fixtures(
             if (fixtures == null) {
                 fixtures = Fixtures(Paths.get(klanglichtDir.canonicalPath, "fixtures").toFile()
                         .listFiles()
-                        ?.map { file -> mapper.readValue(file, Fixture::class.java) }
+                        ?.map { file -> Fixture.load(klanglichtDir, file.name) }
                         ?:listOf()
                 )
             }
@@ -25,6 +25,6 @@ class Fixtures(
     }
 
     fun getFixture(manufacturer: String, model: String): Fixture? {
-        return fixtures?.find { fixture -> fixture.manufacturer == manufacturer && fixture.model == model }
+        return fixtures.find { fixture -> fixture.manufacturer == manufacturer && fixture.model == model }
     }
 }
