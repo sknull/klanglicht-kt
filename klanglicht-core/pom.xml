@@ -9,7 +9,7 @@
     <groupId>de.visualdigits.kotlin</groupId>
     <artifactId>klanglicht-kt</artifactId>
     <version>${revision}</version>
-	<relativePath>../pom.xml</relativePath>
+	  <relativePath>../pom.xml</relativePath>
   </parent>
 
   <artifactId>klanglicht-core</artifactId>

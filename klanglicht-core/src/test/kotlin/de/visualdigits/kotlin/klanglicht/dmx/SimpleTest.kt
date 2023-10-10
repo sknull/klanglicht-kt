@@ -60,7 +60,7 @@ class SimpleTest {
                     baseChannel = baseChannel,
                     parameters = mutableListOf(
                         IntParameter("MasterDimmer", 0),
-                        RGBWColor(255, 0, 0, 0)
+                        RGBWColor(255, 0, 0, 128)
                     )
                 )
             )
@@ -82,8 +82,9 @@ class SimpleTest {
         val dmxRepeater = DmxRepeater(preferences.dmxInterface, preferences.dmx.frameTime)
         dmxRepeater.start()
 
-        scene1.fade(scene2, 3000, preferences)
-        scene2.fade(scene1, 3000, preferences)
+        val fadeDuration = 5000L
+        scene1.fade(scene2, fadeDuration, preferences)
+        scene2.fade(scene1, fadeDuration, preferences)
 
         dmxRepeater.join()
     }

@@ -1,11 +1,9 @@
 package de.visualdigits.kotlin.klanglicht.model.parameter
 
 import com.fasterxml.jackson.module.kotlin.jacksonMapperBuilder
-import de.visualdigits.kotlin.klanglicht.model.color.RGBAColor
 import de.visualdigits.kotlin.klanglicht.model.preferences.Preferences
 import java.io.File
 import java.lang.IllegalArgumentException
-import kotlin.math.ceil
 
 class Scene(
     val name: String,
@@ -25,7 +23,7 @@ class Scene(
     ): Scene {
         return if (other is Scene) {
             Scene(
-                name = "Fram $factor",
+                name = "Frame $factor",
                 parameterSet = parameterSet
                     .zip(other.parameterSet)
                     .map { (paramsFrom, paramsTo) ->
@@ -41,11 +39,14 @@ class Scene(
         preferences: Preferences
     ) {
         val dmxFrameTime = preferences.dmx.frameTime // millis
-        val steps = ceil(fadeDuration.toDouble() / dmxFrameTime.toDouble()).toInt()
-        val step = 1.0 / steps
-        for (f in 0..steps) {
-            preferences.setScene(fade(other, step * f))
+        val step = 1.0 / fadeDuration.toDouble() * dmxFrameTime.toDouble()
+        var factor = 0.0
+
+        while (factor < 1.0) {
+            preferences.setScene(fade(other, factor))
+            factor += step
             Thread.sleep(dmxFrameTime)
         }
+        preferences.setScene(other)
     }
 }
