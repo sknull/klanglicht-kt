@@ -1,5 +1,4 @@
 package de.visualdigits.kotlin.klanglicht.model.parameter
-
 interface Fadeable<T : Fadeable<T>> {
 
     /**

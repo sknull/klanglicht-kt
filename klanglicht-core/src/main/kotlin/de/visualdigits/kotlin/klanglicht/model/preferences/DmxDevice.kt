@@ -10,7 +10,7 @@ data class DmxDevice(
     val model: String = "",
     val mode: String = "",
     val baseChannel: Int = 0,
-    val gain: Double = 0.0
+    val gain: Float = 0.0f
 ) {
     var fixture: Fixture? = null
 }

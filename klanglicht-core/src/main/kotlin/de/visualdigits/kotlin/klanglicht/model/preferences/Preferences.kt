@@ -2,8 +2,8 @@ package de.visualdigits.kotlin.klanglicht.model.preferences
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.module.kotlin.jacksonMapperBuilder
-import de.visualdigits.kotlin.klanglicht.model.dmx.DMXInterface
-import de.visualdigits.kotlin.klanglicht.model.dmx.DMXInterfaceDummy
+import de.visualdigits.kotlin.klanglicht.model.dmx.DmxInterface
+import de.visualdigits.kotlin.klanglicht.model.dmx.DmxInterfaceDummy
 import de.visualdigits.kotlin.klanglicht.model.fixture.Channel
 import de.visualdigits.kotlin.klanglicht.model.fixture.Fixtures
 import de.visualdigits.kotlin.klanglicht.model.parameter.Scene
@@ -21,7 +21,7 @@ data class Preferences(
 
     var klanglichtDir: File = File(".")
 
-    var dmxInterface: DMXInterface = DMXInterfaceDummy()
+    var dmxInterface: DmxInterface = DmxInterfaceDummy()
 
     /** contains the list of channels for a given base dmx channel. */
     var fixtures: Map<Int, List<Channel>> = mapOf()
@@ -44,7 +44,7 @@ data class Preferences(
             Pair(service.name, service)
         }.toMap()
 
-        val dmxInterface = DMXInterface.load(dmx.interfaceType)
+        val dmxInterface = DmxInterface.load(dmx.interfaceType)
         dmxInterface.open(dmx.port)
         this.dmxInterface = dmxInterface
     }
@@ -55,7 +55,10 @@ data class Preferences(
 
         var preferences: Preferences? = null
 
-        fun load(klanglichtDir: File, preferencesFileName: String = "preferences.json"): Preferences {
+        fun load(
+            klanglichtDir: File,
+            preferencesFileName: String = "preferences.json"
+        ): Preferences {
             if (preferences == null) {
                 val prefs = mapper.readValue(
                     Paths.get(klanglichtDir.canonicalPath, "preferences", preferencesFileName).toFile(),

@@ -3,7 +3,7 @@ package de.visualdigits.kotlin.klanglicht.model.dmx
 import org.slf4j.LoggerFactory
 
 class DmxRepeater(
-    val dmxInterface: DMXInterface,
+    val dmxInterface: DmxInterface,
     val dmxFrameTime: Long
 ) : Thread("DMX Repeater") {
 
@@ -18,8 +18,8 @@ class DmxRepeater(
         var dmxRepeater: DmxRepeater? = null
 
         fun instance(
-            dmxInterface: DMXInterface,
-            dmxFrameTime: Long
+            dmxInterface: DmxInterface,
+            dmxFrameTime: Long = 200
         ): DmxRepeater {
             if (dmxRepeater == null) {
                 dmxRepeater = DmxRepeater(dmxInterface, dmxFrameTime / 2)
