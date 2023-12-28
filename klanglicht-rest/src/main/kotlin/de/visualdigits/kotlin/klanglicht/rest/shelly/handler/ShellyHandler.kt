@@ -1,31 +1,24 @@
 package de.visualdigits.kotlin.klanglicht.rest.shelly.handler
 
-import de.visualdigits.kotlin.klanglicht.rest.common.configuration.ConfigHolder
 import de.visualdigits.kotlin.klanglicht.model.color.RGBColor
 import de.visualdigits.kotlin.klanglicht.model.preferences.ColorState
 import de.visualdigits.kotlin.klanglicht.model.preferences.ShellyDevice
+import de.visualdigits.kotlin.klanglicht.rest.common.configuration.ConfigHolder
 import de.visualdigits.kotlin.klanglicht.rest.lightmanager.feign.LightmanagerClient
+import de.visualdigits.kotlin.klanglicht.rest.shelly.client.ShellyClient
 import de.visualdigits.kotlin.klanglicht.rest.shelly.model.status.Light
 import de.visualdigits.kotlin.klanglicht.rest.shelly.model.status.Status
-import feign.Request
-import feign.okhttp.OkHttpClient
 import org.apache.commons.lang3.StringUtils
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
-import java.io.IOException
-import java.nio.charset.StandardCharsets
 import java.util.Arrays
-import java.util.Objects
-import java.util.function.BiConsumer
 
 @Component
 class ShellyHandler {
 
     private val log: Logger = LoggerFactory.getLogger(javaClass)
-
-    val httpClient: OkHttpClient = OkHttpClient()
 
     @Autowired
     var client: LightmanagerClient? = null
@@ -55,58 +48,79 @@ class ShellyHandler {
             throw IllegalStateException("Either parameter scene or index must be set")
         }
     }
+
     /**
      * Set hex colors.
      *
-     * @param lIds The list of ids.
-     * @param lHexColors The list of hex colors.
-     * @param lGains The list of gains (taken from stage setup if omitted).
-     * @param transition The fade duration in milli seconds.
-     * @param turnOn Determines if the device should be turned on.
-     * @param store Determines if the new value should be stored in the cache.
-     */
-    /**
-     * Set hex colors.
-     *
-     * @param lIds The list of ids.
-     * @param lHexColors The list of hex colors.
-     * @param lGains The list of gains (taken from stage setup if omitted).
-     * @param transition The fade duration in milli seconds.
+     * @param ids The list of ids.
+     * @param hexColors The list of hex colors.
+     * @param gains The list of gains (taken from stage setup if omitted).
+     * @param transitionDuration The fade duration in milli seconds.
      * @param turnOn Determines if the device should be turned on.
      */
-    @JvmOverloads
     fun hexColors(
-        lIds: List<String>,
-        lHexColors: List<String>,
-        lGains: List<String>,
-        transition: Int,
+        ids: String,
+        hexColors: String,
+        gains: String,
+        transitionDuration: Long,
         turnOn: Boolean,
-        store: Boolean =
-            true
+        store: Boolean = true
     ) {
-        val nd = lIds.size - 1
+        val lIds = ids
+            .split(",")
+            .filter { it.trim().isNotEmpty() }
+            .map { it.trim() }
+        val lHexColors = hexColors
+            .split(",")
+            .filter { it.trim().isNotEmpty() }
+            .map { it.trim() }
+        val lGains = gains
+            .split(",")
+            .filter { it.trim().isNotEmpty() }
+            .map { it.trim().toFloat() }
+
+        hexColors(lIds, lHexColors, lGains, transitionDuration, turnOn, store)
+    }
+
+    /**
+     * Set hex colors.
+     *
+     * @param ids The list of ids.
+     * @param hexColors The list of hex colors.
+     * @param gains The list of gains (taken from stage setup if omitted).
+     * @param transitionDuration The fade duration in milli seconds.
+     * @param turnOn Determines if the device should be turned on.
+     */
+    fun hexColors(
+        ids: List<String>,
+        hexColors: List<String>,
+        gains: List<Float>,
+        transitionDuration: Long,
+        turnOn: Boolean,
+        store: Boolean = true
+    ) {
+        val nd = ids.size - 1
         var d = 0
-        val nh = lHexColors.size - 1
+        val nh = hexColors.size - 1
         var h = 0
-        val ng = lGains.size - 1
+        val ng = gains.size - 1
         var g = 0
-        val overrideGains = !lGains.isEmpty()
-        for (id in lIds) {
-            val sid = id.trim { it <= ' ' }
-            var gain = configHolder?.getShellyGain(sid)?:1
+        val overrideGains = gains.isNotEmpty()
+        for (id in ids) {
+            var gain = configHolder!!.getShellyGain(id)
             if (overrideGains) {
-                gain = lGains[g].toInt()
+                gain = gains[g]
             }
-            var hexColor = lHexColors[h]
+            var hexColor = hexColors[h]
             if (!hexColor.startsWith("#")) {
                 hexColor = "#$hexColor"
             }
             val rgbColor = RGBColor(hexColor)
             setColor(
-                sid,
+                id,
                 rgbColor,
                 gain,
-                transition,
+                transitionDuration,
                 turnOn,
                 store
             )
@@ -128,25 +142,31 @@ class ShellyHandler {
         green: Int,
         blue: Int,
         gains: String,
-        transition: Int,
+        transitionDuration: Long,
         turnOn: Boolean,
         store: Boolean
     ) {
-        val lGains = Arrays.asList(*gains.split(",".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray())
-        val ng = lGains.size - 1
+        val lGains = gains
+            .split(",")
+            .filter { it.trim().isNotEmpty() }
+            .map { it.trim().toFloat() }
         val g = 0
         val overrideGains = StringUtils.isNotEmpty(gains)
-        for (id in ids.split(",".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()) {
-            val sid = id.trim { it <= ' ' }
-            var gain = configHolder?.getShellyGain(sid)?:1
+        val lIds = ids
+            .split(",")
+            .filter { it.trim().isNotEmpty() }
+            .map { it.trim() }
+        lIds.forEach { id ->
+            val sid = id.trim()
+            var gain = configHolder!!.getShellyGain(sid)
             if (overrideGains) {
-                gain = lGains[g].toInt()
+                gain = lGains[g]
             }
             setColor(
                 sid,
                 RGBColor(red, green, blue),
                 gain,
-                transition,
+                transitionDuration,
                 turnOn,
                 store
             )
@@ -155,18 +175,21 @@ class ShellyHandler {
 
     fun restoreColors(
         ids: String,
-        transition: Int
+        transitionDuration: Long
     ) {
-        for (id in ids.split(",".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()) {
-            val sid = id.trim { it <= ' ' }
-            val lastColor = configHolder?.getLastColor(sid)
+        val lIds = ids
+            .split(",")
+            .filter { it.trim().isNotEmpty() }
+            .map { it.trim() }
+        lIds.forEach { id ->
+            val lastColor = configHolder!!.getLastColor(id)
             setColor(
-                sid,
-                RGBColor(lastColor?.hexColor!!),
-                lastColor.gain?.toInt()?:1,
-                transition,
-                lastColor.on!!,
-                false
+                id = id,
+                rgbColor = RGBColor(lastColor.hexColor!!),
+                gain = lastColor.gain?:1.0f,
+                transitionDuration = transitionDuration,
+                turnOn = lastColor.on,
+                store = false
             )
         }
     }
@@ -174,24 +197,31 @@ class ShellyHandler {
     fun power(
         ids: String,
         turnOn: Boolean,
-        transition: Int
+        transitionDuration: Long
     ) {
-        for (id in ids.split(",".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()) {
-            val sid = id.trim { it <= ' ' }
-            val shellyDevice = configHolder?.shellyDevices?.get(sid)
+        val lIds = ids
+            .split(",")
+            .filter { it.trim().isNotEmpty() }
+            .map { it.trim() }
+        lIds.forEach { id ->
+        val sid = id.trim()
+            val shellyDevice = configHolder!!.shellyDevices[sid]
             if (shellyDevice != null) {
                 val ipAddress: String = shellyDevice.ipAddress
                 val command: String = shellyDevice.command
-                val lastColor = configHolder?.getLastColor(sid)?: ColorState("#000000")
+                val lastColor = configHolder.getLastColor(sid)
                 lastColor.on = turnOn
-                configHolder?.putColor(sid, lastColor) // update state
-                val url =
-                    "http://" + ipAddress + "/" + command + "?turn=" + (if (turnOn) "on" else "off") + "&transition=" + transition + "&"
-                log.info("power: $url")
+                configHolder.putColor(sid, lastColor) // update state
+                log.info("power: $ipAddress")
                 try {
-                    query(url)
+                    ShellyClient.power(
+                        ipAddress = ipAddress,
+                        command = command,
+                        turnOn = turnOn,
+                        transitionDuration = transitionDuration
+                    )
                 } catch (e: Exception) {
-                    log.warn("Could not set power for url '$url'")
+                    log.warn("Could not set power for shelly devica at '$ipAddress'")
                 }
             }
         }
@@ -200,20 +230,25 @@ class ShellyHandler {
     fun gain(
         ids: String,
         gain: Int,
-        transition: Int
+        transitionDuration: Long
     ) {
-        for (id in ids.split(",".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()) {
-            val sid = id.trim { it <= ' ' }
-            val ipAddress = configHolder?.getShellyIpAddress(sid)
-            val lastColor = configHolder?.getLastColor(sid)?: ColorState("#000000")
-            lastColor.gain = gain.toFloat()
-            configHolder?.putColor(sid, lastColor) // update state
-            val url = "http://$ipAddress/color/0?gain=$gain&transition=$transition&"
-            log.info("gain: $url")
-            try {
-                query(url)
-            } catch (e: Exception) {
-                log.warn("Could not get gain for url '$url'")
+        val lIds = ids
+            .split(",")
+            .filter { it.trim().isNotEmpty() }
+            .map { it.trim() }
+        lIds.forEach { id ->
+            val sid = id.trim()
+            val shellyDevice = configHolder!!.shellyDevices[sid]
+            if (shellyDevice != null) {
+                val ipAddress: String = shellyDevice.ipAddress
+                val lastColor = configHolder.getLastColor(sid)
+                lastColor.gain = gain.toFloat()
+                configHolder.putColor(sid, lastColor) // update state
+                try {
+                    ShellyClient.gain(ipAddress = ipAddress, gain = gain, transitionDuration = transitionDuration)
+                } catch (e: Exception) {
+                    log.warn("Could not get gain for shelly at '$ipAddress'")
+                }
             }
         }
     }
@@ -228,14 +263,13 @@ class ShellyHandler {
 
     fun status(): Map<ShellyDevice, Status> {
         val statusMap: MutableMap<ShellyDevice, Status> = LinkedHashMap<ShellyDevice, Status>()
-        configHolder?.shellyDevices?.values?.forEach { device ->
+        configHolder!!.preferences?.shelly?.forEach { device ->
             val ipAddress: String = device.ipAddress
             val url = "http://$ipAddress/status"
             log.info("get status: $url")
             var status: Status
             try {
-                val json = query(url)
-                status = Status.Companion.load(json)
+                status = ShellyClient.status(ipAddress)
             } catch (e: Exception) {
                 log.warn("Could not get ststus for url '$url'")
                 status = Status()
@@ -249,52 +283,38 @@ class ShellyHandler {
     private fun setColor(
         id: String,
         rgbColor: RGBColor,
-        gain: Int,
-        transition: Int,
+        gain: Float,
+        transitionDuration: Long,
         turnOn: Boolean,
         store: Boolean
     ): Light? {
         if (store) {
             val hexColor: String = rgbColor.web()
             log.info("Put color '$hexColor' for id '$id'")
-            configHolder?.putColor(
+            configHolder!!.putColor(
                 id,
-                ColorState(hexColor = hexColor, gain = gain.toFloat(), on = turnOn)
+                ColorState(hexColor = hexColor, gain = gain, on = turnOn)
             )
         }
-        val red: Int = rgbColor.red
-        val green: Int = rgbColor.green
-        val blue: Int = rgbColor.blue
-        log.info(" shelly with id=$id to color ${rgbColor.ansiColor()} gain=$gain, transition=$transition, turnOn=$turnOn, store=$store")
-        val ipAddress = configHolder?.getShellyIpAddress(id)
-        val url = "http://" + ipAddress + "/color/0?" +
-                "turn=" + (if (turnOn) "on" else "off") + "&" +
-                "red=" + red + "&" +
-                "green=" + green + "&" +
-                "blue=" + blue + "&" +
-                "white=0&" +
-                "gain=" + gain + "&" +
-                "transition=" + transition + "&"
-        log.info("setColor: $url")
-        var light: Light? = null
-        try {
-            val json = query(url)
-            light = Light.load(json)
-        } catch (e: Exception) {
-            log.warn("Could not set color for url '$url'")
-        }
-        return light
-    }
+        log.info(" shelly with id=$id to color ${rgbColor.ansiColor()} gain=$gain, transition=$transitionDuration, turnOn=$turnOn, store=$store")
 
-    private fun query(url: String): String {
-        val request = Request.create(Request.HttpMethod.GET, url, mapOf(), byteArrayOf(), StandardCharsets.UTF_8, null)
-        val res = httpClient.execute(request, Request.Options()).use { response ->
-            if (response.status() == 200) {
-                response.body().asInputStream().use { ins -> String(ins.readAllBytes()) }
-            } else {
-                throw IOException("Unexpected code $response")
+        val sid = id.trim()
+        val shellyDevice = configHolder!!.shellyDevices[sid]
+        return if (shellyDevice != null) {
+            val ipAddress: String = shellyDevice.ipAddress
+            log.info("setColor: $ipAddress")
+            try {
+                ShellyClient.color(
+                    ipAddress = ipAddress,
+                    rgbColor = rgbColor,
+                    gain = gain,
+                    transitionDuration = transitionDuration,
+                    turnOn = turnOn
+                )
+            } catch (e: Exception) {
+                log.warn("Could not set color for shelly at '$ipAddress'")
+                null
             }
-        }
-        return res
+        } else null
     }
 }

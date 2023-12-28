@@ -27,7 +27,7 @@ open class DmxInterface {
 
     fun repr(): String {
         val lst = ArrayList<String>()
-        for (b in dmxFrame.frame()) {
+        for (b in dmxFrame.getFrameBytes()) {
             lst.add(StringUtils.leftPad(Integer.toHexString(b.toInt()), 8, '0'))
         }
         return lst.toString()
@@ -93,45 +93,13 @@ open class DmxInterface {
     open fun write() {
         if (isOpen()) {
             try {
-                serialPort?.writeBytes(dmxFrame.frame())
+                serialPort?.writeBytes(dmxFrame.getFrameBytes())
             } catch (e: SerialPortException) {
                 throw IllegalStateException("Could write dmxFrame to port", e)
             }
         } else {
             throw IllegalStateException("Tried to write to non open port")
         }
-    }
-
-    /**
-     * Sets the given DMX channel in the internal data bytes to the given value.
-     *
-     * @param channel The channel to set [1..512].
-     * @param value The value to set [0..255].
-     */
-    fun setChannel(channel: Int, value: Int) {
-        dmxFrame.set(channel, value)
-    }
-
-    /**
-     * Sets the given DMX channel in the internal data bytes to the given value.
-     *
-     * @param baseChannel The base channel to set [1..512].
-     * @param data The bytes to set.
-     */
-    fun setData(baseChannel: Int, data: ByteArray) {
-        dmxFrame.set(baseChannel, data)
-    }
-
-    /**
-     * Returns the currently set value of the given DMX channel.<br></br>
-     * This method does not actually read from the device but returns
-     * the current value form the internal data bytes.
-     *
-     * @param channel The DMX channel to retrieve [1..512].
-     * @return byte
-     */
-    fun getChannel(channel: Int): Int {
-        return dmxFrame.get(channel) // todo had offset of 4 - why?
     }
 
     /**

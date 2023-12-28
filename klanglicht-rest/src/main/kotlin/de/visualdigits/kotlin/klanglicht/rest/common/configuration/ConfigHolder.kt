@@ -1,7 +1,6 @@
 package de.visualdigits.kotlin.klanglicht.rest.common.configuration
 
 import com.fasterxml.jackson.annotation.JsonIgnore
-import de.visualdigits.kotlin.klanglicht.rest.hybrid.model.HybridStage
 import de.visualdigits.kotlin.klanglicht.model.dmx.DmxInterface
 import de.visualdigits.kotlin.klanglicht.model.dmx.DmxInterfaceType
 import de.visualdigits.kotlin.klanglicht.model.dmx.DmxRepeater
@@ -28,7 +27,6 @@ class ConfigHolder {
     val COLOR_STATE_DEFAULT: ColorState = ColorState(hexColor = "#000000", gain = 0.0f, on = false)
 
     var preferences: Preferences? = null
-    var hybridStage: HybridStage? = null
     var dmxInterface: DmxInterface? = null
     var repeater: DmxRepeater? = null
 
@@ -46,8 +44,6 @@ class ConfigHolder {
         log.info("#### setUp - start")
         preferences = Preferences.load(klanglichtDirectory)
         val dmxPort = preferences?.dmx?.port!!
-        val stageSetupName = preferences?.name!!
-        hybridStage = HybridStage.Companion.load(klanglichtDirectory, stageSetupName)
 
         log.info("##")
         log.info("## klanglichtDirectory: " + klanglichtDirectory.absolutePath)
@@ -62,14 +58,16 @@ class ConfigHolder {
         dmxInterface?.open(dmxPort)
         if (dmxInterface?.isOpen() == true) {
             dmxInterface?.clear()
-            repeater = DmxRepeater.instance(dmxInterface!!)
-            Thread.sleep(10)
-            repeater?.play()
+            if (preferences?.dmx?.enableRepeater  == true) {
+                repeater = DmxRepeater.instance(dmxInterface!!)
+                Thread.sleep(10)
+                repeater?.play()
+            }
         } else {
             throw IllegalStateException("Could not open serial interface")
         }
 
-        shellyDevices = preferences?.shelly?.devices?.associateBy { it.name }?: mapOf()
+        shellyDevices = preferences?.shelly?.associateBy { it.name }?: mapOf()
 
         log.info("#### setUp - end")
     }
@@ -95,8 +93,8 @@ class ConfigHolder {
         return Paths.get(klanglichtDirectory.absolutePath, "resources", relativeResourePath).toFile()
     }
 
-    fun getShellyGain(id: String): Int {
-        return shellyDevices[id]?.gain?:100
+    fun getShellyGain(id: String): Float {
+        return shellyDevices[id]?.gain?:1.0f
     }
 
     fun getShellyIpAddress(id: String): String? {

@@ -31,7 +31,7 @@ class YamahaReceiverRestController {
 
     private fun ensureClient() {
         if (client == null) {
-            client = configHolder?.preferences?.serviceMap?.get("receiver")?.url?.let { YamahaReceiverClient(it) }
+            client = configHolder!!.preferences?.serviceMap?.get("receiver")?.url?.let { YamahaReceiverClient(it) }
         }
     }
 }

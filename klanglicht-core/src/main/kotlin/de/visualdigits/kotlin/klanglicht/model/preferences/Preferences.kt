@@ -6,16 +6,17 @@ import de.visualdigits.kotlin.klanglicht.model.dmx.DmxInterface
 import de.visualdigits.kotlin.klanglicht.model.dmx.DmxInterfaceDummy
 import de.visualdigits.kotlin.klanglicht.model.fixture.Channel
 import de.visualdigits.kotlin.klanglicht.model.fixture.Fixtures
-import de.visualdigits.kotlin.klanglicht.model.parameter.Scene
+import de.visualdigits.kotlin.klanglicht.model.hybrid.HybridDevice
 import java.io.File
 import java.nio.file.Paths
 
 
-@JsonIgnoreProperties("klanglichtDir", "dmxInterface", "fixtures", "serviceMap")
+@JsonIgnoreProperties("klanglichtDir", "dmxInterface", "fixtures", "serviceMap", "stageMap")
 data class Preferences(
     val name: String = "",
     val services: List<Service> = listOf(),
-    val shelly: Shelly = Shelly(),
+    val shelly: List<ShellyDevice> = listOf(),
+    val stage: List<HybridDevice> = listOf(),
     val dmx: Dmx = Dmx()
 ) {
 
@@ -27,6 +28,8 @@ data class Preferences(
     var fixtures: Map<Int, List<Channel>> = mapOf()
 
     var serviceMap: Map<String, Service> = mapOf()
+
+    var stageMap: Map<String, HybridDevice> = mapOf()
 
     fun init(klanglichtDir: File) {
         this.klanglichtDir = klanglichtDir
@@ -40,9 +43,9 @@ data class Preferences(
                 }
         }.toMap()
 
-        serviceMap = services.map { service ->
-            Pair(service.name, service)
-        }.toMap()
+        serviceMap = services.associateBy { it.name }
+
+        stageMap = stage.associateBy { it.id }
 
         val dmxInterface = DmxInterface.load(dmx.interfaceType)
         dmxInterface.open(dmx.port)
@@ -69,20 +72,6 @@ data class Preferences(
             }
 
             return preferences!!
-        }
-    }
-
-    /**
-     * Writes the given scene into the internal dmx frame of the interface.
-     */
-    fun setScene(scene: Scene) {
-        scene.parameterSet.forEach { parameterSet ->
-            val baseChannel = parameterSet.baseChannel
-            val bytes = (fixtures[baseChannel]?.map { channel ->
-                (parameterSet.parameterMap[channel.name]?:0).toByte()
-            }?:listOf())
-                .toByteArray()
-            dmxInterface.dmxFrame.set(baseChannel, bytes)
         }
     }
 }

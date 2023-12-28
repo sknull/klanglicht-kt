@@ -18,6 +18,7 @@ import java.nio.file.Paths
 
 @Configuration
 class WebConfig : WebMvcConfigurer {
+
     @Autowired
     val configHolder: ConfigHolder? = null
 
@@ -32,7 +33,7 @@ class WebConfig : WebMvcConfigurer {
     fun templateResolver(): ITemplateResolver {
         val templateResolver = FileTemplateResolver()
         val templatesPath = Paths.get(
-            configHolder?.klanglichtDirectory?.absolutePath,
+            configHolder!!.klanglichtDirectory?.absolutePath,
             "resources",
             "themes",
             theme,

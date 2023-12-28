@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Configuration
 
 @Configuration
 class HttpsConfiguration {
+
     @Bean
     fun servletContainer(@Value("\${server.http.port}") httpPort: Int): ServletWebServerFactory {
         val connector = Connector(TomcatServletWebServerFactory.DEFAULT_PROTOCOL)

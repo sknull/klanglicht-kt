@@ -1,0 +1,22 @@
+192.168.178.30:8888/v1/yamaha/avantage/json/surroundProgram?program=Standard
+
+192.168.178.30:8888/v1/colors?hexColors=ff0000&id=Dmx&
+192.168.178.30:8888/v1/colors?baseChannels=15,29,21,1&hexColors=7777ff,aaaaff,7777ff,aaaaff&id=Dmx&
+
+192.168.178.30:8888/v1/shelly/hexColor?ids=Rgbw,Starwars,Bar&hexColors=ff0000&
+192.168.178.30:8888/v1/shelly/hexColor?ids=Rgbw,Starwars,Bar&hexColors=0ff00f&gains=1
+192.168.178.30:8888/v1/shelly/hexColor?ids=Rgbw&hexColors=0000ff&
+192.168.178.30:8888/v1/shelly/power?ids=Flur&turnOn=true
+192.168.178.30:8888/v1/shelly/power?ids=Kristall&turnOn=true
+
+
+bar shelly
+http://192.168.178.30:8888/v1/shelly/hexColor?ids=Bar&hexColors=ff4000&gains=100&store=false&
+http://192.168.178.30:8888/v1/shelly/restore?ids=Bar&transition=2000&
+
+
+
+192.168.178.30:8888/v1/hybrid/json/hexColor?hexColors=0000ff&turnOn=true&
+192.168.178.30:8888/v1/hybrid/json/hexColor?hexColors=8000ff,ff8000,8000ff,ff8000,8000ff,ff8000,8000ff&turnOn=true&
+
+192.168.178.30:8888/v1/wizlighting/powerState?ipAddress=192.168.178.44&on=true

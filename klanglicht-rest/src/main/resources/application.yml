@@ -1,0 +1,27 @@
+security:
+  require-ssl: false
+
+server:
+  http:
+    port: 8888
+  ssl:
+    enabled: false
+
+#server:
+#  port: 80
+#  ssl:
+#    key-store: file:E:/Programmierung/Web/Raspberrypi/website/keystore.p12
+#    keyStoreType: PKCS12
+#    keyAlias: springboot
+#    key-store-password: foodlyboo
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: "*"
+#  endpoint:
+#    shutdown:
+#      enabled: true
+
+lightmanager:
+  theme: StarWars

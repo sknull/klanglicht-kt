@@ -1,7 +1,5 @@
 package de.visualdigits.kotlin.klanglicht.model.color
 
-import de.visualdigits.kotlin.klanglicht.model.parameter.Parameter
-import java.lang.IllegalArgumentException
 import kotlin.math.min
 import kotlin.math.roundToInt
 

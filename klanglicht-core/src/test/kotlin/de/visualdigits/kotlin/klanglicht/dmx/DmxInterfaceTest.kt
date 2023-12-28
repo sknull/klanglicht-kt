@@ -1,11 +1,8 @@
 package de.visualdigits.kotlin.klanglicht.dmx
 
 import de.visualdigits.kotlin.klanglicht.model.color.RGBColor
-import de.visualdigits.kotlin.klanglicht.model.color.RGBWColor
-import de.visualdigits.kotlin.klanglicht.model.dmx.DmxRepeater
 import de.visualdigits.kotlin.klanglicht.model.parameter.IntParameter
 import de.visualdigits.kotlin.klanglicht.model.parameter.ParameterSet
-import de.visualdigits.kotlin.klanglicht.model.parameter.RotationParameter
 import de.visualdigits.kotlin.klanglicht.model.parameter.Scene
 import de.visualdigits.kotlin.klanglicht.model.preferences.Preferences
 import org.junit.jupiter.api.Disabled
@@ -16,7 +13,7 @@ import kotlin.math.ceil
 @Disabled("for local testing only")
 class DmxInterfaceTest {
 
-    private val prefs = Preferences.load(
+    private val preferences = Preferences.load(
         klanglichtDir = File(ClassLoader.getSystemResource(".klanglicht").toURI()),
         preferencesFileName = System.getenv("preferencesFileName")?:"preferences_livingroom_dummy.json"
     )
@@ -36,8 +33,8 @@ class DmxInterfaceTest {
                 )
             )
         )
-        prefs.setScene(scene)
-        prefs.dmxInterface.write()
+        scene.write(preferences)
+        preferences.dmxInterface.write()
     }
 
     @Test
@@ -55,8 +52,8 @@ class DmxInterfaceTest {
                 )
             )
         )
-        prefs.setScene(scene)
-        prefs.dmxInterface.write()
+        scene.write(preferences)
+        preferences.dmxInterface.write()
     }
 
 //    @Test
@@ -147,7 +144,7 @@ class DmxInterfaceTest {
         parameterSet1: ParameterSet,
         parameterSet2: ParameterSet
     ) {
-        val dmxFrameTime = prefs.dmx.frameTime // millis
+        val dmxFrameTime = preferences.dmx.frameTime // millis
         val steps = ceil(fadeDuration.toDouble() / dmxFrameTime.toDouble()).toInt()
         val step = 1.0 / steps
         for (f in 0..steps) {
@@ -159,7 +156,7 @@ class DmxInterfaceTest {
                     frame
                 )
             )
-            prefs.setScene(scene)
+            scene.write(preferences)
             Thread.sleep(dmxFrameTime)
         }
     }

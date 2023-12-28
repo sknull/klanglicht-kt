@@ -14,7 +14,7 @@ class ColorWheel(
 
     override fun toHtml(configHolder: ConfigHolder): String {
         val wheelId = id!!.replace(" ", "")
-        val lastColorState = configHolder.getLastColor(id)
+        val lastColorState = configHolder!!.getLastColor(id)
         val hexColor = lastColorState.hexColor?:"#000000"
         log.info("Got color '${RGBColor(hexColor).ansiColor()}' for id '$id'")
         return "    <div class=\"colorwheel-wrapper\">\n" +

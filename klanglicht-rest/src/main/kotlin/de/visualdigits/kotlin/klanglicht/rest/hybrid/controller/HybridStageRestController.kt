@@ -17,18 +17,18 @@ class HybridStageRestController {
 
     @GetMapping(value = ["/hexColor"])
     fun hexColor(
-        @RequestParam(value = "ids", required = false, defaultValue = "") ids: String?,
+        @RequestParam(value = "ids", required = false, defaultValue = "") ids: String,
         @RequestParam(value = "hexColors") hexColors: String,
-        @RequestParam(value = "gains", required = false, defaultValue = "") gains: String?,
-        @RequestParam(value = "transition", required = false, defaultValue = "2000") transition: Int?,
-        @RequestParam(value = "turnOn", required = false, defaultValue = "true") turnOn: Boolean?
+        @RequestParam(value = "gains", required = false, defaultValue = "") gains: String,
+        @RequestParam(value = "transition", required = false, defaultValue = "2000") transitionDuration: Long,
+        @RequestParam(value = "turnOn", required = false, defaultValue = "true") turnOn: Boolean
     ) {
         hybridStageHandler?.hexColor(
-            ids!!,
+            ids,
             hexColors,
-            gains!!, 
-            transition!!, 
-            turnOn!!
+            gains,
+            transitionDuration,
+            turnOn
         )
     }
 }

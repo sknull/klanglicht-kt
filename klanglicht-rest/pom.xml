@@ -125,44 +125,6 @@
   <build>
     <plugins>
       <plugin>
-        <groupId>org.jetbrains.kotlin</groupId>
-        <artifactId>kotlin-maven-plugin</artifactId>
-        <version>${version.kotlin}</version>
-        <configuration>
-          <languageVersion>1.7</languageVersion>
-          <jvmTarget>${kotlin.compiler.jvmTarget}</jvmTarget>
-        </configuration>
-        <executions>
-          <execution>
-            <id>compile</id>
-            <phase>compile</phase>
-            <goals>
-              <goal>compile</goal>
-            </goals>
-            <configuration>
-              <sourceDirs>
-                <sourceDirectory>src/main/kotlin</sourceDirectory>
-                <!--sourceDirectory>src/main/java</sourceDirectory-->
-              </sourceDirs>
-            </configuration>
-          </execution>
-          <execution>
-            <id>test-compile</id>
-            <phase>test-compile</phase>
-            <goals>
-              <goal>test-compile</goal>
-            </goals>
-            <configuration>
-              <sourceDirs>
-                <testSourceDirectory>src/test/kotlin</testSourceDirectory>
-                <!--testSourceDirectory>src/test/java</testSourceDirectory-->
-              </sourceDirs>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-
-      <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
         <configuration>

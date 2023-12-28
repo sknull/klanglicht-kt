@@ -15,6 +15,7 @@ import java.util.stream.Collectors
 @RestController
 @RequestMapping("/v1/shelly")
 class ShellyRestController {
+
     @Autowired
     var shellyHandler: ShellyHandler? = null
 
@@ -37,19 +38,11 @@ class ShellyRestController {
         @RequestParam(value = "ids", required = false, defaultValue = "") ids: String,
         @RequestParam(value = "hexColors") hexColors: String,
         @RequestParam(value = "gains", required = false, defaultValue = "") gains: String,
-        @RequestParam(value = "transition", required = false, defaultValue = "2000") transition: Int,
+        @RequestParam(value = "transition", required = false, defaultValue = "2000") transitionDuration: Long,
         @RequestParam(value = "turnOn", required = false, defaultValue = "true") turnOn: Boolean,
         @RequestParam(value = "store", required = false, defaultValue = "true") store: Boolean
     ) {
-        val lIds = Arrays.stream(ids.split(",".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray())
-            .filter { e: String -> !e.isEmpty() }
-            .collect(Collectors.toList())
-        val lHexColors = Arrays.stream(hexColors.split(",".toRegex()).dropLastWhile { it.isEmpty() }
-            .toTypedArray()).filter { e: String -> !e.isEmpty() }.collect(Collectors.toList())
-        val lGains = Arrays.stream(gains.split(",".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray())
-            .filter { e: String -> !e.isEmpty() }
-            .collect(Collectors.toList())
-        shellyHandler!!.hexColors(lIds, lHexColors, lGains, transition, turnOn, store)
+        shellyHandler!!.hexColors(ids, hexColors, gains, transitionDuration, turnOn, store)
     }
 
     @GetMapping(value = ["/color"])
@@ -59,36 +52,36 @@ class ShellyRestController {
         @RequestParam(value = "green", required = false, defaultValue = "0") green: Int,
         @RequestParam(value = "blue", required = false, defaultValue = "0") blue: Int,
         @RequestParam(value = "gains", required = false, defaultValue = "") gains: String,
-        @RequestParam(value = "transition", required = false, defaultValue = "2000") transition: Int,
+        @RequestParam(value = "transition", required = false, defaultValue = "2000") transitionDuration: Long,
         @RequestParam(value = "turnOn", required = false, defaultValue = "true") turnOn: Boolean,
         @RequestParam(value = "store", required = false, defaultValue = "true") store: Boolean
     ) {
-        shellyHandler!!.color(ids, red, green, blue, gains, transition, turnOn, store)
+        shellyHandler!!.color(ids, red, green, blue, gains, transitionDuration, turnOn, store)
     }
 
     @GetMapping(value = ["/restore"])
     fun restoreColors(
         @RequestParam(value = "ids", required = false, defaultValue = "") ids: String,
-        @RequestParam(value = "transition", required = false, defaultValue = "2000") transition: Int
+        @RequestParam(value = "transition", required = false, defaultValue = "2000") transitionDuration: Long
     ) {
-        shellyHandler!!.restoreColors(ids, transition)
+        shellyHandler!!.restoreColors(ids, transitionDuration)
     }
 
     @GetMapping(value = ["/power"])
     fun power(
         @RequestParam(value = "ids", required = false, defaultValue = "") ids: String,
         @RequestParam(value = "turnOn", required = false, defaultValue = "true") turnOn: Boolean,
-        @RequestParam(value = "transition", required = false, defaultValue = "2000") transition: Int
+        @RequestParam(value = "transition", required = false, defaultValue = "2000") transitionDuration: Long
     ) {
-        shellyHandler!!.power(ids, turnOn, transition)
+        shellyHandler!!.power(ids, turnOn, transitionDuration)
     }
 
     @GetMapping(value = ["/gain"])
     fun gain(
         @RequestParam(value = "ids", required = false, defaultValue = "") ids: String,
         @RequestParam(value = "gain", required = false, defaultValue = "2000") gain: Int,
-        @RequestParam(value = "transition", required = false, defaultValue = "2000") transition: Int
+        @RequestParam(value = "transition", required = false, defaultValue = "2000") transitionDuration: Long
     ) {
-        shellyHandler!!.gain(ids, gain, transition)
+        shellyHandler!!.gain(ids, gain, transitionDuration)
     }
 }

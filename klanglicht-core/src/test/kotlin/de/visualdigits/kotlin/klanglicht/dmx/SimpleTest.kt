@@ -9,83 +9,131 @@ import de.visualdigits.kotlin.klanglicht.model.preferences.Preferences
 import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import java.io.File
-import kotlin.math.ceil
 
 @Disabled("for local testing only")
 class SimpleTest {
 
+    val preferences = Preferences.load(
+        klanglichtDir = File(ClassLoader.getSystemResource(".klanglicht").toURI()),
+        preferencesFileName = "preferences_minimal.json"
+    )
+
     @Test
     fun testRgbw() {
-        val preferences = Preferences.load(
-            klanglichtDir = File(ClassLoader.getSystemResource(".klanglicht").toURI()),
-            preferencesFileName = "preferences_livingroom.json"
-        )
-
-        val baseChannel = 21
-
         val scene = Scene(
             name = "JUnit Test",
             parameterSet = listOf(
                 ParameterSet(
-                    baseChannel = baseChannel,
+                    baseChannel = 15,
                     parameters = mutableListOf(
-                        IntParameter("MasterDimmer", 0),
-                        RGBWColor(0, 0, 0, 0)
+                        IntParameter("MasterDimmer", 255),
+                        RGBWColor(20, 20, 0, 0)
+                    )
+                ),
+                ParameterSet(
+                    baseChannel = 29,
+                    parameters = mutableListOf(
+                        IntParameter("MasterDimmer", 255),
+                        RGBWColor(0, 20, 20, 0)
                     )
                 )
             )
         )
 
-        val dmxRepeater = DmxRepeater(preferences.dmxInterface, preferences.dmx.frameTime)
-        dmxRepeater.start()
+        scene.write(preferences)
+    }
 
-        preferences.setScene(scene)
-
-        dmxRepeater.join()
+    @Test
+    fun testPowerOff() {
+        val scene0 = Scene(
+            name = "JUnit Test",
+            parameterSet = listOf(
+                ParameterSet(
+                    baseChannel = 15,
+                    parameters = mutableListOf(
+                        IntParameter("MasterDimmer", 0),
+                        RGBWColor(0, 0, 0, 0)
+                    )
+                ),
+                ParameterSet(
+                    baseChannel = 29,
+                    parameters = mutableListOf(
+                        IntParameter("MasterDimmer", 0),
+                        RGBWColor(0, 0, 0, 0)
+                    )
+                ),
+            )
+        )
+        scene0.write(preferences)
     }
 
     @Test
     fun testFade() {
-        val preferences = Preferences.load(
-            klanglichtDir = File(ClassLoader.getSystemResource(".klanglicht").toURI()),
-            preferencesFileName = "preferences_livingroom.json"
+        val scene0 = Scene(
+            name = "JUnit Test",
+            parameterSet = listOf(
+                ParameterSet(
+                    baseChannel = 15,
+                    parameters = mutableListOf(
+                        IntParameter("MasterDimmer", 0),
+                        RGBWColor(0, 0, 0, 0)
+                    )
+                ),
+                ParameterSet(
+                    baseChannel = 29,
+                    parameters = mutableListOf(
+                        IntParameter("MasterDimmer", 0),
+                        RGBWColor(0, 0, 0, 0)
+                    )
+                ),
+            )
         )
-
-        val baseChannel = 21
 
         val scene1 = Scene(
             name = "JUnit Test",
             parameterSet = listOf(
                 ParameterSet(
-                    baseChannel = baseChannel,
+                    baseChannel = 29,
                     parameters = mutableListOf(
-                        IntParameter("MasterDimmer", 0),
-                        RGBWColor(255, 0, 0, 128)
+                        IntParameter("MasterDimmer", 255),
+                        RGBWColor(0, 255, 0, 0)
                     )
-                )
+                ),
+                ParameterSet(
+                    baseChannel = 15,
+                    parameters = mutableListOf(
+                        IntParameter("MasterDimmer", 255),
+                        RGBWColor(255, 0, 0, 0)
+                    )
+                ),
             )
         )
+        scene1.write(preferences)
 
         val scene2 = Scene(
             name = "JUnit Test",
             parameterSet = listOf(
                 ParameterSet(
-                    baseChannel = baseChannel,
+                    baseChannel = 15,
                     parameters = mutableListOf(
                         IntParameter("MasterDimmer", 255),
                         RGBWColor(0, 255, 0, 0)
                     )
-                )
+                ),
+                ParameterSet(
+                    baseChannel = 29,
+                    parameters = mutableListOf(
+                        IntParameter("MasterDimmer", 255),
+                        RGBWColor(255, 0, 0, 0)
+                    )
+                ),
             )
         )
 
-        val dmxRepeater = DmxRepeater(preferences.dmxInterface, preferences.dmx.frameTime)
-        dmxRepeater.start()
-
-        val fadeDuration = 5000L
-        scene1.fade(scene2, fadeDuration, preferences)
-        scene2.fade(scene1, fadeDuration, preferences)
-
-        dmxRepeater.join()
+        scene0.fade(scene1, 1000, preferences)
+        scene1.fade(scene2, 2000, preferences)
+        Thread.sleep(2000)
+        scene2.fade(scene1, 2000, preferences)
+        scene1.fade(scene0, 1000, preferences)
     }
 }

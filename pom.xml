@@ -14,7 +14,6 @@
   <modules>
     <module>klanglicht-core</module>
     <module>klanglicht-rest</module>
-    <module>klanglicht-yamaha</module>
   </modules>
 
   <properties>

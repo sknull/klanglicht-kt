@@ -6,5 +6,5 @@ data class ShellyDevice(
     val model: String = "",
     val command: String = "",
     val ipAddress: String = "",
-    val gain: Int = 0
+    val gain: Float = 0.0f
 )

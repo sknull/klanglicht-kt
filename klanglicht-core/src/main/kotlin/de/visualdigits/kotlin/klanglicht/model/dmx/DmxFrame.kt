@@ -35,7 +35,10 @@ class DmxFrame(
         return "DmxFrame [${dump()}]"
     }
 
-    fun frame(): ByteArray = Bytes.concat(header, data, footer)
+    /**
+     * Returns the bytes for a complete frame including header and footer.
+     */
+    fun getFrameBytes(): ByteArray = Bytes.concat(header, data, footer)
 
     /**
      * Sets all data bytes to 0.
@@ -46,14 +49,6 @@ class DmxFrame(
 
     fun get(channel: Int): Int {
         return data[channel - 1].toInt() and BYTE_MASK
-    }
-
-    fun set(channel: Int, value: Int): Int {
-        val oldValue = data[channel - 1].toInt() and BYTE_MASK
-        if (value != oldValue) {
-            data[channel - 1] = value.toByte()
-        }
-        return oldValue
     }
 
     fun set(baseChannel: Int, bytes: ByteArray) {
