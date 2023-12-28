@@ -7,7 +7,7 @@ import java.net.URL
 
 object ShellyClient {
 
-    fun power(
+    fun setPower(
         ipAddress: String,
         command: String,
         turnOn: Boolean,
@@ -16,7 +16,7 @@ object ShellyClient {
         return URL("http://" + ipAddress + "/" + command + "?turn=" + (if (turnOn) "on" else "off") + "&transition=" + transitionDuration + "&").readText()
     }
 
-    fun gain(
+    fun setGain(
         ipAddress: String,
         gain: Int,
         transitionDuration: Long
@@ -24,19 +24,19 @@ object ShellyClient {
         return URL("http://$ipAddress/color/0?gain=$gain&transition=$transitionDuration&").readText()
     }
 
-    fun status(
+    fun getStatus(
         ipAddress: String
     ): Status {
         val json = URL("http://$ipAddress/status").readText()
         return Status.load(json)
     }
 
-    fun color(
+    fun setColor(
         ipAddress: String,
         rgbColor: RGBColor,
         gain: Float,
-        transitionDuration: Long,
-        turnOn: Boolean,
+        transitionDuration: Long = 0,
+        turnOn: Boolean = true,
     ): Light {
         val json = URL(
             "http://$ipAddress/color/0?" +

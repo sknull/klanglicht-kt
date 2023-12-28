@@ -11,7 +11,7 @@ import java.io.File
 import java.nio.file.Paths
 
 
-@JsonIgnoreProperties("klanglichtDir", "dmxInterface", "fixtures", "serviceMap", "stageMap")
+@JsonIgnoreProperties("klanglichtDir", "dmxInterface", "fixtures", "serviceMap", "shellyMap", "stageMap")
 data class Preferences(
     val name: String = "",
     val services: List<Service> = listOf(),
@@ -28,6 +28,8 @@ data class Preferences(
     var fixtures: Map<Int, List<Channel>> = mapOf()
 
     var serviceMap: Map<String, Service> = mapOf()
+
+    var shellyMap: Map<String, ShellyDevice> = mapOf()
 
     var stageMap: Map<String, HybridDevice> = mapOf()
 
@@ -46,6 +48,8 @@ data class Preferences(
         serviceMap = services.associateBy { it.name }
 
         stageMap = stage.associateBy { it.id }
+
+        shellyMap = shelly.associateBy { it.name }
 
         val dmxInterface = DmxInterface.load(dmx.interfaceType)
         dmxInterface.open(dmx.port)

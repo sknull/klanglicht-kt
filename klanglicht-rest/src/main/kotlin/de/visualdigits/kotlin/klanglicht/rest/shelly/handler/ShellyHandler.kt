@@ -13,7 +13,6 @@ import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
-import java.util.Arrays
 
 @Component
 class ShellyHandler {
@@ -214,7 +213,7 @@ class ShellyHandler {
                 configHolder.putColor(sid, lastColor) // update state
                 log.info("power: $ipAddress")
                 try {
-                    ShellyClient.power(
+                    ShellyClient.setPower(
                         ipAddress = ipAddress,
                         command = command,
                         turnOn = turnOn,
@@ -245,7 +244,7 @@ class ShellyHandler {
                 lastColor.gain = gain.toFloat()
                 configHolder.putColor(sid, lastColor) // update state
                 try {
-                    ShellyClient.gain(ipAddress = ipAddress, gain = gain, transitionDuration = transitionDuration)
+                    ShellyClient.setGain(ipAddress = ipAddress, gain = gain, transitionDuration = transitionDuration)
                 } catch (e: Exception) {
                     log.warn("Could not get gain for shelly at '$ipAddress'")
                 }
@@ -269,7 +268,7 @@ class ShellyHandler {
             log.info("get status: $url")
             var status: Status
             try {
-                status = ShellyClient.status(ipAddress)
+                status = ShellyClient.getStatus(ipAddress)
             } catch (e: Exception) {
                 log.warn("Could not get ststus for url '$url'")
                 status = Status()
@@ -304,7 +303,7 @@ class ShellyHandler {
             val ipAddress: String = shellyDevice.ipAddress
             log.info("setColor: $ipAddress")
             try {
-                ShellyClient.color(
+                ShellyClient.setColor(
                     ipAddress = ipAddress,
                     rgbColor = rgbColor,
                     gain = gain,

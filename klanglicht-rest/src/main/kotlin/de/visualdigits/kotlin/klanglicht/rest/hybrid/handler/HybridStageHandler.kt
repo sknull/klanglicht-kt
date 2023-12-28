@@ -5,7 +5,6 @@ import de.visualdigits.kotlin.klanglicht.model.hybrid.HybridDeviceType
 import de.visualdigits.kotlin.klanglicht.rest.dmx.handler.DmxHandler
 import de.visualdigits.kotlin.klanglicht.rest.common.configuration.ConfigHolder
 import de.visualdigits.kotlin.klanglicht.rest.shelly.handler.ShellyHandler
-import org.apache.commons.lang3.StringUtils
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
 
@@ -43,7 +42,6 @@ class HybridStageHandler {
             .map { it.trim() }
         val nd = lIds.size - 1
         var d = 0
-        val hasIds = StringUtils.isNotEmpty(ids)
 
         val lHexColors = hexColors
             .split(",")
@@ -57,29 +55,28 @@ class HybridStageHandler {
             .map { it.toFloat() }
         val ng = lGains.size - 1
         var g = 0
-        val overrideGains = StringUtils.isNotEmpty(gains)
+
         val dmxIds: MutableList<String> = ArrayList()
         val dmxHexColors: MutableList<String> = ArrayList()
         val dmxGains: MutableList<Float> = ArrayList()
         val shellyIds: MutableList<String> = ArrayList()
         val shellyHexColors: MutableList<String> = ArrayList()
         val shellyGains: MutableList<Float> = ArrayList()
-        if (hasIds) {
+        if (lIds.isNotEmpty()) {
             for (id in lIds) {
-                val sid = id
                 val hexColor = lHexColors[h]
                 val gain = lGains[g]
-                val device = configHolder!!.preferences?.stageMap?.get(sid)
+                val device = configHolder!!.preferences?.stageMap?.get(id)
                 if (device != null) {
                     processDevice(
-                        overrideGains,
+                        lGains.isNotEmpty(),
                         dmxIds,
                         dmxHexColors,
                         dmxGains,
                         shellyIds,
                         shellyHexColors,
                         shellyGains,
-                        sid,
+                        id,
                         hexColor,
                         gain,
                         device
@@ -97,11 +94,11 @@ class HybridStageHandler {
             }
         } else {
             configHolder!!.preferences?.stage?.forEach { device ->
-                val sid = device.id.trim()?:""
+                val sid = device.id.trim() ?: ""
                 val hexColor = lHexColors[h]
                 val gain = lGains[g]
                 processDevice(
-                    overrideGains,
+                    lGains.isNotEmpty(),
                     dmxIds,
                     dmxHexColors,
                     dmxGains,

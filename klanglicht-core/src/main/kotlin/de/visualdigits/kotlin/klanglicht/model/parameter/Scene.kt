@@ -34,6 +34,23 @@ class Scene(
             }
     }
 
+    fun fade(
+        other: Scene,
+        fadeDuration: Long,
+        preferences: Preferences
+    ) {
+        val dmxFrameTime = preferences.dmx.frameTime // millis
+        val step = 1.0 / fadeDuration.toDouble() * dmxFrameTime.toDouble()
+        var factor = 0.0
+
+        while (factor < 1.0) {
+            fade(other, factor).write(preferences)
+            factor += step
+            Thread.sleep(dmxFrameTime)
+        }
+        other.write(preferences)
+    }
+
     override fun fade(
         other: Any,
         factor: Double
@@ -50,22 +67,5 @@ class Scene(
             )
         }
         else throw IllegalArgumentException("Cannot not fade another type")
-    }
-
-    fun fade(
-        other: Scene,
-        fadeDuration: Long,
-        preferences: Preferences
-    ) {
-        val dmxFrameTime = preferences.dmx.frameTime // millis
-        val step = 1.0 / fadeDuration.toDouble() * dmxFrameTime.toDouble()
-        var factor = 0.0
-
-        while (factor < 1.0) {
-            fade(other, factor).write(preferences)
-            factor += step
-            Thread.sleep(dmxFrameTime)
-        }
-        other.write(preferences)
     }
 }
