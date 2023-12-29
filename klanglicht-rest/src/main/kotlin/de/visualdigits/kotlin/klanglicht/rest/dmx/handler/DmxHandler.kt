@@ -1,12 +1,11 @@
 package de.visualdigits.kotlin.klanglicht.rest.dmx.handler
 
 import de.visualdigits.kotlin.klanglicht.model.color.RGBColor
-import de.visualdigits.kotlin.klanglicht.model.color.RGBWColor
 import de.visualdigits.kotlin.klanglicht.model.hybrid.HybridDeviceType
 import de.visualdigits.kotlin.klanglicht.model.parameter.IntParameter
 import de.visualdigits.kotlin.klanglicht.model.parameter.ParameterSet
 import de.visualdigits.kotlin.klanglicht.model.parameter.Scene
-import de.visualdigits.kotlin.klanglicht.model.preferences.ColorState
+import de.visualdigits.kotlin.klanglicht.model.shelly.ColorState
 import de.visualdigits.kotlin.klanglicht.rest.common.configuration.ConfigHolder
 import jakarta.annotation.PostConstruct
 import org.slf4j.Logger

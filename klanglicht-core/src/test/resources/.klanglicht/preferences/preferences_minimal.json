@@ -1,17 +1,17 @@
 {
-	"name" : "wohnzimmer",
+	"name": "wohnzimmer",
 
 	"services": [
 		{
 			"name": "lmair",
-			"manufacturer" : "JB-Media",
-			"model" : "Light-Manager Air",
+			"manufacturer": "JB-Media",
+			"model": "Light-Manager Air",
 			"url": "http://192.168.178.28"
 		},
 		{
 			"name": "receiver",
-			"manufacturer" : "Yamaha",
-			"model" : "RX-V6A",
+			"manufacturer": "Yamaha",
+			"model": "RX-V6A",
 			"url": "http://192.168.178.46"
 		}
 	],
@@ -21,19 +21,19 @@
 			"name": "Starwars",
 			"model": "shelly-rgbw",
 			"ipAddress": "192.168.178.54",
-			"gain": 30
+			"gain": 0.2
 		},
 		{
 			"name": "Rgbw",
 			"model": "shelly-rgbw",
 			"ipAddress": "192.168.178.48",
-			"gain": 1
+			"gain": 0.1
 		},
 		{
 			"name": "Bar",
 			"model": "shelly-rgbw",
 			"ipAddress": "192.168.178.55",
-			"gain": 20
+			"gain": 0.1
 		},
 		{
 			"name": "Flur",
@@ -72,19 +72,36 @@
 		"interfaceType": "Serial",
 		"frameTime": 40,
 		"enableRepeater": false,
-		"devices" : [ {
-			"manufacturer" : "Cameo",
-			"model" : "Flat PAR Can RGB 10 IR",
-			"mode" : "6-Channel Mode",
-			"baseChannel" : 15,
-			"gain": 0.5
-		}, {
-			"manufacturer" : "Cameo",
-			"model" : "Flat PAR Can RGB 10 IR",
-			"mode" : "6-Channel Mode",
-			"baseChannel" : 29,
-			"gain": 0.5
-		} ]
+		"devices": [
+			{
+				"manufacturer": "Cameo",
+				"model": "Flat PAR Can RGB 10 IR",
+				"mode": "6-Channel Mode",
+				"baseChannel": 1,
+				"gain": 1.0
+			},
+			{
+				"manufacturer": "Cameo",
+				"model": "Flat PAR Can RGBW",
+				"mode": "8-Channel Mode",
+				"baseChannel": 21,
+				"gain": 1.0
+			},
+			{
+				"manufacturer": "Cameo",
+				"model": "Flat PAR Can RGB 10 IR",
+				"mode": "6-Channel Mode",
+				"baseChannel": 15,
+				"gain": 1.0
+			},
+			{
+				"manufacturer": "Cameo",
+				"model": "Flat PAR Can RGB 10 IR",
+				"mode": "6-Channel Mode",
+				"baseChannel": 29,
+				"gain": 1.0
+			}
+		]
 	},
 
 	"stage": [

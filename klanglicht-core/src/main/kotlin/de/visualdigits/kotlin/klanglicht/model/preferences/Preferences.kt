@@ -2,11 +2,13 @@ package de.visualdigits.kotlin.klanglicht.model.preferences
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.module.kotlin.jacksonMapperBuilder
+import de.visualdigits.kotlin.klanglicht.model.dmx.Dmx
 import de.visualdigits.kotlin.klanglicht.model.dmx.DmxInterface
 import de.visualdigits.kotlin.klanglicht.model.dmx.DmxInterfaceDummy
 import de.visualdigits.kotlin.klanglicht.model.fixture.Channel
 import de.visualdigits.kotlin.klanglicht.model.fixture.Fixtures
 import de.visualdigits.kotlin.klanglicht.model.hybrid.HybridDevice
+import de.visualdigits.kotlin.klanglicht.model.shelly.ShellyDevice
 import java.io.File
 import java.nio.file.Paths
 

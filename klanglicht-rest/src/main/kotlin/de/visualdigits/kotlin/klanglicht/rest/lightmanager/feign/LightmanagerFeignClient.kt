@@ -8,6 +8,7 @@ import feign.okhttp.OkHttpClient
 import feign.slf4j.Slf4jLogger
 
 interface LightmanagerFeignClient {
+
     @RequestLine("GET /")
     fun html(): String?
 

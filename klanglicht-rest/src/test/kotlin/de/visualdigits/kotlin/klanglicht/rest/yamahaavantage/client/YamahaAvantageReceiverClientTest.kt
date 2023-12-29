@@ -1,6 +1,7 @@
 package de.visualdigits.kotlin.klanglicht.rest.yamahaavantage.client
 
 import de.visualdigits.kotlin.klanglicht.model.preferences.Preferences
+import de.visualdigits.kotlin.klanglicht.model.yamahaadvantage.client.YamahaAvantageReceiverClient
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test

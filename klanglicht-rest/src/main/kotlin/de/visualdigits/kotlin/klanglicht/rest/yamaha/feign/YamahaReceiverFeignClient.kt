@@ -1,6 +1,5 @@
 package de.visualdigits.kotlin.klanglicht.rest.yamaha.feign
 
-import de.visualdigits.kotlin.klanglicht.rest.yamaha.model.description.UnitDescription
 import feign.Feign
 import feign.Headers
 import feign.Logger
@@ -11,10 +10,10 @@ import feign.slf4j.Slf4jLogger
 interface YamahaReceiverFeignClient {
     @RequestLine("GET /YamahaRemoteControl/desc.xml")
     fun description(): String
-    val unitDescription: UnitDescription?
+    val unitDescription: de.visualdigits.kotlin.klanglicht.model.yamaha.UnitDescription?
         get() {
             val json = description()
-            return UnitDescription.Companion.load(json)
+            return de.visualdigits.kotlin.klanglicht.model.yamaha.UnitDescription.Companion.load(json)
         }
 
     @RequestLine("POST /YamahaRemoteControl/ctrl")

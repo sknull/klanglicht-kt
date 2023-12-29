@@ -21,19 +21,19 @@
       "name": "Starwars",
       "model": "shelly-rgbw",
       "ipAddress": "192.168.178.54",
-      "gain": 30
+      "gain": 0.2
     },
     {
       "name": "Rgbw",
       "model": "shelly-rgbw",
       "ipAddress": "192.168.178.48",
-      "gain": 1
+      "gain": 0.1
     },
     {
       "name": "Bar",
       "model": "shelly-rgbw",
       "ipAddress": "192.168.178.55",
-      "gain": 20
+      "gain": 0.1
     },
     {
       "name": "Flur",

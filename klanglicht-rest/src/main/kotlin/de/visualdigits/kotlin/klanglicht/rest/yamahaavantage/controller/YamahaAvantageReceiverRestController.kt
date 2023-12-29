@@ -1,7 +1,7 @@
 package de.visualdigits.kotlin.klanglicht.rest.yamahaavantage.controller
 
 import de.visualdigits.kotlin.klanglicht.rest.common.configuration.ConfigHolder
-import de.visualdigits.kotlin.klanglicht.rest.yamahaavantage.client.YamahaAvantageReceiverClient
+import de.visualdigits.kotlin.klanglicht.model.yamahaadvantage.client.YamahaAvantageReceiverClient
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired

@@ -1,14 +1,13 @@
 package de.visualdigits.kotlin.klanglicht.rest.yamaha.feign
 
-import de.visualdigits.kotlin.klanglicht.rest.yamaha.model.description.Menu
-import de.visualdigits.kotlin.klanglicht.rest.yamaha.model.description.UnitDescription
+import de.visualdigits.kotlin.klanglicht.model.yamaha.Menu
 
 class YamahaReceiverClient(
     val yamahaReceiverUrl: String
 ) {
 
     var client: YamahaReceiverFeignClient? = null
-    var unitDescription: UnitDescription? = null
+    var unitDescription: de.visualdigits.kotlin.klanglicht.model.yamaha.UnitDescription? = null
 
     init {
         client = YamahaReceiverFeignClient.Companion.client(yamahaReceiverUrl)

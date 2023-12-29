@@ -1,13 +1,13 @@
 package de.visualdigits.kotlin.klanglicht.rest.shelly.handler
 
 import de.visualdigits.kotlin.klanglicht.model.color.RGBColor
-import de.visualdigits.kotlin.klanglicht.model.preferences.ColorState
-import de.visualdigits.kotlin.klanglicht.model.preferences.ShellyDevice
+import de.visualdigits.kotlin.klanglicht.model.shelly.ColorState
+import de.visualdigits.kotlin.klanglicht.model.shelly.ShellyDevice
 import de.visualdigits.kotlin.klanglicht.rest.common.configuration.ConfigHolder
 import de.visualdigits.kotlin.klanglicht.rest.lightmanager.feign.LightmanagerClient
-import de.visualdigits.kotlin.klanglicht.rest.shelly.client.ShellyClient
-import de.visualdigits.kotlin.klanglicht.rest.shelly.model.status.Light
-import de.visualdigits.kotlin.klanglicht.rest.shelly.model.status.Status
+import de.visualdigits.kotlin.klanglicht.model.shelly.client.ShellyClient
+import de.visualdigits.kotlin.klanglicht.model.shelly.status.Light
+import de.visualdigits.kotlin.klanglicht.model.shelly.status.Status
 import org.apache.commons.lang3.StringUtils
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -303,15 +303,14 @@ class ShellyHandler {
             val ipAddress: String = shellyDevice.ipAddress
             log.info("setColor: $ipAddress")
             try {
-                ShellyClient.setColor(
-                    ipAddress = ipAddress,
+                shellyDevice.setColor(
                     rgbColor = rgbColor,
                     gain = gain,
                     transitionDuration = transitionDuration,
                     turnOn = turnOn
                 )
             } catch (e: Exception) {
-                log.warn("Could not set color for shelly at '$ipAddress'")
+                log.warn("Could not set color for shelly device '$shellyDevice'")
                 null
             }
         } else null

@@ -4,10 +4,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore
 import de.visualdigits.kotlin.klanglicht.model.dmx.DmxInterface
 import de.visualdigits.kotlin.klanglicht.model.dmx.DmxInterfaceType
 import de.visualdigits.kotlin.klanglicht.model.dmx.DmxRepeater
-import de.visualdigits.kotlin.klanglicht.model.preferences.ColorState
-import de.visualdigits.kotlin.klanglicht.model.preferences.DmxDevice
+import de.visualdigits.kotlin.klanglicht.model.shelly.ColorState
+import de.visualdigits.kotlin.klanglicht.model.dmx.DmxDevice
 import de.visualdigits.kotlin.klanglicht.model.preferences.Preferences
-import de.visualdigits.kotlin.klanglicht.model.preferences.ShellyDevice
+import de.visualdigits.kotlin.klanglicht.model.shelly.ShellyDevice
 import jakarta.annotation.PostConstruct
 import jakarta.annotation.PreDestroy
 import org.apache.commons.lang3.StringUtils
