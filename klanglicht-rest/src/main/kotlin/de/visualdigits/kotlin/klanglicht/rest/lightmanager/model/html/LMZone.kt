@@ -1,7 +1,6 @@
 package de.visualdigits.kotlin.klanglicht.rest.lightmanager.model.html
 
 import de.visualdigits.kotlin.klanglicht.rest.configuration.ConfigHolder
-import java.util.Locale
 import java.util.Objects
 import java.util.function.Consumer
 

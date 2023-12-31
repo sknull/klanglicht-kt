@@ -13,7 +13,6 @@ import org.apache.commons.lang3.StringUtils
 import org.jsoup.Jsoup
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
-import javax.swing.text.Document
 
 @Component
 class LightmanagerClient(
@@ -29,7 +28,7 @@ class LightmanagerClient(
         if (StringUtils.isEmpty(lightmanagerUrl)) {
             lightmanagerUrl = configHolder!!.preferences?.serviceMap?.get("lmair")?.url
         }
-        client = LightmanagerFeignClient.Companion.client(lightmanagerUrl)
+        client = LightmanagerFeignClient.client(lightmanagerUrl)
     }
 
     fun params(): LMParams {
@@ -39,7 +38,7 @@ class LightmanagerClient(
     fun zones(): LMZones {
         val markers: LMMarkers = markers()
         val document = Jsoup.parse(client!!.html()!!)
-        val setUpName = document.select("div[id=mytitle]")?.first()?.text()?:""
+        val setUpName = document.select("div[id=mytitle]").first()?.text()?:""
         val zones = LMZones(setUpName)
         document
             .select("div[class=bigBlock]")

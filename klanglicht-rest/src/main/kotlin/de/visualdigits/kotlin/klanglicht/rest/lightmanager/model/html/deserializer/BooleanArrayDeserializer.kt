@@ -1,10 +1,8 @@
 package de.visualdigits.kotlin.klanglicht.rest.lightmanager.model.html.deserializer
 
 import com.fasterxml.jackson.core.JsonParser
-import com.fasterxml.jackson.core.JsonProcessingException
 import com.fasterxml.jackson.databind.DeserializationContext
 import com.fasterxml.jackson.databind.JsonDeserializer
-import java.io.IOException
 
 class BooleanArrayDeserializer : JsonDeserializer<BooleanArray>() {
 

@@ -11,7 +11,7 @@ import java.io.File
 internal class YamahaAvantageReceiverClientTest {
 
     private val preferences = Preferences.load(
-        klanglichtDir = File("../klanglicht-core/src/test/resources/.klanglicht"),
+        klanglichtDir = File("../klanglicht-dmx/src/test/resources/.klanglicht"),
         preferencesFileName = System.getenv("preferencesFileName")?:"preferences_livingroom.json"
     )
 

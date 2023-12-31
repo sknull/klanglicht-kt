@@ -1,8 +1,6 @@
 package de.visualdigits.kotlin.klanglicht.rest.lightmanager.model.html
 
 import com.fasterxml.jackson.annotation.JsonIgnore
-import org.apache.commons.lang3.StringUtils
-import java.util.Arrays
 
 
 class LMDefaultRequest(

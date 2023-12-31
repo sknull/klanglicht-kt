@@ -1,11 +1,11 @@
 package de.visualdigits.kotlin.klanglicht.rest.shelly.model.html
 
-import de.visualdigits.kotlin.klanglicht.rest.configuration.ConfigHolder
 import de.visualdigits.kotlin.klanglicht.model.color.RGBColor
 import de.visualdigits.kotlin.klanglicht.model.shelly.ShellyDevice
+import de.visualdigits.kotlin.klanglicht.model.shelly.status.Status
+import de.visualdigits.kotlin.klanglicht.rest.configuration.ConfigHolder
 import de.visualdigits.kotlin.klanglicht.rest.lightmanager.model.html.HtmlRenderable
 import de.visualdigits.kotlin.klanglicht.rest.shelly.handler.ShellyHandler
-import de.visualdigits.kotlin.klanglicht.model.shelly.status.Status
 
 class ShellyStatus : HtmlRenderable {
 

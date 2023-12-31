@@ -1,20 +1,20 @@
 package de.visualdigits.kotlin.klanglicht.rest.configuration
 
-import com.fasterxml.jackson.annotation.JsonIgnore
-import de.visualdigits.kotlin.klanglicht.model.dmx.DmxInterface
-import de.visualdigits.kotlin.klanglicht.model.dmx.DmxInterfaceType
-import de.visualdigits.kotlin.klanglicht.model.dmx.DmxRepeater
-import de.visualdigits.kotlin.klanglicht.model.shelly.ColorState
 import de.visualdigits.kotlin.klanglicht.model.dmx.DmxDevice
+import de.visualdigits.kotlin.klanglicht.model.dmx.DmxRepeater
+import de.visualdigits.kotlin.klanglicht.model.hybrid.HybridDeviceType
+import de.visualdigits.kotlin.klanglicht.model.hybrid.HybridScene
+import de.visualdigits.kotlin.klanglicht.model.parameter.Fadeable
 import de.visualdigits.kotlin.klanglicht.model.preferences.Preferences
 import de.visualdigits.kotlin.klanglicht.model.shelly.ShellyDevice
+import de.visualdigits.kotlin.twinkly.model.device.xled.DeviceOrigin
+import de.visualdigits.kotlin.twinkly.model.device.xled.XLedDevice
+import de.visualdigits.kotlin.twinkly.model.device.xled.XledArray
 import jakarta.annotation.PostConstruct
 import jakarta.annotation.PreDestroy
-import org.apache.commons.lang3.StringUtils
 import org.apache.commons.lang3.SystemUtils
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
-import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Component
 import java.io.File
 import java.nio.file.Paths
@@ -24,69 +24,85 @@ class ConfigHolder {
 
     private val log: Logger = LoggerFactory.getLogger(javaClass)
 
-    val COLOR_STATE_DEFAULT: ColorState = ColorState(hexColor = "#000000", gain = 0.0f, on = false)
-
     var preferences: Preferences? = null
-    var dmxInterface: DmxInterface? = null
     var repeater: DmxRepeater? = null
 
     val klanglichtDirectory: File = File(SystemUtils.getUserHome(), ".klanglicht")
 
-    @Value("\${spring.profiles.active}")
-    val activeProfile: String? = null
-
-    val lastColor: MutableMap<String, ColorState> = mutableMapOf()
+    var currentScene: HybridScene? = null
 
     var shellyDevices: Map<String, ShellyDevice> = mapOf()
 
+    var xledArray: XledArray? = null
+    var xledDevices: Map<String, XLedDevice> = mapOf()
+
     @PostConstruct
     fun initialize() {
+        // load preferences
         log.info("#### setUp - start")
         preferences = Preferences.load(klanglichtDirectory)
         val dmxPort = preferences?.dmx?.port!!
 
+        // initialize dmx fixtures
         log.info("##")
         log.info("## klanglichtDirectory: " + klanglichtDirectory.absolutePath)
         log.info("## dmxPort            : $dmxPort")
-        dmxInterface = if ("dev" == activeProfile || StringUtils.isEmpty(dmxPort)) {
-            log.info("## USING DUMMY DMX INTERFACE - USED A REAL INTERFACE TO SEE THE LIGHT ;)")
-            DmxInterface.load(DmxInterfaceType.Dummy)
-        } else {
-            DmxInterface.load(DmxInterfaceType.Serial)
-        }
-
-        dmxInterface?.open(dmxPort)
-        if (dmxInterface?.isOpen() == true) {
-            dmxInterface?.clear()
+        if (preferences?.dmxInterface?.isOpen() == true) {
+            preferences?.dmxInterface?.clear()
             if (preferences?.dmx?.enableRepeater  == true) {
-                repeater = DmxRepeater.instance(dmxInterface!!)
+                repeater = DmxRepeater.instance(preferences?.dmxInterface!!)
                 Thread.sleep(10)
                 repeater?.play()
             }
-        } else {
-            throw IllegalStateException("Could not open serial interface")
         }
 
+        // initialize shellies
         shellyDevices = preferences?.shelly?.associateBy { it.name }?: mapOf()
 
+        // initialize twinkly devices
+        val twinkly = preferences?.twinkly
+        val deviceOrigin = twinkly?.deviceOrigin?.let { DeviceOrigin.valueOf(it) }?: DeviceOrigin.TOP_LEFT
+        val xledDevices: MutableMap<String, XLedDevice> = mutableMapOf()
+        xledArray = twinkly?.array?.map { column ->
+            column.map { config ->
+                val xledDevice = XLedDevice(host = config.ipAddress, config.width, config.height)
+                xledDevices[config.name] = xledDevice
+                xledDevice
+            }.toTypedArray()
+        }?.toTypedArray()
+            ?.let { devices ->
+                XledArray(deviceOrigin = deviceOrigin, xLedDevices = devices)
+            }
+        this.xledDevices = xledDevices
+        log.info("##### Using twinkly devices '${xledDevices.keys}'")
+
+        // build initial scene
+        currentScene = HybridScene(
+            ids = preferences?.stage?.map { it.id }?.joinToString(",")?:"",
+            hexColors = "000000",
+            gains = preferences?.stage?.mapNotNull { sd ->
+                when (sd.type) {
+                    HybridDeviceType.dmx -> preferences?.dmx?.dmxDevices?.get(sd.id)?.gain
+                    HybridDeviceType.shelly -> preferences?.shellyMap?.get(sd.id)?.gain
+                    else -> null
+                }
+            }?.joinToString(",")?:"1.0",
+            turnOns = "false",
+            preferences = preferences
+        )
         log.info("#### setUp - end")
     }
 
     @PreDestroy
     fun tearDown() {
         log.info("#### tearDown - start")
-        if (dmxInterface?.isOpen() == true) {
+        if (preferences?.dmxInterface?.isOpen() == true) {
             repeater?.end()
             Thread.sleep(10)
-            dmxInterface?.clear()
-            dmxInterface?.close()
+            preferences?.dmxInterface?.clear()
+            preferences?.dmxInterface?.close()
         }
         log.info("#### tearDown - end")
-    }
-
-    fun getRelativeResourcePath(absoluteResource: File): String {
-        return Paths.get(klanglichtDirectory.absolutePath, "resources")
-            .relativize(Paths.get(absoluteResource.absolutePath)).toString().replace("\\", "/")
     }
 
     fun getAbsoluteResource(relativeResourePath: String): File {
@@ -97,24 +113,23 @@ class ConfigHolder {
         return shellyDevices[id]?.gain?:1.0f
     }
 
-    fun getShellyIpAddress(id: String): String? {
-        return shellyDevices[id]?.ipAddress
+    fun getShellyDevice(id: String): ShellyDevice? {
+        return preferences?.shellyMap?.get(id)
     }
 
-    @JsonIgnore
-    fun getDmxGain(id: String): Float {
-        return getDmxDevice(id)?.gain ?: 1.0f
-    }
-
-    private fun getDmxDevice(id: String): DmxDevice? {
+    fun getDmxDevice(id: String): DmxDevice? {
         return preferences?.dmx?.dmxDevices?.get(id)
     }
 
-    fun putColor(id: String, colorState: ColorState) {
-        lastColor[id] = colorState
+    fun putFadeable(id: String, fadeable: Fadeable<*>) {
+        currentScene?.putFadeable(id, fadeable)
     }
 
-    fun getLastColor(id: String): ColorState {
-        return lastColor.getOrDefault(id, COLOR_STATE_DEFAULT)
+    fun getFadeable(id: String): Fadeable<*>? {
+        return currentScene?.getFadeable(id)
+    }
+
+    fun updateScene(nextScene: HybridScene) {
+        currentScene?.update(nextScene)
     }
 }
