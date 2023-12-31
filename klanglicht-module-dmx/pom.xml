@@ -14,7 +14,17 @@
   <artifactId>klanglicht-module-dmx</artifactId>
   <version>${revision}</version>
 
+  <properties>
+    <version.twinkly>0.0.1-SNAPSHOT</version.twinkly>
+  </properties>
+
   <dependencies>
+
+    <dependency>
+      <groupId>de.visualdigits</groupId>
+      <artifactId>twinkly-api</artifactId>
+      <version>${version.twinkly}</version>
+    </dependency>
 
     <!-- commons -->
     <dependency>

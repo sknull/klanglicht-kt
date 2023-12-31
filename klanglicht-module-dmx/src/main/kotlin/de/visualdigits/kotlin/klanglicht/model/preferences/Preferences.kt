@@ -11,19 +11,20 @@ import de.visualdigits.kotlin.klanglicht.model.fixture.Fixtures
 import de.visualdigits.kotlin.klanglicht.model.hybrid.HybridDevice
 import de.visualdigits.kotlin.klanglicht.model.shelly.ShellyDevice
 import de.visualdigits.kotlin.klanglicht.model.twinkly.TwinklyConfiguration
+import de.visualdigits.kotlin.twinkly.model.device.xled.XledArray
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import java.io.File
 import java.nio.file.Paths
 
 
-@JsonIgnoreProperties("klanglichtDir", "dmxInterface", "fixtures", "serviceMap", "shellyMap", "stageMap")
+@JsonIgnoreProperties("klanglichtDir", "dmxInterface", "fixtures", "serviceMap", "shellyMap", "twinklyMap", "stageMap")
 data class Preferences(
     val name: String = "",
     val theme: String = "",
     val services: List<Service> = listOf(),
     val shelly: List<ShellyDevice>? = listOf(),
-    val twinkly: TwinklyConfiguration? = null,
+    val twinkly: List<TwinklyConfiguration>? = listOf(),
     val stage: List<HybridDevice> = listOf(),
     val dmx: Dmx? = null
 ) {
@@ -40,6 +41,8 @@ data class Preferences(
     var serviceMap: Map<String, Service> = mapOf()
 
     var shellyMap: Map<String, ShellyDevice> = mapOf()
+
+    var twinklyMap: Map<String, TwinklyConfiguration> = mapOf()
 
     var stageMap: Map<String, HybridDevice> = mapOf()
 
@@ -88,6 +91,8 @@ data class Preferences(
         stageMap = stage.associateBy { it.id }
 
         shellyMap = shelly?.associateBy { it.name }?:mapOf()
+
+        twinklyMap = twinkly?.map { Pair(it.name, it) }?.toMap()?:mapOf()
 
         dmxInterface = dmx?.interfaceType?.let { DmxInterface.load(it) }
         dmx?.port?.let { dmxInterface?.open(it) }

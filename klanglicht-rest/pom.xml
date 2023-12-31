@@ -16,7 +16,6 @@
 
   <properties>
     <version.feign>12.2</version.feign>
-    <version.twinkly>0.0.1-SNAPSHOT</version.twinkly>
     <version.spring-boot>3.1.2</version.spring-boot>
   </properties>
 
@@ -36,12 +35,6 @@
       <groupId>de.visualdigits</groupId>
       <artifactId>klanglicht-module-yamaha</artifactId>
       <version>${revision}</version>
-    </dependency>
-
-    <dependency>
-      <groupId>de.visualdigits</groupId>
-      <artifactId>twinkly-api</artifactId>
-      <version>${version.twinkly}</version>
     </dependency>
 
     <!-- common stuff -->

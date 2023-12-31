@@ -49,10 +49,10 @@ class XledDeviceController {
     @PutMapping("/{device}/brightness/{brightness}")
     fun setBrightness(
         @PathVariable device: String,
-        @PathVariable brightness: Int,
+        @PathVariable brightness: Float,
     ) {
         log.info("Setting brightness to $brightness")
-        configHolder?.xledDevices?.get(device)?.setBrightness(Brightness(value = brightness))
+        configHolder?.xledDevices?.get(device)?.setBrightness(brightness)
     }
 
     @GetMapping("/{device}/saturation", produces = ["application/json"])
@@ -66,10 +66,10 @@ class XledDeviceController {
     @PutMapping("/{device}/saturation/{saturation}")
     fun setSaturation(
         @PathVariable device: String,
-        @PathVariable saturation: Int,
+        @PathVariable saturation: Float,
     ) {
         log.info("Setting saturation to $saturation")
-        configHolder?.xledDevices?.get(device)?.setSaturation(Saturation(value = saturation))
+        configHolder?.xledDevices?.get(device)?.setSaturation(saturation)
     }
 
     @PutMapping("/{device}/mode/{mode}")

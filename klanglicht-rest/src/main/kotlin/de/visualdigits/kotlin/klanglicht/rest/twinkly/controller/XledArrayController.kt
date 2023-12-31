@@ -45,29 +45,29 @@ class XledArrayController {
     @PutMapping("/power/on")
     fun powerOn() {
         log.info("Powering on")
-        configHolder?.xledArray?.powerOn()
+        configHolder?.xledArray?.values?.forEach { it.powerOn() }
     }
 
     @PutMapping("/power/off")
     fun powerOff() {
         log.info("Powering off")
-        configHolder?.xledArray?.powerOff()
+        configHolder?.xledArray?.values?.forEach { it.powerOff() }
     }
 
     @PutMapping("/brightness/{brightness}")
     fun setBrightness(
-        @PathVariable brightness: Int,
+        @PathVariable brightness: Float,
     ) {
         log.info("Setting brightness to $brightness")
-        configHolder?.xledArray?.setBrightness(Brightness(value = brightness))
+        configHolder?.xledArray?.values?.forEach { it.setBrightness(brightness) }
     }
 
     @PutMapping("/saturation/{saturation}")
     fun setSaturation(
-        @PathVariable saturation: Int,
+        @PathVariable saturation: Float,
     ) {
         log.info("Setting saturation to $saturation")
-        configHolder?.xledArray?.setSaturation(Saturation(value = saturation))
+        configHolder?.xledArray?.values?.forEach { it.setSaturation(saturation) }
     }
 
     @PutMapping("/mode/{mode}")
@@ -76,7 +76,7 @@ class XledArrayController {
     ) {
         log.info("Setting saturation to $mode")
         currentMode = DeviceMode.valueOf(mode)
-        configHolder?.xledArray?.setMode(currentMode)
+        configHolder?.xledArray?.values?.forEach { it.setMode(currentMode) }
     }
 
     @PutMapping("/color/{red}/{green}/{blue}/{white}")
@@ -88,8 +88,8 @@ class XledArrayController {
     ) {
         val rgbwColor = RGBWColor(red, green, blue, white)
         log.info("Showing color ${rgbwColor.ansiColor()}")
-        configHolder?.xledArray?.setMode(DeviceMode.color)
-        configHolder?.xledArray?.setColor(rgbwColor)
+        configHolder?.xledArray?.values?.forEach { it.setMode(DeviceMode.color) }
+        configHolder?.xledArray?.values?.forEach { it.setColor(rgbwColor) }
     }
 
     @PostMapping("/image")
@@ -99,9 +99,9 @@ class XledArrayController {
         }
 // todo
 //        currentMode = configHolder?.xledArray?.getMode()
-        configHolder?.xledArray?.setMode(DeviceMode.rt)
+        configHolder?.xledArray?.values?.forEach { it.setMode(DeviceMode.rt) }
         playable = XledFrame(bytes)
-        configHolder?.xledArray?.also { playable?.playAsync(xled = it) }
+        configHolder?.xledArray?.values?.forEach { playable?.playAsync(xled = it) }
     }
 
     @PostMapping("/sequence")
@@ -120,10 +120,10 @@ class XledArrayController {
         }
 // todo
 //        currentMode = configHolder?.xledArray?.getMode()
-        configHolder?.xledArray?.setMode(DeviceMode.rt)
+        configHolder?.xledArray?.values?.forEach { it.setMode(DeviceMode.rt) }
         playable = XledSequence(frameDelay = frameDelay,
             directory = File(ClassLoader.getSystemResource(directory).toURI()))
-        configHolder?.xledArray?.also {
+        configHolder?.xledArray?.values?.forEach {
             playable?.playAsync(
                 xled = it,
                 loop = loop,
@@ -138,19 +138,19 @@ class XledArrayController {
 
     @PutMapping("/loop/stop")
     fun stopLoop() {
-        configHolder?.xledArray?.setMode(currentMode)
+        configHolder?.xledArray?.values?.forEach { it.setMode(currentMode) }
         playable?.stop()
     }
 
     @GetMapping("/timer", produces = ["application/json"])
     fun getTimer(): Timer? {
-        return configHolder?.xledArray?.getTimer()
+        return configHolder?.xledArray?.values?.firstOrNull()?.getTimer()
     }
 
     @PostMapping("/timer", consumes = ["application/json"], produces = ["application/json"])
     fun setTimer(
         @RequestBody timer: Timer
     ): Timer? {
-        return configHolder?.xledArray?.setTimer(timer)
+        return configHolder?.xledArray?.values?.map { it.setTimer(timer) }?.firstOrNull()
     }
 }

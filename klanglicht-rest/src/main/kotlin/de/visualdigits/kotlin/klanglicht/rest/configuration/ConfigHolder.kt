@@ -7,6 +7,7 @@ import de.visualdigits.kotlin.klanglicht.model.hybrid.HybridScene
 import de.visualdigits.kotlin.klanglicht.model.parameter.Fadeable
 import de.visualdigits.kotlin.klanglicht.model.preferences.Preferences
 import de.visualdigits.kotlin.klanglicht.model.shelly.ShellyDevice
+import de.visualdigits.kotlin.klanglicht.model.twinkly.TwinklyConfiguration
 import de.visualdigits.kotlin.twinkly.model.device.xled.DeviceOrigin
 import de.visualdigits.kotlin.twinkly.model.device.xled.XLedDevice
 import de.visualdigits.kotlin.twinkly.model.device.xled.XledArray
@@ -33,7 +34,7 @@ class ConfigHolder {
 
     var shellyDevices: Map<String, ShellyDevice> = mapOf()
 
-    var xledArray: XledArray? = null
+    var xledArray: Map<String, XledArray> = mapOf()
     var xledDevices: Map<String, XLedDevice> = mapOf()
 
     @PostConstruct
@@ -61,18 +62,10 @@ class ConfigHolder {
 
         // initialize twinkly devices
         val twinkly = preferences?.twinkly
-        val deviceOrigin = twinkly?.deviceOrigin?.let { DeviceOrigin.valueOf(it) }?: DeviceOrigin.TOP_LEFT
         val xledDevices: MutableMap<String, XLedDevice> = mutableMapOf()
-        xledArray = twinkly?.array?.map { column ->
-            column.map { config ->
-                val xledDevice = XLedDevice(host = config.ipAddress, config.width, config.height)
-                xledDevices[config.name] = xledDevice
-                xledDevice
-            }.toTypedArray()
-        }?.toTypedArray()
-            ?.let { devices ->
-                XledArray(deviceOrigin = deviceOrigin, xLedDevices = devices)
-            }
+        xledArray = twinkly?.associate { config ->
+            Pair(config.name, config.xledArray)
+        } ?: mapOf()
         this.xledDevices = xledDevices
         log.info("##### Using twinkly devices '${xledDevices.keys}'")
 
@@ -115,6 +108,10 @@ class ConfigHolder {
 
     fun getShellyDevice(id: String): ShellyDevice? {
         return preferences?.shellyMap?.get(id)
+    }
+
+    fun getTwinklyDevice(id: String): TwinklyConfiguration? {
+        return preferences?.twinklyMap?.get(id)
     }
 
     fun getDmxDevice(id: String): DmxDevice? {

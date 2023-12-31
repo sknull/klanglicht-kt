@@ -6,9 +6,11 @@ import de.visualdigits.kotlin.klanglicht.model.parameter.IntParameter
 import de.visualdigits.kotlin.klanglicht.model.parameter.ParameterSet
 import de.visualdigits.kotlin.klanglicht.model.preferences.Preferences
 import de.visualdigits.kotlin.klanglicht.model.shelly.ShellyColor
+import de.visualdigits.kotlin.klanglicht.model.twinkly.XledFrameFadeable
+import de.visualdigits.kotlin.twinkly.model.playable.XledFrame
 import kotlin.math.min
 import kotlin.math.roundToInt
-
+import de.visualdigits.kotlin.twinkly.model.color.RGBColor as TwinklyRGBColor
 class HybridScene() : Fadeable<HybridScene> {
 
     private var ids: String = ""
@@ -100,14 +102,65 @@ class HybridScene() : Fadeable<HybridScene> {
         val nt = lTurnOns.size - 1
         var t= 0
 
+        preferences?.stage
+            ?.filter { it.type == HybridDeviceType.twinkly }
+            ?.mapNotNull { preferences?.twinklyMap?.get(it.id) }
+            ?.forEach { twinklyDevice ->
+                val xa = twinklyDevice.xledArray
+                val frame = XledFrame(width = xa.width, height = xa.height)
+                val nc = lHexColors.size
+                val barWidth = xa.width / nc
+                for (x in 0 until nc) {
+                    val rgbColor = RGBColor(lHexColors[x])
+                    val bar = XledFrame(width = barWidth, height = xa.height, initialColor = TwinklyRGBColor(rgbColor.red, rgbColor.green, rgbColor.blue))
+                    frame.replaceSubFrame(bar, x * barWidth, 0)
+                }
+                val fadeable = XledFrameFadeable(
+                    deviceId = twinklyDevice.name,
+                    xledFrame = frame,
+                    deviceGain = twinklyDevice.gain
+                )
+                fadeables[twinklyDevice.name] = fadeable
+            }
+
         if (lIds.isNotEmpty()) {
             lIds.forEach { id ->
                 val device = preferences?.stageMap?.get(id)
                 if (device != null) {
                     val hexColor = lHexColors[min(nh, h++)]
                     val gain = lGains.getOrNull(min(ng, g++))
-                    val turnOn = lTurnOns.getOrNull(min(nt, t++))?:false
-                    processDevice(device, preferences, id, gain, turnOn, hexColor)
+                    val turnOn = lTurnOns.getOrNull(min(nt, t++)) ?: false
+                    val rgbColor = RGBColor(hexColor)
+                    when (device.type) {
+                        HybridDeviceType.dmx -> {
+                            val dmxDevice = preferences?.getDmxDevice(id)
+                            if (dmxDevice != null) {
+                                val paramGain = if (turnOn) (255 * (gain ?: dmxDevice.gain)).roundToInt() else 0
+                                ParameterSet(
+                                    baseChannel = dmxDevice.baseChannel,
+                                    parameters = mutableListOf(
+                                        IntParameter("MasterDimmer", paramGain),
+                                        rgbColor
+                                    )
+                                )
+                            } else null
+                        }
+
+                        HybridDeviceType.shelly -> {
+                            val shellyDevice = preferences?.shellyMap?.get(id)
+                            if (shellyDevice != null) {
+                                ShellyColor(
+                                    deviceId = shellyDevice.name,
+                                    ipAddress = shellyDevice.ipAddress,
+                                    color = rgbColor,
+                                    deviceGain = gain ?: shellyDevice.gain,
+                                    deviceTurnOn = turnOn
+                                )
+                            } else null
+                        }
+
+                        else -> null
+                    }
                         ?.let { dd -> fadeables[id] = dd }
                 }
             }
@@ -143,46 +196,6 @@ class HybridScene() : Fadeable<HybridScene> {
 
     fun getRgbColor(id: String): RGBColor? = fadeables[id]?.getRgbColor()
 
-    private fun processDevice(
-        device: HybridDevice,
-        preferences: Preferences?,
-        id: String,
-        gain: Float?,
-        turnOn: Boolean,
-        hexColor: String
-    ): Fadeable<*>? {
-        return when (device.type) {
-            HybridDeviceType.dmx -> {
-                val dmxDevice = preferences?.getDmxDevice(id)
-                if (dmxDevice != null) {
-                    val paramGain = if (turnOn) (255 * (gain ?: dmxDevice.gain)).roundToInt() else 0
-                    ParameterSet(
-                        baseChannel = dmxDevice.baseChannel,
-                        parameters = mutableListOf(
-                            IntParameter("MasterDimmer", paramGain),
-                            RGBColor(hexColor)
-                        )
-                    )
-                } else null
-            }
-
-            HybridDeviceType.shelly -> {
-                val shellyDevice = preferences?.shellyMap?.get(id)
-                if (shellyDevice != null) {
-                    ShellyColor(
-                        deviceId = shellyDevice.name,
-                        ipAddress = shellyDevice.ipAddress,
-                        color = RGBColor(hexColor),
-                        deviceGain = gain ?: shellyDevice.gain,
-                        deviceTurnOn = turnOn
-                    )
-                } else null
-            }
-
-            else -> null
-        }
-    }
-
     override fun write(preferences: Preferences, write: Boolean, transitionDuration: Long) {
         // first collect all frame data for the dmx frame to avoid lots of costly write operations to a serial interface
         fadeables().filterIsInstance<ParameterSet>().forEach { parameterSet ->
@@ -194,32 +207,22 @@ class HybridScene() : Fadeable<HybridScene> {
 
         // call shelly interface which is pretty fast
         fadeables().filterIsInstance<ShellyColor>().forEach { it.write(preferences, true) }
+
+        // call twinkly interface which is pretty fast
+        fadeables().filterIsInstance<XledFrameFadeable>().forEach { it.write(preferences, true) }
     }
 
     override fun fade(other: Any, factor: Double): HybridScene {
         return if (other is HybridScene) {
             val otherIds = other.fadeables().map { it.getId() } // ensure that we only fade elements which are in source and target scene
-            val fadedHexColors = fadeables()
-                .filter { otherIds.contains(it.getId())  }
-                .zip(other.fadeables())
-                .mapNotNull {
-                    when (val faded = it.first.fade(it.second, factor)) {
-                        is ShellyColor -> {
-                            Pair(faded.getId(), faded.getRgbColor())
-                        }
-                        is ParameterSet -> {
-                            val second = faded.getRgbColor()
-                            Pair(faded.getId(), second)
-                        }
-                        else -> null
-                    }
-                }.toMap()
             val fadedScene = HybridScene(fadeables, preferences)
-            fadedHexColors.forEach { (id, hexColor) ->
-                hexColor?.let { hc ->
-                    fadedScene.setRgbColor(id, hc)
+            fadeables()
+                .filter { otherIds.contains(it.getId()) }
+                .zip(other.fadeables())
+                .map { Pair(it.first.fade(it.second, factor).getId(), it.first.fade(it.second, factor)) }
+                .forEach { (id, fadeable) ->
+                    fadedScene.putFadeable(id, fadeable)
                 }
-            }
 
             // fixme - at this point parameterMap contains default values - why?
 
