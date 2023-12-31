@@ -135,7 +135,8 @@ class HybridScene() : Fadeable<HybridScene> {
                         HybridDeviceType.dmx -> {
                             val dmxDevice = preferences?.getDmxDevice(id)
                             if (dmxDevice != null) {
-                                val paramGain = if (turnOn) (255 * (gain ?: dmxDevice.gain)).roundToInt() else 0
+                                val effectiveGain = gain ?: dmxDevice.gain
+                                val paramGain = if (turnOn) (255 * effectiveGain).roundToInt() else 0
                                 ParameterSet(
                                     baseChannel = dmxDevice.baseChannel,
                                     parameters = mutableListOf(
@@ -149,11 +150,12 @@ class HybridScene() : Fadeable<HybridScene> {
                         HybridDeviceType.shelly -> {
                             val shellyDevice = preferences?.shellyMap?.get(id)
                             if (shellyDevice != null) {
+                                val effectiveGain = gain ?: shellyDevice.gain
                                 ShellyColor(
                                     deviceId = shellyDevice.name,
                                     ipAddress = shellyDevice.ipAddress,
                                     color = rgbColor,
-                                    deviceGain = gain ?: shellyDevice.gain,
+                                    deviceGain = effectiveGain,
                                     deviceTurnOn = turnOn
                                 )
                             } else null

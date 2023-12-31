@@ -35,8 +35,8 @@ class ShellyRestController {
     fun hexColor(
         @RequestParam(value = "ids", required = false, defaultValue = "") ids: String,
         @RequestParam(value = "hexColors") hexColors: String,
-        @RequestParam(value = "gains", required = false, defaultValue = "1.0") gains: String,
-        @RequestParam(value = "transition", required = false, defaultValue = "1000") transitionDuration: Long,
+        @RequestParam(value = "gains", required = false, defaultValue = "") gains: String,
+        @RequestParam(value = "transition", required = false, defaultValue = "2000") transitionDuration: Long,
         @RequestParam(value = "turnOn", required = false, defaultValue = "true") turnOn: Boolean,
         @RequestParam(value = "store", required = false, defaultValue = "true") store: Boolean
     ) {
@@ -49,8 +49,8 @@ class ShellyRestController {
         @RequestParam(value = "red", required = false, defaultValue = "0") red: Int,
         @RequestParam(value = "green", required = false, defaultValue = "0") green: Int,
         @RequestParam(value = "blue", required = false, defaultValue = "0") blue: Int,
-        @RequestParam(value = "gains", required = false, defaultValue = "1.0") gains: String,
-        @RequestParam(value = "transition", required = false, defaultValue = "1000") transitionDuration: Long,
+        @RequestParam(value = "gains", required = false, defaultValue = "") gains: String,
+        @RequestParam(value = "transition", required = false, defaultValue = "2000") transitionDuration: Long,
         @RequestParam(value = "turnOn", required = false, defaultValue = "true") turnOn: Boolean,
         @RequestParam(value = "store", required = false, defaultValue = "true") store: Boolean
     ) {
@@ -69,7 +69,7 @@ class ShellyRestController {
     fun power(
         @RequestParam(value = "ids", required = false, defaultValue = "") ids: String,
         @RequestParam(value = "turnOn", required = false, defaultValue = "true") turnOn: Boolean,
-        @RequestParam(value = "transition", required = false, defaultValue = "1000") transitionDuration: Long
+        @RequestParam(value = "transition", required = false, defaultValue = "2000") transitionDuration: Long
     ) {
         shellyHandler!!.power(ids, turnOn, transitionDuration)
     }
@@ -77,8 +77,8 @@ class ShellyRestController {
     @GetMapping("gain")
     fun gain(
         @RequestParam(value = "ids", required = false, defaultValue = "") ids: String,
-        @RequestParam(value = "gain", required = false, defaultValue = "1.0") gain: Int,
-        @RequestParam(value = "transition", required = false, defaultValue = "1000") transitionDuration: Long
+        @RequestParam(value = "gain", required = false, defaultValue = "") gain: Int,
+        @RequestParam(value = "transition", required = false, defaultValue = "2000") transitionDuration: Long
     ) {
         shellyHandler!!.gain(ids, gain, transitionDuration)
     }

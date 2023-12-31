@@ -35,8 +35,10 @@ class XledFrameFadeable(
         val twinklyDevice = preferences.twinklyMap[deviceId]
         if (twinklyDevice != null) {
             val xledArray = twinklyDevice.xledArray
-            xledArray.setBrightness(deviceGain)
-            xledFrame.play(xledArray)
+            if (xledArray.isLoggedIn()) {
+                xledArray.setBrightness(deviceGain)
+                xledFrame.play(xledArray)
+            }
         }
     }
 

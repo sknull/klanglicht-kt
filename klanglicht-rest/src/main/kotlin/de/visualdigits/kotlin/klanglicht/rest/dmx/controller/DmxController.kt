@@ -26,9 +26,9 @@ class DmxController {
     @GetMapping("/colors")
     fun colors(
         @RequestParam(value = "hexColors") hexColors: String,
-        @RequestParam(value = "gains", required = false, defaultValue = "1.0") gains: String,
+        @RequestParam(value = "gains", required = false, defaultValue = "") gains: String,
         @RequestParam(value = "baseChannels", required = false, defaultValue = "") baseChannels: String,
-        @RequestParam(value = "fadeDuration", required = false, defaultValue = "1000") fadeDuration: Long,
+        @RequestParam(value = "fadeDuration", required = false, defaultValue = "2000") fadeDuration: Long,
         @RequestParam(value = "stepDuration", required = false, defaultValue = "0") stepDuration: Long,
         @RequestParam(value = "transformationName", required = false, defaultValue = "FADE") transformationName: String,
         @RequestParam(value = "loop", required = false, defaultValue = "false") loop: Boolean,
