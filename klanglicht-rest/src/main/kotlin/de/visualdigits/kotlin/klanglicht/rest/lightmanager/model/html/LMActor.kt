@@ -1,7 +1,7 @@
 package de.visualdigits.kotlin.klanglicht.rest.lightmanager.model.html
 
 import com.fasterxml.jackson.annotation.JsonIgnore
-import de.visualdigits.kotlin.klanglicht.rest.common.configuration.ConfigHolder
+import de.visualdigits.kotlin.klanglicht.rest.configuration.ConfigHolder
 import de.visualdigits.kotlin.klanglicht.rest.lightmanager.feign.LightmanagerClient
 import org.apache.commons.lang3.StringUtils
 

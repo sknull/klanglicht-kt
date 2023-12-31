@@ -1,9 +1,5 @@
-security:
-  require-ssl: false
-
 server:
-  http:
-    port: 8888
+  port: 8888
   ssl:
     enabled: false
 

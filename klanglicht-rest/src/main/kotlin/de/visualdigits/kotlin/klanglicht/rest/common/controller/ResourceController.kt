@@ -1,6 +1,6 @@
 package de.visualdigits.kotlin.klanglicht.rest.common.controller
 
-import de.visualdigits.kotlin.klanglicht.rest.common.configuration.ConfigHolder
+import de.visualdigits.kotlin.klanglicht.rest.configuration.ConfigHolder
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
 import org.apache.tika.detect.Detector

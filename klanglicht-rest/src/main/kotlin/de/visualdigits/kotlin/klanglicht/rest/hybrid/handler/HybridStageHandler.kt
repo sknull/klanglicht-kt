@@ -3,7 +3,7 @@ package de.visualdigits.kotlin.klanglicht.rest.hybrid.handler
 import de.visualdigits.kotlin.klanglicht.model.hybrid.HybridDevice
 import de.visualdigits.kotlin.klanglicht.model.hybrid.HybridDeviceType
 import de.visualdigits.kotlin.klanglicht.rest.dmx.handler.DmxHandler
-import de.visualdigits.kotlin.klanglicht.rest.common.configuration.ConfigHolder
+import de.visualdigits.kotlin.klanglicht.rest.configuration.ConfigHolder
 import de.visualdigits.kotlin.klanglicht.rest.shelly.handler.ShellyHandler
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component

@@ -6,7 +6,7 @@ import de.visualdigits.kotlin.klanglicht.model.parameter.IntParameter
 import de.visualdigits.kotlin.klanglicht.model.parameter.ParameterSet
 import de.visualdigits.kotlin.klanglicht.model.parameter.Scene
 import de.visualdigits.kotlin.klanglicht.model.shelly.ColorState
-import de.visualdigits.kotlin.klanglicht.rest.common.configuration.ConfigHolder
+import de.visualdigits.kotlin.klanglicht.rest.configuration.ConfigHolder
 import jakarta.annotation.PostConstruct
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory

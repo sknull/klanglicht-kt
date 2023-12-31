@@ -3,7 +3,7 @@ package de.visualdigits.kotlin.klanglicht.rest.lightmanager.model.html
 import com.fasterxml.jackson.annotation.JsonIgnore
 import com.google.common.collect.LinkedListMultimap
 import com.google.common.collect.Multimap
-import de.visualdigits.kotlin.klanglicht.rest.common.configuration.ConfigHolder
+import de.visualdigits.kotlin.klanglicht.rest.configuration.ConfigHolder
 import de.visualdigits.kotlin.klanglicht.rest.lightmanager.widgets.ColorWheel
 import org.apache.commons.lang3.StringUtils
 import java.util.TreeMap

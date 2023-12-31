@@ -1,6 +1,6 @@
 package de.visualdigits.kotlin.klanglicht.rest.lightmanager.controller
 
-import de.visualdigits.kotlin.klanglicht.rest.common.configuration.ConfigHolder
+import de.visualdigits.kotlin.klanglicht.rest.configuration.ConfigHolder
 import de.visualdigits.kotlin.klanglicht.rest.lightmanager.feign.LightmanagerClient
 import de.visualdigits.kotlin.klanglicht.rest.lightmanager.model.html.LMScenes
 import de.visualdigits.kotlin.klanglicht.rest.lightmanager.model.html.LMZones
@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam
 @Controller
 @RequestMapping("/v1/lightmanager/web")
 class LightmanagerWebController {
+
     @Autowired
     var configHolder: ConfigHolder? = null
 
@@ -24,6 +25,7 @@ class LightmanagerWebController {
 
     @Value("\${lightmanager.theme}")
     var theme: String? = null
+
     @GetMapping(value = ["/scenes"], produces = ["application/xhtml+xml"])
     fun scenes(
         @RequestParam(name = "lang", required = false, defaultValue = "de") lang: String?,

@@ -1,6 +1,6 @@
 package de.visualdigits.kotlin.klanglicht.rest.lightmanager.feign
 
-import de.visualdigits.kotlin.klanglicht.rest.common.configuration.ConfigHolder
+import de.visualdigits.kotlin.klanglicht.rest.configuration.ConfigHolder
 import de.visualdigits.kotlin.klanglicht.rest.lightmanager.model.html.LMActor
 import de.visualdigits.kotlin.klanglicht.rest.lightmanager.model.html.LMMarker
 import de.visualdigits.kotlin.klanglicht.rest.lightmanager.model.html.LMMarkers

@@ -1,6 +1,6 @@
 package de.visualdigits.kotlin.klanglicht.rest.yamaha.controller
 
-import de.visualdigits.kotlin.klanglicht.rest.common.configuration.ConfigHolder
+import de.visualdigits.kotlin.klanglicht.rest.configuration.ConfigHolder
 import de.visualdigits.kotlin.klanglicht.rest.yamaha.feign.YamahaReceiverClient
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory

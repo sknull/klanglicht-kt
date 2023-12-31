@@ -3,7 +3,7 @@ package de.visualdigits.kotlin.klanglicht.rest.shelly.handler
 import de.visualdigits.kotlin.klanglicht.model.color.RGBColor
 import de.visualdigits.kotlin.klanglicht.model.shelly.ColorState
 import de.visualdigits.kotlin.klanglicht.model.shelly.ShellyDevice
-import de.visualdigits.kotlin.klanglicht.rest.common.configuration.ConfigHolder
+import de.visualdigits.kotlin.klanglicht.rest.configuration.ConfigHolder
 import de.visualdigits.kotlin.klanglicht.rest.lightmanager.feign.LightmanagerClient
 import de.visualdigits.kotlin.klanglicht.model.shelly.client.ShellyClient
 import de.visualdigits.kotlin.klanglicht.model.shelly.status.Light

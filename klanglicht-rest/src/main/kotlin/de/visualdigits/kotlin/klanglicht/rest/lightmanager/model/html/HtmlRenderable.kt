@@ -1,6 +1,6 @@
 package de.visualdigits.kotlin.klanglicht.rest.lightmanager.model.html
 
-import de.visualdigits.kotlin.klanglicht.rest.common.configuration.ConfigHolder
+import de.visualdigits.kotlin.klanglicht.rest.configuration.ConfigHolder
 
 interface HtmlRenderable {
     fun toHtml(configHolder: ConfigHolder): String?

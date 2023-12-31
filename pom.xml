@@ -29,8 +29,9 @@
 
     <kotlin.code.style>official</kotlin.code.style>
 
-    <version.jackson>2.15.1</version.jackson>
-    <version.kotlin>1.9.0</version.kotlin>
+    <version.jackson>2.15.2</version.jackson>
+    <version.kotlin.maven>1.9.20</version.kotlin.maven>
+    <version.kotlin.language>1.9</version.kotlin.language>
     <version.log4j>1.2.17</version.log4j>
     <version.slf4j>2.0.5</version.slf4j>
     <version.junit.jupiter>5.10.0</version.junit.jupiter>
@@ -48,7 +49,7 @@
     <dependency>
       <groupId>org.jetbrains.kotlin</groupId>
       <artifactId>kotlin-stdlib</artifactId>
-      <version>${version.kotlin}</version>
+      <version>${version.kotlin.maven}</version>
     </dependency>
     <dependency>
       <groupId>org.jetbrains.kotlinx</groupId>
@@ -132,29 +133,48 @@
     <testSourceDirectory>src/test/kotlin</testSourceDirectory>
     <plugins>
       <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>flatten-maven-plugin</artifactId>
-        <version>1.5.0</version>
-
-        <configuration>
-          <flattenMode>bom</flattenMode>
-
-        </configuration>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-enforcer-plugin</artifactId>
+        <version>3.1.0</version>
         <executions>
-          <!-- enable flattening -->
           <execution>
-            <id>flatten</id>
-            <phase>process-resources</phase>
+            <id>enforce-maven</id>
             <goals>
-              <goal>flatten</goal>
+              <goal>enforce</goal>
+            </goals>
+            <configuration>
+              <rules>
+                <requireMavenVersion>
+                  <version>3.6.2</version>
+                </requireMavenVersion>
+              </rules>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <version>3.3.0</version>
+        <executions>
+          <execution>
+            <id>attach-sources</id>
+            <goals>
+              <goal>jar</goal>
             </goals>
           </execution>
-          <!-- ensure proper cleanup -->
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>3.3.0</version>
+        <executions>
           <execution>
-            <id>flatten.clean</id>
-            <phase>clean</phase>
             <goals>
-              <goal>clean</goal>
+              <goal>test-jar</goal>
             </goals>
           </execution>
         </executions>
@@ -163,10 +183,10 @@
       <plugin>
         <groupId>org.jetbrains.kotlin</groupId>
         <artifactId>kotlin-maven-plugin</artifactId>
-        <version>${version.kotlin}</version>
+        <version>${version.kotlin.maven}</version>
         <configuration>
-          <languageVersion>1.7</languageVersion>
-          <jvmTarget>${kotlin.compiler.jvmTarget}</jvmTarget>
+          <languageVersion>${version.kotlin.language}</languageVersion>
+          <jvmTarget>${project.build.target}</jvmTarget>
         </configuration>
         <executions>
           <execution>
@@ -185,25 +205,25 @@
           </execution>
         </executions>
       </plugin>
-	  
-      <plugin>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <version>2.22.2</version>
-      </plugin>
-	  
-      <plugin>
-        <artifactId>maven-failsafe-plugin</artifactId>
-        <version>2.22.2</version>
-      </plugin>
-	  
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.10.1</version>
+        <version>3.11.0</version>
         <configuration>
           <source>${project.build.source}</source>
           <target>${project.build.target}</target>
         </configuration>
+      </plugin>
+
+      <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.1.2</version>
+      </plugin>
+
+      <plugin>
+        <artifactId>maven-failsafe-plugin</artifactId>
+        <version>3.1.2</version>
       </plugin>
     </plugins>
   </build>

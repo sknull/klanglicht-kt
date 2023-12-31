@@ -1,6 +1,6 @@
 package de.visualdigits.kotlin.klanglicht.rest.lightmanager.widgets
 
-import de.visualdigits.kotlin.klanglicht.rest.common.configuration.ConfigHolder
+import de.visualdigits.kotlin.klanglicht.rest.configuration.ConfigHolder
 import de.visualdigits.kotlin.klanglicht.rest.lightmanager.model.html.HtmlRenderable
 
 

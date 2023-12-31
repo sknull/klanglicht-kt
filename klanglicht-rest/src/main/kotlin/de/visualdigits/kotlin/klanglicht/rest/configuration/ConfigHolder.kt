@@ -1,4 +1,4 @@
-package de.visualdigits.kotlin.klanglicht.rest.common.configuration
+package de.visualdigits.kotlin.klanglicht.rest.configuration
 
 import com.fasterxml.jackson.annotation.JsonIgnore
 import de.visualdigits.kotlin.klanglicht.model.dmx.DmxInterface

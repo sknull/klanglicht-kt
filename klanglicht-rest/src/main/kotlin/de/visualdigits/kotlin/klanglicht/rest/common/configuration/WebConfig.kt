@@ -1,5 +1,6 @@
 package de.visualdigits.kotlin.klanglicht.rest.common.configuration
 
+import de.visualdigits.kotlin.klanglicht.rest.configuration.ConfigHolder
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean

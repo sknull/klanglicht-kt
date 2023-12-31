@@ -1,6 +1,6 @@
-= Klanglicht 3 - Kotlin
+= klanglicht-kt
 :doctype: book
-:description: Documentation for the klanglicht project.
+:description: Documentation for klanglicht-kt
 :keywords: kotlin, dmx, serial-usb
 :icons: font
 :toc:
