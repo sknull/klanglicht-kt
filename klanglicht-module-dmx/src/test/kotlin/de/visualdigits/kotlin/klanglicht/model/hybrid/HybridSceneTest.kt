@@ -2,9 +2,11 @@ package de.visualdigits.kotlin.klanglicht.model.hybrid
 
 import de.visualdigits.kotlin.klanglicht.model.preferences.Preferences
 import org.apache.commons.lang3.SystemUtils
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import java.io.File
 
+@Disabled("for local testing only")
 class HybridSceneTest {
 
     val preferences = Preferences.load(File(SystemUtils.getUserHome(), ".klanglicht"))

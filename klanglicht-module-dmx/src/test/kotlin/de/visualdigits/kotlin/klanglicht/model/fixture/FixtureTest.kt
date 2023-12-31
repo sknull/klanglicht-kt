@@ -4,7 +4,7 @@ import com.fasterxml.jackson.module.kotlin.jacksonMapperBuilder
 import org.junit.jupiter.api.Test
 import java.io.File
 
-internal class FixtureTest {
+class FixtureTest {
 
     @Test
     fun testReadModel() {

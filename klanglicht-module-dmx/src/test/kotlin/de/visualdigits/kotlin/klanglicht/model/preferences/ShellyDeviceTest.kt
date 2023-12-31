@@ -1,9 +1,11 @@
 package de.visualdigits.kotlin.klanglicht.model.preferences
 
 import de.visualdigits.kotlin.klanglicht.model.color.RGBColor
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import java.io.File
 
+@Disabled("for local testing only")
 class ShellyDeviceTest {
 
     val preferences = Preferences.load(
