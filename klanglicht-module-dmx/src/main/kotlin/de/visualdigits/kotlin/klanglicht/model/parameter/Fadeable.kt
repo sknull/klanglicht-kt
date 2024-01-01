@@ -34,14 +34,14 @@ interface Fadeable<T : Fadeable<T>> {
 
         while (factor <= 1.0) {
             val faded = fade(other, factor)
-            runBlocking { faded.write(preferences) }
+            faded.write(preferences)
             factor += step
             Thread.sleep(dmxFrameTime)
         }
-        runBlocking { other.write(preferences) }
+        other.write(preferences)
     }
 
-    suspend fun write(preferences: Preferences?, write: Boolean = true, transitionDuration: Long = 1) {
+    fun write(preferences: Preferences?, write: Boolean = true, transitionDuration: Long = 1) {
         // nothing to do here
     }
 

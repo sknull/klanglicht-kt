@@ -37,7 +37,7 @@ class ShellyColor(
         color = rgbColor.clone()
     }
 
-    override suspend fun write(preferences: Preferences?, write: Boolean, transitionDuration: Long) {
+    override fun write(preferences: Preferences?, write: Boolean, transitionDuration: Long) {
         if (write) {
             log.debug("Set shelly color {}", color.ansiColor())
             ShellyClient.setColor(

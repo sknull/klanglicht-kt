@@ -41,12 +41,8 @@ class SimpleTest {
             )
         )
 
-        runBlocking {
-            coroutineScope {
-                dmxScene.write(preferences)
-                dmxScene.write(preferences)
-            }
-        }
+        dmxScene.write(preferences)
+        dmxScene.write(preferences)
     }
 
     @Test
@@ -70,7 +66,7 @@ class SimpleTest {
                 ),
             )
         )
-        runBlocking { dmxScene0.write(preferences) }
+        dmxScene0.write(preferences)
     }
 
     @Test
@@ -114,7 +110,7 @@ class SimpleTest {
                 ),
             )
         )
-        runBlocking { dmxScene1.write(preferences) }
+        dmxScene1.write(preferences)
 
         val dmxScene2 = DmxScene(
             name = "JUnit Test",

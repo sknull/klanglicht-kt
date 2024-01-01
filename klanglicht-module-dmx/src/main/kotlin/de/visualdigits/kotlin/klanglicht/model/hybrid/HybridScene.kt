@@ -203,10 +203,11 @@ class HybridScene() : Fadeable<HybridScene> {
 
     fun getRgbColor(id: String): RGBColor? = fadeables[id]?.getRgbColor()
 
-    override suspend fun write(preferences: Preferences?, write: Boolean, transitionDuration: Long) {
-        coroutineScope {
-            // first collect all frame data for the dmx frame to avoid lots of costly write operations to a serial interface
-            fadeables().filterIsInstance<ParameterSet>().forEach { parameterSet ->
+    override fun write(preferences: Preferences?, write: Boolean, transitionDuration: Long) {
+        // first collect all frame data for the dmx frame to avoid lots of costly write operations to a serial interface
+        val parameterSets = fadeables().filterIsInstance<ParameterSet>()
+        if (parameterSets.isNotEmpty()) { // only write to dmx interface if needed
+            parameterSets.forEach { parameterSet ->
                 val baseChannel = parameterSet.baseChannel
                 preferences?.let{
                     val bytes = parameterSet.toBytes(it)
@@ -217,10 +218,13 @@ class HybridScene() : Fadeable<HybridScene> {
                     }
                 }
             }
-
-            // call other fadeables
-            fadeables().filter { it !is ParameterSet }.forEach { it.write(preferences, true) }
         }
+
+        // call twinkly interface which is not so fast
+        fadeables().filterIsInstance<XledFrameFadeable>().forEach { it.write(preferences, true) }
+
+        // call shelly interface which is pretty fast
+        fadeables().filterIsInstance<ShellyColor>().forEach { it.write(preferences, true) }
     }
 
     override fun fade(other: Any, factor: Double): HybridScene {

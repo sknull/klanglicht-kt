@@ -63,7 +63,7 @@ class ParameterSet(
         } ?: listOf()).toByteArray()
     }
 
-    override suspend fun write(preferences: Preferences?, write: Boolean, transitionDuration: Long) {
+    override fun write(preferences: Preferences?, write: Boolean, transitionDuration: Long) {
         preferences?.let {
             val bytes = toBytes(it)
             preferences.setDmxData(baseChannel, bytes)

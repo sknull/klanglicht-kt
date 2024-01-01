@@ -39,7 +39,7 @@ class XledFrameFadeable(
         xledFrame.setColor(TwinklyRGBColor(rgbColor.red, rgbColor.green, rgbColor.blue))
     }
 
-    override suspend fun write(preferences: Preferences?, write: Boolean, transitionDuration: Long) {
+    override fun write(preferences: Preferences?, write: Boolean, transitionDuration: Long) {
         val twinklyDevice = preferences?.getTwinklyConfiguration(deviceId)
         if (twinklyDevice != null) {
             val xledArray = twinklyDevice.xledArray

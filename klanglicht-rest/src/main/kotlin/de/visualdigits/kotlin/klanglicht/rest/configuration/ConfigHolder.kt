@@ -32,7 +32,7 @@ class ConfigHolder {
         log.info("## klanglichtDirectory: " + klanglichtDirectory.absolutePath)
         preferences = Preferences.load(klanglichtDirectory)
         currentScene = preferences?.initialHybridScene()
-        runBlocking { currentScene?.write(preferences, true, 1000) }
+        currentScene?.write(preferences, true, 1000)
         log.info("#### setUp - end")
     }
 

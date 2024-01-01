@@ -103,13 +103,9 @@ class ShellyHandler {
             .filter { it.trim().isNotEmpty() }
             .map { it.trim() }
 
-        runBlocking {
-            coroutineScope {
-                lIds.forEach { id ->
-                    configHolder?.getFadeable(id)?.write(configHolder.preferences!!, transitionDuration = transitionDuration)
-                }
+            lIds.forEach { id ->
+                configHolder?.getFadeable(id)?.write(configHolder.preferences!!, transitionDuration = transitionDuration)
             }
-        }
     }
 
     fun power(

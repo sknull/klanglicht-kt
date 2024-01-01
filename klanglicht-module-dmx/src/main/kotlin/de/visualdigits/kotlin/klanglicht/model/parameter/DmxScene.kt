@@ -29,7 +29,7 @@ class DmxScene(
     /**
      * Writes the given scene into the internal dmx frame of the interface.
      */
-    override suspend fun write(preferences: Preferences?, write: Boolean, transitionDuration: Long) {
+    override fun write(preferences: Preferences?, write: Boolean, transitionDuration: Long) {
         // first collect all frame data for the dmx frame to avoid lots of costly write operations to a serial interface
         parameterSet
             .sortedBy { it.baseChannel }

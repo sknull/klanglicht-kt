@@ -34,7 +34,7 @@ class DmxInterfaceTest {
                 )
             )
         )
-        runBlocking { dmxScene.write(preferences) }
+        dmxScene.write(preferences)
         preferences.writeDmxData()
     }
 
@@ -53,7 +53,7 @@ class DmxInterfaceTest {
                 )
             )
         )
-        runBlocking { dmxScene.write(preferences) }
+        dmxScene.write(preferences)
         preferences.writeDmxData()
     }
 
@@ -157,7 +157,7 @@ class DmxInterfaceTest {
                     frame
                 )
             )
-            runBlocking { dmxScene.write(preferences) }
+            dmxScene.write(preferences)
             Thread.sleep(dmxFrameTime)
         }
     }
