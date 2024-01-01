@@ -2,6 +2,7 @@ package de.visualdigits.kotlin.klanglicht.model.parameter
 
 import de.visualdigits.kotlin.klanglicht.model.color.RGBColor
 import de.visualdigits.kotlin.klanglicht.model.preferences.Preferences
+import kotlinx.coroutines.runBlocking
 
 interface Fadeable<T : Fadeable<T>> {
 
@@ -31,16 +32,16 @@ interface Fadeable<T : Fadeable<T>> {
         val step = 1.0 / fadeDuration.toDouble() * dmxFrameTime.toDouble()
         var factor = 0.0
 
-        while (factor < 1.0) {
+        while (factor <= 1.0) {
             val faded = fade(other, factor)
-            faded.write(preferences)
+            runBlocking { faded.write(preferences) }
             factor += step
             Thread.sleep(dmxFrameTime)
         }
-        other.write(preferences)
+        runBlocking { other.write(preferences) }
     }
 
-    fun write(preferences: Preferences, write: Boolean = true, transitionDuration: Long = 1) {
+    suspend fun write(preferences: Preferences?, write: Boolean = true, transitionDuration: Long = 1) {
         // nothing to do here
     }
 

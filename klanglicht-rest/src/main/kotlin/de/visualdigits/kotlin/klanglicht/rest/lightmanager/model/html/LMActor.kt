@@ -40,7 +40,7 @@ class LMActor(
     }
 
     private fun renderSlider(sb: StringBuilder, configHolder: ConfigHolder) {
-        val lightmanagerUrl = configHolder.preferences?.serviceMap?.get("lmair")?.url
+        val lightmanagerUrl = configHolder.preferences?.getService("lmair")?.url
         if (isDimmer == true) {
             val actorId = id
             val drq = getRequestBySmkState(1)

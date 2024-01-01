@@ -10,13 +10,13 @@ import java.io.File
 class ShellyColorTest {
 
     val preferences = Preferences.load(
-        klanglichtDir = File(ClassLoader.getSystemResource(".klanglicht").toURI()),
+        klanglichtDirectory = File(ClassLoader.getSystemResource(".klanglicht").toURI()),
         preferencesFileName = "preferences_livingroom_dummy.json"
     )
 
     @Test
      fun testFade() {
-        val shellyDevice = preferences.shellyMap["Starwars"]
+        val shellyDevice = preferences.getShellyDevice("Starwars")
         if (shellyDevice != null) {
             val color1 = ShellyColor("foo", shellyDevice.ipAddress, RGBColor(255, 0, 0), 1.0f, true)
             val color2 = ShellyColor("bar", shellyDevice.ipAddress, RGBColor(0, 255, 0), 1.0f, true)

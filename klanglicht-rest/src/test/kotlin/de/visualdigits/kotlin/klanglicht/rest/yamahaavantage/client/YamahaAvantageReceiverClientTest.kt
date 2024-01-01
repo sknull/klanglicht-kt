@@ -11,11 +11,11 @@ import java.io.File
 internal class YamahaAvantageReceiverClientTest {
 
     private val preferences = Preferences.load(
-        klanglichtDir = File("../klanglicht-dmx/src/test/resources/.klanglicht"),
+        klanglichtDirectory = File("../klanglicht-dmx/src/test/resources/.klanglicht"),
         preferencesFileName = System.getenv("preferencesFileName")?:"preferences_livingroom.json"
     )
 
-    private val URL = preferences.serviceMap["receiver"]?.url?:""
+    private val URL = preferences.getService("receiver")?.url?:""
 
     @Test
     fun testSet() {

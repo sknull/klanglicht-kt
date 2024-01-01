@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test
 import java.io.File
 
 @Disabled("for local testing only")
-class HybridSceneTest {
+class HybridDmxSceneTest {
 
     val preferences = Preferences.load(File(SystemUtils.getUserHome(), ".klanglicht"))
 

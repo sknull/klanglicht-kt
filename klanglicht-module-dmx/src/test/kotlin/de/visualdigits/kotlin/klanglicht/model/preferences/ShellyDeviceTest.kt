@@ -9,12 +9,12 @@ import java.io.File
 class ShellyDeviceTest {
 
     val preferences = Preferences.load(
-        klanglichtDir = File(ClassLoader.getSystemResource(".klanglicht").toURI()),
+        klanglichtDirectory = File(ClassLoader.getSystemResource(".klanglicht").toURI()),
         preferencesFileName = "preferences_livingroom_dummy.json"
     )
 
     @Test
     fun testSetColor() {
-        preferences.shellyMap["Starwars"]?.setColor(RGBColor(0,0,255))
+        preferences.getShellyDevice("Starwars")?.setColor(RGBColor(0,0,255))
     }
 }

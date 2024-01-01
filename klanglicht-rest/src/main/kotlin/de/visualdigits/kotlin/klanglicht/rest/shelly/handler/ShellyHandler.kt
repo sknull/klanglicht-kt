@@ -7,10 +7,13 @@ import de.visualdigits.kotlin.klanglicht.model.shelly.client.ShellyClient
 import de.visualdigits.kotlin.klanglicht.model.shelly.status.Status
 import de.visualdigits.kotlin.klanglicht.rest.configuration.ConfigHolder
 import de.visualdigits.kotlin.klanglicht.rest.lightmanager.feign.LightmanagerClient
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.runBlocking
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
+import kotlin.coroutines.coroutineContext
 
 @Component
 class ShellyHandler {
@@ -99,8 +102,13 @@ class ShellyHandler {
             .split(",")
             .filter { it.trim().isNotEmpty() }
             .map { it.trim() }
-        lIds.forEach { id ->
-            configHolder!!.getFadeable(id)?.write(configHolder.preferences!!, transitionDuration = transitionDuration)
+
+        runBlocking {
+            coroutineScope {
+                lIds.forEach { id ->
+                    configHolder?.getFadeable(id)?.write(configHolder.preferences!!, transitionDuration = transitionDuration)
+                }
+            }
         }
     }
 
@@ -115,11 +123,11 @@ class ShellyHandler {
             .map { it.trim() }
         lIds.forEach { id ->
         val sid = id.trim()
-            val shellyDevice = configHolder!!.shellyDevices[sid]
+            val shellyDevice = configHolder?.preferences?.getShellyDevice(sid)
             if (shellyDevice != null) {
                 val ipAddress: String = shellyDevice.ipAddress
                 val command: String = shellyDevice.command
-                val lastColor = configHolder.getFadeable(sid)
+                val lastColor = configHolder?.getFadeable(sid)
                 lastColor?.setTurnOn(turnOn)
                 try {
                     ShellyClient.setPower(
@@ -146,10 +154,10 @@ class ShellyHandler {
             .map { it.trim() }
         lIds.forEach { id ->
             val sid = id.trim()
-            val shellyDevice = configHolder!!.shellyDevices[sid]
+            val shellyDevice = configHolder?.preferences?.getShellyDevice(sid)
             if (shellyDevice != null) {
                 val ipAddress: String = shellyDevice.ipAddress
-                val lastColor = configHolder.getFadeable(sid)
+                val lastColor = configHolder?.getFadeable(sid)
                 lastColor?.setGain(gain.toFloat())
                 try {
                     ShellyClient.setGain(ipAddress = ipAddress, gain = gain, transitionDuration = transitionDuration)
@@ -169,8 +177,8 @@ class ShellyHandler {
     }
 
     fun status(): Map<ShellyDevice, Status> {
-        val statusMap: MutableMap<ShellyDevice, Status> = LinkedHashMap<ShellyDevice, Status>()
-        configHolder!!.preferences?.shelly?.forEach { device ->
+        val statusMap: MutableMap<ShellyDevice, Status> = LinkedHashMap()
+        configHolder?.preferences?.getShellyDevices()?.forEach { device ->
             val ipAddress: String = device.ipAddress
             var status: Status
             try {

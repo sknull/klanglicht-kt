@@ -14,7 +14,7 @@ class LMScene(
     }
 
     fun toHtml(configHolder: ConfigHolder, group: String): String {
-        val lightmanagerUrl = configHolder.preferences?.serviceMap?.get("lmair")?.url
+        val lightmanagerUrl = configHolder.preferences?.getService("lmair")?.url
         val sb = StringBuilder()
         sb.append("      <div class=\"button\"")
         if (StringUtils.isNotEmpty(color)) {

@@ -26,7 +26,7 @@ class LightmanagerClient(
     @PostConstruct
     fun initialize() {
         if (StringUtils.isEmpty(lightmanagerUrl)) {
-            lightmanagerUrl = configHolder!!.preferences?.serviceMap?.get("lmair")?.url
+            lightmanagerUrl = configHolder!!.preferences?.getService("lmair")?.url
         }
         client = LightmanagerFeignClient.client(lightmanagerUrl)
     }

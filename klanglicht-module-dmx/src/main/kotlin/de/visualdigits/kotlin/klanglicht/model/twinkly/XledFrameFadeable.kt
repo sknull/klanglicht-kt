@@ -4,6 +4,8 @@ import de.visualdigits.kotlin.klanglicht.model.color.RGBColor
 import de.visualdigits.kotlin.klanglicht.model.parameter.Fadeable
 import de.visualdigits.kotlin.klanglicht.model.preferences.Preferences
 import de.visualdigits.kotlin.twinkly.model.playable.XledFrame
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 import de.visualdigits.kotlin.twinkly.model.color.RGBColor as TwinklyRGBColor
 
 class XledFrameFadeable(
@@ -11,6 +13,12 @@ class XledFrameFadeable(
     private var xledFrame: XledFrame,
     private var deviceGain: Float
 ) : Fadeable<XledFrameFadeable> {
+
+    private val log: Logger = LoggerFactory.getLogger(javaClass)
+
+    override fun toString(): String {
+        return xledFrame.toString()
+    }
 
     override fun getTurnOn(): Boolean = true
 
@@ -31,11 +39,12 @@ class XledFrameFadeable(
         xledFrame.setColor(TwinklyRGBColor(rgbColor.red, rgbColor.green, rgbColor.blue))
     }
 
-    override fun write(preferences: Preferences, write: Boolean, transitionDuration: Long) {
-        val twinklyDevice = preferences.twinklyMap[deviceId]
+    override suspend fun write(preferences: Preferences?, write: Boolean, transitionDuration: Long) {
+        val twinklyDevice = preferences?.getTwinklyConfiguration(deviceId)
         if (twinklyDevice != null) {
             val xledArray = twinklyDevice.xledArray
-            if (xledArray.isLoggedIn()) {
+            if (write && xledArray.isLoggedIn()) {
+                log.debug("Writing xledFrame\n{}", this)
                 xledArray.setBrightness(deviceGain)
                 xledFrame.play(xledArray)
             }

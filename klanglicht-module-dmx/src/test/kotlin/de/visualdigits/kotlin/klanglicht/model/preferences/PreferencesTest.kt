@@ -9,7 +9,7 @@ internal class PreferencesTest {
     @Test
     fun testReadModel() {
         val preferences = Preferences.load(
-            klanglichtDir = File(ClassLoader.getSystemResource(".klanglicht").toURI()),
+            klanglichtDirectory = File(ClassLoader.getSystemResource(".klanglicht").toURI()),
             preferencesFileName = "preferences_livingroom.json"
         )
 

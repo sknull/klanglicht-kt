@@ -3,8 +3,9 @@ package de.visualdigits.kotlin.klanglicht.dmx
 import de.visualdigits.kotlin.klanglicht.model.color.RGBColor
 import de.visualdigits.kotlin.klanglicht.model.parameter.IntParameter
 import de.visualdigits.kotlin.klanglicht.model.parameter.ParameterSet
-import de.visualdigits.kotlin.klanglicht.model.parameter.Scene
+import de.visualdigits.kotlin.klanglicht.model.parameter.DmxScene
 import de.visualdigits.kotlin.klanglicht.model.preferences.Preferences
+import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import java.io.File
@@ -14,13 +15,13 @@ import kotlin.math.ceil
 class DmxInterfaceTest {
 
     private val preferences = Preferences.load(
-        klanglichtDir = File(ClassLoader.getSystemResource(".klanglicht").toURI()),
+        klanglichtDirectory = File(ClassLoader.getSystemResource(".klanglicht").toURI()),
         preferencesFileName = System.getenv("preferencesFileName")?:"preferences_livingroom_dummy.json"
     )
 
     @Test
     fun testInterfaceFromModel1() {
-        val scene = Scene(
+        val dmxScene = DmxScene(
             name = "test",
             parameterSet = listOf(
                 ParameterSet(
@@ -33,13 +34,13 @@ class DmxInterfaceTest {
                 )
             )
         )
-        scene.write(preferences,)
-        preferences.dmxInterface?.write()
+        runBlocking { dmxScene.write(preferences) }
+        preferences.writeDmxData()
     }
 
     @Test
     fun testBlackout() {
-        val scene = Scene(
+        val dmxScene = DmxScene(
             name = "test",
             parameterSet = listOf(
                 ParameterSet(
@@ -52,8 +53,8 @@ class DmxInterfaceTest {
                 )
             )
         )
-        scene.write(preferences,)
-        preferences.dmxInterface?.write()
+        runBlocking { dmxScene.write(preferences) }
+        preferences.writeDmxData()
     }
 
 //    @Test
@@ -150,13 +151,13 @@ class DmxInterfaceTest {
         for (f in 0..steps) {
             val factor = step * f
             val frame = parameterSet1.fade(parameterSet2, factor)
-            val scene = Scene(
+            val dmxScene = DmxScene(
                 name = "frame_$f",
                 parameterSet = listOf(
                     frame
                 )
             )
-            scene.write(preferences,)
+            runBlocking { dmxScene.write(preferences) }
             Thread.sleep(dmxFrameTime)
         }
     }

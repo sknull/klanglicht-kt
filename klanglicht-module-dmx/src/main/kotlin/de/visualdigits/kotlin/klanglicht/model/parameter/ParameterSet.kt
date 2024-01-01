@@ -3,6 +3,8 @@ package de.visualdigits.kotlin.klanglicht.model.parameter
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import de.visualdigits.kotlin.klanglicht.model.color.RGBColor
 import de.visualdigits.kotlin.klanglicht.model.preferences.Preferences
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 import kotlin.math.roundToInt
 
 @JsonIgnoreProperties("parameterValues")
@@ -11,10 +13,16 @@ class ParameterSet(
     val parameters: List<Parameter<*>> = listOf(),
 ) : Fadeable<ParameterSet> {
 
+    private val log: Logger = LoggerFactory.getLogger(javaClass)
+
     val parameterMap: MutableMap<String, Int> = mutableMapOf()
 
     init {
         updateParameterMap()
+    }
+
+    override fun toString(): String {
+        return parameters.filterIsInstance<RGBColor>().map { it.ansiColor() }.joinToString("")
     }
 
     private fun updateParameterMap() {
@@ -50,15 +58,20 @@ class ParameterSet(
     }
 
     fun toBytes(preferences: Preferences): ByteArray {
-        return (preferences.fixtures[baseChannel]?.map { channel ->
+        return (preferences.getDmxFixture(baseChannel)?.map { channel ->
             (parameterMap[channel.name] ?: 0).toByte()
         } ?: listOf()).toByteArray()
     }
 
-    override fun write(preferences: Preferences, write: Boolean, transitionDuration: Long) {
-        val bytes = toBytes(preferences)
-        preferences.dmxInterface?.dmxFrame?.set(baseChannel, bytes)
-        if (write) preferences.dmxInterface?.write()
+    override suspend fun write(preferences: Preferences?, write: Boolean, transitionDuration: Long) {
+        preferences?.let {
+            val bytes = toBytes(it)
+            preferences.setDmxData(baseChannel, bytes)
+            if (write) {
+                log.debug("Writing parameter set {}", this)
+                preferences.writeDmxData()
+            }
+        }
     }
 
     override fun fade(other: Any, factor: Double): ParameterSet {

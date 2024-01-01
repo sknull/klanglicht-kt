@@ -30,7 +30,7 @@ class YamahaAvantageReceiverRestController {
 
     private fun ensureClient() {
         if (client == null) {
-            client = YamahaAvantageReceiverClient(configHolder!!.preferences?.serviceMap?.get("receiver")?.url!!)
+            client = YamahaAvantageReceiverClient(configHolder!!.preferences?.getService("receiver")?.url!!)
         }
     }
 }

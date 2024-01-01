@@ -3,8 +3,10 @@ package de.visualdigits.kotlin.klanglicht.dmx
 import de.visualdigits.kotlin.klanglicht.model.color.RGBWColor
 import de.visualdigits.kotlin.klanglicht.model.parameter.IntParameter
 import de.visualdigits.kotlin.klanglicht.model.parameter.ParameterSet
-import de.visualdigits.kotlin.klanglicht.model.parameter.Scene
+import de.visualdigits.kotlin.klanglicht.model.parameter.DmxScene
 import de.visualdigits.kotlin.klanglicht.model.preferences.Preferences
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import java.io.File
@@ -13,13 +15,13 @@ import java.io.File
 class SimpleTest {
 
     val preferences = Preferences.load(
-        klanglichtDir = File(ClassLoader.getSystemResource(".klanglicht").toURI()),
+        klanglichtDirectory = File(ClassLoader.getSystemResource(".klanglicht").toURI()),
         preferencesFileName = "preferences_minimal.json"
     )
 
     @Test
     fun testRgbw() {
-        val scene = Scene(
+        val dmxScene = DmxScene(
             name = "JUnit Test",
             parameterSet = listOf(
                 ParameterSet(
@@ -39,12 +41,17 @@ class SimpleTest {
             )
         )
 
-        scene.write(preferences,)
+        runBlocking {
+            coroutineScope {
+                dmxScene.write(preferences)
+                dmxScene.write(preferences)
+            }
+        }
     }
 
     @Test
     fun testPowerOff() {
-        val scene0 = Scene(
+        val dmxScene0 = DmxScene(
             name = "JUnit Test",
             parameterSet = listOf(
                 ParameterSet(
@@ -63,12 +70,12 @@ class SimpleTest {
                 ),
             )
         )
-        scene0.write(preferences,)
+        runBlocking { dmxScene0.write(preferences) }
     }
 
     @Test
     fun testFade() {
-        val scene0 = Scene(
+        val dmxScene0 = DmxScene(
             name = "JUnit Test",
             parameterSet = listOf(
                 ParameterSet(
@@ -88,7 +95,7 @@ class SimpleTest {
             )
         )
 
-        val scene1 = Scene(
+        val dmxScene1 = DmxScene(
             name = "JUnit Test",
             parameterSet = listOf(
                 ParameterSet(
@@ -107,9 +114,9 @@ class SimpleTest {
                 ),
             )
         )
-        scene1.write(preferences,)
+        runBlocking { dmxScene1.write(preferences) }
 
-        val scene2 = Scene(
+        val dmxScene2 = DmxScene(
             name = "JUnit Test",
             parameterSet = listOf(
                 ParameterSet(
@@ -129,10 +136,10 @@ class SimpleTest {
             )
         )
 
-        scene0.fade(scene1, 1000, preferences)
-        scene1.fade(scene2, 2000, preferences)
+        dmxScene0.fade(dmxScene1, 1000, preferences)
+        dmxScene1.fade(dmxScene2, 2000, preferences)
         Thread.sleep(2000)
-        scene2.fade(scene1, 2000, preferences)
-        scene1.fade(scene0, 1000, preferences)
+        dmxScene2.fade(dmxScene1, 2000, preferences)
+        dmxScene1.fade(dmxScene0, 1000, preferences)
     }
 }

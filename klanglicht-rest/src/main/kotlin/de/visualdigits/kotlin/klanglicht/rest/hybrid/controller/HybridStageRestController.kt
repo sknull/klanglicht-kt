@@ -24,10 +24,10 @@ class HybridStageRestController {
         @RequestParam(value = "turnOn", required = false, defaultValue = "true") turnOn: Boolean
     ) {
         hybridStageHandler?.hexColor(
-            ids,
-            hexColors,
-            gains,
-            transitionDuration
+            ids = ids,
+            hexColors = hexColors,
+            gains = gains,
+            transitionDuration = transitionDuration
         )
     }
 }
