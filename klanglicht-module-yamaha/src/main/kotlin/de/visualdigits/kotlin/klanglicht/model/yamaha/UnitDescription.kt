@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.SerializationFeature
 import com.fasterxml.jackson.dataformat.xml.XmlMapper
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement
+import com.fasterxml.jackson.module.kotlin.kotlinModule
 import java.io.IOException
 import java.io.InputStream
 
@@ -35,11 +36,10 @@ class UnitDescription : AbstractMenuProvider() {
         }
 
     companion object {
-        val mapper: XmlMapper = XmlMapper()
-
-        init {
-            mapper.enable(SerializationFeature.INDENT_OUTPUT)
-        }
+        val mapper = XmlMapper.builder()
+            .addModule(kotlinModule())
+            .enable(SerializationFeature.INDENT_OUTPUT)
+            .build()
 
         fun load(ins: InputStream): UnitDescription {
             val unitDescription: UnitDescription

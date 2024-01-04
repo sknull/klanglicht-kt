@@ -4,6 +4,7 @@ import com.fasterxml.jackson.dataformat.xml.XmlMapper
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement
+import com.fasterxml.jackson.module.kotlin.kotlinModule
 import java.io.IOException
 import java.io.InputStream
 
@@ -14,11 +15,12 @@ class Lightman(
 ) {
 
     companion object {
-        val MAPPER: XmlMapper = XmlMapper()
+        val mapper: XmlMapper = XmlMapper.builder().addModule(kotlinModule()).build()
+
         fun load(ins: InputStream?): Lightman {
             val lightman: Lightman
             lightman = try {
-                MAPPER.readValue<Lightman>(ins, Lightman::class.java)
+                mapper.readValue<Lightman>(ins, Lightman::class.java)
             } catch (e: IOException) {
                 throw IllegalStateException("Could not load xml file", e)
             }

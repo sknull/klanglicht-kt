@@ -33,17 +33,12 @@ class ShellyStatus : HtmlRenderable {
             renderPanel(sb, "textpanel", bgColor, "Power&nbsp;$power")
 
             // on/off status
-            var isOn = false
             val lightColors: MutableList<String> = ArrayList()
+            var isOn = false
             if (isOnline) {
                 val relays = status.relays
                 if (relays != null) {
-                    for (relay in relays) {
-                        if (relay.isOn == true) {
-                            isOn = true
-                            break
-                        }
-                    }
+                    isOn = relays.any { it.isOn == true}
                     bgColor = if (isOn) "red" else "green"
                 } else {
                     val lights = status.lights

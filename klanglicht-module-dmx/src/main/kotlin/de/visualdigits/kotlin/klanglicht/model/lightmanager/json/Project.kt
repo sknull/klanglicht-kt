@@ -2,6 +2,7 @@ package de.visualdigits.kotlin.klanglicht.model.lightmanager.json
 
 import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.databind.json.JsonMapper
+import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import java.io.IOException
 import java.io.InputStream
 
@@ -42,11 +43,12 @@ class Project(
     }
 
     companion object {
-        val MAPPER: JsonMapper = JsonMapper()
+        private val mapper = jacksonObjectMapper()
+
         fun load(ins: InputStream?): Project {
             val project: Project
             try {
-                project = MAPPER.readValue<Project>(ins, Project::class.java)
+                project = mapper.readValue<Project>(ins, Project::class.java)
                 val scenesMap = project.scenesMap
                 project.determineScenes(project.scenes, scenesMap.toMutableMap())
                 project.determineActuators(

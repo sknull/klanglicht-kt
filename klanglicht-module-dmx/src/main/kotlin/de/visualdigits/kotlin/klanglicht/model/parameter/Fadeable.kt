@@ -28,15 +28,17 @@ interface Fadeable<T : Fadeable<T>> {
         fadeDuration: Long,
         preferences: Preferences
     ) {
-        val dmxFrameTime = preferences.getDmxFrameTime()
-        val step = 1.0 / fadeDuration.toDouble() * dmxFrameTime.toDouble()
-        var factor = 0.0
+        if (fadeDuration > 0) {
+            val dmxFrameTime = preferences.getDmxFrameTime()
+            val step = 1.0 / fadeDuration.toDouble() * dmxFrameTime.toDouble()
+            var factor = 0.0
 
-        while (factor <= 1.0) {
-            val faded = fade(other, factor)
-            faded.write(preferences)
-            factor += step
-            Thread.sleep(dmxFrameTime)
+            while (factor <= 1.0) {
+                val faded = fade(other, factor)
+                faded.write(preferences)
+                factor += step
+                Thread.sleep(dmxFrameTime)
+            }
         }
         other.write(preferences)
     }

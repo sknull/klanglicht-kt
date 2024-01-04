@@ -91,7 +91,7 @@ class ShellyHandler {
             try {
                 status = ShellyClient.getStatus(ipAddress)
             } catch (e: Exception) {
-                log.warn("Could not get ststus for shelly at '$ipAddress'")
+                log.warn("Could not get status for shelly at '$ipAddress'")
                 status = Status()
                 status.mode = "offline"
             }

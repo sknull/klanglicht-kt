@@ -40,6 +40,16 @@ class LMScenes(
         sb.append("<div class=\"title\" onclick=\"toggleFullScreen();\" alt=\"Toggle Fullscreen\" title=\"Toggle Fullscreen\">")
             .append(name)
             .append("</div>\n")
+        sb.append("<div class=\"center-category\">\n")
+        renderLabel(sb, "C U R R E N T   S C E N E")
+        sb.append("<div class=\"center-group\">\n")
+        configHolder.currentScene?.fadeables()?.forEach { fadeable ->
+            val color = fadeable.getRgbColor()?.web()?:"#000000"
+            renderPanel(sb, "circle", color, "")
+        }
+        sb.append("</div><!-- sub-group -->\n\n")
+        sb.append("</div><!-- current scene -->\n\n")
+
         sb.append("<div class=\"category\">\n")
         renderLabel(sb, "S C E N E S")
         val scenesMap: Map<String, Collection<LMScene>> = TreeMap<String, Collection<LMScene>>(scenes.asMap())
@@ -53,6 +63,15 @@ class LMScenes(
         }
         sb.append("</div><!-- scenes -->\n\n")
         return sb.toString()
+    }
+
+    private fun renderPanel(sb: StringBuilder, clazz: String, bgColor: String, value: String?) {
+        sb.append("      <div class=\"").append(clazz).append("\" style=\"background-color:").append(bgColor)
+            .append("\" >\n")
+        if (value != null && !value.isEmpty()) {
+            renderLabel(sb, value)
+        }
+        sb.append("      </div> <!-- ").append(clazz).append(" -->\n")
     }
 
     private fun renderScenesGroup(

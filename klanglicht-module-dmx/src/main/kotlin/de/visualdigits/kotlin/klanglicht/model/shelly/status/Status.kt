@@ -6,6 +6,8 @@ import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.databind.SerializationFeature
 import com.fasterxml.jackson.databind.json.JsonMapper
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
+import com.fasterxml.jackson.module.kotlin.jacksonMapperBuilder
+import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import java.time.LocalTime
 import java.time.OffsetDateTime
 
@@ -44,8 +46,7 @@ class Status(
 ) {
 
     companion object {
-        val MAPPER: JsonMapper = JsonMapper
-            .builder()
+        private val mapper = jacksonMapperBuilder()
             .disable(SerializationFeature.INDENT_OUTPUT)
             .disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES)
             .addModule(JavaTimeModule())
@@ -53,7 +54,7 @@ class Status(
 
         fun load(json: String?): Status {
             return try {
-                MAPPER.readValue<Status>(json, Status::class.java)
+                mapper.readValue<Status>(json, Status::class.java)
             } catch (e: JsonProcessingException) {
                 throw IllegalStateException("Could not read JSON string", e)
             }
