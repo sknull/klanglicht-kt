@@ -124,16 +124,20 @@ data class Preferences(
     }
 
     fun initialHybridScene(): HybridScene {
+        val ids = stage
+            .filter { it.type != HybridDeviceType.twinkly || getTwinklyConfiguration(it.id)?.xledArray?.isLoggedIn() == true }
+            .map { it.id }
         return HybridScene(
-            ids = stage.joinToString(",") { it.id },
+            ids = ids.joinToString(","),
             hexColors = "000000",
             gains = stage.mapNotNull { sd ->
                 when (sd.type) {
                     HybridDeviceType.dmx -> dmx?.dmxDevices?.get(sd.id)?.gain
                     HybridDeviceType.shelly -> getShellyGain(sd.id)
+                    HybridDeviceType.twinkly -> getTwinklyConfiguration(sd.id)?.let { if (it.xledArray.isLoggedIn()) it.gain else null }
                     else -> null
                 }
-            }.joinToString(",")?:"1.0",
+            }.joinToString(","),
             turnOns = "false",
             preferences = this
         )

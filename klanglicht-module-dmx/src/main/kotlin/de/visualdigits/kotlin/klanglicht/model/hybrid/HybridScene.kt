@@ -120,21 +120,23 @@ class HybridScene() : Fadeable<HybridScene> {
                 .mapNotNull { preferences?.getTwinklyConfiguration(it.id) }
                 .forEach { twinklyDevice ->
                     val xa = twinklyDevice.xledArray
-                    val lc = RGBColor(lHexColors.last())
-                    val frame = XledFrame(width = xa.width, height = xa.height, initialColor = TwinklyRGBColor(lc.red, lc.green, lc.blue))
-                    val nc = lHexColors.size
-                    val barWidth = xa.width / nc
-                    for (x in 0 until nc - 1) {
-                        val rgbColor = RGBColor(lHexColors[x])
-                        val bar = XledFrame(width = barWidth, height = xa.height, initialColor = TwinklyRGBColor(rgbColor.red, rgbColor.green, rgbColor.blue))
-                        frame.replaceSubFrame(bar, x * barWidth, 0)
+                    if (xa.isLoggedIn()) {
+                        val lc = RGBColor(lHexColors.last())
+                        val frame = XledFrame(width = xa.width, height = xa.height, initialColor = TwinklyRGBColor(lc.red, lc.green, lc.blue))
+                        val nc = lHexColors.size
+                        val barWidth = xa.width / nc
+                        for (x in 0 until nc - 1) {
+                            val rgbColor = RGBColor(lHexColors[x])
+                            val bar = XledFrame(width = barWidth, height = xa.height, initialColor = TwinklyRGBColor(rgbColor.red, rgbColor.green, rgbColor.blue))
+                            frame.replaceSubFrame(bar, x * barWidth, 0)
+                        }
+                        val fadeable = XledFrameFadeable(
+                            deviceId = twinklyDevice.name,
+                            xledFrame = frame,
+                            deviceGain = twinklyDevice.gain
+                        )
+                        fadeables[twinklyDevice.name] = fadeable
                     }
-                    val fadeable = XledFrameFadeable(
-                        deviceId = twinklyDevice.name,
-                        xledFrame = frame,
-                        deviceGain = twinklyDevice.gain
-                    )
-                    fadeables[twinklyDevice.name] = fadeable
                 }
         }
 
