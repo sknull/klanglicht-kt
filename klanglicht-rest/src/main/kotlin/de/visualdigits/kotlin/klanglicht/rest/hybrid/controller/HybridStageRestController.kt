@@ -20,7 +20,7 @@ class HybridStageRestController {
         @RequestParam(value = "ids", required = false, defaultValue = "") ids: String,
         @RequestParam(value = "hexColors") hexColors: String,
         @RequestParam(value = "gains", required = false, defaultValue = "") gains: String,
-        @RequestParam(value = "transition", required = false, defaultValue = "2000") transitionDuration: Long,
+        @RequestParam(value = "transition", required = false, defaultValue = "1000") transitionDuration: Long,
         @RequestParam(value = "turnOn", required = false, defaultValue = "true") turnOn: Boolean
     ) {
         hybridStageHandler?.hexColor(
