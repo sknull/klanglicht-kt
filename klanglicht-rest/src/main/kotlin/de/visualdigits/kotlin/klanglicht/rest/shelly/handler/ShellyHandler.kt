@@ -1,19 +1,14 @@
 package de.visualdigits.kotlin.klanglicht.rest.shelly.handler
 
-import de.visualdigits.kotlin.klanglicht.model.color.RGBColor
-import de.visualdigits.kotlin.klanglicht.model.hybrid.HybridScene
 import de.visualdigits.kotlin.klanglicht.model.shelly.ShellyDevice
 import de.visualdigits.kotlin.klanglicht.model.shelly.client.ShellyClient
 import de.visualdigits.kotlin.klanglicht.model.shelly.status.Status
 import de.visualdigits.kotlin.klanglicht.rest.configuration.ConfigHolder
 import de.visualdigits.kotlin.klanglicht.rest.lightmanager.feign.LightmanagerClient
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.runBlocking
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
-import kotlin.coroutines.coroutineContext
 
 @Component
 class ShellyHandler {
@@ -49,65 +44,6 @@ class ShellyHandler {
         }
     }
 
-    /**
-     * Set hex colors.
-     *
-     * @param ids The list of ids.
-     * @param hexColors The list of hex colors.
-     * @param gains The list of gains (taken from stage setup if omitted).
-     * @param transitionDuration The fade duration in milli seconds.
-     * @param turnOn Determines if the device should be turned on.
-     */
-    fun hexColors(
-        ids: String,
-        hexColors: String,
-        gains: String,
-        transitionDuration: Long,
-        turnOn: Boolean,
-        store: Boolean = true
-    ) {
-        val nextScene = HybridScene(ids, hexColors, gains, turnOn.toString(), preferences = configHolder?.preferences)
-
-        configHolder?.currentScene?.fade(nextScene, transitionDuration, configHolder.preferences!!)
-
-        if (store) {
-            configHolder?.updateScene(nextScene)
-        }
-    }
-
-    fun color(
-        ids: String,
-        red: Int,
-        green: Int,
-        blue: Int,
-        gains: String,
-        transitionDuration: Long,
-        turnOn: Boolean,
-        store: Boolean
-    ) {
-        val nextScene = HybridScene(ids, RGBColor(red, green, blue).hex(), gains, turnOn.toString(), preferences = configHolder?.preferences)
-
-        configHolder?.currentScene?.fade(nextScene, transitionDuration, configHolder.preferences!!)
-
-        if (store) {
-            configHolder?.updateScene(nextScene)
-        }
-    }
-
-    fun restoreColors(
-        ids: String,
-        transitionDuration: Long
-    ) {
-        val lIds = ids
-            .split(",")
-            .filter { it.trim().isNotEmpty() }
-            .map { it.trim() }
-
-            lIds.forEach { id ->
-                configHolder?.getFadeable(id)?.write(configHolder.preferences!!, transitionDuration = transitionDuration)
-            }
-    }
-
     fun power(
         ids: String,
         turnOn: Boolean,
@@ -134,31 +70,6 @@ class ShellyHandler {
                     )
                 } catch (e: Exception) {
                     log.warn("Could not set power for shelly devica at '$ipAddress'")
-                }
-            }
-        }
-    }
-
-    fun gain(
-        ids: String,
-        gain: Int,
-        transitionDuration: Long
-    ) {
-        val lIds = ids
-            .split(",")
-            .filter { it.trim().isNotEmpty() }
-            .map { it.trim() }
-        lIds.forEach { id ->
-            val sid = id.trim()
-            val shellyDevice = configHolder?.preferences?.getShellyDevice(sid)
-            if (shellyDevice != null) {
-                val ipAddress: String = shellyDevice.ipAddress
-                val lastColor = configHolder?.getFadeable(sid)
-                lastColor?.setGain(gain.toFloat())
-                try {
-                    ShellyClient.setGain(ipAddress = ipAddress, gain = gain, transitionDuration = transitionDuration)
-                } catch (e: Exception) {
-                    log.warn("Could not get gain for shelly at '$ipAddress'")
                 }
             }
         }
