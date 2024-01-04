@@ -30,7 +30,7 @@ abstract class RGBBaseColor<T : RGBBaseColor<T>>(
         return "RGBColor(hex='${web()}', r=$red, g=$green , b=$blue)"
     }
 
-    fun clone(): T {
+    override fun clone(): T {
         return when (this) {
             is RGBColor -> {
                 RGBColor(red, green, blue) as T

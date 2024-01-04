@@ -46,6 +46,10 @@ class DmxScene(
         }
     }
 
+    override fun clone(): DmxScene {
+        return DmxScene(name, parameterSet.map { it.clone() })
+    }
+
     override fun fade(
         other: Any,
         factor: Double

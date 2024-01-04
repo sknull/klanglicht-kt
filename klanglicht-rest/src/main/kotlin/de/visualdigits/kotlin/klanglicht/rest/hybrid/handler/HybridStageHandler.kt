@@ -16,7 +16,7 @@ class HybridStageHandler {
     @Autowired
     val configHolder: ConfigHolder? = null
 
-     /**
+    /**
      * Set hex colors.
      *
      * @param ids The comma separated list of ids.
@@ -34,13 +34,14 @@ class HybridStageHandler {
         turnOn: Boolean,
         store: Boolean = true
     ) {
+        val currentScene = configHolder?.currentScene?.clone()
         val nextScene = HybridScene(ids, hexColors, gains, turnOn.toString(), preferences = configHolder?.preferences)
+        if (store) {
+            configHolder?.updateScene(nextScene)
+        }
+        log.info("nextScene   : $nextScene")
 
-         configHolder?.currentScene?.fade(nextScene, transitionDuration, configHolder.preferences!!)
-
-         if (store) {
-             configHolder?.updateScene(nextScene)
-         }
+        currentScene?.fade(nextScene, transitionDuration, configHolder?.preferences!!)
     }
 
     fun restoreColors(

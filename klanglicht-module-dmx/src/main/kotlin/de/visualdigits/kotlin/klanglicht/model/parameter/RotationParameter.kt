@@ -54,4 +54,8 @@ class RotationParameter(
             RotationParameter(fixture, panDegrees, tiltDegrees)
         } else throw IllegalArgumentException("Cannot fade different parameter type")
     }
+
+    override fun clone(): RotationParameter {
+        return RotationParameter(fixture, panDegrees, tiltDegrees)
+    }
 }

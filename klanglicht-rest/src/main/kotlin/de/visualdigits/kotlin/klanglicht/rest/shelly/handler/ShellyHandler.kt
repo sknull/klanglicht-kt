@@ -75,14 +75,6 @@ class ShellyHandler {
         }
     }
 
-    fun currentPowers(): Map<String, Status> {
-        val powers: MutableMap<String, Status> = LinkedHashMap()
-        status().forEach { (device: ShellyDevice, status: Status) ->
-            powers[device.name] = status
-        }
-        return powers
-    }
-
     fun status(): Map<ShellyDevice, Status> {
         val statusMap: MutableMap<ShellyDevice, Status> = LinkedHashMap()
         configHolder?.preferences?.getShellyDevices()?.forEach { device ->

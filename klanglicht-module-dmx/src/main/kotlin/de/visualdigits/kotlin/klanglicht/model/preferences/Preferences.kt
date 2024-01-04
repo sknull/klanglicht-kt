@@ -107,7 +107,9 @@ data class Preferences(
         serviceMap = services.associateBy { it.name }
         log.info("## Services: ${serviceMap.keys}")
 
-        stageMap = stage.associateBy { it.id }
+        stageMap = stage
+            .filter { it.type != HybridDeviceType.twinkly || getTwinklyConfiguration(it.id)?.xledArray?.isLoggedIn() == true }
+            .associateBy { it.id }
         log.info("## Ids in stage: ${stageMap.keys}")
 
         shellyMap = shelly?.associateBy { it.name }?:mapOf()
@@ -124,20 +126,22 @@ data class Preferences(
     }
 
     fun initialHybridScene(): HybridScene {
-        val ids = stage
-            .filter { it.type != HybridDeviceType.twinkly || getTwinklyConfiguration(it.id)?.xledArray?.isLoggedIn() == true }
-            .map { it.id }
-        return HybridScene(
-            ids = ids.joinToString(","),
-            hexColors = "000000",
-            gains = stage.mapNotNull { sd ->
-                when (sd.type) {
-                    HybridDeviceType.dmx -> dmx?.dmxDevices?.get(sd.id)?.gain
-                    HybridDeviceType.shelly -> getShellyGain(sd.id)
-                    HybridDeviceType.twinkly -> getTwinklyConfiguration(sd.id)?.let { if (it.xledArray.isLoggedIn()) it.gain else null }
-                    else -> null
+        val gains = stage.mapNotNull { sd ->
+            when (sd.type) {
+                HybridDeviceType.dmx -> {
+                    val dmxDevice = dmx?.dmxDevices?.get(sd.id)
+                    dmxDevice?.gain
                 }
-            }.joinToString(","),
+
+                HybridDeviceType.shelly -> getShellyGain(sd.id)
+                HybridDeviceType.twinkly -> getTwinklyConfiguration(sd.id)?.let { if (it.xledArray.isLoggedIn()) it.gain else null }
+                else -> null
+            }
+        }.joinToString(",")
+        return HybridScene(
+            ids = stage.joinToString(",") { it.id },
+            hexColors = "000000",
+            gains = gains,
             turnOns = "false",
             preferences = this
         )

@@ -50,6 +50,10 @@ class ShellyColor(
         }
     }
 
+    override fun clone(): ShellyColor {
+        return ShellyColor(deviceId, ipAddress, color.clone(), deviceGain, deviceTurnOn)
+    }
+
     override fun fade(other: Any, factor: Double): ShellyColor {
         return if (other is ShellyColor) {
             ShellyColor(deviceId, ipAddress, color.fade(other.color, factor), other.deviceGain, other.deviceTurnOn)

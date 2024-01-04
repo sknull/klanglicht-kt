@@ -13,4 +13,8 @@ class IntParameter(
             IntParameter(name, ((value + (other.value - value) * factor).toInt()))
         } else throw IllegalArgumentException("Cannot not fade another type")
     }
+
+    override fun clone(): IntParameter {
+        return IntParameter(name, value)
+    }
 }

@@ -51,6 +51,10 @@ class XledFrameFadeable(
         }
     }
 
+    override fun clone(): XledFrameFadeable {
+        return XledFrameFadeable(deviceId, xledFrame.clone(), deviceGain)
+    }
+
     override fun fade(other: Any, factor: Double): XledFrameFadeable {
         return if (other is XledFrameFadeable) {
             val xledFrame1 = xledFrame.fade(other.xledFrame, factor)

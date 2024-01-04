@@ -52,9 +52,16 @@ class HybridScene() : Fadeable<HybridScene> {
         update(fadeables)
     }
 
-    override fun toString(): String {
+    fun repr(): String {
         return fadeables
             .map { "${it.key}: ${it.value.getRgbColor()?.ansiColor()} [${it.value.getGain()}]" }
+            .joinToString("")
+            .trim()
+    }
+
+    override fun toString(): String {
+        return fadeables
+            .mapNotNull { it.value.getRgbColor()?.ansiColor() }
             .joinToString("")
             .trim()
     }
@@ -152,7 +159,7 @@ class HybridScene() : Fadeable<HybridScene> {
                         val dmxDevice = preferences?.getDmxDevice(id)
                         if (dmxDevice != null) {
                             val effectiveGain = gain ?: dmxDevice.gain
-                            val paramGain = if (turnOn) (255 * effectiveGain).roundToInt() else 0
+                            val paramGain = (255 * effectiveGain).roundToInt()
                             ParameterSet(
                                 baseChannel = dmxDevice.baseChannel,
                                 parameters = mutableListOf(
@@ -227,6 +234,10 @@ class HybridScene() : Fadeable<HybridScene> {
 
         // call shelly interface which is pretty fast
         fadeables().filterIsInstance<ShellyColor>().forEach { it.write(preferences, true) }
+    }
+
+    override fun clone(): HybridScene {
+        return HybridScene(ids, hexColors, gains, turnOns, preferences)
     }
 
     override fun fade(other: Any, factor: Double): HybridScene {

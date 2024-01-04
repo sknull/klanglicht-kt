@@ -35,6 +35,10 @@ class HSVColor(
         } else throw IllegalArgumentException("Cannot not fade another type")
     }
 
+    override fun clone(): HSVColor {
+        return HSVColor(h, s, v)
+    }
+
     override fun toRGB(): RGBColor {
         val h = (this.h / 360.0)
         val s = (this.s / 100.0)

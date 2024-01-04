@@ -74,6 +74,10 @@ class ParameterSet(
         }
     }
 
+    override fun clone(): ParameterSet {
+        return ParameterSet(baseChannel, parameters.map { it.clone() })
+    }
+
     override fun fade(other: Any, factor: Double): ParameterSet {
         return if (other is ParameterSet) {
             val parameters1 = parameters
