@@ -8,7 +8,6 @@ import de.visualdigits.kotlin.klanglicht.model.preferences.Preferences
 import de.visualdigits.kotlin.klanglicht.model.shelly.ShellyColor
 import de.visualdigits.kotlin.klanglicht.model.twinkly.XledFrameFadeable
 import de.visualdigits.kotlin.twinkly.model.playable.XledFrame
-import kotlinx.coroutines.coroutineScope
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import kotlin.math.min
@@ -213,27 +212,32 @@ class HybridScene() : Fadeable<HybridScene> {
     fun getRgbColor(id: String): RGBColor? = fadeables[id]?.getRgbColor()
 
     override fun write(preferences: Preferences?, write: Boolean, transitionDuration: Long) {
-        // first collect all frame data for the dmx frame to avoid lots of costly write operations to a serial interface
         val parameterSets = fadeables().filterIsInstance<ParameterSet>()
         if (parameterSets.isNotEmpty()) { // only write to dmx interface if needed
-            parameterSets.forEach { parameterSet ->
-                val baseChannel = parameterSet.baseChannel
-                preferences?.let{
-                    val bytes = parameterSet.toBytes(it)
-                    preferences.setDmxData(baseChannel, bytes)
-                    if (write) {
-                        log.debug("Writing hybrid scene {}", this)
-                        preferences.writeDmxData()
-                    }
+            preferences?.let {
+                // first collect all frame data for the dmx frame to avoid lots of costly write operations to a serial interface
+                parameterSets.forEach { parameterSet ->
+                    preferences.setDmxData(
+                        baseChannel = parameterSet.baseChannel,
+                        bytes = parameterSet.toBytes(it)
+                    )
+                }
+                if (write) {
+                    log.debug("Writing hybrid scene {}", this)
+                    preferences.writeDmxData()
                 }
             }
         }
 
         // call twinkly interface which is not so fast
-        fadeables().filterIsInstance<XledFrameFadeable>().forEach { it.write(preferences, true) }
+        fadeables().filterIsInstance<XledFrameFadeable>().forEach {
+                    it.write(preferences, true)
+        }
 
         // call shelly interface which is pretty fast
-        fadeables().filterIsInstance<ShellyColor>().forEach { it.write(preferences, true) }
+        fadeables().filterIsInstance<ShellyColor>().forEach {
+            it.write(preferences, true)
+        }
     }
 
     override fun clone(): HybridScene {
