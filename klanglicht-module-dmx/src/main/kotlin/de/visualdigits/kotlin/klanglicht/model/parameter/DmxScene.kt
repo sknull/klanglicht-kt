@@ -1,7 +1,6 @@
 package de.visualdigits.kotlin.klanglicht.model.parameter
 
 import com.fasterxml.jackson.module.kotlin.jacksonMapperBuilder
-import de.visualdigits.kotlin.klanglicht.model.color.RGBColor
 import de.visualdigits.kotlin.klanglicht.model.preferences.Preferences
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory

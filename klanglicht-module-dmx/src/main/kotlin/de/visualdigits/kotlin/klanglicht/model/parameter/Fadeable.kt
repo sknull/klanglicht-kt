@@ -2,7 +2,6 @@ package de.visualdigits.kotlin.klanglicht.model.parameter
 
 import de.visualdigits.kotlin.klanglicht.model.color.RGBColor
 import de.visualdigits.kotlin.klanglicht.model.preferences.Preferences
-import kotlinx.coroutines.runBlocking
 
 interface Fadeable<T : Fadeable<T>> {
 
@@ -44,7 +43,6 @@ interface Fadeable<T : Fadeable<T>> {
     }
 
     fun write(preferences: Preferences?, write: Boolean = true, transitionDuration: Long = 1) {
-        // nothing to do here
     }
 
     /**

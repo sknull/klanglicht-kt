@@ -8,11 +8,16 @@ import de.visualdigits.kotlin.klanglicht.model.preferences.Preferences
 import de.visualdigits.kotlin.klanglicht.model.shelly.ShellyColor
 import de.visualdigits.kotlin.klanglicht.model.twinkly.XledFrameFadeable
 import de.visualdigits.kotlin.twinkly.model.playable.XledFrame
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import kotlin.math.max
 import kotlin.math.min
 import kotlin.math.roundToInt
 import de.visualdigits.kotlin.twinkly.model.color.RGBColor as TwinklyRGBColor
+
 class HybridScene() : Fadeable<HybridScene> {
 
     private val log: Logger = LoggerFactory.getLogger(javaClass)
@@ -31,7 +36,7 @@ class HybridScene() : Fadeable<HybridScene> {
         gains: String,
         turnOns: String = "true",
         preferences: Preferences?
-    ): this() {
+    ) : this() {
         this.ids = ids
         this.hexColors = hexColors
         this.gains = gains
@@ -45,7 +50,7 @@ class HybridScene() : Fadeable<HybridScene> {
     constructor(
         fadeables: MutableMap<String, Fadeable<*>>,
         preferences: Preferences?
-    ): this() {
+    ) : this() {
         this.fadeables.clear()
         this.preferences = preferences
         update(fadeables)
@@ -63,6 +68,10 @@ class HybridScene() : Fadeable<HybridScene> {
             .mapNotNull { it.value.getRgbColor()?.ansiColor() }
             .joinToString("")
             .trim()
+    }
+
+    override fun clone(): HybridScene {
+        return HybridScene(ids, hexColors, gains, turnOns, preferences)
     }
 
     fun update(nextScene: HybridScene) {
@@ -97,7 +106,7 @@ class HybridScene() : Fadeable<HybridScene> {
                 .filter { it.isNotEmpty() }
                 .map { it.trim() }
         } else {
-            preferences?.getStageIds()?:listOf()
+            preferences?.getStageIds() ?: listOf()
         }
 
         val lHexColors = hexColors
@@ -118,7 +127,7 @@ class HybridScene() : Fadeable<HybridScene> {
             .filter { it.isNotEmpty() }
             .map { it.toBoolean() }
         val nt = lTurnOns.size - 1
-        var t= 0
+        var t = 0
 
         val twinklyDevices = preferences?.getHybridDevices(HybridDeviceType.twinkly)
         if (twinklyDevices?.map { it.id }?.any { td -> lIds.any { td == it } } == true) {
@@ -128,12 +137,20 @@ class HybridScene() : Fadeable<HybridScene> {
                     val xa = twinklyDevice.xledArray
                     if (xa.isLoggedIn()) {
                         val lc = RGBColor(lHexColors.last())
-                        val frame = XledFrame(width = xa.width, height = xa.height, initialColor = TwinklyRGBColor(lc.red, lc.green, lc.blue))
+                        val frame = XledFrame(
+                            width = xa.width,
+                            height = xa.height,
+                            initialColor = TwinklyRGBColor(lc.red, lc.green, lc.blue)
+                        )
                         val nc = lHexColors.size
                         val barWidth = xa.width / nc
                         for (x in 0 until nc - 1) {
                             val rgbColor = RGBColor(lHexColors[x])
-                            val bar = XledFrame(width = barWidth, height = xa.height, initialColor = TwinklyRGBColor(rgbColor.red, rgbColor.green, rgbColor.blue))
+                            val bar = XledFrame(
+                                width = barWidth,
+                                height = xa.height,
+                                initialColor = TwinklyRGBColor(rgbColor.red, rgbColor.green, rgbColor.blue)
+                            )
                             frame.replaceSubFrame(bar, x * barWidth, 0)
                         }
                         val fadeable = XledFrameFadeable(
@@ -202,7 +219,7 @@ class HybridScene() : Fadeable<HybridScene> {
         initializeFromFadeables()
     }
 
-    fun getGain(id: String): Float = fadeables[id]?.getGain()?:1.0f
+    fun getGain(id: String): Float = fadeables[id]?.getGain() ?: 1.0f
 
     fun setRgbColor(id: String, rgbColor: RGBColor) {
         fadeables[id]?.setRgbColor(rgbColor)
@@ -210,6 +227,83 @@ class HybridScene() : Fadeable<HybridScene> {
     }
 
     fun getRgbColor(id: String): RGBColor? = fadeables[id]?.getRgbColor()
+
+    override fun fade(
+        other: HybridScene,
+        fadeDuration: Long,
+        preferences: Preferences
+    ) {
+        if (fadeDuration > 0) {
+            runBlocking {
+                val t = System.currentTimeMillis()
+                coroutineScope {
+                    // call shelly interface which is pretty slow with native fading (RGBW shelly devices can fade on their own)
+                    // but api calls cost around 100 millis
+                    other.fadeables().filterIsInstance<ShellyColor>().forEach {
+                        launch { it.write(preferences, true, fadeDuration) }
+                    }
+                }
+
+                // take total launch costs for shelly devices into account - use at least time for one dmx frame
+                val dmxFrameTime = preferences.getDmxFrameTime()
+                val remainingDuration = max(dmxFrameTime, fadeDuration - System.currentTimeMillis() + t)
+                val step = 1.0 / remainingDuration.toDouble() * dmxFrameTime.toDouble()
+
+                val parameterSets = fadeables
+                    .filter { it.value is ParameterSet }
+                    .map { Pair(it.key, it.value as ParameterSet) }
+                    .toMap()
+                val otherParameterSets = other.fadeables
+                    .filter { parameterSets.containsKey(it.key) && it.value is ParameterSet }
+                    .map { Pair(it.key, it.value as ParameterSet) }
+                    .toMap()
+
+                val xledFrames = fadeables
+                    .filter { it.value is XledFrameFadeable }
+                    .map { Pair(it.key, it.value as XledFrameFadeable) }
+                    .toMap()
+                val otherXledFrames = other.fadeables
+                    .filter { xledFrames.containsKey(it.key) && it.value is XledFrameFadeable }
+                    .map { Pair(it.key, it.value as XledFrameFadeable) }
+                    .toMap()
+
+                var factor = 0.0
+                while (factor <= 1.0) {
+                    if (otherParameterSets.isNotEmpty()) { // only write to dmx interface if needed
+                        preferences.let {
+                            // first collect all frame data for the dmx frame to avoid lots of costly write operations to a serial interface
+                            otherParameterSets.forEach { (id, otherParameterSet) ->
+                                val parameterSet = parameterSets[id]
+                                if (parameterSet != null) {
+                                    val faded = parameterSet.fade(otherParameterSet, factor)
+                                    preferences.setDmxData(
+                                        baseChannel = faded.baseChannel,
+                                        bytes = faded.toBytes(it)
+                                    )
+                                }
+                            }
+                            preferences.writeDmxData()
+                        }
+                    }
+
+                    if (otherXledFrames.isNotEmpty()) {
+                        otherXledFrames.forEach { (id, otherXledFrame) ->
+                            val xledFrame = xledFrames[id]
+                            if (xledFrame != null) {
+                                val faded = xledFrame.fade(otherXledFrame, factor)
+                                faded.write(preferences, true)
+                            }
+                        }
+                    }
+
+                    factor += step
+                    Thread.sleep(dmxFrameTime)
+                }
+            }
+        }
+
+        other.write(preferences)
+    }
 
     override fun write(preferences: Preferences?, write: Boolean, transitionDuration: Long) {
         val parameterSets = fadeables().filterIsInstance<ParameterSet>()
@@ -231,7 +325,7 @@ class HybridScene() : Fadeable<HybridScene> {
 
         // call twinkly interface which is not so fast
         fadeables().filterIsInstance<XledFrameFadeable>().forEach {
-                    it.write(preferences, true)
+            it.write(preferences, true)
         }
 
         // call shelly interface which is pretty fast
@@ -240,25 +334,9 @@ class HybridScene() : Fadeable<HybridScene> {
         }
     }
 
-    override fun clone(): HybridScene {
-        return HybridScene(ids, hexColors, gains, turnOns, preferences)
-    }
-
     override fun fade(other: Any, factor: Double): HybridScene {
         return if (other is HybridScene) {
-            val otherIds = other.fadeables().map { it.getId() } // ensure that we only fade elements which are in source and target scene
-            val fadedScene = HybridScene(fadeables, preferences)
-            fadeables()
-                .filter { otherIds.contains(it.getId()) }
-                .zip(other.fadeables())
-                .map { Pair(it.first.fade(it.second, factor).getId(), it.first.fade(it.second, factor)) }
-                .forEach { (id, fadeable) ->
-                    fadedScene.putFadeable(id, fadeable)
-                }
-
-            // fixme - at this point parameterMap contains default values - why?
-
-            fadedScene
+            other
         } else {
             throw IllegalArgumentException("Cannot not fade another type")
         }

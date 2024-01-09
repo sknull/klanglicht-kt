@@ -25,6 +25,10 @@ class ParameterSet(
         return parameters.filterIsInstance<RGBColor>().map { it.ansiColor() }.joinToString("")
     }
 
+    override fun clone(): ParameterSet {
+        return ParameterSet(baseChannel, parameters.map { it.clone() })
+    }
+
     private fun updateParameterMap() {
         parameterMap.clear()
         parameters.forEach { param ->
@@ -74,18 +78,12 @@ class ParameterSet(
         }
     }
 
-    override fun clone(): ParameterSet {
-        return ParameterSet(baseChannel, parameters.map { it.clone() })
-    }
-
     override fun fade(other: Any, factor: Double): ParameterSet {
         return if (other is ParameterSet) {
             val parameters1 = parameters
                 .zip(other.parameters)
-                .map {
-                    val fade = it.first.fade(it.second, factor)
-                    fade
-                }.toMutableList()
+                .map { it.first.fade(it.second, factor) }
+                .toMutableList()
             val parameterSet = ParameterSet(
                 baseChannel = baseChannel,
                 parameters = parameters1

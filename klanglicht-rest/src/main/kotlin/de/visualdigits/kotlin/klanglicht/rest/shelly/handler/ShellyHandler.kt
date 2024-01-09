@@ -47,7 +47,7 @@ class ShellyHandler {
     fun power(
         ids: String,
         turnOn: Boolean,
-        transitionDuration: Long
+        transitionDuration: Long?
     ) {
         val lIds = ids
             .split(",")
@@ -66,7 +66,7 @@ class ShellyHandler {
                         ipAddress = ipAddress,
                         command = command,
                         turnOn = turnOn,
-                        transitionDuration = transitionDuration
+                        transitionDuration = transitionDuration?:configHolder?.preferences?.fadeDurationDefault?:1000
                     )
                 } catch (e: Exception) {
                     log.warn("Could not set power for shelly devica at '$ipAddress'")

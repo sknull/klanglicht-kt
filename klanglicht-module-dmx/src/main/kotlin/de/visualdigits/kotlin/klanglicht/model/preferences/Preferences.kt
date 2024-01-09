@@ -26,6 +26,7 @@ import java.nio.file.Paths
 data class Preferences(
     val name: String = "",
     val theme: String = "",
+    val fadeDurationDefault: Long,
     private val services: List<Service> = listOf(),
     private val shelly: List<ShellyDevice>? = listOf(),
     private val twinkly: List<TwinklyConfiguration>? = listOf(),
@@ -129,8 +130,7 @@ data class Preferences(
         val gains = stage.mapNotNull { sd ->
             when (sd.type) {
                 HybridDeviceType.dmx -> {
-                    val dmxDevice = dmx?.dmxDevices?.get(sd.id)
-                    dmxDevice?.gain
+                    dmx?.dmxDevices?.get(sd.id)?.gain?:1.0f
                 }
 
                 HybridDeviceType.shelly -> getShellyGain(sd.id)

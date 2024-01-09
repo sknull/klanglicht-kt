@@ -30,7 +30,7 @@ class HybridStageHandler {
         ids: String,
         hexColors: String,
         gains: String,
-        transitionDuration: Long,
+        transitionDuration: Long?,
         turnOn: Boolean,
         store: Boolean = true
     ) {
@@ -41,12 +41,12 @@ class HybridStageHandler {
         }
         log.info("nextScene   : $nextScene")
 
-        currentScene?.fade(nextScene, transitionDuration, configHolder?.preferences!!)
+        currentScene?.fade(nextScene, transitionDuration?:configHolder?.preferences?.fadeDurationDefault?:1000, configHolder?.preferences!!)
     }
 
     fun restoreColors(
         ids: String,
-        transitionDuration: Long
+        transitionDuration: Long?
     ) {
         val lIds = ids
             .split(",")
@@ -54,14 +54,14 @@ class HybridStageHandler {
             .map { it.trim() }
 
         lIds.forEach { id ->
-            configHolder?.getFadeable(id)?.write(configHolder.preferences!!, transitionDuration = transitionDuration)
+            configHolder?.getFadeable(id)?.write(configHolder.preferences!!, transitionDuration = transitionDuration?:configHolder.preferences?.fadeDurationDefault?:1000)
         }
     }
 
     fun gain(
         ids: String,
         gain: Int,
-        transitionDuration: Long
+        transitionDuration: Long?
     ) {
         val lIds = ids
             .split(",")
@@ -75,7 +75,7 @@ class HybridStageHandler {
                 val lastColor = configHolder?.getFadeable(sid)
                 lastColor?.setGain(gain.toFloat())
                 try {
-                    ShellyClient.setGain(ipAddress = ipAddress, gain = gain, transitionDuration = transitionDuration)
+                    ShellyClient.setGain(ipAddress = ipAddress, gain = gain, transitionDuration = transitionDuration?:configHolder?.preferences?.fadeDurationDefault?:1000)
                 } catch (e: Exception) {
                     log.warn("Could not get gain for shelly at '$ipAddress'")
                 }

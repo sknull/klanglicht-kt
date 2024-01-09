@@ -5,7 +5,6 @@ import de.visualdigits.kotlin.klanglicht.model.parameter.IntParameter
 import de.visualdigits.kotlin.klanglicht.model.parameter.ParameterSet
 import de.visualdigits.kotlin.klanglicht.model.parameter.DmxScene
 import de.visualdigits.kotlin.klanglicht.model.preferences.Preferences
-import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import java.io.File

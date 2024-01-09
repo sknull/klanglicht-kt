@@ -6,6 +6,7 @@ import de.visualdigits.kotlin.klanglicht.model.preferences.Preferences
 import de.visualdigits.kotlin.klanglicht.model.shelly.client.ShellyClient
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import kotlin.math.min
 
 class ShellyColor(
     private val deviceId: String,
@@ -16,6 +17,10 @@ class ShellyColor(
 ) : Fadeable<ShellyColor> {
 
     private val log: Logger = LoggerFactory.getLogger(javaClass)
+
+    override fun clone(): ShellyColor {
+        return ShellyColor(deviceId, ipAddress, color.clone(), deviceGain, deviceTurnOn)
+    }
 
     override fun getTurnOn(): Boolean = deviceTurnOn
 
@@ -50,13 +55,9 @@ class ShellyColor(
         }
     }
 
-    override fun clone(): ShellyColor {
-        return ShellyColor(deviceId, ipAddress, color.clone(), deviceGain, deviceTurnOn)
-    }
-
     override fun fade(other: Any, factor: Double): ShellyColor {
         return if (other is ShellyColor) {
-            ShellyColor(deviceId, ipAddress, color.fade(other.color, factor), other.deviceGain, other.deviceTurnOn)
+            ShellyColor(deviceId, ipAddress, color.fade(other.color, factor),  min(1.0, (deviceGain + factor * (other.deviceGain - deviceGain))).toFloat(), other.deviceTurnOn)
         } else {
             throw IllegalArgumentException("Cannot not fade another type")
         }

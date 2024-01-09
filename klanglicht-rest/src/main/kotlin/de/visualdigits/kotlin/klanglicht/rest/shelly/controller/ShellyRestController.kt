@@ -39,7 +39,7 @@ class ShellyRestController {
     fun power(
         @RequestParam(value = "ids", required = false, defaultValue = "") ids: String,
         @RequestParam(value = "turnOn", required = false, defaultValue = "true") turnOn: Boolean,
-        @RequestParam(value = "transition", required = false, defaultValue = "1000") transitionDuration: Long
+        @RequestParam(value = "transition", required = false) transitionDuration: Long?
     ) {
         shellyHandler?.power(ids, turnOn, transitionDuration)
     }
@@ -49,7 +49,7 @@ class ShellyRestController {
         @RequestParam(value = "ids", required = false, defaultValue = "") ids: String,
         @RequestParam(value = "hexColors") hexColors: String,
         @RequestParam(value = "gains", required = false, defaultValue = "") gains: String,
-        @RequestParam(value = "transition", required = false, defaultValue = "1000") transitionDuration: Long,
+        @RequestParam(value = "transition", required = false) transitionDuration: Long?,
         @RequestParam(value = "turnOn", required = false, defaultValue = "true") turnOn: Boolean,
         @RequestParam(value = "store", required = false, defaultValue = "true") store: Boolean
     ) {
@@ -59,7 +59,7 @@ class ShellyRestController {
     @GetMapping("restore")
     fun restoreColors(
         @RequestParam(value = "ids", required = false, defaultValue = "") ids: String,
-        @RequestParam(value = "transition", required = false, defaultValue = "1000") transitionDuration: Long
+        @RequestParam(value = "transition", required = false) transitionDuration: Long?
     ) {
         hybridStageHandler?.restoreColors(ids, transitionDuration)
     }
@@ -68,7 +68,7 @@ class ShellyRestController {
     fun gain(
         @RequestParam(value = "ids", required = false, defaultValue = "") ids: String,
         @RequestParam(value = "gain", required = false, defaultValue = "") gain: Int,
-        @RequestParam(value = "transition", required = false, defaultValue = "1000") transitionDuration: Long
+        @RequestParam(value = "transition", required = false) transitionDuration: Long?
     ) {
         hybridStageHandler?.gain(ids, gain, transitionDuration)
     }

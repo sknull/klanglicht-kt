@@ -20,6 +20,10 @@ class XledFrameFadeable(
         return xledFrame.toString()
     }
 
+    override fun clone(): XledFrameFadeable {
+        return XledFrameFadeable(deviceId, xledFrame.clone(), deviceGain)
+    }
+
     override fun getTurnOn(): Boolean = true
 
     override fun getId(): String = deviceId
@@ -49,10 +53,6 @@ class XledFrameFadeable(
                 xledFrame.play(xledArray)
             }
         }
-    }
-
-    override fun clone(): XledFrameFadeable {
-        return XledFrameFadeable(deviceId, xledFrame.clone(), deviceGain)
     }
 
     override fun fade(other: Any, factor: Double): XledFrameFadeable {
