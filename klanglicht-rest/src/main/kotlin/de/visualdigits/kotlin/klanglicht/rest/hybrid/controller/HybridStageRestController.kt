@@ -22,7 +22,8 @@ class HybridStageRestController {
         @RequestParam(value = "gains", required = false, defaultValue = "") gains: String,
         @RequestParam(value = "transition", required = false) transitionDuration: Long?,
         @RequestParam(value = "turnOn", required = false, defaultValue = "true") turnOn: Boolean,
-        @RequestParam(value = "store", required = false, defaultValue = "true") store: Boolean
+        @RequestParam(value = "store", required = false, defaultValue = "true") store: Boolean,
+        @RequestParam(value = "storeName", required = false) storeName: String?
     ) {
         hybridStageHandler?.hexColor(
             ids = ids,
@@ -30,7 +31,19 @@ class HybridStageRestController {
             gains = gains,
             transitionDuration = transitionDuration,
             turnOn = turnOn,
-            store = store
+            store = store,
+            storeName = storeName
+        )
+    }
+
+    @GetMapping("putColor")
+    fun putColor(
+        @RequestParam(value = "id") id: String,
+        @RequestParam(value = "hexColor") hexColor: String
+    ) {
+        hybridStageHandler?.putColor(
+            id = id,
+            hexColor = hexColor
         )
     }
 }

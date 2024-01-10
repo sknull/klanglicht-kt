@@ -23,6 +23,7 @@ class ConfigHolder {
     val klanglichtDirectory: File = File(SystemUtils.getUserHome(), ".klanglicht")
 
     var currentScene: HybridScene? = null
+    val colorStore: MutableMap<String, String> = mutableMapOf()
 
     @PostConstruct
     fun initialize() {
@@ -53,5 +54,13 @@ class ConfigHolder {
 
     fun updateScene(nextScene: HybridScene) {
         currentScene?.update(nextScene)
+    }
+
+    fun putColor(id: String, hexColor: String) {
+        colorStore[id] = hexColor
+    }
+
+    fun getColor(id: String): String? {
+        return colorStore[id]
     }
 }

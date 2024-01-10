@@ -11,7 +11,7 @@ class ShellyStatus : HtmlRenderable {
 
     fun toHtml(shellyHandler: ShellyHandler): String {
         val sb = StringBuilder()
-        sb.append("<div class=\"title\" onclick=\"toggleFullScreen();\" alt=\"Toggle Fullscreen\" title=\"Toggle Fullscreen\">")
+        sb.append("<div class=\"title\" onclick=\"toggleFullScreen();\" title=\"Toggle Fullscreen\">")
             .append("Current Power Values")
             .append("</div>\n")
         sb.append("<div class=\"category\">\n")

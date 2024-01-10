@@ -32,7 +32,7 @@ class ShellyRestController {
         @RequestParam(value = "scene", required = false, defaultValue = "0") sceneId: Int,
         @RequestParam(value = "index", required = false, defaultValue = "0") index: Int
     ) {
-        shellyHandler?.control(sceneId, index)
+        shellyHandler?.control(sceneId = sceneId, index = index)
     }
 
     @GetMapping("power")
@@ -41,7 +41,7 @@ class ShellyRestController {
         @RequestParam(value = "turnOn", required = false, defaultValue = "true") turnOn: Boolean,
         @RequestParam(value = "transition", required = false) transitionDuration: Long?
     ) {
-        shellyHandler?.power(ids, turnOn, transitionDuration)
+        shellyHandler?.power(ids = ids, turnOn = turnOn, transitionDuration = transitionDuration)
     }
 
     @GetMapping("hexColor")
@@ -51,9 +51,18 @@ class ShellyRestController {
         @RequestParam(value = "gains", required = false, defaultValue = "") gains: String,
         @RequestParam(value = "transition", required = false) transitionDuration: Long?,
         @RequestParam(value = "turnOn", required = false, defaultValue = "true") turnOn: Boolean,
-        @RequestParam(value = "store", required = false, defaultValue = "true") store: Boolean
+        @RequestParam(value = "store", required = false, defaultValue = "true") store: Boolean,
+        @RequestParam(value = "storeName", required = false) storeName: String?
     ) {
-        hybridStageHandler?.hexColor(ids, hexColors, gains, transitionDuration, turnOn, store)
+        hybridStageHandler?.hexColor(
+            ids = ids,
+            hexColors = hexColors,
+            gains = gains,
+            transitionDuration = transitionDuration,
+            turnOn = turnOn,
+            store = store,
+            storeName = storeName
+        )
     }
 
     @GetMapping("restore")
@@ -61,7 +70,7 @@ class ShellyRestController {
         @RequestParam(value = "ids", required = false, defaultValue = "") ids: String,
         @RequestParam(value = "transition", required = false) transitionDuration: Long?
     ) {
-        hybridStageHandler?.restoreColors(ids, transitionDuration)
+        hybridStageHandler?.restoreColors(ids = ids, transitionDuration = transitionDuration)
     }
 
     @GetMapping("gain")
@@ -70,6 +79,6 @@ class ShellyRestController {
         @RequestParam(value = "gain", required = false, defaultValue = "") gain: Int,
         @RequestParam(value = "transition", required = false) transitionDuration: Long?
     ) {
-        hybridStageHandler?.gain(ids, gain, transitionDuration)
+        hybridStageHandler?.gain(ids = ids, gain = gain, transitionDuration = transitionDuration)
     }
 }

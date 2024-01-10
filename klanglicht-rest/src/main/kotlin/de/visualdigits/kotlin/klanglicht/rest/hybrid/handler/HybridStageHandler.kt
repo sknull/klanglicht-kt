@@ -25,6 +25,7 @@ class HybridStageHandler {
      * @param transitionDuration The fade duration in milli seconds.
      * @param turnOn Determines if the device should be turned on.
      * @param store Determines if the colors should be saved in the ConfigHolder.
+     * @param storeName An additional name to strore values.
      */
     fun hexColor(
         ids: String,
@@ -32,17 +33,34 @@ class HybridStageHandler {
         gains: String,
         transitionDuration: Long?,
         turnOn: Boolean,
-        store: Boolean = true
+        store: Boolean = true,
+        storeName: String?
     ) {
         val currentScene = configHolder?.currentScene?.clone()
-        val nextScene = HybridScene(ids, hexColors, gains, turnOn.toString(), preferences = configHolder?.preferences)
-        if (store) {
-            configHolder?.updateScene(nextScene)
+        val nextScene = configHolder?.currentScene?.clone()?.let { n ->
+            HybridScene(ids, hexColors, gains, turnOn.toString(), preferences = configHolder.preferences).fadeableMap().forEach {
+                n.putFadeable(it.key, it.value)
+            }
+            n
         }
-        log.info("nextScene   : $nextScene")
+        if (store) {
+            configHolder?.updateScene(nextScene!!)
+            if (storeName != null) {
+                configHolder?.putColor(storeName, hexColors)
+            }
+        }
+        log.info("nextScene: $nextScene")
 
-        currentScene?.fade(nextScene, transitionDuration?:configHolder?.preferences?.fadeDurationDefault?:1000, configHolder?.preferences!!)
+        currentScene?.fade(nextScene!!, transitionDuration?:configHolder?.preferences?.fadeDurationDefault?:1000, configHolder?.preferences!!)
     }
+
+    fun putColor(
+        id: String,
+        hexColor: String,
+    ) {
+        configHolder?.putColor(id, hexColor)
+    }
+
 
     fun restoreColors(
         ids: String,

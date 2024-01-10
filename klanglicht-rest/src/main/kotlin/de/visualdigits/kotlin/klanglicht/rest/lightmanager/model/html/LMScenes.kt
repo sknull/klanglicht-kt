@@ -37,7 +37,7 @@ class LMScenes(
 
     override fun toHtml(configHolder: ConfigHolder): String {
         val sb = StringBuilder()
-        sb.append("<div class=\"title\" onclick=\"toggleFullScreen();\" alt=\"Toggle Fullscreen\" title=\"Toggle Fullscreen\">")
+        sb.append("<div class=\"title\" onclick=\"toggleFullScreen();\" title=\"Toggle Fullscreen\">")
             .append(name)
             .append("</div>\n")
         sb.append("<div class=\"center-category\">\n")
@@ -61,6 +61,16 @@ class LMScenes(
                 groupScenes
             )
         }
+        sb.append("  <div class=\"group\">\n")
+        renderLabel(sb, "All")
+        sb.append(ColorWheel("All").toHtml(configHolder))
+        sb.append("  </div><!-- group -->\n")
+
+        sb.append("  <div class=\"group\">\n")
+        renderLabel(sb, "All Odd Even")
+        sb.append(ColorWheel("All").toHtml(configHolder, true))
+        sb.append("  </div><!-- group -->\n")
+
         sb.append("</div><!-- scenes -->\n\n")
         return sb.toString()
     }

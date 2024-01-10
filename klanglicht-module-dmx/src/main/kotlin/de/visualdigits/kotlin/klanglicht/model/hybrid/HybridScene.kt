@@ -83,12 +83,14 @@ class HybridScene() : Fadeable<HybridScene> {
         initializeFromFadeables()
     }
 
+    fun fadeableMap(): Map<String, Fadeable<*>> = fadeables.toMap()
+
     fun fadeables(): List<Fadeable<*>> = fadeables.values.toList()
 
     fun getFadeable(id: String): Fadeable<*>? = fadeables[id]
 
     fun putFadeable(id: String, fadeable: Fadeable<*>) {
-        fadeables[id] = fadeable
+        fadeables[id] = fadeable.clone()
         initializeFromFadeables()
     }
 
@@ -239,8 +241,12 @@ class HybridScene() : Fadeable<HybridScene> {
                 coroutineScope {
                     // call shelly interface which is pretty slow with native fading (RGBW shelly devices can fade on their own)
                     // but api calls cost around 100 millis
-                    other.fadeables().filterIsInstance<ShellyColor>().forEach {
-                        launch { it.write(preferences, true, fadeDuration) }
+                    other.fadeableMap().filter { it.value is ShellyColor }.forEach {
+                        val otherFadeable = it.value as ShellyColor
+                        val fadeable = fadeables[otherFadeable.getId()]
+                        if (fadeable != null && otherFadeable.getRgbColor() != fadeable.getRgbColor()) {
+                            launch { (otherFadeable as ShellyColor).write(preferences, true, fadeDuration) }
+                        }
                     }
                 }
 
@@ -274,7 +280,7 @@ class HybridScene() : Fadeable<HybridScene> {
                             // first collect all frame data for the dmx frame to avoid lots of costly write operations to a serial interface
                             otherParameterSets.forEach { (id, otherParameterSet) ->
                                 val parameterSet = parameterSets[id]
-                                if (parameterSet != null) {
+                                if (parameterSet != null && otherParameterSet.getRgbColor() != parameterSet.getRgbColor()) {
                                     val faded = parameterSet.fade(otherParameterSet, factor)
                                     preferences.setDmxData(
                                         baseChannel = faded.baseChannel,

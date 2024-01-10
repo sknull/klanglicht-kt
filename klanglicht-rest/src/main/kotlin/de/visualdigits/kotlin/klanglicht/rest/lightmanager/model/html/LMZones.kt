@@ -169,7 +169,7 @@ class LMZones(
 
     override fun toHtml(configHolder: ConfigHolder): String {
         val sb = StringBuilder()
-        sb.append("<div class=\"title\" onclick=\"toggleFullScreen();\" alt=\"Toggle Fullscreen\" title=\"Toggle Fullscreen\">")
+        sb.append("<div class=\"title\" onclick=\"toggleFullScreen();\" title=\"Toggle Fullscreen\">")
             .append(name)
             .append("</div>\n")
         sb.append("<div class=\"category\">\n")
