@@ -1,7 +1,7 @@
 package de.visualdigits.kotlin.klanglicht.model.color
 
-import org.apache.commons.lang3.StringUtils
 import java.lang.Long.decode
+import java.lang.Long.toHexString
 import kotlin.math.min
 import kotlin.math.roundToInt
 
@@ -24,7 +24,7 @@ class RGBWAColor(
     constructor(hex: String) : this(decode(if (hex.startsWith("#") || hex.startsWith("0x")) hex else "#$hex"))
 
     override fun toString(): String {
-        return "[" + StringUtils.join(listOf(red, green, blue, white, amber), ", ") + "]"
+        return "[" +listOf(red, green, blue, white, amber).joinToString(", ") + "]"
     }
 
     override fun repr(): String {
@@ -53,7 +53,7 @@ class RGBWAColor(
 
     override fun value(): Long = (red.toLong() shl 32) or (green.toLong() shl 24) or (blue.toLong() shl 16) or (white.toLong() shl 8) or amber.toLong()
 
-    override fun hex(): String = StringUtils.leftPad(java.lang.Long.toHexString(value()), 10, '0')
+    override fun hex(): String = toHexString(value()).padStart( 10, '0')
 
     override fun web(): String = "#${hex()}"
 

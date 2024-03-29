@@ -1,7 +1,6 @@
 package de.visualdigits.kotlin.klanglicht.rest.lightmanager.model.html
 
 import de.visualdigits.kotlin.klanglicht.rest.configuration.ConfigHolder
-import org.apache.commons.lang3.StringUtils
 import org.jsoup.nodes.Element
 import java.io.UnsupportedEncodingException
 import java.net.URLDecoder
@@ -42,11 +41,11 @@ class LMZones(
         actor.id = aid
         val actorOff: String = actorElem.attr("data-aoff")
         var colorOff =
-            if (StringUtils.isNotEmpty(actorOff)) actorOff.split(",".toRegex()).dropLastWhile { it.isEmpty() }
+            if (actorOff.isNotEmpty()) actorOff.split(",".toRegex()).dropLastWhile { it.isEmpty() }
                 .toTypedArray()[1].trim { it <= ' ' }
             else ""
         val actorOn: String = actorElem.attr("data-aon")
-        val colorOn = if (StringUtils.isNotEmpty(actorOn)) actorOn.split(",".toRegex()).dropLastWhile { it.isEmpty() }
+        val colorOn = if (actorOn.isNotEmpty()) actorOn.split(",".toRegex()).dropLastWhile { it.isEmpty() }
             .toTypedArray()[1].trim { it <= ' ' }
         else ""
         var name = actorElem.child(0).text()
@@ -59,7 +58,7 @@ class LMZones(
         actor.colorOn = colorOn
         actor.name = name
         val dataMarker: String = actorElem.attr("data-marker")
-        if (StringUtils.isNotEmpty(dataMarker)) {
+        if (dataMarker.isNotEmpty()) {
             val mid = dataMarker.toInt()
             val marker = markers[mid]
             actor.addMarker(marker)

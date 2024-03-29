@@ -1,7 +1,6 @@
 package de.visualdigits.kotlin.klanglicht.model.dmx
 
-import com.google.common.primitives.Bytes
-import org.apache.commons.lang3.StringUtils
+import java.lang.Integer.toHexString
 import java.util.Arrays
 
 
@@ -38,7 +37,7 @@ class DmxFrame(
     /**
      * Returns the bytes for a complete frame including header and footer.
      */
-    fun getFrameBytes(): ByteArray = Bytes.concat(header, data, footer)
+    fun getFrameBytes(): ByteArray = header + data + footer
 
     /**
      * Sets all data bytes to 0.
@@ -58,9 +57,9 @@ class DmxFrame(
     fun dump(): String {
         val l: MutableList<String> = ArrayList()
         for (b in data) {
-            l.add("0x" + StringUtils.leftPad(Integer.toHexString(b.toInt() and 0xff), 2, '0'))
+            l.add("0x" + toHexString(b.toInt() and 0xff).padStart( 2, '0'))
         }
-        return StringUtils.join(l, ", ")
+        return l.joinToString(", ")
     }
 
     fun clear() {

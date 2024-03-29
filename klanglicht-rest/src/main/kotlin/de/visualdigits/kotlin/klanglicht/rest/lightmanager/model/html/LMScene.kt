@@ -1,7 +1,6 @@
 package de.visualdigits.kotlin.klanglicht.rest.lightmanager.model.html
 
 import de.visualdigits.kotlin.klanglicht.rest.configuration.ConfigHolder
-import org.apache.commons.lang3.StringUtils
 
 
 class LMScene(
@@ -17,7 +16,7 @@ class LMScene(
         val lightmanagerUrl = configHolder.preferences?.getService("lmair")?.url
         val sb = StringBuilder()
         sb.append("      <div class=\"button\"")
-        if (StringUtils.isNotEmpty(color)) {
+        if (color?.isNotEmpty() == true) {
             if (color?.contains(",") == true) {
                 sb.append(" style=\"background: -moz-linear-gradient(left, ")
                     .append(color)

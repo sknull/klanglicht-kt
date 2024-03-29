@@ -1,6 +1,5 @@
 package de.visualdigits.kotlin.klanglicht.model.color
 
-import org.apache.commons.lang3.StringUtils
 import java.lang.Long.decode
 import kotlin.math.min
 import kotlin.math.roundToInt
@@ -28,7 +27,7 @@ class RGBAColor(
     constructor(hex: String) : this(decode(if (hex.startsWith("#") || hex.startsWith("0x")) hex else "#$hex"))
 
     override fun toString(): String {
-        return "[" + StringUtils.join(listOf(red, green, blue, amber), ", ") + "]"
+        return "[" + listOf(red, green, blue, amber).joinToString(", ") + "]"
     }
 
     override fun repr(): String {
@@ -55,7 +54,7 @@ class RGBAColor(
 
     override fun value(): Long = (red.toLong() shl 24) or (green.toLong() shl 16) or (blue.toLong() shl 8) or amber.toLong()
 
-    override fun hex(): String = StringUtils.leftPad(java.lang.Long.toHexString(value()), 8, '0')
+    override fun hex(): String = java.lang.Long.toHexString(value()).padStart(8, '0')
 
     override fun web(): String = "#${hex()}"
 

@@ -2,7 +2,7 @@ package de.visualdigits.kotlin.klanglicht.model.dmx
 
 import jssc.SerialPort
 import jssc.SerialPortException
-import org.apache.commons.lang3.StringUtils
+import java.lang.Integer.toHexString
 
 
 open class DmxInterface {
@@ -28,7 +28,7 @@ open class DmxInterface {
     fun repr(): String {
         val lst = ArrayList<String>()
         for (b in dmxFrame.getFrameBytes()) {
-            lst.add(StringUtils.leftPad(Integer.toHexString(b.toInt()), 8, '0'))
+            lst.add(toHexString(b.toInt()).padStart( 8, '0'))
         }
         return lst.toString()
     }
@@ -39,7 +39,7 @@ open class DmxInterface {
      * @param portName The port name (i.e. 'COM9'.
      */
     open fun open(portName: String) {
-        if (serialPort == null && !StringUtils.isEmpty(portName)) {
+        if (serialPort == null && portName.isNotEmpty()) {
             try {
                 serialPort = SerialPort(portName)
                 serialPort?.openPort()

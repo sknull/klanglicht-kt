@@ -1,11 +1,11 @@
 package de.visualdigits.kotlin.klanglicht.rest.lightmanager.model.html
 
 import com.fasterxml.jackson.annotation.JsonIgnore
-import com.google.common.collect.LinkedListMultimap
-import com.google.common.collect.Multimap
 import de.visualdigits.kotlin.klanglicht.rest.configuration.ConfigHolder
 import de.visualdigits.kotlin.klanglicht.rest.lightmanager.widgets.ColorWheel
-import org.apache.commons.lang3.StringUtils
+import org.springframework.util.LinkedMultiValueMap
+import org.springframework.util.MultiValueMap
+import java.util.Locale
 import java.util.TreeMap
 import java.util.function.Consumer
 
@@ -15,23 +15,25 @@ class LMScenes(
     val COLOR_WHEEL_GROUPS: List<String> = mutableListOf("Dmx", "Deko", "Rgbw", "Bar", "Starwars")
 
     @JsonIgnore
-    val scenes: Multimap<String, LMScene> = LinkedListMultimap.create<String, LMScene>()
+    val scenes: MultiValueMap<String, LMScene> = LinkedMultiValueMap()
+
     fun add(scene: LMScene) {
         var group: String? = "common"
         val attributes = LMNamedAttributes(scene.name, "group", "color")
         if (attributes.matched()) {
             val name = attributes.name
-            if (StringUtils.isNotEmpty(name)) {
+            if (name?.isNotEmpty() == true) {
                 scene.name = name
             }
             val g = attributes["group"]
-            if (StringUtils.isNotEmpty(g)) {
+            if (g.isNotEmpty()) {
                 group = g
             }
             scene.color = attributes["color"]
         }
         if ("hidden" != group) {
-            scenes.put(StringUtils.capitalize(group), scene)
+            group?.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
+                ?.let { scenes.add(it, scene) }
         }
     }
 
@@ -52,8 +54,8 @@ class LMScenes(
 
         sb.append("<div class=\"category\">\n")
         renderLabel(sb, "S C E N E S")
-        val scenesMap: Map<String, Collection<LMScene>> = TreeMap<String, Collection<LMScene>>(scenes.asMap())
-        scenesMap.forEach { (group: String, groupScenes: Collection<LMScene>) ->
+        val scenesMap: Map<String, List<LMScene>> = TreeMap<String, List<LMScene>>(scenes.toMap())
+        scenesMap.forEach { (group: String, groupScenes: List<LMScene>) ->
             renderScenesGroup(
                 sb,
                 configHolder,
@@ -88,7 +90,7 @@ class LMScenes(
         sb: StringBuilder,
         configHolder: ConfigHolder,
         group: String,
-        groupScenes: Collection<LMScene>
+        groupScenes: List<LMScene>
     ) {
         val hasColorWheel = COLOR_WHEEL_GROUPS.contains(group)
         sb.append("  <div class=\"group")

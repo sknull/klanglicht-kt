@@ -1,7 +1,7 @@
 package de.visualdigits.kotlin.klanglicht.model.hybrid
 
 import de.visualdigits.kotlin.klanglicht.model.preferences.Preferences
-import org.apache.commons.lang3.SystemUtils
+import de.visualdigits.kotlin.util.SystemUtils
 import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import java.io.File

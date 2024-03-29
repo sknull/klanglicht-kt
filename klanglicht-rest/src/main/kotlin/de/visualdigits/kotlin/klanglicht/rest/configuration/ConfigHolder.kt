@@ -3,10 +3,9 @@ package de.visualdigits.kotlin.klanglicht.rest.configuration
 import de.visualdigits.kotlin.klanglicht.model.hybrid.HybridScene
 import de.visualdigits.kotlin.klanglicht.model.parameter.Fadeable
 import de.visualdigits.kotlin.klanglicht.model.preferences.Preferences
+import de.visualdigits.kotlin.util.SystemUtils
 import jakarta.annotation.PostConstruct
 import jakarta.annotation.PreDestroy
-import kotlinx.coroutines.runBlocking
-import org.apache.commons.lang3.SystemUtils
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Component

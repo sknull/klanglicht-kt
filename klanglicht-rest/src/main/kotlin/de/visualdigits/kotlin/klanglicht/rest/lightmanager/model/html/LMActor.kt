@@ -3,7 +3,6 @@ package de.visualdigits.kotlin.klanglicht.rest.lightmanager.model.html
 import com.fasterxml.jackson.annotation.JsonIgnore
 import de.visualdigits.kotlin.klanglicht.rest.configuration.ConfigHolder
 import de.visualdigits.kotlin.klanglicht.rest.lightmanager.feign.LightmanagerClient
-import org.apache.commons.lang3.StringUtils
 
 class LMActor(
     var id: Int? = null,
@@ -77,18 +76,18 @@ class LMActor(
             colorOn = marker?.colorOn
             isSeparate = marker?.separate
         }
-        else if (!markers.isEmpty()) {
+        else if (markers.isNotEmpty()) {
             hasSeparateMarkers = true
         }
-        if (StringUtils.isEmpty(colorOff)) {
+        if (colorOff?.isEmpty() == true) {
             colorOff =
-                if (StringUtils.isNotEmpty(colorOff)) colorOff else LightmanagerClient.COLOR_OFF
+                colorOff.ifEmpty { LightmanagerClient.COLOR_OFF }
         }
-        if (StringUtils.isEmpty(colorOn)) {
-            colorOn = if (StringUtils.isNotEmpty(colorOn)) colorOn else LightmanagerClient.COLOR_ON
+        if (colorOn?.isEmpty() == true) {
+            colorOn = colorOn.ifEmpty { LightmanagerClient.COLOR_ON }
         }
         val lmRequests = requests.values.toList()
-        if (!lmRequests.isEmpty() && lmRequests.first() is LMDefaultRequest) {
+        if (lmRequests.isNotEmpty() && lmRequests.first() is LMDefaultRequest) {
             if (hasSeparateMarkers == true || isSeparate == true) {
                 sb.append("        <div class=\"double-button\">\n")
                 //                Collections.reverse(lmRequests);
@@ -116,8 +115,7 @@ class LMActor(
             else {
                 val rq0 = lmRequests.first() as LMDefaultRequest
                 val smkState0 = determineSmkState(rq0)
-                var rq: LMRequest? = null
-                rq = if (markerIsOn == true && !smkState0 || markerIsOn != true && smkState0) {
+                val rq: LMRequest? = if (markerIsOn == true && !smkState0 || markerIsOn != true && smkState0) {
                     rq0
                 }
                 else if (lmRequests.size > 1) {
@@ -215,7 +213,7 @@ class LMActor(
 
     fun addMarker(marker: LMMarker?) {
         var markerState = marker?.markerState!!
-        if (StringUtils.isEmpty(markerState)) {
+        if (markerState.isEmpty()) {
             markerState = "unified"
         }
         markers[markerState] = marker

@@ -9,7 +9,6 @@ import de.visualdigits.kotlin.klanglicht.rest.lightmanager.model.html.LMScene
 import de.visualdigits.kotlin.klanglicht.rest.lightmanager.model.html.LMScenes
 import de.visualdigits.kotlin.klanglicht.rest.lightmanager.model.html.LMZones
 import jakarta.annotation.PostConstruct
-import org.apache.commons.lang3.StringUtils
 import org.jsoup.Jsoup
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
@@ -25,7 +24,7 @@ class LightmanagerClient(
 
     @PostConstruct
     fun initialize() {
-        if (StringUtils.isEmpty(lightmanagerUrl)) {
+        if (lightmanagerUrl?.isEmpty() == true) {
             lightmanagerUrl = configHolder!!.preferences?.getService("lmair")?.url
         }
         client = LightmanagerFeignClient.client(lightmanagerUrl)
@@ -108,8 +107,8 @@ class LightmanagerClient(
                     LMMarker(
                         id = id,
                         name = elem.text(),
-                        colorOff = if (StringUtils.isNotEmpty(colorOff)) colorOff else COLOR_OFF,
-                        colorOn = if (StringUtils.isNotEmpty(colorOn)) colorOn else COLOR_ON,
+                        colorOff = colorOff.ifEmpty { COLOR_OFF },
+                        colorOn = colorOn.ifEmpty { COLOR_ON },
                         state = markerState[id],
                         separate = false,
                         actorId = "",

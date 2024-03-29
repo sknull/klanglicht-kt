@@ -3,8 +3,6 @@ package de.visualdigits.kotlin.klanglicht.model.preferences
 import com.fasterxml.jackson.databind.SerializationFeature
 import com.fasterxml.jackson.module.kotlin.jacksonMapperBuilder
 import de.visualdigits.kotlin.klanglicht.model.hybrid.HybridScene
-import org.apache.commons.lang3.SystemUtils
-import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.Test
 import java.io.File

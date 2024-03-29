@@ -1,7 +1,5 @@
 package de.visualdigits.kotlin.klanglicht.rest.lightmanager.model.html
 
-import org.apache.commons.lang3.StringUtils
-
 class LMMarkers(
     var name: String? = null,
     var markers: MutableMap<Int, LMMarker> = mutableMapOf()
@@ -10,7 +8,7 @@ class LMMarkers(
         val attributes = LMNamedAttributes(marker.name, "separate", "actorId", "state")
         if (attributes.matched()) {
             val name = attributes.name
-            if (StringUtils.isNotEmpty(name)) {
+            if (name?.isNotEmpty() == true) {
                 marker.name = name
             }
             marker.separate = attributes.getOrDefault("separate", "false").toBoolean()
