@@ -50,7 +50,7 @@
     <repository>
       <id>github</id>
       <name>GitHub sknull Apache Maven Packages</name>
-      <url>https://maven.pkg.github.com/sknull</url>
+      <url>https://maven.pkg.github.com/sknull/twinkly-kt</url>
       <releases>
         <enabled>true</enabled>
       </releases>
