@@ -26,13 +26,6 @@
       <version>${version.twinkly}</version>
     </dependency>
 
-    <!-- commons -->
-    <dependency>
-      <groupId>commons-codec</groupId>
-      <artifactId>commons-codec</artifactId>
-      <version>1.15</version>
-    </dependency>
-
     <!-- jackson -->
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
