@@ -1,13 +1,21 @@
 package de.visualdigits.kotlin.klanglicht.rest.lightmanager.model.html
 
+import de.visualdigits.kotlin.klanglicht.model.lightmanager.json.Actuator
 import de.visualdigits.kotlin.klanglicht.rest.configuration.ConfigHolder
 
 
 class LMScene(
     var id: Int? = null,
     var name: String? = null,
-    var color: String? = null
+    var color: String? = null,
+
+    var actions: List<LMAction> = listOf(),
 ) : HtmlRenderable {
+
+    override fun toString(): String {
+        return "[$id] $name: $color"
+    }
+
     override fun toHtml(configHolder: ConfigHolder): String {
         return toHtml(configHolder, "")
     }

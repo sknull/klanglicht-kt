@@ -1,6 +1,5 @@
 package de.visualdigits.kotlin.klanglicht.rest.lightmanager.model.html
 
-import com.fasterxml.jackson.annotation.JsonIgnore
 import de.visualdigits.kotlin.klanglicht.rest.configuration.ConfigHolder
 import de.visualdigits.kotlin.klanglicht.rest.lightmanager.widgets.ColorWheel
 import org.springframework.util.LinkedMultiValueMap
@@ -14,8 +13,11 @@ class LMScenes(
 ) : HtmlRenderable {
     val COLOR_WHEEL_GROUPS: List<String> = mutableListOf("Dmx", "Deko", "Rgbw", "Bar", "Starwars")
 
-    @JsonIgnore
     val scenes: MultiValueMap<String, LMScene> = LinkedMultiValueMap()
+
+    override fun toString(): String {
+        return "$name\n" + scenes.toMap().map { e -> "  ${e.key}\n    ${e.value.joinToString("\n    ")}" }.joinToString("\n")
+    }
 
     fun add(scene: LMScene) {
         var group: String? = "common"

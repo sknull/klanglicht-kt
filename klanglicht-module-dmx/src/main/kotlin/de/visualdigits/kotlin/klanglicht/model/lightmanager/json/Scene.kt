@@ -22,4 +22,15 @@ class Scene(
         }
         return false
     }
+
+    fun getActuatorProperties(actuators: MutableList<SceneProperties> = mutableListOf()): List<SceneProperties> {
+        properties?.let { p -> if (p.ntype == NType.irlan || p.ntype == NType.pause) {
+            actuators.add(p)
+        }
+        }
+        children.forEach { c ->
+            c.getActuatorProperties(actuators)
+        }
+        return actuators
+    }
 }

@@ -1,6 +1,9 @@
 package de.visualdigits.kotlin.klanglicht.rest.lightmanager.feign
 
+import de.visualdigits.kotlin.klanglicht.model.lightmanager.json.LmAirProject
+import de.visualdigits.kotlin.klanglicht.model.lightmanager.json.NType
 import de.visualdigits.kotlin.klanglicht.rest.configuration.ConfigHolder
+import de.visualdigits.kotlin.klanglicht.rest.lightmanager.model.html.LMAction
 import de.visualdigits.kotlin.klanglicht.rest.lightmanager.model.html.LMActor
 import de.visualdigits.kotlin.klanglicht.rest.lightmanager.model.html.LMMarker
 import de.visualdigits.kotlin.klanglicht.rest.lightmanager.model.html.LMMarkers
@@ -70,7 +73,7 @@ class LightmanagerClient(
         return actors
     }
 
-    fun scenes(): LMScenes {
+    fun scenes(lmAirProject: LmAirProject? = null): LMScenes {
         val document = Jsoup.parse(client!!.html()!!)
         val setupName = document.select("div[id=mytitle]").first()?.text()
         val scenes = LMScenes(setupName)
@@ -86,6 +89,32 @@ class LightmanagerClient(
                     )
                 )
             }
+        if (lmAirProject != null) {
+            scenes.scenes.forEach {
+                it.value.forEach { scene ->
+                    lmAirProject.scenesMap[scene.id]?.let { s ->
+                        val actuatorProperties = s.getActuatorProperties()
+                        scene.actions = actuatorProperties.mapNotNull { ap ->
+                            when (ap.ntype) {
+                                NType.irlan -> {
+                                    lmAirProject.actuatorsMap[ap.actorIndex]?.let { actuator ->
+                                        val url = if (ap.command == 1) {
+                                            actuator.properties?.url2
+                                        } else {
+                                            actuator.properties?.url
+                                        }?:""
+                                        LMAction(url)
+                                    }
+                                }
+                                NType.pause ->
+                                    LMAction(duration = ap.duration?:0)
+                                else -> null
+                            }
+                        }
+                    }
+                }
+            }
+        }
         return scenes
     }
 

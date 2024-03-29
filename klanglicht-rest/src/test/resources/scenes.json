@@ -1,0 +1,986 @@
+{
+  "name": "Yodas Home",
+  "scenes": {
+    "Wohnzimmer": [
+      {
+        "id": 1,
+        "name": "All On",
+        "color": "#ffffff"
+      },
+      {
+        "id": 5,
+        "name": "All Off",
+        "color": "#333333"
+      },
+      {
+        "id": 50,
+        "name": "TV [D]",
+        "color": ""
+      },
+      {
+        "id": 23,
+        "name": "Esstisch An",
+        "color": ""
+      },
+      {
+        "id": 25,
+        "name": "Esstisch Aus",
+        "color": ""
+      },
+      {
+        "id": 19,
+        "name": "Deckenlampe On",
+        "color": ""
+      },
+      {
+        "id": 21,
+        "name": "Deckenlampe Off",
+        "color": ""
+      },
+      {
+        "id": 131,
+        "name": "Deckenfluter Full",
+        "color": ""
+      },
+      {
+        "id": 133,
+        "name": "Deckenfluter Off",
+        "color": ""
+      },
+      {
+        "id": 27,
+        "name": "Salzkristall On",
+        "color": "#ffffff"
+      },
+      {
+        "id": 29,
+        "name": "Salzkristall Off",
+        "color": "#333333"
+      },
+      {
+        "id": 121,
+        "name": "Aikido",
+        "color": ""
+      },
+      {
+        "id": 466,
+        "name": "Deckenfluter Dim",
+        "color": ""
+      }
+    ],
+    "Starwars": [
+      {
+        "id": 173,
+        "name": "Darth Vader On",
+        "color": ""
+      },
+      {
+        "id": 175,
+        "name": "Darth Vader Off",
+        "color": ""
+      },
+      {
+        "id": 135,
+        "name": "Star Wars [D]",
+        "color": ""
+      }
+    ],
+    "Idual": [
+      {
+        "id": 42,
+        "name": "IDual On",
+        "color": "#ffffff"
+      },
+      {
+        "id": 48,
+        "name": "IDual Blue",
+        "color": "#0000ff"
+      },
+      {
+        "id": 46,
+        "name": "IDual WarmWhite",
+        "color": "#fffad5"
+      },
+      {
+        "id": 819,
+        "name": "IDual Green",
+        "color": "#00ff00"
+      },
+      {
+        "id": 826,
+        "name": "IDual Red",
+        "color": "#ff0000"
+      },
+      {
+        "id": 833,
+        "name": "IDual Yellow",
+        "color": "#ffff00"
+      },
+      {
+        "id": 940,
+        "name": "IDual DayWhite",
+        "color": "#ffffff"
+      },
+      {
+        "id": 948,
+        "name": "IDual ColdWhite",
+        "color": "#d5f1ff"
+      }
+    ],
+    "Dmx": [
+      {
+        "id": 185,
+        "name": "Hollywood",
+        "color": ""
+      },
+      {
+        "id": 274,
+        "name": "DMX Red",
+        "color": "#ff0000"
+      },
+      {
+        "id": 286,
+        "name": "DMX Yello",
+        "color": "#ffef00,#ffaa00,#ffef00,#ffaa00,#ffef00,#ffaa00,#ffef00"
+      },
+      {
+        "id": 298,
+        "name": "DMX Christmas",
+        "color": "#990000,#009900,#990000,#009900,#990000,#009900,#990000"
+      },
+      {
+        "id": 310,
+        "name": "DMX Computerwelt",
+        "color": "#ffff00,#ff00ff,#ffff00,#ff00ff,#ffff00,#ff00ff,#ffff00"
+      },
+      {
+        "id": 322,
+        "name": "DMX ROBOTER",
+        "color": "#ff0000,#ffffff"
+      },
+      {
+        "id": 333,
+        "name": "DMX Enterprise E MovingHeads",
+        "color": "#ddddff,#ffefdd,#ddddff,#ffefdd"
+      },
+      {
+        "id": 344,
+        "name": "DMX Darth Vaders",
+        "color": "#ff0000"
+      },
+      {
+        "id": 356,
+        "name": "DMX Star Wars",
+        "color": "#0000ff,#ff0000,#0000aa,#00ff00,#0000ee"
+      },
+      {
+        "id": 375,
+        "name": "DMX Blackout",
+        "color": "#333333"
+      },
+      {
+        "id": 377,
+        "name": "DMX Parking",
+        "color": "#333333"
+      },
+      {
+        "id": 366,
+        "name": "DMX Fireplace",
+        "color": "#ff0000,#ffaa00,#ee0000,#ffee00,#cc0000"
+      },
+      {
+        "id": 1066,
+        "name": "DMX Teal",
+        "color": "#2388ad"
+      },
+      {
+        "id": 1092,
+        "name": "DMX Orange",
+        "color": "#8c6200"
+      },
+      {
+        "id": 1109,
+        "name": "DMX Green",
+        "color": "#00ff00"
+      },
+      {
+        "id": 1112,
+        "name": "DMX Blue",
+        "color": "#0000ff"
+      },
+      {
+        "id": 1115,
+        "name": "DMX Yellow",
+        "color": "#ffff00"
+      },
+      {
+        "id": 1118,
+        "name": "DMX Cyan",
+        "color": "#00ffff"
+      },
+      {
+        "id": 1121,
+        "name": "DMX Magenta",
+        "color": "#ff00ff"
+      },
+      {
+        "id": 1124,
+        "name": "DMX LightBlue",
+        "color": "#7777ff,#aaaaff,#7777ff,#aaaaff,#7777ff,#aaaaff,#7777ff"
+      },
+      {
+        "id": 1130,
+        "name": "DMX Purple",
+        "color": "#2d0080"
+      },
+      {
+        "id": 1174,
+        "name": "DMX White",
+        "color": "#808080"
+      },
+      {
+        "id": 1275,
+        "name": "DMX Rainbow Red-Blue",
+        "color": "#ff0000,#ff8000,#ffff00,#00ff00,#00ffff,#0000ff"
+      },
+      {
+        "id": 1282,
+        "name": "DMX Rainbow Blue-Red",
+        "color": "#0000ff,#00ffff,#00ff00,#ffff00,#ff8000,#ff0000"
+      },
+      {
+        "id": 1287,
+        "name": "DMX Dark Blue",
+        "color": "#000088"
+      },
+      {
+        "id": 1289,
+        "name": "DMX Dark Red",
+        "color": "#880000"
+      },
+      {
+        "id": 1291,
+        "name": "DMX Dark Green",
+        "color": "#008800"
+      },
+      {
+        "id": 1311,
+        "name": "DMX Black",
+        "color": "#303030"
+      },
+      {
+        "id": 1313,
+        "name": "DMX Enterprise E",
+        "color": "#ffff80,#000088,#000088,#000088"
+      }
+    ],
+    "Markers": [
+      {
+        "id": 381,
+        "name": "Deckenlampe [M=1]",
+        "color": ""
+      },
+      {
+        "id": 383,
+        "name": "Deckenlampe [M=0]",
+        "color": ""
+      },
+      {
+        "id": 385,
+        "name": "Esstisch [M=1]",
+        "color": ""
+      },
+      {
+        "id": 387,
+        "name": "Esstisch [M=0]",
+        "color": ""
+      },
+      {
+        "id": 389,
+        "name": "Flur [M=1]",
+        "color": ""
+      },
+      {
+        "id": 391,
+        "name": "Flur [M=0]",
+        "color": ""
+      },
+      {
+        "id": 393,
+        "name": "Schlafzimmer [M=1]",
+        "color": ""
+      },
+      {
+        "id": 395,
+        "name": "Schlafzimmer [M=0]",
+        "color": ""
+      }
+    ],
+    "Shelly": [
+      {
+        "id": 31,
+        "name": "Flur On",
+        "color": ""
+      },
+      {
+        "id": 33,
+        "name": "Flur Off",
+        "color": ""
+      },
+      {
+        "id": 39,
+        "name": "Flur und Wohnzimmer",
+        "color": ""
+      },
+      {
+        "id": 37,
+        "name": "Schlafzimmer Off",
+        "color": ""
+      }
+    ],
+    "Common": [
+      {
+        "id": 414,
+        "name": "All Markers Off",
+        "color": ""
+      }
+    ],
+    "Yamaha": [
+      {
+        "id": 494,
+        "name": "Surround Standard",
+        "color": ""
+      },
+      {
+        "id": 496,
+        "name": "Surround Sci-Fi",
+        "color": ""
+      },
+      {
+        "id": 498,
+        "name": "Surround Spectacle",
+        "color": ""
+      },
+      {
+        "id": 500,
+        "name": "Surround Adventure",
+        "color": ""
+      },
+      {
+        "id": 502,
+        "name": "Surround The Roxy Theatre",
+        "color": ""
+      },
+      {
+        "id": 504,
+        "name": "Surround The Bottom Line",
+        "color": ""
+      },
+      {
+        "id": 506,
+        "name": "Surround Hall In Vienna",
+        "color": ""
+      },
+      {
+        "id": 508,
+        "name": "Surround Decoder",
+        "color": ""
+      },
+      {
+        "id": 510,
+        "name": "Surround 7ch Stereo",
+        "color": ""
+      },
+      {
+        "id": 513,
+        "name": "Surround Hall In Munich",
+        "color": ""
+      }
+    ],
+    "Rgbw": [
+      {
+        "id": 535,
+        "name": "RGBW On",
+        "color": "#ffffff"
+      },
+      {
+        "id": 537,
+        "name": "RGBW Off",
+        "color": "#333333"
+      },
+      {
+        "id": 539,
+        "name": "RGBW Red",
+        "color": "#ff0000"
+      },
+      {
+        "id": 541,
+        "name": "RGBW Green",
+        "color": "#00ff00"
+      },
+      {
+        "id": 543,
+        "name": "RGBW Blue",
+        "color": "#0000ff"
+      },
+      {
+        "id": 545,
+        "name": "RGBW Cyan",
+        "color": "#00ffff"
+      },
+      {
+        "id": 547,
+        "name": "RGBW Yellow",
+        "color": "#ffff00"
+      },
+      {
+        "id": 549,
+        "name": "RGBW Magenta",
+        "color": "#ff00ff"
+      },
+      {
+        "id": 551,
+        "name": "RGBW Orange",
+        "color": "#ff8000"
+      },
+      {
+        "id": 553,
+        "name": "RGBW Purple",
+        "color": "#8000ff"
+      },
+      {
+        "id": 555,
+        "name": "RGBW Full",
+        "color": "#ffffff"
+      },
+      {
+        "id": 557,
+        "name": "RGBW Half",
+        "color": "#808080"
+      },
+      {
+        "id": 1058,
+        "name": "RGBW White",
+        "color": "#ffffff"
+      }
+    ],
+    "Deko": [
+      {
+        "id": 581,
+        "name": "Deko Red",
+        "color": "#ff0000"
+      },
+      {
+        "id": 585,
+        "name": "Deko Green",
+        "color": "#00ff00"
+      },
+      {
+        "id": 589,
+        "name": "Deko Blue",
+        "color": "#0000ff"
+      },
+      {
+        "id": 593,
+        "name": "Deko Cyan",
+        "color": "#00ffff"
+      },
+      {
+        "id": 597,
+        "name": "Deko Yellow",
+        "color": "#ffff00"
+      },
+      {
+        "id": 601,
+        "name": "Deko Magenta",
+        "color": "#ff00ff"
+      },
+      {
+        "id": 605,
+        "name": "Deko Orange",
+        "color": "#ff8000"
+      },
+      {
+        "id": 609,
+        "name": "Deko Purple",
+        "color": "#8000ff"
+      },
+      {
+        "id": 763,
+        "name": "Deko White",
+        "color": "#ffffff"
+      },
+      {
+        "id": 789,
+        "name": "Deko Off",
+        "color": "#333333"
+      },
+      {
+        "id": 929,
+        "name": "Deko On",
+        "color": "#ffffff"
+      },
+      {
+        "id": 1273,
+        "name": "Deko Rainbow Red-Blue",
+        "color": "#ff0000,#ff8000,#ffff00,#00ff00,#00ffff,#0000ff"
+      },
+      {
+        "id": 1280,
+        "name": "Deko Rainbow Blue-Red",
+        "color": "#0000ff,#00ffff,#00ff00,#ffff00,#ff8000,#ff0000"
+      },
+      {
+        "id": 1293,
+        "name": "Deko Dark Red",
+        "color": "#880000"
+      },
+      {
+        "id": 1295,
+        "name": "Deko Dark Green",
+        "color": "#008800"
+      },
+      {
+        "id": 1297,
+        "name": "Deko Dark Blue",
+        "color": "#000088"
+      }
+    ],
+    "Bar": [
+      {
+        "id": 659,
+        "name": "Bar Off",
+        "color": "#333333"
+      },
+      {
+        "id": 1063,
+        "name": "Bar On",
+        "color": "#ffffff"
+      }
+    ],
+    "Background": [
+      {
+        "id": 76,
+        "name": "Licht TV",
+        "color": "#fffad5,#fffad5,#333333,#333333"
+      },
+      {
+        "id": 44,
+        "name": "TV Licht Aus",
+        "color": "#333333"
+      },
+      {
+        "id": 154,
+        "name": "Licht Kino",
+        "color": "#000088,#000088,#880000,#880000"
+      },
+      {
+        "id": 962,
+        "name": "Background Red",
+        "color": "#ff0000"
+      },
+      {
+        "id": 1299,
+        "name": "Background Dark Red",
+        "color": "#880000"
+      },
+      {
+        "id": 971,
+        "name": "Background Green",
+        "color": "#00ff00"
+      },
+      {
+        "id": 1302,
+        "name": "Background Dark Green",
+        "color": "#008800"
+      },
+      {
+        "id": 974,
+        "name": "Background Blue",
+        "color": "#0000ff"
+      },
+      {
+        "id": 1284,
+        "name": "Background Dark Blue",
+        "color": "#000088"
+      },
+      {
+        "id": 1255,
+        "name": "Background Cyan",
+        "color": "#00ffff"
+      },
+      {
+        "id": 1365,
+        "name": "Background Dark Cyan",
+        "color": "#008888"
+      },
+      {
+        "id": 1258,
+        "name": "Background Yellow",
+        "color": "#ffff00"
+      },
+      {
+        "id": 1261,
+        "name": "Background Magenta",
+        "color": "#ff00ff"
+      },
+      {
+        "id": 1264,
+        "name": "Background Orange",
+        "color": "#ff8000"
+      },
+      {
+        "id": 1267,
+        "name": "Background Purple",
+        "color": "#2d0080"
+      },
+      {
+        "id": 1305,
+        "name": "Background White",
+        "color": "#ffffff"
+      },
+      {
+        "id": 1201,
+        "name": "Background Warm White",
+        "color": "#ffde59,#ffde59,#000000,#000000"
+      },
+      {
+        "id": 965,
+        "name": "Background Red / Blue",
+        "color": "#0000ff,#ff0000,#ff0000,#0000ff"
+      },
+      {
+        "id": 1336,
+        "name": "Background Dark Red / Blue",
+        "color": "#000088,#880000,#880000,#000088"
+      },
+      {
+        "id": 968,
+        "name": "Background Blue / Red",
+        "color": "#ff0000,#0000ff,#0000ff,#ff0000"
+      },
+      {
+        "id": 1353,
+        "name": "Background Dark Blue / Red",
+        "color": "#880000,#000088,#000088,#880000"
+      },
+      {
+        "id": 1055,
+        "name": "Background Green / Red",
+        "color": "#ff0000,#00ff00,#00ff00,#ff0000"
+      },
+      {
+        "id": 1359,
+        "name": "Background Dark Green / Red",
+        "color": "#880000,#008800,#008800,#880000"
+      },
+      {
+        "id": 1052,
+        "name": "Background Red / Green",
+        "color": "#00ff00,#ff0000,#ff0000,#00ff00"
+      },
+      {
+        "id": 1356,
+        "name": "Background Dark Red / Green",
+        "color": "#008800,#880000,#880000,#008800"
+      },
+      {
+        "id": 983,
+        "name": "Background Green / Blue",
+        "color": "#0000ff,#00ff00,#00ff00,#0000ff"
+      },
+      {
+        "id": 1339,
+        "name": "Background Dark Green / Blue",
+        "color": "#000088,#008800,#008800,#000088"
+      },
+      {
+        "id": 980,
+        "name": "Background Blue / Green",
+        "color": "#00ff00,#0000ff,#0000ff,#00ff00"
+      },
+      {
+        "id": 1362,
+        "name": "Background Dark Blue / Green",
+        "color": "#008800,#000088,#000088,#008800"
+      },
+      {
+        "id": 977,
+        "name": "Background Blue / Cyan",
+        "color": "#00ffff,#0000ff,#0000ff,#00ffff"
+      },
+      {
+        "id": 1367,
+        "name": "Background Dark Blue / Cyan",
+        "color": "#008888,#000088,#000088,#008888"
+      },
+      {
+        "id": 989,
+        "name": "Background Green / Magenta",
+        "color": "#ff00ff,#00ff00,#00ff00,#ff00ff"
+      },
+      {
+        "id": 1158,
+        "name": "Background Magenta / Green",
+        "color": "#00ff00,#ff00ff,#ff00ff,#00ff00"
+      },
+      {
+        "id": 986,
+        "name": "Background Green / Yellow",
+        "color": "#ffff00,#00ff00,#00ff00,#ffff00"
+      },
+      {
+        "id": 1155,
+        "name": "Background Yellow / Green",
+        "color": "#00ff00,#ffff00,#ffff00,#00ff00"
+      },
+      {
+        "id": 1152,
+        "name": "Background Cyan / Blue",
+        "color": "#0000ff,#00ffff,#00ffff,#0000ff"
+      },
+      {
+        "id": 1342,
+        "name": "Background Dark Cyan / Blue",
+        "color": "#000088,#008888,#008888,#000088"
+      },
+      {
+        "id": 1089,
+        "name": "Background Orange / Teal",
+        "color": "#2388ad,#ff8000,#ff8000,#2388ad"
+      },
+      {
+        "id": 1086,
+        "name": "Background Teal / Orange",
+        "color": "#ff8000,#2388ad,#2388ad,#ff8000"
+      },
+      {
+        "id": 1252,
+        "name": "Background Orange / Purple",
+        "color": "#2d0080,#ff8000,#ff8000,#2d0080"
+      },
+      {
+        "id": 1249,
+        "name": "Background Purple / Orange",
+        "color": "#ff8000,#2d0080,#2d0080,#ff8000"
+      },
+      {
+        "id": 1370,
+        "name": "Background Yellow / Purple",
+        "color": "#2d0080,#ffff00,#ffff00,#2d0080"
+      },
+      {
+        "id": 1373,
+        "name": "Background Purple / Yellow",
+        "color": "#ffff00,#2d0080,#2d0080,#ffff00"
+      },
+      {
+        "id": 1376,
+        "name": "Background Yellow / Magenta",
+        "color": "#ff00ff,#ffff00,#ffff00,#ff00ff"
+      },
+      {
+        "id": 1379,
+        "name": "Background Magenta / Yellow",
+        "color": "#ffff00,#ff00ff,#ff00ff,#ffff00"
+      },
+      {
+        "id": 1385,
+        "name": "Background Purple / Magenta",
+        "color": "#ff00ff,#2d0080,#2d0080,#ff00ff"
+      },
+      {
+        "id": 1382,
+        "name": "Background Magenta / Purple",
+        "color": "#2d0080,#ff00ff,#ff00ff,#2d0080"
+      },
+      {
+        "id": 1427,
+        "name": "Background White / Blue",
+        "color": "#0000ff,#ffffff,#ffffff,#0000ff"
+      },
+      {
+        "id": 1430,
+        "name": "Background Blue / White",
+        "color": "#ffffff,#0000ff,#0000ff,#ffffff"
+      },
+      {
+        "id": 992,
+        "name": "Background Red / White",
+        "color": "#ffffff,#ff0000,#ff0000,#ffffff"
+      },
+      {
+        "id": 1161,
+        "name": "Background White / Red",
+        "color": "#ff0000,#ffffff,#ffffff,#ff0000"
+      },
+      {
+        "id": 1277,
+        "name": "Background Rainbow Blue-Red",
+        "color": "#0000ff,#00ffff,#00ff00,#ffff00,#ff8000,#ff0000"
+      },
+      {
+        "id": 1270,
+        "name": "Background Rainbow Red-Blue",
+        "color": "#ff0000,#ff8000,#ffff00,#00ff00,#00ffff,#0000ff"
+      },
+      {
+        "id": 1437,
+        "name": "Background Rainbow Dark Blue-Red",
+        "color": "#000080,#008080,#008000,#808000,#808000,#800000"
+      },
+      {
+        "id": 1439,
+        "name": "Background Rainbow Dark Red-Blue",
+        "color": "#800000,#808000,#808000,#008000,#008080,#000080"
+      },
+      {
+        "id": 1391,
+        "name": "Background purple-green",
+        "color": "#8000ff,#00ff00,#8000ff,#00ff00,#8000ff"
+      },
+      {
+        "id": 1392,
+        "name": "Background green-purple",
+        "color": "#00ff00,#8000ff,#00ff00,#8000ff,#00ff00"
+      },
+      {
+        "id": 1393,
+        "name": "Background blue-green",
+        "color": "#0000ff,#00ff00,#0000ff,#00ff00,#0000ff"
+      },
+      {
+        "id": 1394,
+        "name": "Background green-blue",
+        "color": "#00ff00,#0000ff,#00ff00,#0000ff,#00ff00"
+      },
+      {
+        "id": 1441,
+        "name": "Background red-green",
+        "color": "#ff0000,#00ff00,#ff0000,#00ff00,#ff0000"
+      },
+      {
+        "id": 1442,
+        "name": "Background green-red",
+        "color": "#00ff00,#ff0000,#00ff00,#ff0000,#00ff00"
+      },
+      {
+        "id": 1395,
+        "name": "Background blue-cyan",
+        "color": "#0000ff,#00ffff,#0000ff,#00ffff,#0000ff"
+      },
+      {
+        "id": 1396,
+        "name": "Background cyan-blue",
+        "color": "#00ffff,#0000ff,#00ffff,#0000ff,#00ffff"
+      },
+      {
+        "id": 1397,
+        "name": "Background blue-yellow",
+        "color": "#0000ff,#ffff00,#0000ff,#ffff00,#0000ff"
+      },
+      {
+        "id": 1398,
+        "name": "Background yellow-blue",
+        "color": "#ffff00,#0000ff,#ffff00,#0000ff,#ffff00"
+      },
+      {
+        "id": 1433,
+        "name": "Background blue-white",
+        "color": "#0000ff,#ffffff,#0000ff,#ffffff,#0000ff"
+      },
+      {
+        "id": 1434,
+        "name": "Background white-blue",
+        "color": "#ffffff,#0000ff,#ffffff,#0000ff,#ffffff"
+      },
+      {
+        "id": 1399,
+        "name": "Background green-yellow",
+        "color": "#00ff00,#ffff00,#00ff00,#ffff00,#00ff00"
+      },
+      {
+        "id": 1400,
+        "name": "Background yellow-green",
+        "color": "#ffff00,#00ff00,#ffff00,#00ff00,#ffff00"
+      },
+      {
+        "id": 1401,
+        "name": "Background purple-yellow",
+        "color": "#8000ff,#ffff00,#8000ff,#ffff00,#8000ff"
+      },
+      {
+        "id": 1402,
+        "name": "Background yellow-purple",
+        "color": "#ffff00,#8000ff,#ffff00,#8000ff,#ffff00"
+      },
+      {
+        "id": 1415,
+        "name": "Background purple-orange",
+        "color": "#8000ff,#ff8000,#8000ff,#ff8000,#8000ff"
+      },
+      {
+        "id": 1416,
+        "name": "Background orange-purple",
+        "color": "#ff8000,#8000ff,#ff8000,#8000ff,#ff8000"
+      },
+      {
+        "id": 1417,
+        "name": "Background red-orange",
+        "color": "#ff0000,#ff8000,#ff0000,#ff8000,#ff0000"
+      },
+      {
+        "id": 1418,
+        "name": "Background orange-red",
+        "color": "#ff8000,#ff0000,#ff8000,#ff0000,#ff8000"
+      },
+      {
+        "id": 1419,
+        "name": "Background yellow-orange",
+        "color": "#ffff00,#ff8000,#ffff00,#ff8000,#ffff00"
+      },
+      {
+        "id": 1420,
+        "name": "Background orange-yellow",
+        "color": "#ff8000,#ffff00,#ff8000,#ffff00,#ff8000"
+      },
+      {
+        "id": 1445,
+        "name": "Background red-blue",
+        "color": "#ff0000,#0000ff,#ff0000,#0000ff,#ff0000"
+      },
+      {
+        "id": 1446,
+        "name": "Background blue-red",
+        "color": "#0000ff,#ff0000,#0000ff,#ff0000,#0000ff"
+      },
+      {
+        "id": 1447,
+        "name": "Background green-orange",
+        "color": "#00ff00,#ff8000,#00ff00,#ff8000,#00ff00"
+      },
+      {
+        "id": 1448,
+        "name": "Background orange-green",
+        "color": "#ff8000,#00ff00,#ff8000,#00ff00,#ff8000"
+      },
+      {
+        "id": 1315,
+        "name": "Background Enterprise E",
+        "color": "#ffff80,#000088,#000088,#000088,#000088"
+      },
+      {
+        "id": 1308,
+        "name": "Background Black",
+        "color": "#303030"
+      }
+    ]
+  },
+  "color_WHEEL_GROUPS": [
+    "Dmx",
+    "Deko",
+    "Rgbw",
+    "Bar",
+    "Starwars"
+  ]
+}

@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty
 
 
 class ActuatorProperties(
-    var ntype: Int? = null,
+    var ntype: NType? = null,
     var index: Int? = null,
     var system: Int? = null,
     @JsonProperty("bemerkung") val comment: String? = null,

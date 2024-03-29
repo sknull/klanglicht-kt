@@ -32,6 +32,7 @@ class Device(
     val mode433: Int? = null,
     val mode868: Int? = null,
     val nochannelcheck: Boolean? = null,
+    val nodst: Boolean? = null,
     val passphrase: String? = null,
     val smallbandwidth: Boolean? = null,
     val ssid: String? = null,

@@ -29,6 +29,7 @@ class Settings(
     val extname8: String? = null,
     val filename: String? = null,
     val lastactor: Int? = null,
+    val learnseqs: Int? = null,
     val marksameactor: Boolean? = null,
     val master: String? = null,
     val nukibridges: String? = null,

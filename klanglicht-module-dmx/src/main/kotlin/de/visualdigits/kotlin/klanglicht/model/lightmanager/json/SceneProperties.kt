@@ -7,7 +7,7 @@ class SceneProperties(
     val jbcode: Int? = null,
     val senderid: Long? = null,
     val sendertype: Int? = null,
-    val ntype: Int? = null,
+    val ntype: NType? = null,
     val index: Int? = null,
     @JsonProperty("bemerkung") val comment: String? = null,
     @JsonProperty("dauer") val duration: Long? = null,
