@@ -1,17 +1,23 @@
-name: Klanglicht 3 Kotlin
+name: Klanglicht Kotlin
 
-on: [push]
-
+on:
+  push:
+    branches:
+      - main
 jobs:
-  build:
+  publish:
     runs-on: ubuntu-latest
-
+    permissions:
+      contents: read
+      issues: write
+      packages: write
     steps:
-      - uses: actions/checkout@v3
-      - name: Set up JDK 17
-        uses: actions/setup-java@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
         with:
           java-version: '17'
-          distribution: 'temurin'
-      - name: Build with Maven
-        run: mvn --batch-mode --update-snapshots package
+          distribution: 'liberica'
+      - name: Build and deploy package
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: mvn --batch-mode clean package deploy -DskipTests
