@@ -1,7 +1,7 @@
 package de.visualdigits.kotlin.klanglicht.rest.hybrid.handler
 
-import de.visualdigits.kotlin.klanglicht.model.hybrid.HybridScene
-import de.visualdigits.kotlin.klanglicht.model.shelly.client.ShellyClient
+import de.visualdigits.kotlin.klanglicht.hardware.hybrid.HybridScene
+import de.visualdigits.kotlin.klanglicht.hardware.shelly.client.ShellyClient
 import de.visualdigits.kotlin.klanglicht.rest.configuration.ConfigHolder
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -22,7 +22,7 @@ class HybridStageHandler {
      * @param ids The comma separated list of ids.
      * @param hexColors The comma separated list of hex colors.
      * @param gains The comma separated list of gains (taken from stage setup if omitted).
-     * @param transitionDuration The fade duration in milli seconds.
+     * @param transition The fade duration in milli seconds.
      * @param turnOn Determines if the device should be turned on.
      * @param store Determines if the colors should be saved in the ConfigHolder.
      * @param storeName An additional name to strore values.
@@ -31,7 +31,7 @@ class HybridStageHandler {
         ids: String,
         hexColors: String,
         gains: String,
-        transitionDuration: Long?,
+        transition: Long?,
         turnOn: Boolean,
         store: Boolean = true,
         storeName: String?
@@ -51,7 +51,7 @@ class HybridStageHandler {
         }
         log.info("nextScene: $nextScene")
 
-        currentScene?.fade(nextScene!!, transitionDuration?:configHolder?.preferences?.fadeDurationDefault?:1000, configHolder?.preferences!!)
+        currentScene?.fade(nextScene!!, transition?:configHolder?.preferences?.fadeDurationDefault?:1000, configHolder?.preferences!!)
     }
 
     fun putColor(

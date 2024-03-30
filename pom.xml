@@ -10,9 +10,7 @@
   <packaging>pom</packaging>
 
   <modules>
-    <module>klanglicht-module-dmx</module>
-    <module>klanglicht-module-yamaha</module>
-    <module>klanglicht-module-yamahaadvantage</module>
+    <module>klanglicht-module-base</module>
     <module>klanglicht-rest</module>
   </modules>
 
@@ -46,29 +44,34 @@
     </repository>
   </distributionManagement>
 
-  <repositories>
-    <repository>
+  <profiles>
+    <profile>
       <id>github</id>
-      <name>GitHub sknull Apache Maven Packages</name>
-      <url>https://maven.pkg.github.com/sknull/twinkly-kt</url>
-      <releases>
-        <enabled>true</enabled>
-      </releases>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-    </repository>
-    <repository>
-      <id>central</id>
-      <url>https://repo1.maven.org/maven2</url>
-      <releases>
-        <enabled>true</enabled>
-      </releases>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-    </repository>
-  </repositories>
+      <repositories>
+        <repository>
+          <id>github</id>
+          <name>GitHub sknull Apache Maven Packages</name>
+          <url>https://maven.pkg.github.com/sknull/twinkly-kt</url>
+          <releases>
+            <enabled>true</enabled>
+          </releases>
+          <snapshots>
+            <enabled>true</enabled>
+          </snapshots>
+        </repository>
+        <repository>
+          <id>central</id>
+          <url>https://repo1.maven.org/maven2</url>
+          <releases>
+            <enabled>true</enabled>
+          </releases>
+          <snapshots>
+            <enabled>true</enabled>
+          </snapshots>
+        </repository>
+      </repositories>
+    </profile>
+  </profiles>
 
   <dependencies>
     <!-- kotlin -->

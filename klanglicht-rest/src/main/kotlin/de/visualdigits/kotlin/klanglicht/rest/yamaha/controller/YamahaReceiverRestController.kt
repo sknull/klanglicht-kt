@@ -1,7 +1,7 @@
 package de.visualdigits.kotlin.klanglicht.rest.yamaha.controller
 
+import de.visualdigits.kotlin.klanglicht.hardware.yamaha.client.YamahaReceiverClient
 import de.visualdigits.kotlin.klanglicht.rest.configuration.ConfigHolder
-import de.visualdigits.kotlin.klanglicht.rest.yamaha.feign.YamahaReceiverClient
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
@@ -23,7 +23,7 @@ class YamahaReceiverRestController {
     var client: YamahaReceiverClient? = null
 
     @PutMapping("/surroundProgram")
-    fun controlSurroundProgram(@RequestParam("program") program: String) {
+    fun surroundProgram(@RequestParam("program") program: String) {
         ensureClient()
         log.info("Setting surround sound program to '$program'")
         client?.controlSurroundProgram(program)

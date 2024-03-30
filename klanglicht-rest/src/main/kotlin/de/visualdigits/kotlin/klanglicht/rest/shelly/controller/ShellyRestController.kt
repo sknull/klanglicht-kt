@@ -1,7 +1,8 @@
 package de.visualdigits.kotlin.klanglicht.rest.shelly.controller
 
 import de.visualdigits.kotlin.klanglicht.rest.hybrid.handler.HybridStageHandler
-import de.visualdigits.kotlin.klanglicht.rest.shelly.handler.ShellyHandler
+import de.visualdigits.kotlin.klanglicht.rest.lightmanager.service.LightmanagerService
+import de.visualdigits.kotlin.klanglicht.rest.shelly.service.ShellyService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
@@ -16,7 +17,10 @@ import org.springframework.web.bind.annotation.RestController
 class ShellyRestController {
 
     @Autowired
-    var shellyHandler: ShellyHandler? = null
+    var shellyService: ShellyService? = null
+
+    @Autowired
+    var lightmanagerService: LightmanagerService? = null
 
     @Autowired
     val hybridStageHandler: HybridStageHandler? = null
@@ -32,7 +36,11 @@ class ShellyRestController {
         @RequestParam(value = "scene", required = false, defaultValue = "0") sceneId: Int,
         @RequestParam(value = "index", required = false, defaultValue = "0") index: Int
     ) {
-        shellyHandler?.control(sceneId = sceneId, index = index)
+        if (sceneId != 0) {
+            lightmanagerService?.controlScene(sceneId)
+        } else if (index != 0) {
+            lightmanagerService?.controlIndex(index)
+        }
     }
 
     @GetMapping("power")
@@ -41,7 +49,7 @@ class ShellyRestController {
         @RequestParam(value = "turnOn", required = false, defaultValue = "true") turnOn: Boolean,
         @RequestParam(value = "transition", required = false) transitionDuration: Long?
     ) {
-        shellyHandler?.power(ids = ids, turnOn = turnOn, transitionDuration = transitionDuration)
+        shellyService?.power(ids = ids, turnOn = turnOn, transitionDuration = transitionDuration)
     }
 
     @GetMapping("hexColor")
@@ -58,7 +66,7 @@ class ShellyRestController {
             ids = ids,
             hexColors = hexColors,
             gains = gains,
-            transitionDuration = transitionDuration,
+            transition = transitionDuration,
             turnOn = turnOn,
             store = store,
             storeName = storeName

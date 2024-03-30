@@ -1,8 +1,8 @@
 package de.visualdigits.kotlin.klanglicht.rest.configuration
 
-import de.visualdigits.kotlin.klanglicht.model.hybrid.HybridScene
-import de.visualdigits.kotlin.klanglicht.model.parameter.Fadeable
-import de.visualdigits.kotlin.klanglicht.model.preferences.Preferences
+import de.visualdigits.kotlin.klanglicht.hardware.dmx.parameter.Fadeable
+import de.visualdigits.kotlin.klanglicht.hardware.hybrid.HybridScene
+import de.visualdigits.kotlin.klanglicht.hardware.preferences.Preferences
 import de.visualdigits.kotlin.util.SystemUtils
 import jakarta.annotation.PostConstruct
 import jakarta.annotation.PreDestroy

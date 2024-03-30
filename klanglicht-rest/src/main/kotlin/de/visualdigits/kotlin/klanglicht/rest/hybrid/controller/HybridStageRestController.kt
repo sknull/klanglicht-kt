@@ -20,7 +20,7 @@ class HybridStageRestController {
         @RequestParam(value = "ids", required = false, defaultValue = "") ids: String,
         @RequestParam(value = "hexColors") hexColors: String,
         @RequestParam(value = "gains", required = false, defaultValue = "") gains: String,
-        @RequestParam(value = "transition", required = false) transitionDuration: Long?,
+        @RequestParam(value = "transition", required = false) transition: Long?,
         @RequestParam(value = "turnOn", required = false, defaultValue = "true") turnOn: Boolean,
         @RequestParam(value = "store", required = false, defaultValue = "true") store: Boolean,
         @RequestParam(value = "storeName", required = false) storeName: String?
@@ -29,7 +29,7 @@ class HybridStageRestController {
             ids = ids,
             hexColors = hexColors,
             gains = gains,
-            transitionDuration = transitionDuration,
+            transition = transition,
             turnOn = turnOn,
             store = store,
             storeName = storeName

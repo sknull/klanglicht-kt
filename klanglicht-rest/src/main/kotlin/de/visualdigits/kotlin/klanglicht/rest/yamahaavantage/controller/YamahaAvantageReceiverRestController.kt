@@ -1,6 +1,6 @@
 package de.visualdigits.kotlin.klanglicht.rest.yamahaavantage.controller
 
-import de.visualdigits.kotlin.klanglicht.model.yamahaadvantage.client.YamahaAvantageReceiverClient
+import de.visualdigits.kotlin.klanglicht.hardware.yamahaadvantage.client.YamahaAvantageReceiverClient
 import de.visualdigits.kotlin.klanglicht.rest.configuration.ConfigHolder
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -30,7 +30,9 @@ class YamahaAvantageReceiverRestController {
 
     private fun ensureClient() {
         if (client == null) {
-            client = YamahaAvantageReceiverClient(configHolder!!.preferences?.getService("receiver")?.url!!)
+            client = YamahaAvantageReceiverClient(
+                configHolder!!.preferences?.getService("receiver")?.url!!
+            )
         }
     }
 }

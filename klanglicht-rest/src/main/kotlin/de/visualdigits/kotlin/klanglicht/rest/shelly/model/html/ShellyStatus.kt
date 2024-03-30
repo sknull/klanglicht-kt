@@ -1,22 +1,22 @@
 package de.visualdigits.kotlin.klanglicht.rest.shelly.model.html
 
-import de.visualdigits.kotlin.klanglicht.model.color.RGBColor
-import de.visualdigits.kotlin.klanglicht.model.shelly.ShellyDevice
-import de.visualdigits.kotlin.klanglicht.model.shelly.status.Status
+import de.visualdigits.kotlin.klanglicht.hardware.color.RGBColor
+import de.visualdigits.kotlin.klanglicht.hardware.shelly.model.ShellyDevice
+import de.visualdigits.kotlin.klanglicht.hardware.shelly.model.status.Status
 import de.visualdigits.kotlin.klanglicht.rest.configuration.ConfigHolder
 import de.visualdigits.kotlin.klanglicht.rest.lightmanager.model.html.HtmlRenderable
-import de.visualdigits.kotlin.klanglicht.rest.shelly.handler.ShellyHandler
+import de.visualdigits.kotlin.klanglicht.rest.shelly.service.ShellyService
 
 class ShellyStatus : HtmlRenderable {
 
-    fun toHtml(shellyHandler: ShellyHandler): String {
+    fun toHtml(shellyService: ShellyService): String {
         val sb = StringBuilder()
         sb.append("<div class=\"title\" onclick=\"toggleFullScreen();\" title=\"Toggle Fullscreen\">")
             .append("Current Power Values")
             .append("</div>\n")
         sb.append("<div class=\"category\">\n")
         renderLabel(sb, "Shelly Dashboard")
-        shellyHandler.status().forEach { device: ShellyDevice, status: Status ->
+        shellyService.status().forEach { device: ShellyDevice, status: Status ->
             sb.append("  <div class=\"floatgroup\">\n")
             renderLabel(sb, device.name)
             sb.append("    <div class=\"sub-group\">\n")

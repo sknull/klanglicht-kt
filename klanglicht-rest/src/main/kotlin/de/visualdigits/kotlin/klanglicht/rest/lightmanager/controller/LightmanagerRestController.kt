@@ -1,10 +1,11 @@
 package de.visualdigits.kotlin.klanglicht.rest.lightmanager.controller
 
-import de.visualdigits.kotlin.klanglicht.rest.lightmanager.feign.LightmanagerClient
-import de.visualdigits.kotlin.klanglicht.rest.lightmanager.model.html.LMMarkers
-import de.visualdigits.kotlin.klanglicht.rest.lightmanager.model.html.LMParams
-import de.visualdigits.kotlin.klanglicht.rest.lightmanager.model.html.LMScenes
-import de.visualdigits.kotlin.klanglicht.rest.lightmanager.model.html.LMZones
+import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm.LMMarkers
+import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm.LMParams
+import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm.LMScenes
+import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm.LMZones
+import de.visualdigits.kotlin.klanglicht.rest.lightmanager.service.LightmanagerService
+import de.visualdigits.kotlin.klanglicht.rest.lightmanager.model.html.LMHtmlZones
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.GetMapping
@@ -19,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController
 class LightmanagerRestController {
 
     @Autowired
-    var client: LightmanagerClient? = null
+    var client: LightmanagerService? = null
 
     @GetMapping("params", produces = [MediaType.APPLICATION_JSON_VALUE])
     fun params(): LMParams? = client?.params()

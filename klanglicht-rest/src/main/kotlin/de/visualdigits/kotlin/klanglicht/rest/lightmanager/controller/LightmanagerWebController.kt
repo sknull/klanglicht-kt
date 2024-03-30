@@ -1,7 +1,9 @@
 package de.visualdigits.kotlin.klanglicht.rest.lightmanager.controller
 
 import de.visualdigits.kotlin.klanglicht.rest.configuration.ConfigHolder
-import de.visualdigits.kotlin.klanglicht.rest.lightmanager.feign.LightmanagerClient
+import de.visualdigits.kotlin.klanglicht.rest.lightmanager.service.LightmanagerService
+import de.visualdigits.kotlin.klanglicht.rest.lightmanager.model.html.LMHtmlScenes
+import de.visualdigits.kotlin.klanglicht.rest.lightmanager.model.html.LMHtmlZones
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
@@ -16,13 +18,13 @@ class LightmanagerWebController {
     var configHolder: ConfigHolder? = null
 
     @Autowired
-    var client: LightmanagerClient? = null
+    var client: LightmanagerService? = null
 
     @GetMapping("/scenes", produces = ["application/xhtml+xml"])
     fun scenes(model: Model): String {
         model.addAttribute("theme", configHolder?.preferences?.theme)
         model.addAttribute("title", "Scenes")
-        val scenes = client?.scenes()
+        val scenes = client?.scenes()?.let { LMHtmlScenes(it) }
         model.addAttribute("content", scenes?.toHtml(configHolder!!))
         return "pagetemplate"
     }
@@ -31,7 +33,7 @@ class LightmanagerWebController {
     fun zones(model: Model): String {
         model.addAttribute("theme", configHolder?.preferences?.theme)
         model.addAttribute("title", "Zones")
-        val zones = client?.zones()
+        val zones = client?.zones()?.let { LMHtmlZones(it) }
         model.addAttribute("content", zones?.toHtml(configHolder!!))
         return "pagetemplate"
     }
