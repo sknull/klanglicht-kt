@@ -38,4 +38,39 @@ A printout of the thread with those golden informations which kick started me on
 
 == Current State
 
-For now things here are pretty basic as I start with implementing all models needed and basic interface access.
+My home setup consists of
+
+- video receiver (currently a Yamaha RX-V6A)
+- 5.1.2 loudspeaker system
+* front, center and surround: Magnat Monitor Supreme series
+* upper surround for Atmos: Yamaha
+- 4k bluray player (Sony), a harmony hub along with a Harmony
+- Technics CD Player (still running after 30 years in operation)
+- Telekom Magenta Tv stick
+- 75" flat screen by LG
+- Harmony Elite universal remote with a hub
+- Some DMX fixtures
+- Some RGB Led Stripes controlled by shelly devices
+- Some House lighting also controlled by shelly devices
+- An Idual RGB light used as the default back light of my TV set
+- Finally a raspberry pi 3b running the klanglicht application
+- Lightmanager Air as the central control of all this
+
+The setup of the lightmanager contains also configurations for my DMX lighting setup behind the Hifi rack.
+AS the UI is not allowing special things like color previews for buttons I came up with a special naming convention for the comments which is then scraped out from reading the HTML markup of the lightmanagers UI.
+
+Over time the collection of light scenes grew and grew which makes maintaining this within the lightmanager pretty uncomfortable.
+
+As I have implemented handlers in this project to control
+
+- Shelly devices
+- Lightmanager Air scenes
+- Sound programs of my Yamaha receiver
+
+The only thing not controllable directly is the one Idual back light.
+
+So my current idea is to move away from scraping all the configuration out of the Lightmanager and building a control web page out of it.
+
+Instead I want to have a local configuration (still not decided if this will be a little database or just a json file) within the server and generate a control webpage from that.
+
+Of course the lightmanager is still needed to act as the interface between the Harmony and the rasp berry pi. But with this setup the amount of scenes in the light manager should be reduced drastically.
