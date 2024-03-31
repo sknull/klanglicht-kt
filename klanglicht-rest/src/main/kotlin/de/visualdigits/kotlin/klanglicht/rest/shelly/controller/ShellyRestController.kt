@@ -1,6 +1,6 @@
 package de.visualdigits.kotlin.klanglicht.rest.shelly.controller
 
-import de.visualdigits.kotlin.klanglicht.rest.hybrid.handler.HybridStageHandler
+import de.visualdigits.kotlin.klanglicht.rest.hybrid.service.HybridStageService
 import de.visualdigits.kotlin.klanglicht.rest.lightmanager.service.LightmanagerService
 import de.visualdigits.kotlin.klanglicht.rest.shelly.service.ShellyService
 import org.springframework.beans.factory.annotation.Autowired
@@ -14,16 +14,12 @@ import org.springframework.web.bind.annotation.RestController
  */
 @RestController
 @RequestMapping("/v1/shelly")
-class ShellyRestController {
+class ShellyRestController(
+    var shellyService: ShellyService,
+    var lightmanagerService: LightmanagerService,
+    val hybridStageService: HybridStageService
+) {
 
-    @Autowired
-    var shellyService: ShellyService? = null
-
-    @Autowired
-    var lightmanagerService: LightmanagerService? = null
-
-    @Autowired
-    val hybridStageHandler: HybridStageHandler? = null
 
     /**
      * Sets the given scene or index on the connected lightmanager air.
@@ -62,7 +58,7 @@ class ShellyRestController {
         @RequestParam(value = "store", required = false, defaultValue = "true") store: Boolean,
         @RequestParam(value = "storeName", required = false) storeName: String?
     ) {
-        hybridStageHandler?.hexColor(
+        hybridStageService?.hexColor(
             ids = ids,
             hexColors = hexColors,
             gains = gains,
@@ -78,7 +74,7 @@ class ShellyRestController {
         @RequestParam(value = "ids", required = false, defaultValue = "") ids: String,
         @RequestParam(value = "transition", required = false) transitionDuration: Long?
     ) {
-        hybridStageHandler?.restoreColors(ids = ids, transitionDuration = transitionDuration)
+        hybridStageService?.restoreColors(ids = ids, transitionDuration = transitionDuration)
     }
 
     @GetMapping("gain")
@@ -87,6 +83,6 @@ class ShellyRestController {
         @RequestParam(value = "gain", required = false, defaultValue = "") gain: Int,
         @RequestParam(value = "transition", required = false) transitionDuration: Long?
     ) {
-        hybridStageHandler?.gain(ids = ids, gain = gain, transitionDuration = transitionDuration)
+        hybridStageService?.gain(ids = ids, gain = gain, transitionDuration = transitionDuration)
     }
 }

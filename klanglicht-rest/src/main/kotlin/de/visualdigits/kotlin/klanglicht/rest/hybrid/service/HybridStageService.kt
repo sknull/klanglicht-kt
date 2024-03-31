@@ -1,4 +1,4 @@
-package de.visualdigits.kotlin.klanglicht.rest.hybrid.handler
+package de.visualdigits.kotlin.klanglicht.rest.hybrid.service
 
 import de.visualdigits.kotlin.klanglicht.hardware.hybrid.HybridScene
 import de.visualdigits.kotlin.klanglicht.hardware.shelly.client.ShellyClient
@@ -6,15 +6,14 @@ import de.visualdigits.kotlin.klanglicht.rest.configuration.ConfigHolder
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.stereotype.Component
+import org.springframework.stereotype.Service
 
-@Component
-class HybridStageHandler {
+@Service
+class HybridStageService(
+    val configHolder: ConfigHolder
+) {
 
     private val log: Logger = LoggerFactory.getLogger(javaClass)
-
-    @Autowired
-    val configHolder: ConfigHolder? = null
 
     /**
      * Set hex colors.

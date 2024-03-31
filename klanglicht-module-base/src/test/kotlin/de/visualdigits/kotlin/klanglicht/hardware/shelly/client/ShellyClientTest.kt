@@ -7,7 +7,20 @@ import org.junit.jupiter.api.Test
 class ShellyClientTest {
 
     @Test
-    fun testPower() {
-        ShellyClient.setPower(ipAddress = "192.168.178.38", command = "relay/0", turnOn = false)
+    fun testPowerOn() {
+        ShellyClient.setPower(
+            ipAddress = "192.168.178.38",
+            command = "relay/0",
+            turnOn = true
+        )
+    }
+
+    @Test
+    fun testPowerOff() {
+        ShellyClient.setPower(
+            ipAddress = "192.168.178.38",
+            command = "relay/0",
+            turnOn = false
+        )
     }
 }

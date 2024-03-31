@@ -12,13 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping
 
 @Controller
 @RequestMapping("/v1/shelly/web")
-class ShellyWebController {
-
-    @Autowired
-    var configHolder: ConfigHolder? = null
-
-    @Autowired
-    var shellyService: ShellyService? = null
+class ShellyWebController(
+    var configHolder: ConfigHolder,
+    var shellyService: ShellyService
+) {
 
     @GetMapping("powers", produces = ["application/xhtml+xml"])
     fun currentPowers(model: Model, request: HttpServletRequest?): String {

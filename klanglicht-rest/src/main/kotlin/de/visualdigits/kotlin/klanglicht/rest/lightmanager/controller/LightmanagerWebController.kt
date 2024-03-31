@@ -12,13 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping
 
 @Controller
 @RequestMapping("/v1/lightmanager/web")
-class LightmanagerWebController {
+class LightmanagerWebController(
+    var configHolder: ConfigHolder,
+    var client: LightmanagerService
+) {
 
-    @Autowired
-    var configHolder: ConfigHolder? = null
-
-    @Autowired
-    var client: LightmanagerService? = null
 
     @GetMapping("/scenes", produces = ["application/xhtml+xml"])
     fun scenes(model: Model): String {

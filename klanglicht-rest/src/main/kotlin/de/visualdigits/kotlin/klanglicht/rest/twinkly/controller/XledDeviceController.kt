@@ -15,12 +15,11 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController()
 @RequestMapping("/twinkly/api/v1/xleddevice")
-class XledDeviceController {
+class XledDeviceController(
+    private var configHolder: ConfigHolder
+) {
 
     private val log = LoggerFactory.getLogger(XledDeviceController::class.java)
-
-    @Autowired
-    private var configHolder: ConfigHolder? = null
 
     @PutMapping("/{device}/power/on")
     fun powerOn(

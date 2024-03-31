@@ -24,12 +24,12 @@ import java.io.File
 
 @RestController()
 @RequestMapping("/twinkly/api/v1/xledarray")
-class XledArrayController {
+class XledArrayController(
+    var configHolder: ConfigHolder
+) {
 
     private val log = LoggerFactory.getLogger(XledArrayController::class.java)
 
-    @Autowired
-    var configHolder: ConfigHolder? = null
 
     private var playable: Playable? = null
 

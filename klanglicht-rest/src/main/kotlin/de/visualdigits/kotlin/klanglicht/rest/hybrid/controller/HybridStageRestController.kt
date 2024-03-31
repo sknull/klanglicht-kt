@@ -1,6 +1,6 @@
 package de.visualdigits.kotlin.klanglicht.rest.hybrid.controller
 
-import de.visualdigits.kotlin.klanglicht.rest.hybrid.handler.HybridStageHandler
+import de.visualdigits.kotlin.klanglicht.rest.hybrid.service.HybridStageService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
@@ -10,10 +10,9 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/v1/hybrid/json")
-class HybridStageRestController {
-    
-    @Autowired
-    val hybridStageHandler: HybridStageHandler? = null
+class HybridStageRestController(
+    val hybridStageService: HybridStageService? = null
+) {
 
     @GetMapping("hexColor")
     fun hexColor(
@@ -25,7 +24,7 @@ class HybridStageRestController {
         @RequestParam(value = "store", required = false, defaultValue = "true") store: Boolean,
         @RequestParam(value = "storeName", required = false) storeName: String?
     ) {
-        hybridStageHandler?.hexColor(
+        hybridStageService?.hexColor(
             ids = ids,
             hexColors = hexColors,
             gains = gains,
@@ -41,7 +40,7 @@ class HybridStageRestController {
         @RequestParam(value = "id") id: String,
         @RequestParam(value = "hexColor") hexColor: String
     ) {
-        hybridStageHandler?.putColor(
+        hybridStageService?.putColor(
             id = id,
             hexColor = hexColor
         )

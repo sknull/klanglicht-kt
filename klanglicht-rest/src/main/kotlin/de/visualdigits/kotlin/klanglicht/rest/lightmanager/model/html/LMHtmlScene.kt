@@ -13,7 +13,7 @@ class LMHtmlScene(
     }
 
     fun toHtml(configHolder: ConfigHolder, group: String): String {
-        val lightmanagerUrl = configHolder.preferences?.getService("lmair")?.url
+        val url = configHolder.preferences?.getService("lmair")?.url
         val sb = StringBuilder()
         sb.append("      <div class=\"button\"")
         if (scene.color?.isNotEmpty() == true) {
@@ -36,7 +36,7 @@ class LMHtmlScene(
         sb.append("><input type=\"submit\" value=\"")
             .append(label)
             .append("\" onclick=\"request('")
-            .append(lightmanagerUrl)
+            .append(url)
             .append("/control?scene=")
             .append(scene.id)
             .append("');\"/></div>\n")

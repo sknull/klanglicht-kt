@@ -11,12 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
 @Service
-class ShellyService {
+class ShellyService(
+    val configHolder: ConfigHolder
+) {
 
     private val log: Logger = LoggerFactory.getLogger(javaClass)
-
-    @Autowired
-    val configHolder: ConfigHolder? = null
 
     fun power(
         ids: String,

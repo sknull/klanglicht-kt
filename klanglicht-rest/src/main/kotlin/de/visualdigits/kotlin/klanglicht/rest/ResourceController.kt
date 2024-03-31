@@ -26,12 +26,11 @@ import java.net.URLEncoder
 import java.nio.charset.StandardCharsets
 
 @Controller
-class ResourceController {
+class ResourceController(
+    val configHolder: ConfigHolder
+) {
 
     private val log: Logger = LoggerFactory.getLogger(javaClass)
-
-    @Autowired
-    val configHolder: ConfigHolder? = null
 
     @GetMapping("/resources/**")
     @ResponseBody

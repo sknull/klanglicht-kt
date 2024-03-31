@@ -12,15 +12,15 @@ import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
+
 /**
  * REST controller for the light manager air.
  */
 @RestController
 @RequestMapping("/v1/lightmanager/json")
-class LightmanagerRestController {
-
-    @Autowired
-    var client: LightmanagerService? = null
+class LightmanagerRestController(
+    var client: LightmanagerService
+) {
 
     @GetMapping("params", produces = [MediaType.APPLICATION_JSON_VALUE])
     fun params(): LMParams? = client?.params()

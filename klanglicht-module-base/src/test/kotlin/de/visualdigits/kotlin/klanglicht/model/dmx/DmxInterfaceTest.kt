@@ -1,4 +1,4 @@
-package de.visualdigits.kotlin.klanglicht.dmx
+package de.visualdigits.kotlin.klanglicht.model.dmx
 
 import de.visualdigits.kotlin.klanglicht.hardware.color.RGBColor
 import de.visualdigits.kotlin.klanglicht.hardware.dmx.parameter.IntParameter

@@ -13,16 +13,14 @@ import org.springframework.stereotype.Service
 @Service
 class LightmanagerService(
     var lightmanagerUrl: String? = null,
-    var client: LightmanagerClient? = null
+    var client: LightmanagerClient? = null,
+    val configHolder: ConfigHolder
 ) {
-
-    @Autowired
-    val configHolder: ConfigHolder? = null
 
     @PostConstruct
     fun initialize() {
         if (lightmanagerUrl == null) {
-            lightmanagerUrl = configHolder!!.preferences?.getService("lmair")?.url
+            lightmanagerUrl = configHolder.preferences?.getService("lmair")?.url!!
         }
         client = lightmanagerUrl?.let { LightmanagerClient(it) }
     }
