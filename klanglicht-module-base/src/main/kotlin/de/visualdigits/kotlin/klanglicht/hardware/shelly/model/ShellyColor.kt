@@ -13,7 +13,7 @@ class ShellyColor(
     val ipAddress: String,
     private var color: RGBColor,
     private var deviceGain: Float,
-    private var deviceTurnOn: Boolean
+    private var deviceTurnOn: Boolean?
 ) : Fadeable<ShellyColor> {
 
     private val log: Logger = LoggerFactory.getLogger(javaClass)
@@ -22,9 +22,9 @@ class ShellyColor(
         return ShellyColor(deviceId, ipAddress, color.clone(), deviceGain, deviceTurnOn)
     }
 
-    override fun getTurnOn(): Boolean = deviceTurnOn
+    override fun getTurnOn(): Boolean = deviceTurnOn?:false
 
-    override fun setTurnOn(turnOn: Boolean) {
+    override fun setTurnOn(turnOn: Boolean?) {
         this.deviceTurnOn = turnOn
     }
 

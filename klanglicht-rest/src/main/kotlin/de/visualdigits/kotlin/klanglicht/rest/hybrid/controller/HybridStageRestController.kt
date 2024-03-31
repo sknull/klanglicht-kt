@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/v1/hybrid/json")
 class HybridStageRestController(
-    val hybridStageService: HybridStageService? = null
+    val hybridStageService: HybridStageService
 ) {
 
     @GetMapping("hexColor")
@@ -24,7 +24,7 @@ class HybridStageRestController(
         @RequestParam(value = "store", required = false, defaultValue = "true") store: Boolean,
         @RequestParam(value = "storeName", required = false) storeName: String?
     ) {
-        hybridStageService?.hexColor(
+        hybridStageService.hexColor(
             ids = ids,
             hexColors = hexColors,
             gains = gains,
@@ -40,7 +40,7 @@ class HybridStageRestController(
         @RequestParam(value = "id") id: String,
         @RequestParam(value = "hexColor") hexColor: String
     ) {
-        hybridStageService?.putColor(
+        hybridStageService.putColor(
             id = id,
             hexColor = hexColor
         )

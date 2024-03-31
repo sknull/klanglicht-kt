@@ -13,7 +13,8 @@ class LMHtmlScene(
     }
 
     fun toHtml(configHolder: ConfigHolder, group: String): String {
-        val url = configHolder.preferences?.getService("lmair")?.url
+//        val url = configHolder.preferences?.getService("lmair")?.url
+        val url = configHolder.preferences?.ownUrl
         val sb = StringBuilder()
         sb.append("      <div class=\"button\"")
         if (scene.color?.isNotEmpty() == true) {
@@ -37,7 +38,8 @@ class LMHtmlScene(
             .append(label)
             .append("\" onclick=\"request('")
             .append(url)
-            .append("/control?scene=")
+            .append("/v1/scenes/json/control?scene=")
+//            .append("/control?scene=")
             .append(scene.id)
             .append("');\"/></div>\n")
         return sb.toString()

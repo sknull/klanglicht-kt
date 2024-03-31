@@ -28,8 +28,23 @@ class LightmanagerClientTest {
     }
 
     @Test
+    fun testIdualOn() {
+        client.controlIndex(42)
+    }
+
+    @Test
     fun testIdualOff() {
-        client.controlIndex(46)
+        client.controlIndex(1499)
+    }
+
+    @Test
+    fun testFlurOn() {
+        client.controlIndex(31)
+    }
+
+    @Test
+    fun testFlurOff() {
+        client.controlIndex(33)
     }
 
     @Test
@@ -49,9 +64,18 @@ class LightmanagerClientTest {
     }
 
     @Test
+    fun testScrapeSceneConfig() {
+        val lmAirProject = LmAirProject.unmarshall(File(ClassLoader.getSystemResource("lmair/lmair-config.json").toURI()))
+        val scenes = client.scenes(lmAirProject)
+        val json = mapper.writeValueAsString(scenes)
+
+        println(json)
+    }
+
+    @Test
     fun testLoadScenes() {
-        val json = File(ClassLoader.getSystemResource("lmair/scenes.json").toURI()).readText()
-        val scenes = mapper.readValue(json, LMScenes::class.java)
+        val file = File(ClassLoader.getSystemResource("lmair/scenes.json").toURI())
+        val scenes = LMScenes.unmarshall(file)
         println(scenes)
     }
 }

@@ -20,19 +20,19 @@ class LightmanagerWebController(
 
     @GetMapping("/scenes", produces = ["application/xhtml+xml"])
     fun scenes(model: Model): String {
-        model.addAttribute("theme", configHolder?.preferences?.theme)
+        model.addAttribute("theme", configHolder.preferences?.theme)
         model.addAttribute("title", "Scenes")
-        val scenes = client?.scenes()?.let { LMHtmlScenes(it) }
-        model.addAttribute("content", scenes?.toHtml(configHolder!!))
+        val scenes = client.scenes()?.let { LMHtmlScenes(it) }
+        model.addAttribute("content", scenes?.toHtml(configHolder))
         return "pagetemplate"
     }
 
     @GetMapping("/zones", produces = ["application/xhtml+xml"])
     fun zones(model: Model): String {
-        model.addAttribute("theme", configHolder?.preferences?.theme)
+        model.addAttribute("theme", configHolder.preferences?.theme)
         model.addAttribute("title", "Zones")
-        val zones = client?.zones()?.let { LMHtmlZones(it) }
-        model.addAttribute("content", zones?.toHtml(configHolder!!))
+        val zones = client.zones()?.let { LMHtmlZones(it) }
+        model.addAttribute("content", zones?.toHtml(configHolder))
         return "pagetemplate"
     }
 }

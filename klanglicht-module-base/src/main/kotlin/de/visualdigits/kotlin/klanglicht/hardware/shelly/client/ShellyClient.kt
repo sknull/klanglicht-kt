@@ -14,12 +14,12 @@ object ShellyClient {
 
     fun setPower(
         ipAddress: String,
-        turnOn: Boolean,
+        turnOn: Boolean? = false,
         command: String = "",
         transitionDuration: Long = 1
     ): String? {
         log.debug("setPower: $ipAddress = $turnOn")
-        return URL("http://$ipAddress/$command?turn=${if (turnOn) "on" else "off"}&transition=$transitionDuration&").get<String>()
+        return URL("http://$ipAddress/$command?turn=${if (turnOn == true) "on" else "off"}&transition=$transitionDuration&").get<String>()
     }
 
     fun setGain(
@@ -43,11 +43,11 @@ object ShellyClient {
         rgbColor: RGBColor,
         gain: Float,
         transitionDuration: Long = 1, // zero is interpreted as empty which leads to the default of 2000 millis
-        turnOn: Boolean = true,
+        turnOn: Boolean? = true,
     ): Light? {
         log.debug("setColor: $ipAddress = ${rgbColor.ansiColor()} [$gain]")
         return URL(
-            "http://$ipAddress/color/0?turn=${if (turnOn) "on" else "off"}&red=${rgbColor.red}&green=${rgbColor.green}&blue=${rgbColor.blue}&white=0&gain=${(100 * gain).toInt()}&transition=$transitionDuration&"
+            "http://$ipAddress/color/0?turn=${if (turnOn == true) "on" else "off"}&red=${rgbColor.red}&green=${rgbColor.green}&blue=${rgbColor.blue}&white=0&gain=${(100 * gain).toInt()}&transition=$transitionDuration&"
         ).get<Light>()
     }
 }

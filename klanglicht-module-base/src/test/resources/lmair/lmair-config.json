@@ -26,7 +26,7 @@
     "extname7": "",
     "extname8": "",
     "filename": "Yodas Home.jsc",
-    "lastactor": 160,
+    "lastactor": 159,
     "learnseqs": 1,
     "marksameactor": true,
     "master": "",
@@ -1033,6 +1033,74 @@
       "nodeindex": 14,
       "expanded": false,
       "properties": {
+        "index": 1499,
+        "bemerkung": "IDual Off {group:idual;color:#000000}",
+        "jbcode": 214
+      },
+      "children": [
+        {
+          "nodeindex": 0,
+          "expanded": false,
+          "properties": {
+            "index": 1500,
+            "ntype": 1,
+            "befehl": 1,
+            "enabled": false,
+            "aktorindex": 6
+          },
+          "children": []
+        }
+      ]
+    },
+    {
+      "nodeindex": 15,
+      "expanded": false,
+      "properties": {
+        "index": 826,
+        "bemerkung": "IDual Red {group:idual;color:#ff0000}",
+        "jbcode": 99
+      },
+      "children": [
+        {
+          "nodeindex": 0,
+          "expanded": false,
+          "properties": {
+            "index": 847,
+            "ntype": 1,
+            "befehl": 1,
+            "enabled": false,
+            "aktorindex": 72
+          },
+          "children": []
+        }
+      ]
+    },
+    {
+      "nodeindex": 16,
+      "expanded": false,
+      "properties": {
+        "index": 819,
+        "bemerkung": "IDual Green {group:idual;color:#00ff00}",
+        "jbcode": 98
+      },
+      "children": [
+        {
+          "nodeindex": 0,
+          "expanded": false,
+          "properties": {
+            "index": 845,
+            "ntype": 1,
+            "enabled": false,
+            "aktorindex": 72
+          },
+          "children": []
+        }
+      ]
+    },
+    {
+      "nodeindex": 17,
+      "expanded": false,
+      "properties": {
         "index": 48,
         "bemerkung": "IDual Blue {group:idual;color:#0000ff}",
         "jbcode": 12
@@ -1042,31 +1110,6 @@
           "nodeindex": 0,
           "expanded": false,
           "properties": {
-            "index": 49,
-            "ntype": 1,
-            "befehl": 1,
-            "enabled": false,
-            "aktorindex": 74,
-            "markerselect": "8000000002"
-          },
-          "children": []
-        },
-        {
-          "nodeindex": 1,
-          "expanded": false,
-          "properties": {
-            "index": 840,
-            "ntype": 10,
-            "dauer": 1,
-            "enabled": false,
-            "markerselect": "8000000002"
-          },
-          "children": []
-        },
-        {
-          "nodeindex": 2,
-          "expanded": false,
-          "properties": {
             "index": 841,
             "ntype": 1,
             "enabled": false,
@@ -1074,95 +1117,78 @@
             "markerselect": "2"
           },
           "children": []
-        },
+        }
+      ]
+    },
+    {
+      "nodeindex": 18,
+      "expanded": false,
+      "properties": {
+        "index": 833,
+        "bemerkung": "IDual Yellow {group:idual;color:#ffff00}",
+        "jbcode": 100
+      },
+      "children": [
         {
-          "nodeindex": 3,
+          "nodeindex": 0,
           "expanded": false,
           "properties": {
-            "index": 811,
-            "ntype": 8,
-            "befehl": 2,
+            "index": 849,
+            "ntype": 1,
             "enabled": false,
-            "aktorindex": 33
-          },
-          "children": []
-        },
-        {
-          "nodeindex": 4,
-          "expanded": false,
-          "properties": {
-            "index": 999,
-            "ntype": 8,
-            "befehl": 2,
-            "enabled": false,
-            "aktorindex": 38
-          },
-          "children": []
-        },
-        {
-          "nodeindex": 5,
-          "expanded": false,
-          "properties": {
-            "index": 1000,
-            "ntype": 8,
-            "befehl": 2,
-            "enabled": false,
-            "aktorindex": 39
-          },
-          "children": []
-        },
-        {
-          "nodeindex": 6,
-          "expanded": false,
-          "properties": {
-            "index": 454,
-            "ntype": 8,
-            "befehl": 1,
-            "enabled": false,
-            "aktorindex": 1
-          },
-          "children": []
-        },
-        {
-          "nodeindex": 7,
-          "expanded": false,
-          "properties": {
-            "index": 812,
-            "ntype": 8,
-            "befehl": 2,
-            "enabled": false,
-            "aktorindex": 34
-          },
-          "children": []
-        },
-        {
-          "nodeindex": 8,
-          "expanded": false,
-          "properties": {
-            "index": 813,
-            "ntype": 8,
-            "befehl": 2,
-            "enabled": false,
-            "aktorindex": 35
-          },
-          "children": []
-        },
-        {
-          "nodeindex": 9,
-          "expanded": false,
-          "properties": {
-            "index": 814,
-            "ntype": 8,
-            "befehl": 2,
-            "enabled": false,
-            "aktorindex": 36
+            "aktorindex": 73
           },
           "children": []
         }
       ]
     },
     {
-      "nodeindex": 15,
+      "nodeindex": 19,
+      "expanded": false,
+      "properties": {
+        "index": 940,
+        "bemerkung": "IDual DayWhite {group:idual;color:#ffffff}",
+        "jbcode": 102
+      },
+      "children": [
+        {
+          "nodeindex": 0,
+          "expanded": false,
+          "properties": {
+            "index": 942,
+            "ntype": 1,
+            "enabled": false,
+            "aktorindex": 74
+          },
+          "children": []
+        }
+      ]
+    },
+    {
+      "nodeindex": 20,
+      "expanded": false,
+      "properties": {
+        "index": 948,
+        "bemerkung": "IDual ColdWhite {group:idual;color:#d5f1ff}",
+        "jbcode": 103
+      },
+      "children": [
+        {
+          "nodeindex": 0,
+          "expanded": false,
+          "properties": {
+            "index": 950,
+            "ntype": 1,
+            "befehl": 1,
+            "enabled": false,
+            "aktorindex": 74
+          },
+          "children": []
+        }
+      ]
+    },
+    {
+      "nodeindex": 21,
       "expanded": false,
       "properties": {
         "index": 46,
@@ -1178,99 +1204,14 @@
             "ntype": 1,
             "befehl": 1,
             "enabled": false,
-            "aktorindex": 13,
-            "markerselect": "200000000"
-          },
-          "children": []
-        },
-        {
-          "nodeindex": 1,
-          "expanded": false,
-          "properties": {
-            "index": 815,
-            "ntype": 8,
-            "befehl": 1,
-            "enabled": false,
-            "aktorindex": 33
-          },
-          "children": []
-        },
-        {
-          "nodeindex": 2,
-          "expanded": false,
-          "properties": {
-            "index": 956,
-            "ntype": 8,
-            "befehl": 2,
-            "enabled": false,
-            "aktorindex": 38
-          },
-          "children": []
-        },
-        {
-          "nodeindex": 3,
-          "expanded": false,
-          "properties": {
-            "index": 957,
-            "ntype": 8,
-            "befehl": 2,
-            "enabled": false,
-            "aktorindex": 39
-          },
-          "children": []
-        },
-        {
-          "nodeindex": 4,
-          "expanded": false,
-          "properties": {
-            "index": 455,
-            "ntype": 8,
-            "befehl": 2,
-            "enabled": false,
-            "aktorindex": 1
-          },
-          "children": []
-        },
-        {
-          "nodeindex": 5,
-          "expanded": false,
-          "properties": {
-            "index": 816,
-            "ntype": 8,
-            "befehl": 2,
-            "enabled": false,
-            "aktorindex": 34
-          },
-          "children": []
-        },
-        {
-          "nodeindex": 6,
-          "expanded": false,
-          "properties": {
-            "index": 817,
-            "ntype": 8,
-            "befehl": 2,
-            "enabled": false,
-            "aktorindex": 35
-          },
-          "children": []
-        },
-        {
-          "nodeindex": 7,
-          "expanded": false,
-          "properties": {
-            "index": 818,
-            "ntype": 8,
-            "befehl": 2,
-            "enabled": false,
-            "aktorindex": 36
+            "aktorindex": 13
           },
           "children": []
         }
       ]
     },
     {
-      "nodeindex": 16,
+      "nodeindex": 22,
       "expanded": false,
       "properties": {
         "index": 185,
@@ -1452,7 +1393,7 @@
       ]
     },
     {
-      "nodeindex": 17,
+      "nodeindex": 23,
       "expanded": false,
       "properties": {
         "index": 274,
@@ -1474,7 +1415,7 @@
       ]
     },
     {
-      "nodeindex": 18,
+      "nodeindex": 24,
       "expanded": false,
       "properties": {
         "index": 286,
@@ -1496,7 +1437,7 @@
       ]
     },
     {
-      "nodeindex": 19,
+      "nodeindex": 25,
       "expanded": false,
       "properties": {
         "index": 298,
@@ -1518,7 +1459,7 @@
       ]
     },
     {
-      "nodeindex": 20,
+      "nodeindex": 26,
       "expanded": false,
       "properties": {
         "index": 310,
@@ -1540,7 +1481,7 @@
       ]
     },
     {
-      "nodeindex": 21,
+      "nodeindex": 27,
       "expanded": false,
       "properties": {
         "index": 322,
@@ -1562,7 +1503,7 @@
       ]
     },
     {
-      "nodeindex": 22,
+      "nodeindex": 28,
       "expanded": false,
       "properties": {
         "index": 333,
@@ -1584,7 +1525,7 @@
       ]
     },
     {
-      "nodeindex": 23,
+      "nodeindex": 29,
       "expanded": false,
       "properties": {
         "index": 344,
@@ -1752,7 +1693,7 @@
       ]
     },
     {
-      "nodeindex": 24,
+      "nodeindex": 30,
       "expanded": false,
       "properties": {
         "index": 356,
@@ -1892,7 +1833,7 @@
       ]
     },
     {
-      "nodeindex": 25,
+      "nodeindex": 31,
       "expanded": false,
       "properties": {
         "index": 375,
@@ -1914,7 +1855,7 @@
       ]
     },
     {
-      "nodeindex": 26,
+      "nodeindex": 32,
       "expanded": false,
       "properties": {
         "index": 377,
@@ -1965,7 +1906,7 @@
       ]
     },
     {
-      "nodeindex": 27,
+      "nodeindex": 33,
       "expanded": false,
       "properties": {
         "index": 23,
@@ -1987,7 +1928,7 @@
       ]
     },
     {
-      "nodeindex": 28,
+      "nodeindex": 34,
       "expanded": false,
       "properties": {
         "index": 25,
@@ -2010,7 +1951,7 @@
       ]
     },
     {
-      "nodeindex": 29,
+      "nodeindex": 35,
       "expanded": false,
       "properties": {
         "index": 19,
@@ -2032,7 +1973,7 @@
       ]
     },
     {
-      "nodeindex": 30,
+      "nodeindex": 36,
       "expanded": false,
       "properties": {
         "index": 21,
@@ -2055,7 +1996,7 @@
       ]
     },
     {
-      "nodeindex": 31,
+      "nodeindex": 37,
       "expanded": false,
       "properties": {
         "index": 381,
@@ -2078,7 +2019,7 @@
       ]
     },
     {
-      "nodeindex": 32,
+      "nodeindex": 38,
       "expanded": false,
       "properties": {
         "index": 383,
@@ -2101,7 +2042,7 @@
       ]
     },
     {
-      "nodeindex": 33,
+      "nodeindex": 39,
       "expanded": false,
       "properties": {
         "index": 385,
@@ -2124,7 +2065,7 @@
       ]
     },
     {
-      "nodeindex": 34,
+      "nodeindex": 40,
       "expanded": false,
       "properties": {
         "index": 387,
@@ -2147,7 +2088,7 @@
       ]
     },
     {
-      "nodeindex": 35,
+      "nodeindex": 41,
       "expanded": false,
       "properties": {
         "index": 389,
@@ -2170,7 +2111,7 @@
       ]
     },
     {
-      "nodeindex": 36,
+      "nodeindex": 42,
       "expanded": false,
       "properties": {
         "index": 391,
@@ -2193,7 +2134,7 @@
       ]
     },
     {
-      "nodeindex": 37,
+      "nodeindex": 43,
       "expanded": false,
       "properties": {
         "index": 31,
@@ -2215,7 +2156,7 @@
       ]
     },
     {
-      "nodeindex": 38,
+      "nodeindex": 44,
       "expanded": false,
       "properties": {
         "index": 33,
@@ -2238,7 +2179,7 @@
       ]
     },
     {
-      "nodeindex": 39,
+      "nodeindex": 45,
       "expanded": false,
       "properties": {
         "index": 39,
@@ -2273,7 +2214,7 @@
       ]
     },
     {
-      "nodeindex": 40,
+      "nodeindex": 46,
       "expanded": false,
       "properties": {
         "index": 37,
@@ -2296,7 +2237,7 @@
       ]
     },
     {
-      "nodeindex": 41,
+      "nodeindex": 47,
       "expanded": false,
       "properties": {
         "index": 393,
@@ -2319,7 +2260,7 @@
       ]
     },
     {
-      "nodeindex": 42,
+      "nodeindex": 48,
       "expanded": false,
       "properties": {
         "index": 395,
@@ -2342,7 +2283,7 @@
       ]
     },
     {
-      "nodeindex": 43,
+      "nodeindex": 49,
       "expanded": false,
       "properties": {
         "index": 366,
@@ -2364,7 +2305,7 @@
       ]
     },
     {
-      "nodeindex": 44,
+      "nodeindex": 50,
       "expanded": false,
       "properties": {
         "index": 131,
@@ -2411,7 +2352,7 @@
       ]
     },
     {
-      "nodeindex": 45,
+      "nodeindex": 51,
       "expanded": false,
       "properties": {
         "index": 133,
@@ -2459,7 +2400,7 @@
       ]
     },
     {
-      "nodeindex": 46,
+      "nodeindex": 52,
       "expanded": false,
       "properties": {
         "index": 27,
@@ -2481,7 +2422,7 @@
       ]
     },
     {
-      "nodeindex": 47,
+      "nodeindex": 53,
       "expanded": false,
       "properties": {
         "index": 29,
@@ -2504,7 +2445,7 @@
       ]
     },
     {
-      "nodeindex": 48,
+      "nodeindex": 54,
       "expanded": false,
       "properties": {
         "index": 121,
@@ -2575,7 +2516,7 @@
       ]
     },
     {
-      "nodeindex": 49,
+      "nodeindex": 55,
       "expanded": false,
       "properties": {
         "index": 414,
@@ -2753,7 +2694,7 @@
       ]
     },
     {
-      "nodeindex": 50,
+      "nodeindex": 56,
       "expanded": false,
       "properties": {
         "index": 466,
@@ -2801,7 +2742,7 @@
       ]
     },
     {
-      "nodeindex": 51,
+      "nodeindex": 57,
       "expanded": false,
       "properties": {
         "index": 494,
@@ -2823,7 +2764,7 @@
       ]
     },
     {
-      "nodeindex": 52,
+      "nodeindex": 58,
       "expanded": false,
       "properties": {
         "index": 496,
@@ -2845,7 +2786,7 @@
       ]
     },
     {
-      "nodeindex": 53,
+      "nodeindex": 59,
       "expanded": false,
       "properties": {
         "index": 498,
@@ -2867,7 +2808,7 @@
       ]
     },
     {
-      "nodeindex": 54,
+      "nodeindex": 60,
       "expanded": false,
       "properties": {
         "index": 500,
@@ -2889,7 +2830,7 @@
       ]
     },
     {
-      "nodeindex": 55,
+      "nodeindex": 61,
       "expanded": false,
       "properties": {
         "index": 502,
@@ -2911,7 +2852,7 @@
       ]
     },
     {
-      "nodeindex": 56,
+      "nodeindex": 62,
       "expanded": false,
       "properties": {
         "index": 504,
@@ -2933,7 +2874,7 @@
       ]
     },
     {
-      "nodeindex": 57,
+      "nodeindex": 63,
       "expanded": false,
       "properties": {
         "index": 506,
@@ -2955,7 +2896,7 @@
       ]
     },
     {
-      "nodeindex": 58,
+      "nodeindex": 64,
       "expanded": false,
       "properties": {
         "index": 508,
@@ -2977,7 +2918,7 @@
       ]
     },
     {
-      "nodeindex": 59,
+      "nodeindex": 65,
       "expanded": false,
       "properties": {
         "index": 510,
@@ -2999,7 +2940,7 @@
       ]
     },
     {
-      "nodeindex": 60,
+      "nodeindex": 66,
       "expanded": false,
       "properties": {
         "index": 513,
@@ -3021,7 +2962,7 @@
       ]
     },
     {
-      "nodeindex": 61,
+      "nodeindex": 67,
       "expanded": false,
       "properties": {
         "index": 535,
@@ -3043,7 +2984,7 @@
       ]
     },
     {
-      "nodeindex": 62,
+      "nodeindex": 68,
       "expanded": false,
       "properties": {
         "index": 537,
@@ -3066,7 +3007,7 @@
       ]
     },
     {
-      "nodeindex": 63,
+      "nodeindex": 69,
       "expanded": false,
       "properties": {
         "index": 539,
@@ -3088,7 +3029,7 @@
       ]
     },
     {
-      "nodeindex": 64,
+      "nodeindex": 70,
       "expanded": false,
       "properties": {
         "index": 541,
@@ -3111,7 +3052,7 @@
       ]
     },
     {
-      "nodeindex": 65,
+      "nodeindex": 71,
       "expanded": false,
       "properties": {
         "index": 543,
@@ -3133,7 +3074,7 @@
       ]
     },
     {
-      "nodeindex": 66,
+      "nodeindex": 72,
       "expanded": false,
       "properties": {
         "index": 545,
@@ -3156,7 +3097,7 @@
       ]
     },
     {
-      "nodeindex": 67,
+      "nodeindex": 73,
       "expanded": false,
       "properties": {
         "index": 547,
@@ -3178,7 +3119,7 @@
       ]
     },
     {
-      "nodeindex": 68,
+      "nodeindex": 74,
       "expanded": false,
       "properties": {
         "index": 549,
@@ -3201,7 +3142,7 @@
       ]
     },
     {
-      "nodeindex": 69,
+      "nodeindex": 75,
       "expanded": false,
       "properties": {
         "index": 551,
@@ -3223,7 +3164,7 @@
       ]
     },
     {
-      "nodeindex": 70,
+      "nodeindex": 76,
       "expanded": false,
       "properties": {
         "index": 553,
@@ -3246,7 +3187,7 @@
       ]
     },
     {
-      "nodeindex": 71,
+      "nodeindex": 77,
       "expanded": false,
       "properties": {
         "index": 555,
@@ -3268,7 +3209,7 @@
       ]
     },
     {
-      "nodeindex": 72,
+      "nodeindex": 78,
       "expanded": false,
       "properties": {
         "index": 557,
@@ -3291,7 +3232,7 @@
       ]
     },
     {
-      "nodeindex": 73,
+      "nodeindex": 79,
       "expanded": false,
       "properties": {
         "index": 581,
@@ -3313,7 +3254,7 @@
       ]
     },
     {
-      "nodeindex": 74,
+      "nodeindex": 80,
       "expanded": false,
       "properties": {
         "index": 585,
@@ -3336,7 +3277,7 @@
       ]
     },
     {
-      "nodeindex": 75,
+      "nodeindex": 81,
       "expanded": false,
       "properties": {
         "index": 589,
@@ -3358,7 +3299,7 @@
       ]
     },
     {
-      "nodeindex": 76,
+      "nodeindex": 82,
       "expanded": false,
       "properties": {
         "index": 593,
@@ -3381,7 +3322,7 @@
       ]
     },
     {
-      "nodeindex": 77,
+      "nodeindex": 83,
       "expanded": false,
       "properties": {
         "index": 597,
@@ -3403,7 +3344,7 @@
       ]
     },
     {
-      "nodeindex": 78,
+      "nodeindex": 84,
       "expanded": false,
       "properties": {
         "index": 601,
@@ -3426,7 +3367,7 @@
       ]
     },
     {
-      "nodeindex": 79,
+      "nodeindex": 85,
       "expanded": false,
       "properties": {
         "index": 605,
@@ -3448,7 +3389,7 @@
       ]
     },
     {
-      "nodeindex": 80,
+      "nodeindex": 86,
       "expanded": false,
       "properties": {
         "index": 609,
@@ -3471,7 +3412,7 @@
       ]
     },
     {
-      "nodeindex": 81,
+      "nodeindex": 87,
       "expanded": false,
       "properties": {
         "index": 659,
@@ -3494,7 +3435,7 @@
       ]
     },
     {
-      "nodeindex": 82,
+      "nodeindex": 88,
       "expanded": false,
       "properties": {
         "index": 763,
@@ -3516,7 +3457,7 @@
       ]
     },
     {
-      "nodeindex": 83,
+      "nodeindex": 89,
       "expanded": false,
       "properties": {
         "index": 789,
@@ -3539,403 +3480,7 @@
       ]
     },
     {
-      "nodeindex": 84,
-      "expanded": false,
-      "properties": {
-        "index": 819,
-        "bemerkung": "IDual Green {group:idual;color:#00ff00}",
-        "jbcode": 98
-      },
-      "children": [
-        {
-          "nodeindex": 0,
-          "expanded": false,
-          "properties": {
-            "index": 820,
-            "ntype": 1,
-            "befehl": 1,
-            "enabled": false,
-            "aktorindex": 74,
-            "markerselect": "8880000000"
-          },
-          "children": []
-        },
-        {
-          "nodeindex": 1,
-          "expanded": false,
-          "properties": {
-            "index": 844,
-            "ntype": 10,
-            "dauer": 1,
-            "enabled": false,
-            "markerselect": "8880000000"
-          },
-          "children": []
-        },
-        {
-          "nodeindex": 2,
-          "expanded": false,
-          "properties": {
-            "index": 845,
-            "ntype": 1,
-            "enabled": false,
-            "aktorindex": 72,
-            "markerselect": "880000000"
-          },
-          "children": []
-        },
-        {
-          "nodeindex": 3,
-          "expanded": false,
-          "properties": {
-            "index": 822,
-            "ntype": 8,
-            "befehl": 2,
-            "enabled": false,
-            "aktorindex": 33
-          },
-          "children": []
-        },
-        {
-          "nodeindex": 4,
-          "expanded": false,
-          "properties": {
-            "index": 997,
-            "ntype": 8,
-            "befehl": 2,
-            "enabled": false,
-            "aktorindex": 38
-          },
-          "children": []
-        },
-        {
-          "nodeindex": 5,
-          "expanded": false,
-          "properties": {
-            "index": 998,
-            "ntype": 8,
-            "befehl": 2,
-            "enabled": false,
-            "aktorindex": 39
-          },
-          "children": []
-        },
-        {
-          "nodeindex": 6,
-          "expanded": false,
-          "properties": {
-            "index": 821,
-            "ntype": 8,
-            "befehl": 2,
-            "enabled": false,
-            "aktorindex": 1
-          },
-          "children": []
-        },
-        {
-          "nodeindex": 7,
-          "expanded": false,
-          "properties": {
-            "index": 823,
-            "ntype": 8,
-            "befehl": 1,
-            "enabled": false,
-            "aktorindex": 34
-          },
-          "children": []
-        },
-        {
-          "nodeindex": 8,
-          "expanded": false,
-          "properties": {
-            "index": 824,
-            "ntype": 8,
-            "befehl": 2,
-            "enabled": false,
-            "aktorindex": 35
-          },
-          "children": []
-        },
-        {
-          "nodeindex": 9,
-          "expanded": false,
-          "properties": {
-            "index": 825,
-            "ntype": 8,
-            "befehl": 2,
-            "enabled": false,
-            "aktorindex": 36
-          },
-          "children": []
-        }
-      ]
-    },
-    {
-      "nodeindex": 85,
-      "expanded": false,
-      "properties": {
-        "index": 826,
-        "bemerkung": "IDual Red {group:idual;color:#ff0000}",
-        "jbcode": 99
-      },
-      "children": [
-        {
-          "nodeindex": 0,
-          "expanded": false,
-          "properties": {
-            "index": 827,
-            "ntype": 1,
-            "befehl": 1,
-            "enabled": false,
-            "aktorindex": 13,
-            "markerselect": "A00000000"
-          },
-          "children": []
-        },
-        {
-          "nodeindex": 1,
-          "expanded": false,
-          "properties": {
-            "index": 846,
-            "ntype": 10,
-            "dauer": 1,
-            "enabled": false,
-            "markerselect": "A00000000"
-          },
-          "children": []
-        },
-        {
-          "nodeindex": 2,
-          "expanded": false,
-          "properties": {
-            "index": 847,
-            "ntype": 1,
-            "befehl": 1,
-            "enabled": false,
-            "aktorindex": 72,
-            "markerselect": "800000000"
-          },
-          "children": []
-        },
-        {
-          "nodeindex": 3,
-          "expanded": false,
-          "properties": {
-            "index": 829,
-            "ntype": 8,
-            "befehl": 2,
-            "enabled": false,
-            "aktorindex": 33
-          },
-          "children": []
-        },
-        {
-          "nodeindex": 4,
-          "expanded": false,
-          "properties": {
-            "index": 993,
-            "ntype": 8,
-            "befehl": 2,
-            "enabled": false,
-            "aktorindex": 38
-          },
-          "children": []
-        },
-        {
-          "nodeindex": 5,
-          "expanded": false,
-          "properties": {
-            "index": 994,
-            "ntype": 8,
-            "befehl": 2,
-            "enabled": false,
-            "aktorindex": 39
-          },
-          "children": []
-        },
-        {
-          "nodeindex": 6,
-          "expanded": false,
-          "properties": {
-            "index": 828,
-            "ntype": 8,
-            "befehl": 2,
-            "enabled": false,
-            "aktorindex": 1
-          },
-          "children": []
-        },
-        {
-          "nodeindex": 7,
-          "expanded": false,
-          "properties": {
-            "index": 830,
-            "ntype": 8,
-            "befehl": 2,
-            "enabled": false,
-            "aktorindex": 34
-          },
-          "children": []
-        },
-        {
-          "nodeindex": 8,
-          "expanded": false,
-          "properties": {
-            "index": 831,
-            "ntype": 8,
-            "befehl": 1,
-            "enabled": false,
-            "aktorindex": 35
-          },
-          "children": []
-        },
-        {
-          "nodeindex": 9,
-          "expanded": false,
-          "properties": {
-            "index": 832,
-            "ntype": 8,
-            "befehl": 2,
-            "enabled": false,
-            "aktorindex": 36
-          },
-          "children": []
-        }
-      ]
-    },
-    {
-      "nodeindex": 86,
-      "expanded": false,
-      "properties": {
-        "index": 833,
-        "bemerkung": "IDual Yellow {group:idual;color:#ffff00}",
-        "jbcode": 100
-      },
-      "children": [
-        {
-          "nodeindex": 0,
-          "expanded": false,
-          "properties": {
-            "index": 834,
-            "ntype": 1,
-            "enabled": false,
-            "aktorindex": 74,
-            "markerselect": "5000000000"
-          },
-          "children": []
-        },
-        {
-          "nodeindex": 1,
-          "expanded": false,
-          "properties": {
-            "index": 848,
-            "ntype": 10,
-            "dauer": 1,
-            "enabled": false,
-            "markerselect": "5000000000"
-          },
-          "children": []
-        },
-        {
-          "nodeindex": 2,
-          "expanded": false,
-          "properties": {
-            "index": 849,
-            "ntype": 1,
-            "enabled": false,
-            "aktorindex": 73,
-            "markerselect": "1000000000"
-          },
-          "children": []
-        },
-        {
-          "nodeindex": 3,
-          "expanded": false,
-          "properties": {
-            "index": 836,
-            "ntype": 8,
-            "befehl": 2,
-            "enabled": false,
-            "aktorindex": 33
-          },
-          "children": []
-        },
-        {
-          "nodeindex": 4,
-          "expanded": false,
-          "properties": {
-            "index": 995,
-            "ntype": 8,
-            "befehl": 2,
-            "enabled": false,
-            "aktorindex": 38
-          },
-          "children": []
-        },
-        {
-          "nodeindex": 5,
-          "expanded": false,
-          "properties": {
-            "index": 996,
-            "ntype": 8,
-            "befehl": 2,
-            "enabled": false,
-            "aktorindex": 39
-          },
-          "children": []
-        },
-        {
-          "nodeindex": 6,
-          "expanded": false,
-          "properties": {
-            "index": 835,
-            "ntype": 8,
-            "befehl": 2,
-            "enabled": false,
-            "aktorindex": 1
-          },
-          "children": []
-        },
-        {
-          "nodeindex": 7,
-          "expanded": false,
-          "properties": {
-            "index": 837,
-            "ntype": 8,
-            "befehl": 2,
-            "enabled": false,
-            "aktorindex": 34
-          },
-          "children": []
-        },
-        {
-          "nodeindex": 8,
-          "expanded": false,
-          "properties": {
-            "index": 838,
-            "ntype": 8,
-            "befehl": 2,
-            "enabled": false,
-            "aktorindex": 35
-          },
-          "children": []
-        },
-        {
-          "nodeindex": 9,
-          "expanded": false,
-          "properties": {
-            "index": 839,
-            "ntype": 8,
-            "befehl": 1,
-            "enabled": false,
-            "aktorindex": 36
-          },
-          "children": []
-        }
-      ]
-    },
-    {
-      "nodeindex": 87,
+      "nodeindex": 90,
       "expanded": false,
       "properties": {
         "index": 929,
@@ -3957,226 +3502,11 @@
       ]
     },
     {
-      "nodeindex": 88,
-      "expanded": false,
-      "properties": {
-        "index": 940,
-        "bemerkung": "IDual DayWhite {group:idual;color:#ffffff}",
-        "jbcode": 102
-      },
-      "children": [
-        {
-          "nodeindex": 0,
-          "expanded": false,
-          "properties": {
-            "index": 942,
-            "ntype": 1,
-            "enabled": false,
-            "aktorindex": 74,
-            "markerselect": "8800000000"
-          },
-          "children": []
-        },
-        {
-          "nodeindex": 1,
-          "expanded": false,
-          "properties": {
-            "index": 959,
-            "ntype": 8,
-            "befehl": 2,
-            "enabled": false,
-            "aktorindex": 33
-          },
-          "children": []
-        },
-        {
-          "nodeindex": 2,
-          "expanded": false,
-          "properties": {
-            "index": 943,
-            "ntype": 8,
-            "befehl": 1,
-            "enabled": false,
-            "aktorindex": 38
-          },
-          "children": []
-        },
-        {
-          "nodeindex": 3,
-          "expanded": false,
-          "properties": {
-            "index": 958,
-            "ntype": 8,
-            "befehl": 2,
-            "enabled": false,
-            "aktorindex": 39
-          },
-          "children": []
-        },
-        {
-          "nodeindex": 4,
-          "expanded": false,
-          "properties": {
-            "index": 944,
-            "ntype": 8,
-            "befehl": 2,
-            "enabled": false,
-            "aktorindex": 1
-          },
-          "children": []
-        },
-        {
-          "nodeindex": 5,
-          "expanded": false,
-          "properties": {
-            "index": 945,
-            "ntype": 8,
-            "befehl": 2,
-            "enabled": false,
-            "aktorindex": 34
-          },
-          "children": []
-        },
-        {
-          "nodeindex": 6,
-          "expanded": false,
-          "properties": {
-            "index": 946,
-            "ntype": 8,
-            "befehl": 2,
-            "enabled": false,
-            "aktorindex": 35
-          },
-          "children": []
-        },
-        {
-          "nodeindex": 7,
-          "expanded": false,
-          "properties": {
-            "index": 947,
-            "ntype": 8,
-            "befehl": 2,
-            "enabled": false,
-            "aktorindex": 36
-          },
-          "children": []
-        }
-      ]
-    },
-    {
-      "nodeindex": 89,
-      "expanded": false,
-      "properties": {
-        "index": 948,
-        "bemerkung": "IDual ColdWhite {group:idual;color:#d5f1ff}",
-        "jbcode": 103
-      },
-      "children": [
-        {
-          "nodeindex": 0,
-          "expanded": false,
-          "properties": {
-            "index": 950,
-            "ntype": 1,
-            "befehl": 1,
-            "enabled": false,
-            "aktorindex": 74,
-            "markerselect": "8000000000"
-          },
-          "children": []
-        },
-        {
-          "nodeindex": 1,
-          "expanded": false,
-          "properties": {
-            "index": 960,
-            "ntype": 8,
-            "befehl": 2,
-            "enabled": false,
-            "aktorindex": 33
-          },
-          "children": []
-        },
-        {
-          "nodeindex": 2,
-          "expanded": false,
-          "properties": {
-            "index": 961,
-            "ntype": 8,
-            "befehl": 2,
-            "enabled": false,
-            "aktorindex": 38
-          },
-          "children": []
-        },
-        {
-          "nodeindex": 3,
-          "expanded": false,
-          "properties": {
-            "index": 951,
-            "ntype": 8,
-            "befehl": 1,
-            "enabled": false,
-            "aktorindex": 39
-          },
-          "children": []
-        },
-        {
-          "nodeindex": 4,
-          "expanded": false,
-          "properties": {
-            "index": 952,
-            "ntype": 8,
-            "befehl": 2,
-            "enabled": false,
-            "aktorindex": 1
-          },
-          "children": []
-        },
-        {
-          "nodeindex": 5,
-          "expanded": false,
-          "properties": {
-            "index": 953,
-            "ntype": 8,
-            "befehl": 2,
-            "enabled": false,
-            "aktorindex": 34
-          },
-          "children": []
-        },
-        {
-          "nodeindex": 6,
-          "expanded": false,
-          "properties": {
-            "index": 954,
-            "ntype": 8,
-            "befehl": 2,
-            "enabled": false,
-            "aktorindex": 35
-          },
-          "children": []
-        },
-        {
-          "nodeindex": 7,
-          "expanded": false,
-          "properties": {
-            "index": 955,
-            "ntype": 8,
-            "befehl": 2,
-            "enabled": false,
-            "aktorindex": 36
-          },
-          "children": []
-        }
-      ]
-    },
-    {
-      "nodeindex": 90,
+      "nodeindex": 91,
       "expanded": true,
       "properties": {
         "index": 76,
-        "bemerkung": "Licht TV {group:background;color:#fffad5,#fffad5,#333333,#333333}",
+        "bemerkung": "Licht TV {group:background;color:#fffad5}",
         "jbcode": 5
       },
       "children": [
@@ -4283,17 +3613,6 @@
           "nodeindex": 8,
           "expanded": false,
           "properties": {
-            "index": 1209,
-            "ntype": 10,
-            "dauer": 1,
-            "enabled": false
-          },
-          "children": []
-        },
-        {
-          "nodeindex": 9,
-          "expanded": false,
-          "properties": {
             "index": 1490,
             "ntype": 1,
             "enabled": false,
@@ -4302,7 +3621,7 @@
           "children": []
         },
         {
-          "nodeindex": 10,
+          "nodeindex": 9,
           "expanded": false,
           "properties": {
             "index": 1147,
@@ -4314,7 +3633,7 @@
           "children": []
         },
         {
-          "nodeindex": 11,
+          "nodeindex": 10,
           "expanded": false,
           "properties": {
             "index": 482,
@@ -4325,7 +3644,7 @@
           "children": []
         },
         {
-          "nodeindex": 12,
+          "nodeindex": 11,
           "expanded": false,
           "properties": {
             "index": 1492,
@@ -4337,7 +3656,7 @@
           "children": []
         },
         {
-          "nodeindex": 13,
+          "nodeindex": 12,
           "expanded": false,
           "properties": {
             "index": 1497,
@@ -4351,8 +3670,8 @@
       ]
     },
     {
-      "nodeindex": 91,
-      "expanded": true,
+      "nodeindex": 92,
+      "expanded": false,
       "properties": {
         "index": 44,
         "bemerkung": "TV Licht Aus {group:background;color:#333333}",
@@ -4374,8 +3693,8 @@
       ]
     },
     {
-      "nodeindex": 92,
-      "expanded": true,
+      "nodeindex": 93,
+      "expanded": false,
       "properties": {
         "index": 154,
         "bemerkung": "Licht Kino {group:background;color:#000088,#000088,#880000,#880000}",
@@ -4500,7 +3819,7 @@
       ]
     },
     {
-      "nodeindex": 93,
+      "nodeindex": 94,
       "expanded": false,
       "properties": {
         "index": 962,
@@ -4522,7 +3841,7 @@
       ]
     },
     {
-      "nodeindex": 94,
+      "nodeindex": 95,
       "expanded": false,
       "properties": {
         "index": 1299,
@@ -4544,7 +3863,7 @@
       ]
     },
     {
-      "nodeindex": 95,
+      "nodeindex": 96,
       "expanded": false,
       "properties": {
         "index": 971,
@@ -4567,7 +3886,7 @@
       ]
     },
     {
-      "nodeindex": 96,
+      "nodeindex": 97,
       "expanded": false,
       "properties": {
         "index": 1302,
@@ -4590,7 +3909,7 @@
       ]
     },
     {
-      "nodeindex": 97,
+      "nodeindex": 98,
       "expanded": false,
       "properties": {
         "index": 974,
@@ -4612,7 +3931,7 @@
       ]
     },
     {
-      "nodeindex": 98,
+      "nodeindex": 99,
       "expanded": false,
       "properties": {
         "index": 1284,
@@ -4634,7 +3953,7 @@
       ]
     },
     {
-      "nodeindex": 99,
+      "nodeindex": 100,
       "expanded": false,
       "properties": {
         "index": 1255,
@@ -4657,7 +3976,7 @@
       ]
     },
     {
-      "nodeindex": 100,
+      "nodeindex": 101,
       "expanded": false,
       "properties": {
         "index": 1365,
@@ -4680,7 +3999,7 @@
       ]
     },
     {
-      "nodeindex": 101,
+      "nodeindex": 102,
       "expanded": false,
       "properties": {
         "index": 1258,
@@ -4702,7 +4021,7 @@
       ]
     },
     {
-      "nodeindex": 102,
+      "nodeindex": 103,
       "expanded": false,
       "properties": {
         "index": 1261,
@@ -4725,7 +4044,7 @@
       ]
     },
     {
-      "nodeindex": 103,
+      "nodeindex": 104,
       "expanded": false,
       "properties": {
         "index": 1264,
@@ -4747,7 +4066,7 @@
       ]
     },
     {
-      "nodeindex": 104,
+      "nodeindex": 105,
       "expanded": false,
       "properties": {
         "index": 1267,
@@ -4770,7 +4089,7 @@
       ]
     },
     {
-      "nodeindex": 105,
+      "nodeindex": 106,
       "expanded": false,
       "properties": {
         "index": 1305,
@@ -4792,8 +4111,8 @@
       ]
     },
     {
-      "nodeindex": 106,
-      "expanded": true,
+      "nodeindex": 107,
+      "expanded": false,
       "properties": {
         "index": 1201,
         "bemerkung": "Background Warm White {group:background;color:#ffde59,#ffde59,#000000,#000000}",
@@ -4814,7 +4133,7 @@
       ]
     },
     {
-      "nodeindex": 107,
+      "nodeindex": 108,
       "expanded": false,
       "properties": {
         "index": 965,
@@ -4836,7 +4155,7 @@
       ]
     },
     {
-      "nodeindex": 108,
+      "nodeindex": 109,
       "expanded": false,
       "properties": {
         "index": 1336,
@@ -4858,7 +4177,7 @@
       ]
     },
     {
-      "nodeindex": 109,
+      "nodeindex": 110,
       "expanded": false,
       "properties": {
         "index": 968,
@@ -4880,7 +4199,7 @@
       ]
     },
     {
-      "nodeindex": 110,
+      "nodeindex": 111,
       "expanded": false,
       "properties": {
         "index": 1353,
@@ -4902,7 +4221,7 @@
       ]
     },
     {
-      "nodeindex": 111,
+      "nodeindex": 112,
       "expanded": false,
       "properties": {
         "index": 1055,
@@ -4924,7 +4243,7 @@
       ]
     },
     {
-      "nodeindex": 112,
+      "nodeindex": 113,
       "expanded": false,
       "properties": {
         "index": 1359,
@@ -4946,7 +4265,7 @@
       ]
     },
     {
-      "nodeindex": 113,
+      "nodeindex": 114,
       "expanded": false,
       "properties": {
         "index": 1052,
@@ -4968,7 +4287,7 @@
       ]
     },
     {
-      "nodeindex": 114,
+      "nodeindex": 115,
       "expanded": false,
       "properties": {
         "index": 1356,
@@ -4990,7 +4309,7 @@
       ]
     },
     {
-      "nodeindex": 115,
+      "nodeindex": 116,
       "expanded": false,
       "properties": {
         "index": 983,
@@ -5012,7 +4331,7 @@
       ]
     },
     {
-      "nodeindex": 116,
+      "nodeindex": 117,
       "expanded": false,
       "properties": {
         "index": 1339,
@@ -5034,7 +4353,7 @@
       ]
     },
     {
-      "nodeindex": 117,
+      "nodeindex": 118,
       "expanded": false,
       "properties": {
         "index": 980,
@@ -5056,7 +4375,7 @@
       ]
     },
     {
-      "nodeindex": 118,
+      "nodeindex": 119,
       "expanded": false,
       "properties": {
         "index": 1362,
@@ -5078,7 +4397,7 @@
       ]
     },
     {
-      "nodeindex": 119,
+      "nodeindex": 120,
       "expanded": false,
       "properties": {
         "index": 977,
@@ -5100,7 +4419,7 @@
       ]
     },
     {
-      "nodeindex": 120,
+      "nodeindex": 121,
       "expanded": false,
       "properties": {
         "index": 1367,
@@ -5122,7 +4441,7 @@
       ]
     },
     {
-      "nodeindex": 121,
+      "nodeindex": 122,
       "expanded": false,
       "properties": {
         "index": 989,
@@ -5144,7 +4463,7 @@
       ]
     },
     {
-      "nodeindex": 122,
+      "nodeindex": 123,
       "expanded": false,
       "properties": {
         "index": 1158,
@@ -5166,7 +4485,7 @@
       ]
     },
     {
-      "nodeindex": 123,
+      "nodeindex": 124,
       "expanded": false,
       "properties": {
         "index": 986,
@@ -5188,7 +4507,7 @@
       ]
     },
     {
-      "nodeindex": 124,
+      "nodeindex": 125,
       "expanded": false,
       "properties": {
         "index": 1155,
@@ -5210,7 +4529,7 @@
       ]
     },
     {
-      "nodeindex": 125,
+      "nodeindex": 126,
       "expanded": false,
       "properties": {
         "index": 1152,
@@ -5232,7 +4551,7 @@
       ]
     },
     {
-      "nodeindex": 126,
+      "nodeindex": 127,
       "expanded": false,
       "properties": {
         "index": 1342,
@@ -5254,7 +4573,7 @@
       ]
     },
     {
-      "nodeindex": 127,
+      "nodeindex": 128,
       "expanded": false,
       "properties": {
         "index": 1089,
@@ -5276,7 +4595,7 @@
       ]
     },
     {
-      "nodeindex": 128,
+      "nodeindex": 129,
       "expanded": false,
       "properties": {
         "index": 1086,
@@ -5298,7 +4617,7 @@
       ]
     },
     {
-      "nodeindex": 129,
+      "nodeindex": 130,
       "expanded": false,
       "properties": {
         "index": 1252,
@@ -5320,7 +4639,7 @@
       ]
     },
     {
-      "nodeindex": 130,
+      "nodeindex": 131,
       "expanded": false,
       "properties": {
         "index": 1249,
@@ -5342,7 +4661,7 @@
       ]
     },
     {
-      "nodeindex": 131,
+      "nodeindex": 132,
       "expanded": false,
       "properties": {
         "index": 1370,
@@ -5364,7 +4683,7 @@
       ]
     },
     {
-      "nodeindex": 132,
+      "nodeindex": 133,
       "expanded": false,
       "properties": {
         "index": 1373,
@@ -5386,7 +4705,7 @@
       ]
     },
     {
-      "nodeindex": 133,
+      "nodeindex": 134,
       "expanded": false,
       "properties": {
         "index": 1376,
@@ -5408,7 +4727,7 @@
       ]
     },
     {
-      "nodeindex": 134,
+      "nodeindex": 135,
       "expanded": false,
       "properties": {
         "index": 1379,
@@ -5430,7 +4749,7 @@
       ]
     },
     {
-      "nodeindex": 135,
+      "nodeindex": 136,
       "expanded": false,
       "properties": {
         "index": 1385,
@@ -5452,7 +4771,7 @@
       ]
     },
     {
-      "nodeindex": 136,
+      "nodeindex": 137,
       "expanded": false,
       "properties": {
         "index": 1382,
@@ -5474,7 +4793,7 @@
       ]
     },
     {
-      "nodeindex": 137,
+      "nodeindex": 138,
       "expanded": false,
       "properties": {
         "index": 1427,
@@ -5496,7 +4815,7 @@
       ]
     },
     {
-      "nodeindex": 138,
+      "nodeindex": 139,
       "expanded": false,
       "properties": {
         "index": 1430,
@@ -5518,7 +4837,7 @@
       ]
     },
     {
-      "nodeindex": 139,
+      "nodeindex": 140,
       "expanded": false,
       "properties": {
         "index": 992,
@@ -5540,7 +4859,7 @@
       ]
     },
     {
-      "nodeindex": 140,
+      "nodeindex": 141,
       "expanded": false,
       "properties": {
         "index": 1161,
@@ -5562,7 +4881,7 @@
       ]
     },
     {
-      "nodeindex": 141,
+      "nodeindex": 142,
       "expanded": false,
       "properties": {
         "index": 1277,
@@ -5584,7 +4903,7 @@
       ]
     },
     {
-      "nodeindex": 142,
+      "nodeindex": 143,
       "expanded": false,
       "properties": {
         "index": 1270,
@@ -5606,7 +4925,7 @@
       ]
     },
     {
-      "nodeindex": 143,
+      "nodeindex": 144,
       "expanded": false,
       "properties": {
         "index": 1437,
@@ -5628,7 +4947,7 @@
       ]
     },
     {
-      "nodeindex": 144,
+      "nodeindex": 145,
       "expanded": false,
       "properties": {
         "index": 1439,
@@ -5650,7 +4969,7 @@
       ]
     },
     {
-      "nodeindex": 145,
+      "nodeindex": 146,
       "expanded": false,
       "properties": {
         "index": 1391,
@@ -5672,7 +4991,7 @@
       ]
     },
     {
-      "nodeindex": 146,
+      "nodeindex": 147,
       "expanded": false,
       "properties": {
         "index": 1392,
@@ -5694,7 +5013,7 @@
       ]
     },
     {
-      "nodeindex": 147,
+      "nodeindex": 148,
       "expanded": false,
       "properties": {
         "index": 1393,
@@ -5716,7 +5035,7 @@
       ]
     },
     {
-      "nodeindex": 148,
+      "nodeindex": 149,
       "expanded": false,
       "properties": {
         "index": 1394,
@@ -5738,7 +5057,7 @@
       ]
     },
     {
-      "nodeindex": 149,
+      "nodeindex": 150,
       "expanded": false,
       "properties": {
         "index": 1441,
@@ -5760,7 +5079,7 @@
       ]
     },
     {
-      "nodeindex": 150,
+      "nodeindex": 151,
       "expanded": false,
       "properties": {
         "index": 1442,
@@ -5782,7 +5101,7 @@
       ]
     },
     {
-      "nodeindex": 151,
+      "nodeindex": 152,
       "expanded": false,
       "properties": {
         "index": 1395,
@@ -5804,7 +5123,7 @@
       ]
     },
     {
-      "nodeindex": 152,
+      "nodeindex": 153,
       "expanded": false,
       "properties": {
         "index": 1396,
@@ -5826,7 +5145,7 @@
       ]
     },
     {
-      "nodeindex": 153,
+      "nodeindex": 154,
       "expanded": false,
       "properties": {
         "index": 1397,
@@ -5848,7 +5167,7 @@
       ]
     },
     {
-      "nodeindex": 154,
+      "nodeindex": 155,
       "expanded": false,
       "properties": {
         "index": 1398,
@@ -5870,7 +5189,7 @@
       ]
     },
     {
-      "nodeindex": 155,
+      "nodeindex": 156,
       "expanded": false,
       "properties": {
         "index": 1433,
@@ -5892,7 +5211,7 @@
       ]
     },
     {
-      "nodeindex": 156,
+      "nodeindex": 157,
       "expanded": false,
       "properties": {
         "index": 1434,
@@ -5914,7 +5233,7 @@
       ]
     },
     {
-      "nodeindex": 157,
+      "nodeindex": 158,
       "expanded": false,
       "properties": {
         "index": 1399,
@@ -5936,7 +5255,7 @@
       ]
     },
     {
-      "nodeindex": 158,
+      "nodeindex": 159,
       "expanded": false,
       "properties": {
         "index": 1400,
@@ -5958,7 +5277,7 @@
       ]
     },
     {
-      "nodeindex": 159,
+      "nodeindex": 160,
       "expanded": false,
       "properties": {
         "index": 1401,
@@ -5980,7 +5299,7 @@
       ]
     },
     {
-      "nodeindex": 160,
+      "nodeindex": 161,
       "expanded": false,
       "properties": {
         "index": 1402,
@@ -6002,7 +5321,7 @@
       ]
     },
     {
-      "nodeindex": 161,
+      "nodeindex": 162,
       "expanded": false,
       "properties": {
         "index": 1415,
@@ -6024,7 +5343,7 @@
       ]
     },
     {
-      "nodeindex": 162,
+      "nodeindex": 163,
       "expanded": false,
       "properties": {
         "index": 1416,
@@ -6046,7 +5365,7 @@
       ]
     },
     {
-      "nodeindex": 163,
+      "nodeindex": 164,
       "expanded": false,
       "properties": {
         "index": 1417,
@@ -6068,7 +5387,7 @@
       ]
     },
     {
-      "nodeindex": 164,
+      "nodeindex": 165,
       "expanded": false,
       "properties": {
         "index": 1418,
@@ -6090,7 +5409,7 @@
       ]
     },
     {
-      "nodeindex": 165,
+      "nodeindex": 166,
       "expanded": false,
       "properties": {
         "index": 1419,
@@ -6112,7 +5431,7 @@
       ]
     },
     {
-      "nodeindex": 166,
+      "nodeindex": 167,
       "expanded": false,
       "properties": {
         "index": 1420,
@@ -6134,7 +5453,7 @@
       ]
     },
     {
-      "nodeindex": 167,
+      "nodeindex": 168,
       "expanded": false,
       "properties": {
         "index": 1445,
@@ -6156,7 +5475,7 @@
       ]
     },
     {
-      "nodeindex": 168,
+      "nodeindex": 169,
       "expanded": false,
       "properties": {
         "index": 1446,
@@ -6178,7 +5497,7 @@
       ]
     },
     {
-      "nodeindex": 169,
+      "nodeindex": 170,
       "expanded": false,
       "properties": {
         "index": 1447,
@@ -6200,7 +5519,7 @@
       ]
     },
     {
-      "nodeindex": 170,
+      "nodeindex": 171,
       "expanded": false,
       "properties": {
         "index": 1448,
@@ -6222,7 +5541,7 @@
       ]
     },
     {
-      "nodeindex": 171,
+      "nodeindex": 172,
       "expanded": false,
       "properties": {
         "index": 1315,
@@ -6257,7 +5576,7 @@
       ]
     },
     {
-      "nodeindex": 172,
+      "nodeindex": 173,
       "expanded": false,
       "properties": {
         "index": 1308,
@@ -6280,7 +5599,7 @@
       ]
     },
     {
-      "nodeindex": 173,
+      "nodeindex": 174,
       "expanded": false,
       "properties": {
         "index": 1058,
@@ -6302,7 +5621,7 @@
       ]
     },
     {
-      "nodeindex": 174,
+      "nodeindex": 175,
       "expanded": false,
       "properties": {
         "index": 1063,
@@ -6324,7 +5643,7 @@
       ]
     },
     {
-      "nodeindex": 175,
+      "nodeindex": 176,
       "expanded": false,
       "properties": {
         "index": 1066,
@@ -6346,7 +5665,7 @@
       ]
     },
     {
-      "nodeindex": 176,
+      "nodeindex": 177,
       "expanded": false,
       "properties": {
         "index": 1092,
@@ -6368,7 +5687,7 @@
       ]
     },
     {
-      "nodeindex": 177,
+      "nodeindex": 178,
       "expanded": false,
       "properties": {
         "index": 1109,
@@ -6390,7 +5709,7 @@
       ]
     },
     {
-      "nodeindex": 178,
+      "nodeindex": 179,
       "expanded": false,
       "properties": {
         "index": 1112,
@@ -6412,7 +5731,7 @@
       ]
     },
     {
-      "nodeindex": 179,
+      "nodeindex": 180,
       "expanded": false,
       "properties": {
         "index": 1115,
@@ -6434,7 +5753,7 @@
       ]
     },
     {
-      "nodeindex": 180,
+      "nodeindex": 181,
       "expanded": false,
       "properties": {
         "index": 1118,
@@ -6456,7 +5775,7 @@
       ]
     },
     {
-      "nodeindex": 181,
+      "nodeindex": 182,
       "expanded": false,
       "properties": {
         "index": 1121,
@@ -6478,7 +5797,7 @@
       ]
     },
     {
-      "nodeindex": 182,
+      "nodeindex": 183,
       "expanded": false,
       "properties": {
         "index": 1124,
@@ -6500,7 +5819,7 @@
       ]
     },
     {
-      "nodeindex": 183,
+      "nodeindex": 184,
       "expanded": false,
       "properties": {
         "index": 1130,
@@ -6522,7 +5841,7 @@
       ]
     },
     {
-      "nodeindex": 184,
+      "nodeindex": 185,
       "expanded": false,
       "properties": {
         "index": 1174,
@@ -6544,7 +5863,7 @@
       ]
     },
     {
-      "nodeindex": 185,
+      "nodeindex": 186,
       "expanded": false,
       "properties": {
         "index": 1273,
@@ -6566,7 +5885,7 @@
       ]
     },
     {
-      "nodeindex": 186,
+      "nodeindex": 187,
       "expanded": false,
       "properties": {
         "index": 1275,
@@ -6588,7 +5907,7 @@
       ]
     },
     {
-      "nodeindex": 187,
+      "nodeindex": 188,
       "expanded": false,
       "properties": {
         "index": 1280,
@@ -6610,7 +5929,7 @@
       ]
     },
     {
-      "nodeindex": 188,
+      "nodeindex": 189,
       "expanded": false,
       "properties": {
         "index": 1282,
@@ -6632,7 +5951,7 @@
       ]
     },
     {
-      "nodeindex": 189,
+      "nodeindex": 190,
       "expanded": false,
       "properties": {
         "index": 1287,
@@ -6654,7 +5973,7 @@
       ]
     },
     {
-      "nodeindex": 190,
+      "nodeindex": 191,
       "expanded": false,
       "properties": {
         "index": 1289,
@@ -6676,7 +5995,7 @@
       ]
     },
     {
-      "nodeindex": 191,
+      "nodeindex": 192,
       "expanded": false,
       "properties": {
         "index": 1291,
@@ -6698,7 +6017,7 @@
       ]
     },
     {
-      "nodeindex": 192,
+      "nodeindex": 193,
       "expanded": false,
       "properties": {
         "index": 1293,
@@ -6721,7 +6040,7 @@
       ]
     },
     {
-      "nodeindex": 193,
+      "nodeindex": 194,
       "expanded": false,
       "properties": {
         "index": 1295,
@@ -6743,7 +6062,7 @@
       ]
     },
     {
-      "nodeindex": 194,
+      "nodeindex": 195,
       "expanded": false,
       "properties": {
         "index": 1297,
@@ -6765,7 +6084,7 @@
       ]
     },
     {
-      "nodeindex": 195,
+      "nodeindex": 196,
       "expanded": false,
       "properties": {
         "index": 1311,
@@ -6787,7 +6106,7 @@
       ]
     },
     {
-      "nodeindex": 196,
+      "nodeindex": 197,
       "expanded": false,
       "properties": {
         "index": 1313,
@@ -6812,7 +6131,7 @@
   "actuators": [
     {
       "nodeindex": 0,
-      "expanded": false,
+      "expanded": true,
       "properties": {
         "ntypenew": 8,
         "index": 27,
@@ -7482,7 +6801,7 @@
     },
     {
       "nodeindex": 5,
-      "expanded": true,
+      "expanded": false,
       "properties": {
         "ntypenew": 8,
         "index": 108,
@@ -8828,7 +8147,7 @@
     },
     {
       "nodeindex": 6,
-      "expanded": true,
+      "expanded": false,
       "properties": {
         "ntypenew": 8,
         "index": 86,
@@ -9047,7 +8366,7 @@
     },
     {
       "nodeindex": 7,
-      "expanded": true,
+      "expanded": false,
       "properties": {
         "ntypenew": 8,
         "index": 26,
@@ -9650,7 +8969,7 @@
     },
     {
       "nodeindex": 9,
-      "expanded": false,
+      "expanded": true,
       "properties": {
         "ntypenew": 8,
         "index": 1,

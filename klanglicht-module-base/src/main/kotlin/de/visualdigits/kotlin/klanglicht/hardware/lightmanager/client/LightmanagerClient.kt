@@ -2,7 +2,10 @@ package de.visualdigits.kotlin.klanglicht.hardware.lightmanager.client
 
 import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.json.LmAirProject
 import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.json.NType
-import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm.LMActionIR
+import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm.LMActionLmAir
+import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm.LMActionHybrid
+import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm.LMActionShelly
+import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm.LMActionLmYamahaAvantage
 import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm.LMActionPause
 import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm.LMActionUrl
 import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm.LMActor
@@ -15,9 +18,7 @@ import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm.LMZones
 import de.visualdigits.kotlin.util.get
 import de.visualdigits.kotlin.util.post
 import org.jsoup.Jsoup
-import java.net.HttpURLConnection
 import java.net.URL
-import java.util.zip.GZIPInputStream
 
 class LightmanagerClient(
     val lightmanagerUrl: String
@@ -59,7 +60,7 @@ class LightmanagerClient(
         val zones = LMZones(setUpName)
         document
             .select("div[class=bigBlock]")
-            .forEach { zoneElem -> zones.add(lightmanagerUrl!!, markers, zoneElem) }
+            .forEach { zoneElem -> zones.add(lightmanagerUrl, markers, zoneElem) }
         return zones
     }
 
@@ -128,18 +129,51 @@ class LightmanagerClient(
                                             actuator.properties?.url
                                         }
                                         if (url != null) {
-                                            LMActionUrl(
-                                                comment = actuator.properties?.comment,
-                                                url = url.substringAfter("v1/")
-                                            )
+                                            val uu = if (url.startsWith("http")) url else "http://$url"
+                                            val u = URL(uu)
+                                            val params = u.query
+                                                .split("&")
+                                                .filter { p -> p.isNotEmpty() }
+                                                .map { p -> p.split("=") }
+                                                .filter { p -> p.size == 2 }
+                                                .map { p -> Pair(p[0], p[1]) }
+                                                .toMap()
+                                            when (u.path) {
+                                                "/v1/yamaha/avantage/json/surroundProgram" ->
+                                                    LMActionLmYamahaAvantage(
+                                                        comment = actuator.properties?.comment,
+                                                        command = "surroundProgram",
+                                                        program = params["program"]
+                                                    )
+
+                                                "/v1/shelly/power" ->
+                                                    LMActionShelly(
+                                                        comment = actuator.properties?.comment,
+                                                        ids = params["ids"],
+                                                        turnOn = params["turnOn"]?.let { p -> p.toBoolean()}?:false
+                                                    )
+
+                                                "/v1/hybrid/json/hexColor" ->
+                                                    LMActionHybrid(
+                                                        comment = actuator.properties?.comment,
+                                                        ids = params["ids"],
+                                                        hexColors = params["hexColors"],
+                                                        gains = params["gains"],
+                                                    )
+                                                else ->
+                                                    LMActionUrl(
+                                                        comment = actuator.properties?.comment,
+                                                        url = url.substringAfter("v1/")
+                                                    )
+                                            }
                                         } else {
                                             val param = if (ap.command == 1) {
-                                                actuator.properties?.paramOff
+                                                1499
                                             } else {
-                                                actuator.properties?.paramOn
+                                                42
                                             }
                                             if (param != null) {
-                                                LMActionIR(comment = actuator.properties?.comment, param = param)
+                                                LMActionLmAir(comment = actuator.properties?.comment, sceneIndex = param)
                                             } else {
                                                 null
                                             }

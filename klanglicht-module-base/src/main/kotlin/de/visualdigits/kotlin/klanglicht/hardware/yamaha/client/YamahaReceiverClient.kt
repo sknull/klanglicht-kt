@@ -23,7 +23,6 @@ class YamahaReceiverClient(
             ?.getMenu<Menu>("Main Zone/Volume/Level")
             ?.createCommand(volume.toString())
             ?.let { control(it) }
-
     }
 
     fun controlSurroundProgram(program: String?) {

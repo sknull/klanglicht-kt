@@ -19,9 +19,9 @@ class ShellyWebController(
 
     @GetMapping("powers", produces = ["application/xhtml+xml"])
     fun currentPowers(model: Model, request: HttpServletRequest?): String {
-        model.addAttribute("theme", configHolder?.preferences?.theme)
+        model.addAttribute("theme", configHolder.preferences?.theme)
         model.addAttribute("title", "Current Power Values")
-        model.addAttribute("content", ShellyStatus().toHtml(shellyService!!))
+        model.addAttribute("content", ShellyStatus().toHtml(shellyService))
         return "pagetemplate"
     }
 }

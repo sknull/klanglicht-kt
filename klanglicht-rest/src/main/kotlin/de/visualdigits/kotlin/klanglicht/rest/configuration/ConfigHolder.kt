@@ -2,6 +2,8 @@ package de.visualdigits.kotlin.klanglicht.rest.configuration
 
 import de.visualdigits.kotlin.klanglicht.hardware.dmx.parameter.Fadeable
 import de.visualdigits.kotlin.klanglicht.hardware.hybrid.HybridScene
+import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm.LMScene
+import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm.LMScenes
 import de.visualdigits.kotlin.klanglicht.hardware.preferences.Preferences
 import de.visualdigits.kotlin.util.SystemUtils
 import jakarta.annotation.PostConstruct
@@ -19,6 +21,8 @@ class ConfigHolder {
 
     var preferences: Preferences? = null
 
+    var scenes: LMScenes? = null
+
     val klanglichtDirectory: File = File(SystemUtils.getUserHome(), ".klanglicht")
 
     var currentScene: HybridScene? = null
@@ -31,6 +35,7 @@ class ConfigHolder {
         log.info("##")
         log.info("## klanglichtDirectory: " + klanglichtDirectory.absolutePath)
         preferences = Preferences.load(klanglichtDirectory)
+        scenes = LMScenes.unmarshall(Paths.get(klanglichtDirectory.canonicalPath, "preferences", "scenes.json").toFile())
         currentScene = preferences?.initialHybridScene()
         currentScene?.write(preferences, true, 1000)
         log.info("#### setUp - end")
@@ -55,8 +60,8 @@ class ConfigHolder {
         currentScene?.update(nextScene)
     }
 
-    fun putColor(id: String, hexColor: String) {
-        colorStore[id] = hexColor
+    fun putColor(id: String, hexColor: String?) {
+        hexColor?.let { colorStore[id] = it }
     }
 
     fun getColor(id: String): String? {

@@ -33,9 +33,9 @@ class ShellyRestController(
         @RequestParam(value = "index", required = false, defaultValue = "0") index: Int
     ) {
         if (sceneId != 0) {
-            lightmanagerService?.controlScene(sceneId)
+            lightmanagerService.controlScene(sceneId)
         } else if (index != 0) {
-            lightmanagerService?.controlIndex(index)
+            lightmanagerService.controlIndex(index)
         }
     }
 
@@ -45,7 +45,7 @@ class ShellyRestController(
         @RequestParam(value = "turnOn", required = false, defaultValue = "true") turnOn: Boolean,
         @RequestParam(value = "transition", required = false) transitionDuration: Long?
     ) {
-        shellyService?.power(ids = ids, turnOn = turnOn, transitionDuration = transitionDuration)
+        shellyService.power(ids = ids, turnOn = turnOn, transitionDuration = transitionDuration)
     }
 
     @GetMapping("hexColor")
@@ -58,7 +58,7 @@ class ShellyRestController(
         @RequestParam(value = "store", required = false, defaultValue = "true") store: Boolean,
         @RequestParam(value = "storeName", required = false) storeName: String?
     ) {
-        hybridStageService?.hexColor(
+        hybridStageService.hexColor(
             ids = ids,
             hexColors = hexColors,
             gains = gains,
@@ -74,7 +74,7 @@ class ShellyRestController(
         @RequestParam(value = "ids", required = false, defaultValue = "") ids: String,
         @RequestParam(value = "transition", required = false) transitionDuration: Long?
     ) {
-        hybridStageService?.restoreColors(ids = ids, transitionDuration = transitionDuration)
+        hybridStageService.restoreColors(ids = ids, transitionDuration = transitionDuration)
     }
 
     @GetMapping("gain")
@@ -83,6 +83,6 @@ class ShellyRestController(
         @RequestParam(value = "gain", required = false, defaultValue = "") gain: Int,
         @RequestParam(value = "transition", required = false) transitionDuration: Long?
     ) {
-        hybridStageService?.gain(ids = ids, gain = gain, transitionDuration = transitionDuration)
+        hybridStageService.gain(ids = ids, gain = gain, transitionDuration = transitionDuration)
     }
 }

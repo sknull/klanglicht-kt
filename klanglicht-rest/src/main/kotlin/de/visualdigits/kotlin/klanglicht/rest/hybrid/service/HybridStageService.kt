@@ -5,7 +5,6 @@ import de.visualdigits.kotlin.klanglicht.hardware.shelly.client.ShellyClient
 import de.visualdigits.kotlin.klanglicht.rest.configuration.ConfigHolder
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
 @Service
@@ -27,37 +26,37 @@ class HybridStageService(
      * @param storeName An additional name to strore values.
      */
     fun hexColor(
-        ids: String,
-        hexColors: String,
-        gains: String,
-        transition: Long?,
-        turnOn: Boolean,
+        ids: String? = null,
+        hexColors: String? = null,
+        gains: String? = null,
+        transition: Long? = null,
+        turnOn: Boolean = true,
         store: Boolean = true,
-        storeName: String?
+        storeName: String? = null
     ) {
-        val currentScene = configHolder?.currentScene?.clone()
-        val nextScene = configHolder?.currentScene?.clone()?.let { n ->
+        val currentScene = configHolder.currentScene?.clone()
+        val nextScene = configHolder.currentScene?.clone()?.let { n ->
             HybridScene(ids, hexColors, gains, turnOn.toString(), preferences = configHolder.preferences).fadeableMap().forEach {
                 n.putFadeable(it.key, it.value)
             }
             n
         }
         if (store) {
-            configHolder?.updateScene(nextScene!!)
+            configHolder.updateScene(nextScene!!)
             if (storeName != null) {
-                configHolder?.putColor(storeName, hexColors)
+                configHolder.putColor(storeName, hexColors)
             }
         }
         log.info("nextScene: $nextScene")
 
-        currentScene?.fade(nextScene!!, transition?:configHolder?.preferences?.fadeDurationDefault?:1000, configHolder?.preferences!!)
+        currentScene?.fade(nextScene!!, transition?: configHolder.preferences?.fadeDurationDefault?:1000, configHolder.preferences!!)
     }
 
     fun putColor(
         id: String,
         hexColor: String,
     ) {
-        configHolder?.putColor(id, hexColor)
+        configHolder.putColor(id, hexColor)
     }
 
 
@@ -71,7 +70,7 @@ class HybridStageService(
             .map { it.trim() }
 
         lIds.forEach { id ->
-            configHolder?.getFadeable(id)?.write(configHolder.preferences!!, transitionDuration = transitionDuration?:configHolder.preferences?.fadeDurationDefault?:1000)
+            configHolder.getFadeable(id)?.write(configHolder.preferences!!, transitionDuration = transitionDuration?:configHolder.preferences?.fadeDurationDefault?:1000)
         }
     }
 
@@ -86,13 +85,13 @@ class HybridStageService(
             .map { it.trim() }
         lIds.forEach { id ->
             val sid = id.trim()
-            val shellyDevice = configHolder?.preferences?.getShellyDevice(sid)
+            val shellyDevice = configHolder.preferences?.getShellyDevice(sid)
             if (shellyDevice != null) {
                 val ipAddress: String = shellyDevice.ipAddress
-                val lastColor = configHolder?.getFadeable(sid)
+                val lastColor = configHolder.getFadeable(sid)
                 lastColor?.setGain(gain.toFloat())
                 try {
-                    ShellyClient.setGain(ipAddress = ipAddress, gain = gain, transitionDuration = transitionDuration?:configHolder?.preferences?.fadeDurationDefault?:1000)
+                    ShellyClient.setGain(ipAddress = ipAddress, gain = gain, transitionDuration = transitionDuration?: configHolder.preferences?.fadeDurationDefault?:1000)
                 } catch (e: Exception) {
                     log.warn("Could not get gain for shelly at '$ipAddress'")
                 }

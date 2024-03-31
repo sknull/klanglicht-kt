@@ -45,11 +45,11 @@ class LightmanagerService(
         return client?.markers()
     }
 
-    fun controlScene(sceneId: Int) {
-        client?.controlScene(sceneId)
+    fun controlScene(sceneId: Int?) {
+        sceneId?.let { client?.controlScene(it) }
     }
 
-    fun controlIndex(index: Int) {
-        client?.controlIndex(index)
+    fun controlIndex(index: Int?) {
+        index?.let { client?.controlIndex(it) }
     }
 }

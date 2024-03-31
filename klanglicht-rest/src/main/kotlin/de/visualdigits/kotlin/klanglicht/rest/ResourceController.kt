@@ -36,7 +36,7 @@ class ResourceController(
     @ResponseBody
     fun resource(request: HttpServletRequest, response: HttpServletResponse) {
         val src = getRequestUri(request)?.substring("/resources".length)?:""
-        val file = configHolder!!.getAbsoluteResource(src)
+        val file = configHolder.getAbsoluteResource(src)
         try {
             FileInputStream(file).use { ins ->
                 response.outputStream.use { outs ->

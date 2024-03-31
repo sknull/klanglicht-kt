@@ -9,7 +9,7 @@ interface Fadeable<T : Fadeable<T>> {
 
     fun getTurnOn(): Boolean? = false
 
-    fun setTurnOn(turnOn: Boolean) {
+    fun setTurnOn(turnOn: Boolean?) {
     }
 
     fun getGain(): Float = 1.0f

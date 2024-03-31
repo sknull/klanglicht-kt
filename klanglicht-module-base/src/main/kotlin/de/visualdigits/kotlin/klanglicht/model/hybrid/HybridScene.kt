@@ -22,20 +22,20 @@ class HybridScene() : Fadeable<HybridScene> {
 
     private val log: Logger = LoggerFactory.getLogger(javaClass)
 
-    private var ids: String = ""
-    private var hexColors: String = ""
-    private var gains: String = ""
-    private var turnOns: String = ""
+    private var ids: String? = null
+    private var hexColors: String? = null
+    private var gains: String? = null
+    private var turnOns: String? = null
     private var preferences: Preferences? = null
 
     private val fadeables: MutableMap<String, Fadeable<*>> = mutableMapOf()
 
     constructor(
-        ids: String,
-        hexColors: String,
-        gains: String,
-        turnOns: String = "true",
-        preferences: Preferences?
+        ids: String? = null,
+        hexColors: String? = null,
+        gains: String? = null,
+        turnOns: String? = "true",
+        preferences: Preferences? = null
     ) : this() {
         this.ids = ids
         this.hexColors = hexColors
@@ -102,32 +102,35 @@ class HybridScene() : Fadeable<HybridScene> {
     }
 
     private fun initializeFromParameters() {
-        val lIds = if (ids.isNotEmpty()) {
-            ids
-                .split(",")
-                .filter { it.isNotEmpty() }
-                .map { it.trim() }
+        val lIds = if (ids?.isNotEmpty() == true) {
+            ids?.split(",")
+                ?.filter { it.isNotEmpty() }
+                ?.map { it.trim() }
+                ?: listOf()
         } else {
             preferences?.getStageIds() ?: listOf()
         }
 
         val lHexColors = hexColors
-            .split(",")
-            .filter { it.isNotEmpty() }
+            ?.split(",")
+            ?.filter { it.isNotEmpty() }
+            ?: listOf()
         val nh = lHexColors.size - 1
         var h = 0
 
         val lGains = gains
-            .split(",")
-            .filter { it.isNotEmpty() }
-            .map { it.toFloat() }
+            ?.split(",")
+            ?.filter { it.isNotEmpty() }
+            ?.map { it.toFloat() }
+            ?: listOf()
         val ng = lGains.size - 1
         var g = 0
 
         val lTurnOns = turnOns
-            .split(",")
-            .filter { it.isNotEmpty() }
-            .map { it.toBoolean() }
+            ?.split(",")
+            ?.filter { it.isNotEmpty() }
+            ?.map { it.toBoolean() }
+            ?: listOf()
         val nt = lTurnOns.size - 1
         var t = 0
 
