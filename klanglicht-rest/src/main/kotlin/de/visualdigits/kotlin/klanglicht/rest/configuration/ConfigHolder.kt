@@ -21,8 +21,6 @@ class ConfigHolder {
 
     var preferences: Preferences? = null
 
-    var scenes: LMScenes? = null
-
     val klanglichtDirectory: File = File(SystemUtils.getUserHome(), ".klanglicht")
 
     var currentScene: HybridScene? = null
@@ -35,10 +33,13 @@ class ConfigHolder {
         log.info("##")
         log.info("## klanglichtDirectory: " + klanglichtDirectory.absolutePath)
         preferences = Preferences.load(klanglichtDirectory)
-        scenes = LMScenes.unmarshall(Paths.get(klanglichtDirectory.canonicalPath, "preferences", "scenes.json").toFile())
         currentScene = preferences?.initialHybridScene()
         currentScene?.write(preferences, true, 1000)
         log.info("#### setUp - end")
+    }
+
+    fun scenes(): LMScenes {
+        return LMScenes.unmarshall(Paths.get(klanglichtDirectory.canonicalPath, "preferences", "scenes.json").toFile())
     }
 
     @PreDestroy

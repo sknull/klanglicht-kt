@@ -38,9 +38,9 @@ class LMHtmlScene(
             .append(label)
             .append("\" onclick=\"request('")
             .append(url)
-            .append("/v1/scenes/json/control?scene=")
+            .append("/v1/scenes/json/control?name=")
 //            .append("/control?scene=")
-            .append(scene.id)
+            .append(scene.name)
             .append("');\"/></div>\n")
         return sb.toString()
     }

@@ -98,14 +98,7 @@ class LightmanagerClient(
             .select("div[id=scenes]")
             .first()
             ?.select("div[class=sbElement]")
-            ?.forEach { elem ->
-                scenes.add(
-                    LMScene(
-                        id = elem.attr("id").substring(1).toInt(),
-                        name = elem.child(0).text()
-                    )
-                )
-            }
+            ?.forEach { elem -> scenes.add(LMScene(name = elem.child(0).text())) }
         determineActions(lmAirProject, scenes)
         return scenes
     }
@@ -117,7 +110,7 @@ class LightmanagerClient(
         if (lmAirProject != null) {
             scenes.scenes.forEach {
                 it.value.forEach { scene ->
-                    lmAirProject.scenesMap[scene.id]?.let { s ->
+                    lmAirProject.scenesMap[scene.name]?.let { s ->
                         val actuatorProperties = s.getActuatorProperties()
                         scene.actions = actuatorProperties.mapNotNull { ap ->
                             when (ap.ntype) {
@@ -141,28 +134,24 @@ class LightmanagerClient(
                                             when (u.path) {
                                                 "/v1/yamaha/avantage/json/surroundProgram" ->
                                                     LMActionLmYamahaAvantage(
-                                                        comment = actuator.properties?.comment,
                                                         command = "surroundProgram",
                                                         program = params["program"]
                                                     )
 
                                                 "/v1/shelly/power" ->
                                                     LMActionShelly(
-                                                        comment = actuator.properties?.comment,
                                                         ids = params["ids"],
                                                         turnOn = params["turnOn"]?.let { p -> p.toBoolean()}?:false
                                                     )
 
                                                 "/v1/hybrid/json/hexColor" ->
                                                     LMActionHybrid(
-                                                        comment = actuator.properties?.comment,
                                                         ids = params["ids"],
                                                         hexColors = params["hexColors"],
                                                         gains = params["gains"],
                                                     )
                                                 else ->
                                                     LMActionUrl(
-                                                        comment = actuator.properties?.comment,
                                                         url = url.substringAfter("v1/")
                                                     )
                                             }
@@ -173,7 +162,7 @@ class LightmanagerClient(
                                                 42
                                             }
                                             if (param != null) {
-                                                LMActionLmAir(comment = actuator.properties?.comment, sceneIndex = param)
+                                                LMActionLmAir(sceneIndex = param)
                                             } else {
                                                 null
                                             }

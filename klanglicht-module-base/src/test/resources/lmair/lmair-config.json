@@ -48,11 +48,11 @@
   },
   "marker": {
     "0": {
-      "name": "IDual On\/Off {separate:true}",
+      "name": "IDual On\/Off",
       "touchable": true
     },
     "1": {
-      "name": "IDual Blue {separate:true;actorId:13;state:BLUE}",
+      "name": "IDual Blue",
       "touchable": true
     },
     "2": {
@@ -168,31 +168,31 @@
       "touchable": true
     },
     "33": {
-      "name": "IDual WarmWhite {separate:true;actorId:13;state:WARMWHITE}",
+      "name": "IDual WarmWhite",
       "touchable": true
     },
     "34": {
-      "name": "IDual Green {separate:true;actorId:72;state:GREEN}",
+      "name": "IDual Green",
       "touchable": true
     },
     "35": {
-      "name": "IDual Red {separate:true;actorId:72;state:RED}",
+      "name": "IDual Red",
       "touchable": true
     },
     "36": {
-      "name": "Idual Yellow {separate:true;actorId:73;state:YELLOW}",
+      "name": "Idual Yellow",
       "touchable": true
     },
     "37": {
-      "name": "Idual Black {separate:true;actorId:73;state:BLACK}",
+      "name": "Idual Black",
       "touchable": true
     },
     "38": {
-      "name": "IDual DayWhite {separate:true;actorId:74;state:DAYWHITE}",
+      "name": "IDual DayWhite",
       "touchable": true
     },
     "39": {
-      "name": "IDual ColdWhite {separate:true;actorId:74;state:COLDWHITE}",
+      "name": "IDual ColdWhite",
       "touchable": true
     },
     "40": {
@@ -520,7 +520,7 @@
       "properties": {
         "index": 199,
         "ntype": 9,
-        "bemerkung": "Licht TV {group:hidden}",
+        "bemerkung": "Licht TV",
         "senderid": 2295748240,
         "sendertype": 4
       },
@@ -545,7 +545,7 @@
       "properties": {
         "index": 214,
         "ntype": 9,
-        "bemerkung": "TV Licht Aus {group:hidden}",
+        "bemerkung": "TV Licht Aus",
         "senderid": 2295748224,
         "sendertype": 4
       },
@@ -570,7 +570,7 @@
       "properties": {
         "index": 234,
         "ntype": 9,
-        "bemerkung": "Licht Kino {group:hidden}",
+        "bemerkung": "Licht Kino",
         "senderid": 2295748241,
         "sendertype": 4
       },
@@ -582,7 +582,7 @@
       "properties": {
         "index": 236,
         "ntype": 9,
-        "bemerkung": "Deckenfluter Toggle {group:hidden}",
+        "bemerkung": "Deckenfluter Toggle",
         "senderid": 2295748225,
         "sendertype": 4
       },
@@ -608,7 +608,7 @@
       "properties": {
         "index": 238,
         "ntype": 9,
-        "bemerkung": "Stern Toggle {group:hidden}",
+        "bemerkung": "Stern Toggle",
         "senderid": 2295748242,
         "sendertype": 4
       },
@@ -620,7 +620,7 @@
       "properties": {
         "index": 258,
         "ntype": 9,
-        "bemerkung": "Kristall Toggle {group:hidden}",
+        "bemerkung": "Kristall Toggle",
         "senderid": 2295748226,
         "sendertype": 4
       },
@@ -671,7 +671,7 @@
       "properties": {
         "index": 260,
         "ntype": 9,
-        "bemerkung": "Alles Aus {group:hidden}",
+        "bemerkung": "Alles Aus",
         "senderid": 2295748256,
         "sendertype": 4
       },
@@ -695,7 +695,7 @@
       "expanded": false,
       "properties": {
         "index": 1,
-        "bemerkung": "All On {group:wohnzimmer;color:#ffffff}",
+        "bemerkung": "All On",
         "jbcode": 1
       },
       "children": [
@@ -777,7 +777,7 @@
       "expanded": false,
       "properties": {
         "index": 5,
-        "bemerkung": "All Off {group:wohnzimmer;color:#333333}",
+        "bemerkung": "All Off",
         "jbcode": 2
       },
       "children": [
@@ -919,7 +919,7 @@
       "expanded": false,
       "properties": {
         "index": 50,
-        "bemerkung": "TV [D] {group:wohnzimmer}",
+        "bemerkung": "TV [D]",
         "jbcode": 3,
         "sunset": true
       },
@@ -943,7 +943,7 @@
       "expanded": false,
       "properties": {
         "index": 173,
-        "bemerkung": "Darth Vader On {group:starwars}",
+        "bemerkung": "Darth Vader On",
         "jbcode": 8
       },
       "children": [
@@ -965,7 +965,7 @@
       "expanded": false,
       "properties": {
         "index": 175,
-        "bemerkung": "Darth Vader Off {group:starwars}",
+        "bemerkung": "Darth Vader Off",
         "jbcode": 9
       },
       "children": [
@@ -988,7 +988,7 @@
       "expanded": false,
       "properties": {
         "index": 135,
-        "bemerkung": "Star Wars [D] {group:starwars}",
+        "bemerkung": "Star Wars [D]",
         "jbcode": 10,
         "sunset": true
       },
@@ -1012,7 +1012,7 @@
       "expanded": false,
       "properties": {
         "index": 42,
-        "bemerkung": "IDual On {group:idual;color:#ffffff}",
+        "bemerkung": "IDual On",
         "jbcode": 11
       },
       "children": [
@@ -1034,7 +1034,7 @@
       "expanded": false,
       "properties": {
         "index": 1499,
-        "bemerkung": "IDual Off {group:idual;color:#000000}",
+        "bemerkung": "IDual Off",
         "jbcode": 214
       },
       "children": [
@@ -1057,7 +1057,7 @@
       "expanded": false,
       "properties": {
         "index": 826,
-        "bemerkung": "IDual Red {group:idual;color:#ff0000}",
+        "bemerkung": "IDual Red",
         "jbcode": 99
       },
       "children": [
@@ -1080,7 +1080,7 @@
       "expanded": false,
       "properties": {
         "index": 819,
-        "bemerkung": "IDual Green {group:idual;color:#00ff00}",
+        "bemerkung": "IDual Green",
         "jbcode": 98
       },
       "children": [
@@ -1102,7 +1102,7 @@
       "expanded": false,
       "properties": {
         "index": 48,
-        "bemerkung": "IDual Blue {group:idual;color:#0000ff}",
+        "bemerkung": "IDual Blue",
         "jbcode": 12
       },
       "children": [
@@ -1125,7 +1125,7 @@
       "expanded": false,
       "properties": {
         "index": 833,
-        "bemerkung": "IDual Yellow {group:idual;color:#ffff00}",
+        "bemerkung": "IDual Yellow",
         "jbcode": 100
       },
       "children": [
@@ -1147,7 +1147,7 @@
       "expanded": false,
       "properties": {
         "index": 940,
-        "bemerkung": "IDual DayWhite {group:idual;color:#ffffff}",
+        "bemerkung": "IDual DayWhite",
         "jbcode": 102
       },
       "children": [
@@ -1169,7 +1169,7 @@
       "expanded": false,
       "properties": {
         "index": 948,
-        "bemerkung": "IDual ColdWhite {group:idual;color:#d5f1ff}",
+        "bemerkung": "IDual ColdWhite",
         "jbcode": 103
       },
       "children": [
@@ -1192,7 +1192,7 @@
       "expanded": false,
       "properties": {
         "index": 46,
-        "bemerkung": "IDual WarmWhite {group:idual;color:#fffad5}",
+        "bemerkung": "IDual WarmWhite",
         "jbcode": 13
       },
       "children": [
@@ -1215,7 +1215,7 @@
       "expanded": false,
       "properties": {
         "index": 185,
-        "bemerkung": "Hollywood {group:dmx}",
+        "bemerkung": "Hollywood",
         "jbcode": 17
       },
       "children": [
@@ -1397,7 +1397,7 @@
       "expanded": false,
       "properties": {
         "index": 274,
-        "bemerkung": "DMX Red {group:dmx;color:#ff0000}",
+        "bemerkung": "DMX Red",
         "jbcode": 19
       },
       "children": [
@@ -1419,7 +1419,7 @@
       "expanded": false,
       "properties": {
         "index": 286,
-        "bemerkung": "DMX Yello {group:dmx;color:#ffef00,#ffaa00,#ffef00,#ffaa00,#ffef00,#ffaa00,#ffef00}",
+        "bemerkung": "DMX Yello",
         "jbcode": 20
       },
       "children": [
@@ -1441,7 +1441,7 @@
       "expanded": false,
       "properties": {
         "index": 298,
-        "bemerkung": "DMX Christmas {group:dmx;color:#990000,#009900,#990000,#009900,#990000,#009900,#990000}",
+        "bemerkung": "DMX Christmas",
         "jbcode": 21
       },
       "children": [
@@ -1463,7 +1463,7 @@
       "expanded": false,
       "properties": {
         "index": 310,
-        "bemerkung": "DMX Computerwelt {group:dmx;color:#ffff00,#ff00ff,#ffff00,#ff00ff,#ffff00,#ff00ff,#ffff00}",
+        "bemerkung": "DMX Computerwelt",
         "jbcode": 22
       },
       "children": [
@@ -1485,7 +1485,7 @@
       "expanded": false,
       "properties": {
         "index": 322,
-        "bemerkung": "DMX ROBOTER {group:dmx;color:#ff0000,#ffffff}",
+        "bemerkung": "DMX ROBOTER",
         "jbcode": 23
       },
       "children": [
@@ -1507,7 +1507,7 @@
       "expanded": false,
       "properties": {
         "index": 333,
-        "bemerkung": "DMX Enterprise E MovingHeads {group:dmx;color:#ddddff,#ffefdd,#ddddff,#ffefdd}",
+        "bemerkung": "DMX Enterprise E MovingHeads",
         "jbcode": 24
       },
       "children": [
@@ -1529,7 +1529,7 @@
       "expanded": false,
       "properties": {
         "index": 344,
-        "bemerkung": "DMX Darth Vaders {group:dmx;color:#ff0000}",
+        "bemerkung": "DMX Darth Vaders",
         "jbcode": 25
       },
       "children": [
@@ -1697,7 +1697,7 @@
       "expanded": false,
       "properties": {
         "index": 356,
-        "bemerkung": "DMX Star Wars {group:dmx;color:#0000ff,#ff0000,#0000aa,#00ff00,#0000ee}",
+        "bemerkung": "DMX Star Wars",
         "jbcode": 26
       },
       "children": [
@@ -1837,7 +1837,7 @@
       "expanded": false,
       "properties": {
         "index": 375,
-        "bemerkung": "DMX Blackout {group:dmx;color:#333333}",
+        "bemerkung": "DMX Blackout",
         "jbcode": 27
       },
       "children": [
@@ -1859,7 +1859,7 @@
       "expanded": false,
       "properties": {
         "index": 377,
-        "bemerkung": "DMX Parking {group:dmx;color:#333333}",
+        "bemerkung": "DMX Parking",
         "jbcode": 28
       },
       "children": [
@@ -1910,7 +1910,7 @@
       "expanded": false,
       "properties": {
         "index": 23,
-        "bemerkung": "Esstisch An {group:wohnzimmer}",
+        "bemerkung": "Esstisch An",
         "jbcode": 29
       },
       "children": [
@@ -1932,7 +1932,7 @@
       "expanded": false,
       "properties": {
         "index": 25,
-        "bemerkung": "Esstisch Aus {group:wohnzimmer}",
+        "bemerkung": "Esstisch Aus",
         "jbcode": 30
       },
       "children": [
@@ -1955,7 +1955,7 @@
       "expanded": false,
       "properties": {
         "index": 19,
-        "bemerkung": "Deckenlampe On {group:wohnzimmer}",
+        "bemerkung": "Deckenlampe On",
         "jbcode": 31
       },
       "children": [
@@ -1977,7 +1977,7 @@
       "expanded": false,
       "properties": {
         "index": 21,
-        "bemerkung": "Deckenlampe Off {group:wohnzimmer}",
+        "bemerkung": "Deckenlampe Off",
         "jbcode": 32
       },
       "children": [
@@ -2000,7 +2000,7 @@
       "expanded": false,
       "properties": {
         "index": 381,
-        "bemerkung": "Deckenlampe [M=1] {group:markers}",
+        "bemerkung": "Deckenlampe [M=1]",
         "jbcode": 33
       },
       "children": [
@@ -2023,7 +2023,7 @@
       "expanded": false,
       "properties": {
         "index": 383,
-        "bemerkung": "Deckenlampe [M=0] {group:markers}",
+        "bemerkung": "Deckenlampe [M=0]",
         "jbcode": 34
       },
       "children": [
@@ -2046,7 +2046,7 @@
       "expanded": false,
       "properties": {
         "index": 385,
-        "bemerkung": "Esstisch [M=1] {group:markers}",
+        "bemerkung": "Esstisch [M=1]",
         "jbcode": 35
       },
       "children": [
@@ -2069,7 +2069,7 @@
       "expanded": false,
       "properties": {
         "index": 387,
-        "bemerkung": "Esstisch [M=0] {group:markers}",
+        "bemerkung": "Esstisch [M=0]",
         "jbcode": 36
       },
       "children": [
@@ -2092,7 +2092,7 @@
       "expanded": false,
       "properties": {
         "index": 389,
-        "bemerkung": "Flur [M=1] {group:markers}",
+        "bemerkung": "Flur [M=1]",
         "jbcode": 37
       },
       "children": [
@@ -2115,7 +2115,7 @@
       "expanded": false,
       "properties": {
         "index": 391,
-        "bemerkung": "Flur [M=0] {group:markers}",
+        "bemerkung": "Flur [M=0]",
         "jbcode": 38
       },
       "children": [
@@ -2138,7 +2138,7 @@
       "expanded": false,
       "properties": {
         "index": 31,
-        "bemerkung": "Flur On {group:shelly}",
+        "bemerkung": "Flur On",
         "jbcode": 39
       },
       "children": [
@@ -2160,7 +2160,7 @@
       "expanded": false,
       "properties": {
         "index": 33,
-        "bemerkung": "Flur Off {group:shelly}",
+        "bemerkung": "Flur Off",
         "jbcode": 40
       },
       "children": [
@@ -2183,7 +2183,7 @@
       "expanded": false,
       "properties": {
         "index": 39,
-        "bemerkung": "Flur und Wohnzimmer {group:shelly}",
+        "bemerkung": "Flur und Wohnzimmer",
         "jbcode": 41
       },
       "children": [
@@ -2218,7 +2218,7 @@
       "expanded": false,
       "properties": {
         "index": 37,
-        "bemerkung": "Schlafzimmer Off {group:shelly}",
+        "bemerkung": "Schlafzimmer Off",
         "jbcode": 45
       },
       "children": [
@@ -2241,7 +2241,7 @@
       "expanded": false,
       "properties": {
         "index": 393,
-        "bemerkung": "Schlafzimmer [M=1] {group:markers}",
+        "bemerkung": "Schlafzimmer [M=1]",
         "jbcode": 46
       },
       "children": [
@@ -2264,7 +2264,7 @@
       "expanded": false,
       "properties": {
         "index": 395,
-        "bemerkung": "Schlafzimmer [M=0] {group:markers}",
+        "bemerkung": "Schlafzimmer [M=0]",
         "jbcode": 47
       },
       "children": [
@@ -2287,7 +2287,7 @@
       "expanded": false,
       "properties": {
         "index": 366,
-        "bemerkung": "DMX Fireplace {group:dmx;color:#ff0000,#ffaa00,#ee0000,#ffee00,#cc0000}",
+        "bemerkung": "DMX Fireplace",
         "jbcode": 48
       },
       "children": [
@@ -2309,7 +2309,7 @@
       "expanded": false,
       "properties": {
         "index": 131,
-        "bemerkung": "Deckenfluter Full {group:wohnzimmer}",
+        "bemerkung": "Deckenfluter Full",
         "jbcode": 49
       },
       "children": [
@@ -2356,7 +2356,7 @@
       "expanded": false,
       "properties": {
         "index": 133,
-        "bemerkung": "Deckenfluter Off {group:wohnzimmer}",
+        "bemerkung": "Deckenfluter Off",
         "jbcode": 50
       },
       "children": [
@@ -2404,7 +2404,7 @@
       "expanded": false,
       "properties": {
         "index": 27,
-        "bemerkung": "Salzkristall On {group:wohnzimmer;color:#ffffff}",
+        "bemerkung": "Salzkristall On",
         "jbcode": 51
       },
       "children": [
@@ -2426,7 +2426,7 @@
       "expanded": false,
       "properties": {
         "index": 29,
-        "bemerkung": "Salzkristall Off {group:wohnzimmer;color:#333333}",
+        "bemerkung": "Salzkristall Off",
         "jbcode": 52
       },
       "children": [
@@ -2449,7 +2449,7 @@
       "expanded": false,
       "properties": {
         "index": 121,
-        "bemerkung": "Aikido {group:wohnzimmer}",
+        "bemerkung": "Aikido",
         "jbcode": 53
       },
       "children": [
@@ -2698,7 +2698,7 @@
       "expanded": false,
       "properties": {
         "index": 466,
-        "bemerkung": "Deckenfluter Dim {group:wohnzimmer}",
+        "bemerkung": "Deckenfluter Dim",
         "jbcode": 57
       },
       "children": [
@@ -2746,7 +2746,7 @@
       "expanded": false,
       "properties": {
         "index": 494,
-        "bemerkung": "Surround Standard {group:yamaha}",
+        "bemerkung": "Surround Standard",
         "jbcode": 58
       },
       "children": [
@@ -2768,7 +2768,7 @@
       "expanded": false,
       "properties": {
         "index": 496,
-        "bemerkung": "Surround Sci-Fi {group:yamaha}",
+        "bemerkung": "Surround Sci-Fi",
         "jbcode": 59
       },
       "children": [
@@ -2790,7 +2790,7 @@
       "expanded": false,
       "properties": {
         "index": 498,
-        "bemerkung": "Surround Spectacle {group:yamaha}",
+        "bemerkung": "Surround Spectacle",
         "jbcode": 60
       },
       "children": [
@@ -2812,7 +2812,7 @@
       "expanded": false,
       "properties": {
         "index": 500,
-        "bemerkung": "Surround Adventure {group:yamaha}",
+        "bemerkung": "Surround Adventure",
         "jbcode": 61
       },
       "children": [
@@ -2834,7 +2834,7 @@
       "expanded": false,
       "properties": {
         "index": 502,
-        "bemerkung": "Surround The Roxy Theatre {group:yamaha}",
+        "bemerkung": "Surround The Roxy Theatre",
         "jbcode": 62
       },
       "children": [
@@ -2856,7 +2856,7 @@
       "expanded": false,
       "properties": {
         "index": 504,
-        "bemerkung": "Surround The Bottom Line {group:yamaha}",
+        "bemerkung": "Surround The Bottom Line",
         "jbcode": 63
       },
       "children": [
@@ -2878,7 +2878,7 @@
       "expanded": false,
       "properties": {
         "index": 506,
-        "bemerkung": "Surround Hall In Vienna {group:yamaha}",
+        "bemerkung": "Surround Hall In Vienna",
         "jbcode": 64
       },
       "children": [
@@ -2900,7 +2900,7 @@
       "expanded": false,
       "properties": {
         "index": 508,
-        "bemerkung": "Surround Decoder {group:yamaha}",
+        "bemerkung": "Surround Decoder",
         "jbcode": 65
       },
       "children": [
@@ -2922,7 +2922,7 @@
       "expanded": false,
       "properties": {
         "index": 510,
-        "bemerkung": "Surround 7ch Stereo {group:yamaha}",
+        "bemerkung": "Surround 7ch Stereo",
         "jbcode": 66
       },
       "children": [
@@ -2944,7 +2944,7 @@
       "expanded": false,
       "properties": {
         "index": 513,
-        "bemerkung": "Surround Hall In Munich {group:yamaha}",
+        "bemerkung": "Surround Hall In Munich",
         "jbcode": 67
       },
       "children": [
@@ -2966,7 +2966,7 @@
       "expanded": false,
       "properties": {
         "index": 535,
-        "bemerkung": "RGBW On {group:rgbw;color:#ffffff}",
+        "bemerkung": "RGBW On",
         "jbcode": 68
       },
       "children": [
@@ -2988,7 +2988,7 @@
       "expanded": false,
       "properties": {
         "index": 537,
-        "bemerkung": "RGBW Off {group:rgbw;color:#333333}",
+        "bemerkung": "RGBW Off",
         "jbcode": 69
       },
       "children": [
@@ -3011,7 +3011,7 @@
       "expanded": false,
       "properties": {
         "index": 539,
-        "bemerkung": "RGBW Red {group:rgbw;color:#ff0000}",
+        "bemerkung": "RGBW Red",
         "jbcode": 70
       },
       "children": [
@@ -3033,7 +3033,7 @@
       "expanded": false,
       "properties": {
         "index": 541,
-        "bemerkung": "RGBW Green {group:rgbw;color:#00ff00}",
+        "bemerkung": "RGBW Green",
         "jbcode": 71
       },
       "children": [
@@ -3056,7 +3056,7 @@
       "expanded": false,
       "properties": {
         "index": 543,
-        "bemerkung": "RGBW Blue {group:rgbw;color:#0000ff}",
+        "bemerkung": "RGBW Blue",
         "jbcode": 72
       },
       "children": [
@@ -3078,7 +3078,7 @@
       "expanded": false,
       "properties": {
         "index": 545,
-        "bemerkung": "RGBW Cyan {group:rgbw;color:#00ffff}",
+        "bemerkung": "RGBW Cyan",
         "jbcode": 73
       },
       "children": [
@@ -3101,7 +3101,7 @@
       "expanded": false,
       "properties": {
         "index": 547,
-        "bemerkung": "RGBW Yellow {group:rgbw;color:#ffff00}",
+        "bemerkung": "RGBW Yellow",
         "jbcode": 74
       },
       "children": [
@@ -3123,7 +3123,7 @@
       "expanded": false,
       "properties": {
         "index": 549,
-        "bemerkung": "RGBW Magenta {group:rgbw;color:#ff00ff}",
+        "bemerkung": "RGBW Magenta",
         "jbcode": 75
       },
       "children": [
@@ -3146,7 +3146,7 @@
       "expanded": false,
       "properties": {
         "index": 551,
-        "bemerkung": "RGBW Orange {group:rgbw;color:#ff8000}",
+        "bemerkung": "RGBW Orange",
         "jbcode": 76
       },
       "children": [
@@ -3168,7 +3168,7 @@
       "expanded": false,
       "properties": {
         "index": 553,
-        "bemerkung": "RGBW Purple {group:rgbw;color:#8000ff}",
+        "bemerkung": "RGBW Purple",
         "jbcode": 77
       },
       "children": [
@@ -3191,7 +3191,7 @@
       "expanded": false,
       "properties": {
         "index": 555,
-        "bemerkung": "RGBW Full {group:rgbw;color:#ffffff}",
+        "bemerkung": "RGBW Full",
         "jbcode": 78
       },
       "children": [
@@ -3213,7 +3213,7 @@
       "expanded": false,
       "properties": {
         "index": 557,
-        "bemerkung": "RGBW Half {group:rgbw;color:#808080}",
+        "bemerkung": "RGBW Half",
         "jbcode": 79
       },
       "children": [
@@ -3236,7 +3236,7 @@
       "expanded": false,
       "properties": {
         "index": 581,
-        "bemerkung": "Deko Red {group:deko;color:#ff0000}",
+        "bemerkung": "Deko Red",
         "jbcode": 84
       },
       "children": [
@@ -3258,7 +3258,7 @@
       "expanded": false,
       "properties": {
         "index": 585,
-        "bemerkung": "Deko Green {group:deko;color:#00ff00}",
+        "bemerkung": "Deko Green",
         "jbcode": 85
       },
       "children": [
@@ -3281,7 +3281,7 @@
       "expanded": false,
       "properties": {
         "index": 589,
-        "bemerkung": "Deko Blue {group:deko;color:#0000ff}",
+        "bemerkung": "Deko Blue",
         "jbcode": 86
       },
       "children": [
@@ -3303,7 +3303,7 @@
       "expanded": false,
       "properties": {
         "index": 593,
-        "bemerkung": "Deko Cyan {group:deko;color:#00ffff}",
+        "bemerkung": "Deko Cyan",
         "jbcode": 87
       },
       "children": [
@@ -3326,7 +3326,7 @@
       "expanded": false,
       "properties": {
         "index": 597,
-        "bemerkung": "Deko Yellow {group:deko;color:#ffff00}",
+        "bemerkung": "Deko Yellow",
         "jbcode": 88
       },
       "children": [
@@ -3348,7 +3348,7 @@
       "expanded": false,
       "properties": {
         "index": 601,
-        "bemerkung": "Deko Magenta {group:deko;color:#ff00ff}",
+        "bemerkung": "Deko Magenta",
         "jbcode": 89
       },
       "children": [
@@ -3371,7 +3371,7 @@
       "expanded": false,
       "properties": {
         "index": 605,
-        "bemerkung": "Deko Orange {group:deko;color:#ff8000}",
+        "bemerkung": "Deko Orange",
         "jbcode": 90
       },
       "children": [
@@ -3393,7 +3393,7 @@
       "expanded": false,
       "properties": {
         "index": 609,
-        "bemerkung": "Deko Purple {group:deko;color:#8000ff}",
+        "bemerkung": "Deko Purple",
         "jbcode": 91
       },
       "children": [
@@ -3416,7 +3416,7 @@
       "expanded": false,
       "properties": {
         "index": 659,
-        "bemerkung": "Bar Off {group:bar;color:#333333}",
+        "bemerkung": "Bar Off",
         "jbcode": 92
       },
       "children": [
@@ -3439,7 +3439,7 @@
       "expanded": false,
       "properties": {
         "index": 763,
-        "bemerkung": "Deko White {group:deko;color:#ffffff}",
+        "bemerkung": "Deko White",
         "jbcode": 94
       },
       "children": [
@@ -3461,7 +3461,7 @@
       "expanded": false,
       "properties": {
         "index": 789,
-        "bemerkung": "Deko Off {group:deko;color:#333333}",
+        "bemerkung": "Deko Off",
         "jbcode": 95
       },
       "children": [
@@ -3484,7 +3484,7 @@
       "expanded": false,
       "properties": {
         "index": 929,
-        "bemerkung": "Deko On {group:deko;color:#ffffff}",
+        "bemerkung": "Deko On",
         "jbcode": 101
       },
       "children": [
@@ -3506,7 +3506,7 @@
       "expanded": true,
       "properties": {
         "index": 76,
-        "bemerkung": "Licht TV {group:background;color:#fffad5}",
+        "bemerkung": "Licht TV",
         "jbcode": 5
       },
       "children": [
@@ -3674,7 +3674,7 @@
       "expanded": false,
       "properties": {
         "index": 44,
-        "bemerkung": "TV Licht Aus {group:background;color:#333333}",
+        "bemerkung": "TV Licht Aus",
         "jbcode": 7
       },
       "children": [
@@ -3697,7 +3697,7 @@
       "expanded": false,
       "properties": {
         "index": 154,
-        "bemerkung": "Licht Kino {group:background;color:#000088,#000088,#880000,#880000}",
+        "bemerkung": "Licht Kino",
         "jbcode": 16
       },
       "children": [
@@ -3823,7 +3823,7 @@
       "expanded": false,
       "properties": {
         "index": 962,
-        "bemerkung": "Background Red {group:background;color:#ff0000}",
+        "bemerkung": "Background Red",
         "jbcode": 104
       },
       "children": [
@@ -3845,7 +3845,7 @@
       "expanded": false,
       "properties": {
         "index": 1299,
-        "bemerkung": "Background Dark Red {group:background;color:#880000}",
+        "bemerkung": "Background Dark Red",
         "jbcode": 160
       },
       "children": [
@@ -3867,7 +3867,7 @@
       "expanded": false,
       "properties": {
         "index": 971,
-        "bemerkung": "Background Green {group:background;color:#00ff00}",
+        "bemerkung": "Background Green",
         "jbcode": 107
       },
       "children": [
@@ -3890,7 +3890,7 @@
       "expanded": false,
       "properties": {
         "index": 1302,
-        "bemerkung": "Background Dark Green {group:background;color:#008800}",
+        "bemerkung": "Background Dark Green",
         "jbcode": 161
       },
       "children": [
@@ -3913,7 +3913,7 @@
       "expanded": false,
       "properties": {
         "index": 974,
-        "bemerkung": "Background Blue {group:background;color:#0000ff}",
+        "bemerkung": "Background Blue",
         "jbcode": 108
       },
       "children": [
@@ -3935,7 +3935,7 @@
       "expanded": false,
       "properties": {
         "index": 1284,
-        "bemerkung": "Background Dark Blue {group:background;color:#000088}",
+        "bemerkung": "Background Dark Blue",
         "jbcode": 153
       },
       "children": [
@@ -3957,7 +3957,7 @@
       "expanded": false,
       "properties": {
         "index": 1255,
-        "bemerkung": "Background Cyan {group:background;color:#00ffff}",
+        "bemerkung": "Background Cyan",
         "jbcode": 142
       },
       "children": [
@@ -3980,7 +3980,7 @@
       "expanded": false,
       "properties": {
         "index": 1365,
-        "bemerkung": "Background Dark Cyan {group:background;color:#008888}",
+        "bemerkung": "Background Dark Cyan",
         "jbcode": 176
       },
       "children": [
@@ -4003,7 +4003,7 @@
       "expanded": false,
       "properties": {
         "index": 1258,
-        "bemerkung": "Background Yellow {group:background;color:#ffff00}",
+        "bemerkung": "Background Yellow",
         "jbcode": 143
       },
       "children": [
@@ -4025,7 +4025,7 @@
       "expanded": false,
       "properties": {
         "index": 1261,
-        "bemerkung": "Background Magenta {group:background;color:#ff00ff}",
+        "bemerkung": "Background Magenta",
         "jbcode": 144
       },
       "children": [
@@ -4048,7 +4048,7 @@
       "expanded": false,
       "properties": {
         "index": 1264,
-        "bemerkung": "Background Orange {group:background;color:#ff8000}",
+        "bemerkung": "Background Orange",
         "jbcode": 145
       },
       "children": [
@@ -4070,7 +4070,7 @@
       "expanded": false,
       "properties": {
         "index": 1267,
-        "bemerkung": "Background Purple {group:background;color:#2d0080}",
+        "bemerkung": "Background Purple",
         "jbcode": 146
       },
       "children": [
@@ -4093,7 +4093,7 @@
       "expanded": false,
       "properties": {
         "index": 1305,
-        "bemerkung": "Background White {group:background;color:#ffffff}",
+        "bemerkung": "Background White",
         "jbcode": 162
       },
       "children": [
@@ -4115,7 +4115,7 @@
       "expanded": false,
       "properties": {
         "index": 1201,
-        "bemerkung": "Background Warm White {group:background;color:#ffde59,#ffde59,#000000,#000000}",
+        "bemerkung": "Background Warm White",
         "jbcode": 137
       },
       "children": [
@@ -4137,7 +4137,7 @@
       "expanded": false,
       "properties": {
         "index": 965,
-        "bemerkung": "Background Red \/ Blue {group:background;color:#0000ff,#ff0000,#ff0000,#0000ff}",
+        "bemerkung": "Background Red \/ Blue",
         "jbcode": 105
       },
       "children": [
@@ -4159,7 +4159,7 @@
       "expanded": false,
       "properties": {
         "index": 1336,
-        "bemerkung": "Background Dark Red \/ Blue {group:background;color:#000088,#880000,#880000,#000088}",
+        "bemerkung": "Background Dark Red \/ Blue",
         "jbcode": 167
       },
       "children": [
@@ -4181,7 +4181,7 @@
       "expanded": false,
       "properties": {
         "index": 968,
-        "bemerkung": "Background Blue \/ Red {group:background;color:#ff0000,#0000ff,#0000ff,#ff0000}",
+        "bemerkung": "Background Blue \/ Red",
         "jbcode": 106
       },
       "children": [
@@ -4203,7 +4203,7 @@
       "expanded": false,
       "properties": {
         "index": 1353,
-        "bemerkung": "Background Dark Blue \/ Red {group:background;color:#880000,#000088,#000088,#880000}",
+        "bemerkung": "Background Dark Blue \/ Red",
         "jbcode": 172
       },
       "children": [
@@ -4225,7 +4225,7 @@
       "expanded": false,
       "properties": {
         "index": 1055,
-        "bemerkung": "Background Green \/ Red {group:background;color:#ff0000,#00ff00,#00ff00,#ff0000}",
+        "bemerkung": "Background Green \/ Red",
         "jbcode": 116
       },
       "children": [
@@ -4247,7 +4247,7 @@
       "expanded": false,
       "properties": {
         "index": 1359,
-        "bemerkung": "Background Dark Green \/ Red {group:background;color:#880000,#008800,#008800,#880000}",
+        "bemerkung": "Background Dark Green \/ Red",
         "jbcode": 174
       },
       "children": [
@@ -4269,7 +4269,7 @@
       "expanded": false,
       "properties": {
         "index": 1052,
-        "bemerkung": "Background Red \/ Green {group:background;color:#00ff00,#ff0000,#ff0000,#00ff00}",
+        "bemerkung": "Background Red \/ Green",
         "jbcode": 115
       },
       "children": [
@@ -4291,7 +4291,7 @@
       "expanded": false,
       "properties": {
         "index": 1356,
-        "bemerkung": "Background Dark Red \/ Green {group:background;color:#008800,#880000,#880000,#008800}",
+        "bemerkung": "Background Dark Red \/ Green",
         "jbcode": 173
       },
       "children": [
@@ -4313,7 +4313,7 @@
       "expanded": false,
       "properties": {
         "index": 983,
-        "bemerkung": "Background Green \/ Blue {group:background;color:#0000ff,#00ff00,#00ff00,#0000ff}",
+        "bemerkung": "Background Green \/ Blue",
         "jbcode": 111
       },
       "children": [
@@ -4335,7 +4335,7 @@
       "expanded": false,
       "properties": {
         "index": 1339,
-        "bemerkung": "Background Dark Green \/ Blue {group:background;color:#000088,#008800,#008800,#000088}",
+        "bemerkung": "Background Dark Green \/ Blue",
         "jbcode": 168
       },
       "children": [
@@ -4357,7 +4357,7 @@
       "expanded": false,
       "properties": {
         "index": 980,
-        "bemerkung": "Background Blue \/ Green {group:background;color:#00ff00,#0000ff,#0000ff,#00ff00}",
+        "bemerkung": "Background Blue \/ Green",
         "jbcode": 110
       },
       "children": [
@@ -4379,7 +4379,7 @@
       "expanded": false,
       "properties": {
         "index": 1362,
-        "bemerkung": "Background Dark Blue \/ Green {group:background;color:#008800,#000088,#000088,#008800}",
+        "bemerkung": "Background Dark Blue \/ Green",
         "jbcode": 175
       },
       "children": [
@@ -4401,7 +4401,7 @@
       "expanded": false,
       "properties": {
         "index": 977,
-        "bemerkung": "Background Blue \/ Cyan {group:background;color:#00ffff,#0000ff,#0000ff,#00ffff}",
+        "bemerkung": "Background Blue \/ Cyan",
         "jbcode": 109
       },
       "children": [
@@ -4423,7 +4423,7 @@
       "expanded": false,
       "properties": {
         "index": 1367,
-        "bemerkung": "Background Dark Blue \/ Cyan {group:background;color:#008888,#000088,#000088,#008888}",
+        "bemerkung": "Background Dark Blue \/ Cyan",
         "jbcode": 177
       },
       "children": [
@@ -4445,7 +4445,7 @@
       "expanded": false,
       "properties": {
         "index": 989,
-        "bemerkung": "Background Green \/ Magenta {group:background;color:#ff00ff,#00ff00,#00ff00,#ff00ff}",
+        "bemerkung": "Background Green \/ Magenta",
         "jbcode": 113
       },
       "children": [
@@ -4467,7 +4467,7 @@
       "expanded": false,
       "properties": {
         "index": 1158,
-        "bemerkung": "Background Magenta \/ Green {group:background;color:#00ff00,#ff00ff,#ff00ff,#00ff00}",
+        "bemerkung": "Background Magenta \/ Green",
         "jbcode": 134
       },
       "children": [
@@ -4489,7 +4489,7 @@
       "expanded": false,
       "properties": {
         "index": 986,
-        "bemerkung": "Background Green \/ Yellow {group:background;color:#ffff00,#00ff00,#00ff00,#ffff00}",
+        "bemerkung": "Background Green \/ Yellow",
         "jbcode": 112
       },
       "children": [
@@ -4511,7 +4511,7 @@
       "expanded": false,
       "properties": {
         "index": 1155,
-        "bemerkung": "Background Yellow \/ Green {group:background;color:#00ff00,#ffff00,#ffff00,#00ff00}",
+        "bemerkung": "Background Yellow \/ Green",
         "jbcode": 133
       },
       "children": [
@@ -4533,7 +4533,7 @@
       "expanded": false,
       "properties": {
         "index": 1152,
-        "bemerkung": "Background Cyan \/ Blue {group:background;color:#0000ff,#00ffff,#00ffff,#0000ff}",
+        "bemerkung": "Background Cyan \/ Blue",
         "jbcode": 132
       },
       "children": [
@@ -4555,7 +4555,7 @@
       "expanded": false,
       "properties": {
         "index": 1342,
-        "bemerkung": "Background Dark Cyan \/ Blue {group:background;color:#000088,#008888,#008888,#000088}",
+        "bemerkung": "Background Dark Cyan \/ Blue",
         "jbcode": 169
       },
       "children": [
@@ -4577,7 +4577,7 @@
       "expanded": false,
       "properties": {
         "index": 1089,
-        "bemerkung": "Background Orange \/ Teal {group:background;color:#2388ad,#ff8000,#ff8000,#2388ad}",
+        "bemerkung": "Background Orange \/ Teal",
         "jbcode": 122
       },
       "children": [
@@ -4599,7 +4599,7 @@
       "expanded": false,
       "properties": {
         "index": 1086,
-        "bemerkung": "Background Teal \/ Orange {group:background;color:#ff8000,#2388ad,#2388ad,#ff8000}",
+        "bemerkung": "Background Teal \/ Orange",
         "jbcode": 121
       },
       "children": [
@@ -4621,7 +4621,7 @@
       "expanded": false,
       "properties": {
         "index": 1252,
-        "bemerkung": "Background Orange \/ Purple {group:background;color:#2d0080,#ff8000,#ff8000,#2d0080}",
+        "bemerkung": "Background Orange \/ Purple",
         "jbcode": 141
       },
       "children": [
@@ -4643,7 +4643,7 @@
       "expanded": false,
       "properties": {
         "index": 1249,
-        "bemerkung": "Background Purple \/ Orange {group:background;color:#ff8000,#2d0080,#2d0080,#ff8000}",
+        "bemerkung": "Background Purple \/ Orange",
         "jbcode": 140
       },
       "children": [
@@ -4665,7 +4665,7 @@
       "expanded": false,
       "properties": {
         "index": 1370,
-        "bemerkung": "Background Yellow \/ Purple {group:background;color:#2d0080,#ffff00,#ffff00,#2d0080}",
+        "bemerkung": "Background Yellow \/ Purple",
         "jbcode": 178
       },
       "children": [
@@ -4687,7 +4687,7 @@
       "expanded": false,
       "properties": {
         "index": 1373,
-        "bemerkung": "Background Purple \/ Yellow {group:background;color:#ffff00,#2d0080,#2d0080,#ffff00}",
+        "bemerkung": "Background Purple \/ Yellow",
         "jbcode": 179
       },
       "children": [
@@ -4709,7 +4709,7 @@
       "expanded": false,
       "properties": {
         "index": 1376,
-        "bemerkung": "Background Yellow \/ Magenta {group:background;color:#ff00ff,#ffff00,#ffff00,#ff00ff}",
+        "bemerkung": "Background Yellow \/ Magenta",
         "jbcode": 180
       },
       "children": [
@@ -4731,7 +4731,7 @@
       "expanded": false,
       "properties": {
         "index": 1379,
-        "bemerkung": "Background Magenta \/ Yellow {group:background;color:#ffff00,#ff00ff,#ff00ff,#ffff00}",
+        "bemerkung": "Background Magenta \/ Yellow",
         "jbcode": 181
       },
       "children": [
@@ -4753,7 +4753,7 @@
       "expanded": false,
       "properties": {
         "index": 1385,
-        "bemerkung": "Background Purple \/ Magenta {group:background;color:#ff00ff,#2d0080,#2d0080,#ff00ff}",
+        "bemerkung": "Background Purple \/ Magenta",
         "jbcode": 183
       },
       "children": [
@@ -4775,7 +4775,7 @@
       "expanded": false,
       "properties": {
         "index": 1382,
-        "bemerkung": "Background Magenta \/ Purple {group:background;color:#2d0080,#ff00ff,#ff00ff,#2d0080}",
+        "bemerkung": "Background Magenta \/ Purple",
         "jbcode": 182
       },
       "children": [
@@ -4797,7 +4797,7 @@
       "expanded": false,
       "properties": {
         "index": 1427,
-        "bemerkung": "Background White \/ Blue {group:background;color:#0000ff,#ffffff,#ffffff,#0000ff}",
+        "bemerkung": "Background White \/ Blue",
         "jbcode": 202
       },
       "children": [
@@ -4819,7 +4819,7 @@
       "expanded": false,
       "properties": {
         "index": 1430,
-        "bemerkung": "Background Blue \/ White {group:background;color:#ffffff,#0000ff,#0000ff,#ffffff}",
+        "bemerkung": "Background Blue \/ White",
         "jbcode": 203
       },
       "children": [
@@ -4841,7 +4841,7 @@
       "expanded": false,
       "properties": {
         "index": 992,
-        "bemerkung": "Background Red \/ White {group:background;color:#ffffff,#ff0000,#ff0000,#ffffff}",
+        "bemerkung": "Background Red \/ White",
         "jbcode": 114
       },
       "children": [
@@ -4863,7 +4863,7 @@
       "expanded": false,
       "properties": {
         "index": 1161,
-        "bemerkung": "Background White \/ Red {group:background;color:#ff0000,#ffffff,#ffffff,#ff0000}",
+        "bemerkung": "Background White \/ Red",
         "jbcode": 135
       },
       "children": [
@@ -4885,7 +4885,7 @@
       "expanded": false,
       "properties": {
         "index": 1277,
-        "bemerkung": "Background Rainbow Blue-Red {group:background;color:#0000ff,#00ffff,#00ff00,#ffff00,#ff8000,#ff0000}",
+        "bemerkung": "Background Rainbow Blue-Red",
         "jbcode": 150
       },
       "children": [
@@ -4907,7 +4907,7 @@
       "expanded": false,
       "properties": {
         "index": 1270,
-        "bemerkung": "Background Rainbow Red-Blue {group:background;color:#ff0000,#ff8000,#ffff00,#00ff00,#00ffff,#0000ff}",
+        "bemerkung": "Background Rainbow Red-Blue",
         "jbcode": 147
       },
       "children": [
@@ -4929,7 +4929,7 @@
       "expanded": false,
       "properties": {
         "index": 1437,
-        "bemerkung": "Background Rainbow Dark Blue-Red {group:background;color:#000080,#008080,#008000,#808000,#808000,#800000}",
+        "bemerkung": "Background Rainbow Dark Blue-Red",
         "jbcode": 206
       },
       "children": [
@@ -4951,7 +4951,7 @@
       "expanded": false,
       "properties": {
         "index": 1439,
-        "bemerkung": "Background Rainbow Dark Red-Blue {group:background;color:#800000,#808000,#808000,#008000,#008080,#000080}",
+        "bemerkung": "Background Rainbow Dark Red-Blue",
         "jbcode": 207
       },
       "children": [
@@ -4973,7 +4973,7 @@
       "expanded": false,
       "properties": {
         "index": 1391,
-        "bemerkung": "Background purple-green {group:background;color:#8000ff,#00ff00,#8000ff,#00ff00,#8000ff}",
+        "bemerkung": "Background purple-green",
         "jbcode": 184
       },
       "children": [
@@ -4995,7 +4995,7 @@
       "expanded": false,
       "properties": {
         "index": 1392,
-        "bemerkung": "Background green-purple {group:background;color:#00ff00,#8000ff,#00ff00,#8000ff,#00ff00}",
+        "bemerkung": "Background green-purple",
         "jbcode": 185
       },
       "children": [
@@ -5017,7 +5017,7 @@
       "expanded": false,
       "properties": {
         "index": 1393,
-        "bemerkung": "Background blue-green {group:background;color:#0000ff,#00ff00,#0000ff,#00ff00,#0000ff}",
+        "bemerkung": "Background blue-green",
         "jbcode": 186
       },
       "children": [
@@ -5039,7 +5039,7 @@
       "expanded": false,
       "properties": {
         "index": 1394,
-        "bemerkung": "Background green-blue {group:background;color:#00ff00,#0000ff,#00ff00,#0000ff,#00ff00}",
+        "bemerkung": "Background green-blue",
         "jbcode": 187
       },
       "children": [
@@ -5061,7 +5061,7 @@
       "expanded": false,
       "properties": {
         "index": 1441,
-        "bemerkung": "Background red-green {group:background;color:#ff0000,#00ff00,#ff0000,#00ff00,#ff0000}",
+        "bemerkung": "Background red-green",
         "jbcode": 208
       },
       "children": [
@@ -5083,7 +5083,7 @@
       "expanded": false,
       "properties": {
         "index": 1442,
-        "bemerkung": "Background green-red {group:background;color:#00ff00,#ff0000,#00ff00,#ff0000,#00ff00}",
+        "bemerkung": "Background green-red",
         "jbcode": 209
       },
       "children": [
@@ -5105,7 +5105,7 @@
       "expanded": false,
       "properties": {
         "index": 1395,
-        "bemerkung": "Background blue-cyan {group:background;color:#0000ff,#00ffff,#0000ff,#00ffff,#0000ff}",
+        "bemerkung": "Background blue-cyan",
         "jbcode": 188
       },
       "children": [
@@ -5127,7 +5127,7 @@
       "expanded": false,
       "properties": {
         "index": 1396,
-        "bemerkung": "Background cyan-blue {group:background;color:#00ffff,#0000ff,#00ffff,#0000ff,#00ffff}",
+        "bemerkung": "Background cyan-blue",
         "jbcode": 189
       },
       "children": [
@@ -5149,7 +5149,7 @@
       "expanded": false,
       "properties": {
         "index": 1397,
-        "bemerkung": "Background blue-yellow {group:background;color:#0000ff,#ffff00,#0000ff,#ffff00,#0000ff}",
+        "bemerkung": "Background blue-yellow",
         "jbcode": 190
       },
       "children": [
@@ -5171,7 +5171,7 @@
       "expanded": false,
       "properties": {
         "index": 1398,
-        "bemerkung": "Background yellow-blue {group:background;color:#ffff00,#0000ff,#ffff00,#0000ff,#ffff00}",
+        "bemerkung": "Background yellow-blue",
         "jbcode": 191
       },
       "children": [
@@ -5193,7 +5193,7 @@
       "expanded": false,
       "properties": {
         "index": 1433,
-        "bemerkung": "Background blue-white {group:background;color:#0000ff,#ffffff,#0000ff,#ffffff,#0000ff}",
+        "bemerkung": "Background blue-white",
         "jbcode": 204
       },
       "children": [
@@ -5215,7 +5215,7 @@
       "expanded": false,
       "properties": {
         "index": 1434,
-        "bemerkung": "Background white-blue {group:background;color:#ffffff,#0000ff,#ffffff,#0000ff,#ffffff}",
+        "bemerkung": "Background white-blue",
         "jbcode": 205
       },
       "children": [
@@ -5237,7 +5237,7 @@
       "expanded": false,
       "properties": {
         "index": 1399,
-        "bemerkung": "Background green-yellow {group:background;color:#00ff00,#ffff00,#00ff00,#ffff00,#00ff00}",
+        "bemerkung": "Background green-yellow",
         "jbcode": 192
       },
       "children": [
@@ -5259,7 +5259,7 @@
       "expanded": false,
       "properties": {
         "index": 1400,
-        "bemerkung": "Background yellow-green {group:background;color:#ffff00,#00ff00,#ffff00,#00ff00,#ffff00}",
+        "bemerkung": "Background yellow-green",
         "jbcode": 193
       },
       "children": [
@@ -5281,7 +5281,7 @@
       "expanded": false,
       "properties": {
         "index": 1401,
-        "bemerkung": "Background purple-yellow {group:background;color:#8000ff,#ffff00,#8000ff,#ffff00,#8000ff}",
+        "bemerkung": "Background purple-yellow",
         "jbcode": 194
       },
       "children": [
@@ -5303,7 +5303,7 @@
       "expanded": false,
       "properties": {
         "index": 1402,
-        "bemerkung": "Background yellow-purple {group:background;color:#ffff00,#8000ff,#ffff00,#8000ff,#ffff00}",
+        "bemerkung": "Background yellow-purple",
         "jbcode": 195
       },
       "children": [
@@ -5325,7 +5325,7 @@
       "expanded": false,
       "properties": {
         "index": 1415,
-        "bemerkung": "Background purple-orange {group:background;color:#8000ff,#ff8000,#8000ff,#ff8000,#8000ff}",
+        "bemerkung": "Background purple-orange",
         "jbcode": 196
       },
       "children": [
@@ -5347,7 +5347,7 @@
       "expanded": false,
       "properties": {
         "index": 1416,
-        "bemerkung": "Background orange-purple {group:background;color:#ff8000,#8000ff,#ff8000,#8000ff,#ff8000}",
+        "bemerkung": "Background orange-purple",
         "jbcode": 197
       },
       "children": [
@@ -5369,7 +5369,7 @@
       "expanded": false,
       "properties": {
         "index": 1417,
-        "bemerkung": "Background red-orange {group:background;color:#ff0000,#ff8000,#ff0000,#ff8000,#ff0000}",
+        "bemerkung": "Background red-orange",
         "jbcode": 198
       },
       "children": [
@@ -5391,7 +5391,7 @@
       "expanded": false,
       "properties": {
         "index": 1418,
-        "bemerkung": "Background orange-red {group:background;color:#ff8000,#ff0000,#ff8000,#ff0000,#ff8000}",
+        "bemerkung": "Background orange-red",
         "jbcode": 199
       },
       "children": [
@@ -5413,7 +5413,7 @@
       "expanded": false,
       "properties": {
         "index": 1419,
-        "bemerkung": "Background yellow-orange {group:background;color:#ffff00,#ff8000,#ffff00,#ff8000,#ffff00}",
+        "bemerkung": "Background yellow-orange",
         "jbcode": 200
       },
       "children": [
@@ -5435,7 +5435,7 @@
       "expanded": false,
       "properties": {
         "index": 1420,
-        "bemerkung": "Background orange-yellow {group:background;color:#ff8000,#ffff00,#ff8000,#ffff00,#ff8000}",
+        "bemerkung": "Background orange-yellow",
         "jbcode": 201
       },
       "children": [
@@ -5457,7 +5457,7 @@
       "expanded": false,
       "properties": {
         "index": 1445,
-        "bemerkung": "Background red-blue {group:background;color:#ff0000,#0000ff,#ff0000,#0000ff,#ff0000}",
+        "bemerkung": "Background red-blue",
         "jbcode": 210
       },
       "children": [
@@ -5479,7 +5479,7 @@
       "expanded": false,
       "properties": {
         "index": 1446,
-        "bemerkung": "Background blue-red {group:background;color:#0000ff,#ff0000,#0000ff,#ff0000,#0000ff}",
+        "bemerkung": "Background blue-red",
         "jbcode": 211
       },
       "children": [
@@ -5501,7 +5501,7 @@
       "expanded": false,
       "properties": {
         "index": 1447,
-        "bemerkung": "Background green-orange {group:background;color:#00ff00,#ff8000,#00ff00,#ff8000,#00ff00}",
+        "bemerkung": "Background green-orange",
         "jbcode": 212
       },
       "children": [
@@ -5523,7 +5523,7 @@
       "expanded": false,
       "properties": {
         "index": 1448,
-        "bemerkung": "Background orange-green {group:background;color:#ff8000,#00ff00,#ff8000,#00ff00,#ff8000}",
+        "bemerkung": "Background orange-green",
         "jbcode": 213
       },
       "children": [
@@ -5545,7 +5545,7 @@
       "expanded": false,
       "properties": {
         "index": 1315,
-        "bemerkung": "Background Enterprise E {group:background;color:#ffff80,#000088,#000088,#000088,#000088}",
+        "bemerkung": "Background Enterprise E",
         "jbcode": 166
       },
       "children": [
@@ -5580,7 +5580,7 @@
       "expanded": false,
       "properties": {
         "index": 1308,
-        "bemerkung": "Background Black {group:background;color:#303030}",
+        "bemerkung": "Background Black",
         "jbcode": 163
       },
       "children": [
@@ -5603,7 +5603,7 @@
       "expanded": false,
       "properties": {
         "index": 1058,
-        "bemerkung": "RGBW White {group:rgbw;color:#ffffff}",
+        "bemerkung": "RGBW White",
         "jbcode": 117
       },
       "children": [
@@ -5625,7 +5625,7 @@
       "expanded": false,
       "properties": {
         "index": 1063,
-        "bemerkung": "Bar On {group:bar;color:#ffffff}",
+        "bemerkung": "Bar On",
         "jbcode": 119
       },
       "children": [
@@ -5647,7 +5647,7 @@
       "expanded": false,
       "properties": {
         "index": 1066,
-        "bemerkung": "DMX Teal {group:dmx;color:#2388ad}",
+        "bemerkung": "DMX Teal",
         "jbcode": 120
       },
       "children": [
@@ -5669,7 +5669,7 @@
       "expanded": false,
       "properties": {
         "index": 1092,
-        "bemerkung": "DMX Orange {group:dmx;color:#8c6200}",
+        "bemerkung": "DMX Orange",
         "jbcode": 123
       },
       "children": [
@@ -5691,7 +5691,7 @@
       "expanded": false,
       "properties": {
         "index": 1109,
-        "bemerkung": "DMX Green {group:dmx;color:#00ff00}",
+        "bemerkung": "DMX Green",
         "jbcode": 124
       },
       "children": [
@@ -5713,7 +5713,7 @@
       "expanded": false,
       "properties": {
         "index": 1112,
-        "bemerkung": "DMX Blue {group:dmx;color:#0000ff}",
+        "bemerkung": "DMX Blue",
         "jbcode": 125
       },
       "children": [
@@ -5735,7 +5735,7 @@
       "expanded": false,
       "properties": {
         "index": 1115,
-        "bemerkung": "DMX Yellow {group:dmx;color:#ffff00}",
+        "bemerkung": "DMX Yellow",
         "jbcode": 126
       },
       "children": [
@@ -5757,7 +5757,7 @@
       "expanded": false,
       "properties": {
         "index": 1118,
-        "bemerkung": "DMX Cyan {group:dmx;color:#00ffff}",
+        "bemerkung": "DMX Cyan",
         "jbcode": 127
       },
       "children": [
@@ -5779,7 +5779,7 @@
       "expanded": false,
       "properties": {
         "index": 1121,
-        "bemerkung": "DMX Magenta {group:dmx;color:#ff00ff}",
+        "bemerkung": "DMX Magenta",
         "jbcode": 128
       },
       "children": [
@@ -5801,7 +5801,7 @@
       "expanded": false,
       "properties": {
         "index": 1124,
-        "bemerkung": "DMX LightBlue {group:dmx;color:#7777ff,#aaaaff,#7777ff,#aaaaff,#7777ff,#aaaaff,#7777ff}",
+        "bemerkung": "DMX LightBlue",
         "jbcode": 129
       },
       "children": [
@@ -5823,7 +5823,7 @@
       "expanded": false,
       "properties": {
         "index": 1130,
-        "bemerkung": "DMX Purple {group:dmx;color:#2d0080}",
+        "bemerkung": "DMX Purple",
         "jbcode": 131
       },
       "children": [
@@ -5845,7 +5845,7 @@
       "expanded": false,
       "properties": {
         "index": 1174,
-        "bemerkung": "DMX White {group:dmx;color:#808080}",
+        "bemerkung": "DMX White",
         "jbcode": 136
       },
       "children": [
@@ -5867,7 +5867,7 @@
       "expanded": false,
       "properties": {
         "index": 1273,
-        "bemerkung": "Deko Rainbow Red-Blue {group:deko;color:#ff0000,#ff8000,#ffff00,#00ff00,#00ffff,#0000ff}",
+        "bemerkung": "Deko Rainbow Red-Blue",
         "jbcode": 148
       },
       "children": [
@@ -5889,7 +5889,7 @@
       "expanded": false,
       "properties": {
         "index": 1275,
-        "bemerkung": "DMX Rainbow Red-Blue {group:dmx;color:#ff0000,#ff8000,#ffff00,#00ff00,#00ffff,#0000ff}",
+        "bemerkung": "DMX Rainbow Red-Blue",
         "jbcode": 149
       },
       "children": [
@@ -5911,7 +5911,7 @@
       "expanded": false,
       "properties": {
         "index": 1280,
-        "bemerkung": "Deko Rainbow Blue-Red {group:deko;color:#0000ff,#00ffff,#00ff00,#ffff00,#ff8000,#ff0000}",
+        "bemerkung": "Deko Rainbow Blue-Red",
         "jbcode": 151
       },
       "children": [
@@ -5933,7 +5933,7 @@
       "expanded": false,
       "properties": {
         "index": 1282,
-        "bemerkung": "DMX Rainbow Blue-Red {group:dmx;color:#0000ff,#00ffff,#00ff00,#ffff00,#ff8000,#ff0000}",
+        "bemerkung": "DMX Rainbow Blue-Red",
         "jbcode": 152
       },
       "children": [
@@ -5955,7 +5955,7 @@
       "expanded": false,
       "properties": {
         "index": 1287,
-        "bemerkung": "DMX Dark Blue {group:dmx;color:#000088}",
+        "bemerkung": "DMX Dark Blue",
         "jbcode": 154
       },
       "children": [
@@ -5977,7 +5977,7 @@
       "expanded": false,
       "properties": {
         "index": 1289,
-        "bemerkung": "DMX Dark Red {group:dmx;color:#880000}",
+        "bemerkung": "DMX Dark Red",
         "jbcode": 155
       },
       "children": [
@@ -5999,7 +5999,7 @@
       "expanded": false,
       "properties": {
         "index": 1291,
-        "bemerkung": "DMX Dark Green {group:dmx;color:#008800}",
+        "bemerkung": "DMX Dark Green",
         "jbcode": 156
       },
       "children": [
@@ -6021,7 +6021,7 @@
       "expanded": false,
       "properties": {
         "index": 1293,
-        "bemerkung": "Deko Dark Red {group:deko;color:#880000}",
+        "bemerkung": "Deko Dark Red",
         "jbcode": 157
       },
       "children": [
@@ -6044,7 +6044,7 @@
       "expanded": false,
       "properties": {
         "index": 1295,
-        "bemerkung": "Deko Dark Green {group:deko;color:#008800}",
+        "bemerkung": "Deko Dark Green",
         "jbcode": 158
       },
       "children": [
@@ -6066,7 +6066,7 @@
       "expanded": false,
       "properties": {
         "index": 1297,
-        "bemerkung": "Deko Dark Blue {group:deko;color:#000088}",
+        "bemerkung": "Deko Dark Blue",
         "jbcode": 159
       },
       "children": [
@@ -6088,7 +6088,7 @@
       "expanded": false,
       "properties": {
         "index": 1311,
-        "bemerkung": "DMX Black {group:dmx;color:#303030}",
+        "bemerkung": "DMX Black",
         "jbcode": 164
       },
       "children": [
@@ -6110,7 +6110,7 @@
       "expanded": false,
       "properties": {
         "index": 1313,
-        "bemerkung": "DMX Enterprise E {group:dmx;color:#ffff80,#000088,#000088,#000088}",
+        "bemerkung": "DMX Enterprise E",
         "jbcode": 165
       },
       "children": [
@@ -8114,7 +8114,7 @@
             "ntypenew": 21,
             "index": 16,
             "system": 17,
-            "bemerkung": "Background LightBlue {color:#7777ff,#aaaaff,#7777ff,#aaaaff,#7777ff,#aaaaff,#7777ff}",
+            "bemerkung": "Background LightBlue",
             "url": "192.168.178.30:8888\/v1\/hybrid\/json\/hexColor?hexColors=7777ff,aaaaff,7777ff,aaaaff,7777ff,aaaaff,7777ff&",
             "btnnameon": "EIN",
             "btnnameoff": "AUS",
@@ -8399,7 +8399,7 @@
             "ntypenew": 17,
             "index": 80,
             "system": 17,
-            "bemerkung": "DMX Red {color:#ff0000}",
+            "bemerkung": "DMX Red",
             "url": "192.168.178.30:8888\/v1\/hybrid\/json\/hexColor?ids=15,29,21,1&hexColors=ff0000&",
             "btnnameon": "EIN",
             "btnnameoff": "AUS",
@@ -8417,7 +8417,7 @@
             "ntypenew": 17,
             "index": 103,
             "system": 17,
-            "bemerkung": "DMX Dark Red {color:#880000}",
+            "bemerkung": "DMX Dark Red",
             "url": "192.168.178.30:8888\/v1\/hybrid\/json\/hexColor?ids=15,29,21,1&hexColors=880000&",
             "btnnameon": "EIN",
             "btnnameoff": "AUS",
@@ -8435,7 +8435,7 @@
             "ntypenew": 17,
             "index": 79,
             "system": 17,
-            "bemerkung": "DMX Green {color:#00ff00}",
+            "bemerkung": "DMX Green",
             "url": "192.168.178.30:8888\/v1\/hybrid\/json\/hexColor?ids=15,29,21,1&hexColors=00ff00&",
             "btnnameon": "EIN",
             "btnnameoff": "AUS",
@@ -8453,7 +8453,7 @@
             "ntypenew": 17,
             "index": 104,
             "system": 17,
-            "bemerkung": "DMX Dark Green {color:#008800}",
+            "bemerkung": "DMX Dark Green",
             "url": "192.168.178.30:8888\/v1\/hybrid\/json\/hexColor?ids=15,29,21,1&hexColors=008800&",
             "btnnameon": "EIN",
             "btnnameoff": "AUS",
@@ -8471,7 +8471,7 @@
             "ntypenew": 17,
             "index": 78,
             "system": 17,
-            "bemerkung": "DMX Blue {color:#0000ff}",
+            "bemerkung": "DMX Blue",
             "url": "192.168.178.30:8888\/v1\/hybrid\/json\/hexColor?ids=15,29,21,1&hexColors=0000ff&",
             "btnnameon": "EIN",
             "btnnameoff": "AUS",
@@ -8489,7 +8489,7 @@
             "ntypenew": 17,
             "index": 97,
             "system": 17,
-            "bemerkung": "DMX Dark Blue {color:#000088}",
+            "bemerkung": "DMX Dark Blue",
             "url": "192.168.178.30:8888\/v1\/hybrid\/json\/hexColor?ids=15,29,21,1&hexColors=000088&",
             "btnnameon": "EIN",
             "btnnameoff": "AUS",
@@ -8507,7 +8507,7 @@
             "ntypenew": 17,
             "index": 81,
             "system": 17,
-            "bemerkung": "DMX Yellow {color:#808000}",
+            "bemerkung": "DMX Yellow",
             "url": "192.168.178.30:8888\/v1\/hybrid\/json\/hexColor?ids=15,29,21,1&hexColors=ffff00&",
             "btnnameon": "EIN",
             "btnnameoff": "AUS",
@@ -8525,7 +8525,7 @@
             "ntypenew": 17,
             "index": 82,
             "system": 17,
-            "bemerkung": "DMX Cyan {color:#008080}",
+            "bemerkung": "DMX Cyan",
             "url": "192.168.178.30:8888\/v1\/hybrid\/json\/hexColor?ids=15,29,21,1&hexColors=00ffff&",
             "btnnameon": "EIN",
             "btnnameoff": "AUS",
@@ -8561,7 +8561,7 @@
             "ntypenew": 17,
             "index": 83,
             "system": 17,
-            "bemerkung": "DMX Magenta {color:#800080}",
+            "bemerkung": "DMX Magenta",
             "url": "192.168.178.30:8888\/v1\/hybrid\/json\/hexColor?ids=15,29,21,1&hexColors=ff00ff&",
             "btnnameon": "EIN",
             "btnnameoff": "AUS",
@@ -8579,7 +8579,7 @@
             "ntypenew": 17,
             "index": 77,
             "system": 17,
-            "bemerkung": "DMX Orange {color:#8c6200}",
+            "bemerkung": "DMX Orange",
             "url": "192.168.178.30:8888\/v1\/hybrid\/json\/hexColor?ids=15,29,21,1&hexColors=8c6200&",
             "btnnameon": "EIN",
             "btnnameoff": "AUS",
@@ -8597,7 +8597,7 @@
             "ntypenew": 17,
             "index": 84,
             "system": 17,
-            "bemerkung": "DMX Purple {color:#2d0080}",
+            "bemerkung": "DMX Purple",
             "url": "192.168.178.30:8888\/v1\/hybrid\/json\/hexColor?ids=15,29,21,1&hexColors=2d0080&",
             "btnnameon": "EIN",
             "btnnameoff": "AUS",
@@ -8615,7 +8615,7 @@
             "ntypenew": 17,
             "index": 76,
             "system": 17,
-            "bemerkung": "DMX Teal {color:#2388ad}",
+            "bemerkung": "DMX Teal",
             "url": "192.168.178.30:8888\/v1\/hybrid\/json\/hexColor?ids=15,29,21,1&hexColors=2388ad&",
             "btnnameon": "EIN",
             "btnnameoff": "AUS",
@@ -8633,7 +8633,7 @@
             "ntypenew": 17,
             "index": 85,
             "system": 17,
-            "bemerkung": "DMX White {color:#ffffff}",
+            "bemerkung": "DMX White",
             "url": "192.168.178.30:8888\/v1\/hybrid\/json\/hexColor?ids=15,29,21,1&hexColors=ffffff&",
             "btnnameon": "EIN",
             "btnnameoff": "AUS",
@@ -8651,7 +8651,7 @@
             "ntypenew": 21,
             "index": 95,
             "system": 17,
-            "bemerkung": "DMX Warm White {color:#ff8519}",
+            "bemerkung": "DMX Warm White",
             "url": "192.168.178.30:8888\/v1\/hybrid\/json\/hexColor?hexColors=000000,000000,94832d,94832d,94832d,94832d,000000&gains=1.0&",
             "btnnameon": "EIN",
             "btnnameoff": "AUS",
@@ -8669,7 +8669,7 @@
             "ntypenew": 17,
             "index": 106,
             "system": 17,
-            "bemerkung": "DMX Black {color:#303030}",
+            "bemerkung": "DMX Black",
             "url": "192.168.178.30:8888\/v1\/hybrid\/json\/hexColor?ids=15,29,21,1&hexColors=000000&",
             "btnnameon": "EIN",
             "btnnameoff": "AUS",
@@ -8687,7 +8687,7 @@
             "ntypenew": 17,
             "index": 18,
             "system": 17,
-            "bemerkung": "DMX Yello {color:#ffef00,#ffaa00,#ffef00,#ffaa00,#ffef00,#ffaa00,#ffef00}",
+            "bemerkung": "DMX Yello",
             "url": "192.168.178.30:8888\/v1\/hybrid\/json\/hexColor?ids=15,29,21,1&hexColors=ffef00,ffaa00,ffef00,ffaa00,ffef00,ffaa00,ffef00&",
             "btnnameon": "EIN",
             "btnnameoff": "AUS",
@@ -8705,7 +8705,7 @@
             "ntypenew": 17,
             "index": 15,
             "system": 17,
-            "bemerkung": "DMX Christmas {color:#990000,#009900,#990000,#009900,#990000,#009900,#990000}",
+            "bemerkung": "DMX Christmas",
             "url": "192.168.178.30:8888\/v1\/hybrid\/json\/hexColor?ids=15,29,21,1&hexColors=990000,009900,990000,009900,990000,009900,990000&",
             "btnnameon": "EIN",
             "btnnameoff": "AUS",
@@ -8723,7 +8723,7 @@
             "ntypenew": 17,
             "index": 17,
             "system": 17,
-            "bemerkung": "DMX Computerwelt {color:#ffff00,#ff00ff,#ffff00,#ff00ff,#ffff00,#ff00ff,#ffff00}",
+            "bemerkung": "DMX Computerwelt",
             "url": "192.168.178.30:8888\/v1\/hybrid\/json\/hexColor?ids=15,29,21,1&hexColors=ffff00,ff00ff,ffff00,ff00ff,ffff00,ff00ff,ffff00&",
             "btnnameon": "EIN",
             "btnnameoff": "AUS",
@@ -8741,7 +8741,7 @@
             "ntypenew": 17,
             "index": 21,
             "system": 17,
-            "bemerkung": "DMX ROBOTER {color:#ff0000,#ffffff}",
+            "bemerkung": "DMX ROBOTER",
             "url": "192.168.178.30:8888\/v1\/playTake?take=ROBOTER",
             "btnnameon": "EIN",
             "btnnameoff": "AUS",
@@ -8759,7 +8759,7 @@
             "ntypenew": 17,
             "index": 20,
             "system": 17,
-            "bemerkung": "DMX Enterprise E MovingHeads {color:#ddddff,#ffefdd,#ddddff,#ffefdd}",
+            "bemerkung": "DMX Enterprise E MovingHeads",
             "url": "192.168.178.30:8888\/v1\/playTake?take=Enterprise E",
             "btnnameon": "EIN",
             "btnnameoff": "AUS",
@@ -8777,7 +8777,7 @@
             "ntypenew": 17,
             "index": 19,
             "system": 17,
-            "bemerkung": "DMX Darth Vaders {color:#ff0000}",
+            "bemerkung": "DMX Darth Vaders",
             "url": "192.168.178.30:8888\/v1\/playTake?take=Darth Vaders",
             "btnnameon": "EIN",
             "btnnameoff": "AUS",
@@ -8795,7 +8795,7 @@
             "ntypenew": 17,
             "index": 22,
             "system": 17,
-            "bemerkung": "DMX Millenium Falke {color:#eeeeff,#aaaadd,#eeeeff,#aaaadd}",
+            "bemerkung": "DMX Millenium Falke",
             "url": "192.168.178.30:8888\/v1\/playTake?take=Star Wars",
             "btnnameon": "EIN",
             "btnnameoff": "AUS",
@@ -8831,7 +8831,7 @@
             "ntypenew": 17,
             "index": 30,
             "system": 17,
-            "bemerkung": "DMX Star Wars {color:#0000ff,#ff0000,#0000aa,#00ff00,#0000ee}",
+            "bemerkung": "DMX Star Wars",
             "url": "192.168.178.30:8888\/v1\/playPreset?preset=StarWars",
             "btnnameon": "EIN",
             "btnnameoff": "AUS",
@@ -8849,7 +8849,7 @@
             "ntypenew": 17,
             "index": 32,
             "system": 17,
-            "bemerkung": "DMX Fireplace {color:#ff0000,#ffaa00,#ee0000,#ffee00,#cc0000}",
+            "bemerkung": "DMX Fireplace",
             "url": "192.168.178.30:8888\/v1\/playPreset?preset=Fire&loop=true",
             "btnnameon": "EIN",
             "btnnameoff": "AUS",
@@ -8867,7 +8867,7 @@
             "ntypenew": 21,
             "index": 23,
             "system": 17,
-            "bemerkung": "DMX Blackout {color:#000000}",
+            "bemerkung": "DMX Blackout",
             "url": "192.168.178.30:8888\/v1\/hybrid\/json\/hexColor?ids=15,29,21,1&hexColors=000000&",
             "btnnameon": "Blackout",
             "btnnameoff": "Parking",
@@ -8885,7 +8885,7 @@
             "ntypenew": 17,
             "index": 99,
             "system": 17,
-            "bemerkung": "DMX Rainbow Red-Blue {color=#ffff00,#00ff00,#00ffff}",
+            "bemerkung": "DMX Rainbow Red-Blue",
             "url": "192.168.178.30:8888\/v1\/hybrid\/json\/hexColor?ids=15,29,21,1&hexColors=ffff00,80ff00,00ff00,00ffff&",
             "btnnameon": "RAINBOW",
             "btnnameoff": "AUS",
@@ -8903,7 +8903,7 @@
             "ntypenew": 17,
             "index": 101,
             "system": 17,
-            "bemerkung": "DMX Rainbow Blue-Red {group:dmx;color:#0000ff,#00ffff,#00ff00,#ffff00,#ff8000,#ff0000}",
+            "bemerkung": "DMX Rainbow Blue-Red",
             "url": "192.168.178.30:8888\/v1\/hybrid\/json\/hexColor?ids=15,29,21,1&hexColors=00ff00,808000,80ff00,ff8000&",
             "btnnameon": "RAINBOW",
             "btnnameoff": "AUS",

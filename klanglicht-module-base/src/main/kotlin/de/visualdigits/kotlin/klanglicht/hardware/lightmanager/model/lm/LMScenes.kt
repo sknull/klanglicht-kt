@@ -12,7 +12,7 @@ class LMScenes(
 
     val scenes: MutableMap<String, MutableList<LMScene>> = mutableMapOf()
 
-    val scenesMap: MutableMap<Int, LMScene> = mutableMapOf()
+    val scenesMap: MutableMap<String, LMScene> = mutableMapOf()
 
     companion object {
         private val mapper = jacksonMapperBuilder()
@@ -22,7 +22,7 @@ class LMScenes(
 
         fun unmarshall(file: File): LMScenes {
             val lmScenes = mapper.readValue(file, LMScenes::class.java)
-            lmScenes.scenes.values.forEach { l -> l.forEach { s -> lmScenes.scenesMap[s.id!!] = s }  }
+            lmScenes.scenes.values.forEach { l -> l.forEach { s -> lmScenes.scenesMap[s.name!!] = s }  }
             return lmScenes
         }
     }
@@ -32,7 +32,7 @@ class LMScenes(
     }
 
     fun add(scene: LMScene) {
-        scenesMap[scene.id!!] = scene
+        scenesMap[scene.name!!] = scene
         var group: String? = "common"
         val attributes = LMNamedAttributes(scene.name, "group", "color")
         if (attributes.matched()) {

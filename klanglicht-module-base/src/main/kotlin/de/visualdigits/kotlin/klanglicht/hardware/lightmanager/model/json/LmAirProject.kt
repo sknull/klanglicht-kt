@@ -14,15 +14,15 @@ class LmAirProject(
     val actuators: List<Actuator> = listOf()
 ) {
 
-    @JsonIgnore val scenesMap: Map<Int, Scene> = determineScenes()
+    @JsonIgnore val scenesMap: Map<String, Scene> = determineScenes()
     @JsonIgnore val actuatorsMap: Map<Int, Actuator> = determineActuators()
 
     private fun determineScenes(
         scenes: List<Scene> = this.scenes,
-        scenesMap: SortedMap<Int, Scene> = sortedMapOf()
-    ): Map<Int, Scene> {
+        scenesMap: SortedMap<String, Scene> = sortedMapOf()
+    ): Map<String, Scene> {
         scenes.forEach { s ->
-            scenesMap[s.properties?.index!!] = s
+            s.properties?.comment?.let { scenesMap[it] = s }
             determineScenes(s.children, scenesMap)
         }
         return scenesMap

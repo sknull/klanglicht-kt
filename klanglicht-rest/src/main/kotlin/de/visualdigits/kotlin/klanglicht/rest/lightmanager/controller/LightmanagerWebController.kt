@@ -22,8 +22,8 @@ class LightmanagerWebController(
     fun scenes(model: Model): String {
         model.addAttribute("theme", configHolder.preferences?.theme)
         model.addAttribute("title", "Scenes")
-        val scenes = client.scenes()?.let { LMHtmlScenes(it) }
-        model.addAttribute("content", scenes?.toHtml(configHolder))
+        val scenes = LMHtmlScenes(configHolder.scenes())
+        model.addAttribute("content", scenes.toHtml(configHolder))
         return "pagetemplate"
     }
 

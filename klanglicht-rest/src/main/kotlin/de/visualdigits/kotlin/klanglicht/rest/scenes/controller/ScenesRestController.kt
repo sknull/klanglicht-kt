@@ -28,9 +28,9 @@ class ScenesRestController(
 
     @PostMapping("control")
     fun control(
-        @RequestParam(value = "scene") scene: Int,
+        @RequestParam(value = "name") name: String,
     ) {
-        val lmScene = configHolder.scenes?.scenesMap?.get(scene)
+        val lmScene = configHolder.scenes().scenesMap.get(name)
         lmScene
             ?.let { s ->
                 s.actions.forEach { a ->
