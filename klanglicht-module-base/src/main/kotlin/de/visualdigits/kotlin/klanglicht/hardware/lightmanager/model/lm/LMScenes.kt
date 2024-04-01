@@ -1,18 +1,20 @@
 package de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.databind.SerializationFeature
 import com.fasterxml.jackson.module.kotlin.jacksonMapperBuilder
 import java.io.File
 import java.util.Locale
 
+@JsonIgnoreProperties("scenesMap")
 class LMScenes(
     val name: String? = null
 ) {
 
-    val scenes: MutableMap<String, MutableList<LMScene>> = mutableMapOf()
+    val scenes: LinkedHashMap<String, MutableList<LMScene>> = LinkedHashMap()
 
-    val scenesMap: MutableMap<String, LMScene> = mutableMapOf()
+    val scenesMap: LinkedHashMap<String, LMScene> = LinkedHashMap()
 
     companion object {
         private val mapper = jacksonMapperBuilder()
