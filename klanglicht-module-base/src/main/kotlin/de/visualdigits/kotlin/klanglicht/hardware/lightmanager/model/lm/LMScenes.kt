@@ -12,7 +12,7 @@ class LMScenes(
     val name: String? = null
 ) {
 
-    val scenes: LinkedHashMap<String, MutableList<LMScene>> = LinkedHashMap()
+    val scenes: LinkedHashMap<String, LMSceneGroup> = LinkedHashMap()
 
     val scenesMap: LinkedHashMap<String, LMScene> = LinkedHashMap()
 
@@ -24,13 +24,13 @@ class LMScenes(
 
         fun unmarshall(file: File): LMScenes {
             val lmScenes = mapper.readValue(file, LMScenes::class.java)
-            lmScenes.scenes.values.forEach { l -> l.forEach { s -> lmScenes.scenesMap[s.name!!] = s }  }
+            lmScenes.scenes.values.forEach { g -> g.scenes.forEach { s -> lmScenes.scenesMap[s.name!!] = s }  }
             return lmScenes
         }
     }
 
     override fun toString(): String {
-        return "$name\n" + scenes.toMap().map { e -> "  ${e.key}\n    ${e.value.joinToString("\n    ")}" }.joinToString("\n")
+        return "$name\n" + scenes.toMap().map { e -> "  ${e.key}\n    ${e.value.scenes.joinToString("\n    ")}" }.joinToString("\n")
     }
 
     fun add(scene: LMScene) {
@@ -52,12 +52,12 @@ class LMScenes(
             group
                 ?.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
                 ?.let { name ->
-                    var s = scenes[name]
-                    if (s == null) {
-                        s = mutableListOf()
-                        scenes[name] = s
+                    var g = scenes[name]
+                    if (g == null) {
+                        g = LMSceneGroup(name)
+                        scenes[name] = g
                     }
-                    s.add(scene)
+                    g.scenes.add(scene)
                 }
         }
     }

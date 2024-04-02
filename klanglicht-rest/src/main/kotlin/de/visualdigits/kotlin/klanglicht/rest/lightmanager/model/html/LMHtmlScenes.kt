@@ -1,17 +1,12 @@
 package de.visualdigits.kotlin.klanglicht.rest.lightmanager.model.html
 
-import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm.LMScene
+import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm.LMSceneGroup
 import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm.LMScenes
 import de.visualdigits.kotlin.klanglicht.rest.configuration.ConfigHolder
-import java.util.TreeMap
 
 class LMHtmlScenes(
     val scene: LMScenes
 ) : HtmlRenderable {
-
-    companion object {
-        val COLOR_WHEEL_GROUPS: List<String> = mutableListOf("Dmx", "Deko", "Rgbw", "Bar", "Starwars")
-    }
 
     override fun toHtml(configHolder: ConfigHolder): String {
         val sb = StringBuilder()
@@ -31,25 +26,13 @@ class LMHtmlScenes(
 
         sb.append("<div class=\"category\">\n")
         renderLabel(sb, "S C E N E S")
-        val scenesMap: Map<String, List<LMScene>> = TreeMap<String, List<LMScene>>(scene.scenes.toMap())
-        scenesMap.forEach { (group: String, groupScenes: List<LMScene>) ->
+        scene.scenes.values.forEach { sceneGroup ->
             val html = renderScenesGroup(
                 configHolder,
-                group,
-                groupScenes
+                sceneGroup
             )
             sb.append(html)
         }
-        sb.append("  <div class=\"group\">\n")
-        renderLabel(sb, "All")
-        sb.append(ColorWheel("All").toHtml(configHolder))
-        sb.append("  </div><!-- group -->\n")
-
-        sb.append("  <div class=\"group\">\n")
-        renderLabel(sb, "All Odd Even")
-        sb.append(ColorWheel("All").toHtml(configHolder, true))
-        sb.append("  </div><!-- group -->\n")
-
         sb.append("</div><!-- scenes -->\n\n")
         return sb.toString()
     }
@@ -67,29 +50,35 @@ class LMHtmlScenes(
 
     private fun renderScenesGroup(
         configHolder: ConfigHolder,
-        group: String,
-        groupScenes: List<LMScene>
+        sceneGroup: LMSceneGroup
     ): String {
         val sb = StringBuilder()
-        val hasColorWheel = COLOR_WHEEL_GROUPS.contains(group)
         sb.append("  <div class=\"group")
-        if (hasColorWheel) {
-            sb.append(" has-colorwheel")
+        if (sceneGroup.hasColorWheel) {
+            if (sceneGroup.colorWheelOddEven) {
+                sb.append(" has-colorwheel-odd-even")
+            } else {
+                sb.append(" has-colorwheel")
+            }
         }
         sb.append("\">\n")
-        renderLabel(sb, group)
+        renderLabel(sb, sceneGroup.name)
         sb.append("    <div class=\"sub-group")
-        if (hasColorWheel) {
-            sb.append(" has-colorwheel")
+        if (sceneGroup.hasColorWheel) {
+            if (sceneGroup.colorWheelOddEven) {
+                sb.append(" has-colorwheel-odd-even")
+            } else {
+                sb.append(" has-colorwheel")
+            }
         }
         sb.append("\">\n")
-        groupScenes.forEach { scene ->
-            sb.append(LMHtmlScene(scene).toHtml(configHolder, group))
+        sceneGroup.scenes.forEach { scene ->
+            sb.append(LMHtmlScene(scene).toHtml(configHolder, sceneGroup.name))
         }
         sb.append("    </div><!-- sub-group -->\n")
         sb.append("  </div><!-- group -->\n")
-        if (hasColorWheel) {
-            val html: String = ColorWheel(group).toHtml(configHolder)
+        if (sceneGroup.hasColorWheel) {
+            val html: String = ColorWheel(sceneGroup.name).toHtml(configHolder, sceneGroup.colorWheelOddEven)
             sb.append(html)
         }
         return sb.toString()

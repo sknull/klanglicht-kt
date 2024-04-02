@@ -89,7 +89,6 @@ class LightmanagerClient(
         return actors
     }
 
-    @Suppress("unchecked_cast")
     fun scenes(lmAirProject: LmAirProject? = null): LMScenes {
         val document = Jsoup.parse(html()!!)
         val setupName = document.select("div[id=mytitle]").first()?.text()
@@ -108,8 +107,8 @@ class LightmanagerClient(
         scenes: LMScenes
     ) {
         if (lmAirProject != null) {
-            scenes.scenes.forEach {
-                it.value.forEach { scene ->
+            scenes.scenes.values.forEach { g ->
+                g.scenes.forEach { scene ->
                     lmAirProject.scenesMap[scene.name]?.let { s ->
                         val actuatorProperties = s.getActuatorProperties()
                         scene.actions = actuatorProperties.mapNotNull { ap ->
@@ -128,9 +127,7 @@ class LightmanagerClient(
                                                 .split("&")
                                                 .filter { p -> p.isNotEmpty() }
                                                 .map { p -> p.split("=") }
-                                                .filter { p -> p.size == 2 }
-                                                .map { p -> Pair(p[0], p[1]) }
-                                                .toMap()
+                                                .filter { p -> p.size == 2 }.associate { p -> Pair(p[0], p[1]) }
                                             when (u.path) {
                                                 "/v1/yamaha/avantage/json/surroundProgram" ->
                                                     LMActionLmYamahaAvantage(
@@ -161,11 +158,7 @@ class LightmanagerClient(
                                             } else {
                                                 42
                                             }
-                                            if (param != null) {
-                                                LMActionLmAir(sceneIndex = param)
-                                            } else {
-                                                null
-                                            }
+                                            LMActionLmAir(sceneIndex = param)
                                         }
                                     }
                                 }
