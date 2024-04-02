@@ -3,6 +3,7 @@ package de.visualdigits.kotlin.klanglicht.rest.scenes.controller
 import de.visualdigits.kotlin.klanglicht.rest.scenes.service.ScenesService
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
@@ -16,9 +17,11 @@ class ScenesRestController(
     @GetMapping("sceneNames")
     fun hybrid(): Set<String> = scenesService.sceneNames()
 
-
-        @PostMapping("control")
+    @PostMapping("control")
     fun controlPost(@RequestParam(value = "name") name: String) = scenesService.executeScene(name)
+
+    @PutMapping("control")
+    fun controlPut(@RequestParam(value = "name") name: String) = scenesService.executeScene(name)
 
     @GetMapping("control")
     fun controlGet(@RequestParam(value = "name") name: String) = scenesService.executeScene(name)

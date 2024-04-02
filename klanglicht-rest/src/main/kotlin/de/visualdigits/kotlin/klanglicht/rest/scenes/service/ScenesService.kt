@@ -15,43 +15,49 @@ import org.springframework.stereotype.Service
 
 @Service
 class ScenesService(
-    var shellyService: ShellyService,
-    var lightmanagerService: LightmanagerService,
-    val hybridStageService: HybridStageService,
-    val yamahaAvantageService: YamahaAvantageService,
-    val configHolder: ConfigHolder
+    private var shellyService: ShellyService,
+    private var lightmanagerService: LightmanagerService,
+    private val hybridStageService: HybridStageService,
+    private val yamahaAvantageService: YamahaAvantageService,
+    private val configHolder: ConfigHolder
 ) {
 
     private val log = LoggerFactory.getLogger(javaClass)
 
-    fun executeScene(name: String) {
-        val lmScene = configHolder.scenes().scenesMap.get(name)
-        lmScene
-            ?.let { s ->
-                log.info("Executing scene '$name'...")
-                s.actions.forEach { action ->
-                    log.info("  Executing action '$action'...")
-                    when (action) {
-                        is LMActionLmAir ->
-                            lightmanagerService.controlIndex(index = action.sceneIndex)
+    private var previousSceneName: String = ""
 
-                        is LMActionShelly ->
-                            shellyService.power(ids = action.ids, turnOn = action.turnOn)
+    fun executeScene(sceneName: String) {
+        if (sceneName != previousSceneName) {
+            val lmScene = configHolder.scenes().scenesMap[sceneName]
+            lmScene
+                ?.let { s ->
+                    log.info("Executing scene '$sceneName'...")
+                    s.actions.forEach { action ->
+                        log.info("  Executing action '$action'...")
+                        when (action) {
+                            is LMActionLmAir ->
+                                lightmanagerService.controlIndex(index = action.sceneIndex)
 
-                        is LMActionHybrid ->
-                            hybridStageService.hexColor(ids = action.ids, hexColors = action.hexColors, gains = action.gains)
+                            is LMActionShelly ->
+                                shellyService.power(ids = action.ids, turnOn = action.turnOn)
 
-                        is LMActionLmYamahaAvantage -> {
-                            when (action.command) {
-                                "surroundProgram" -> yamahaAvantageService.setSurroundProgram(program = action.program)
+                            is LMActionHybrid ->
+                                hybridStageService.hexColor(ids = action.ids, hexColors = action.hexColors, gains = action.gains)
+
+                            is LMActionLmYamahaAvantage -> {
+                                when (action.command) {
+                                    "surroundProgram" -> yamahaAvantageService.setSurroundProgram(program = action.program)
+                                }
                             }
-                        }
 
-                        is LMActionPause -> action.duration?.let { Thread.sleep(it) }
+                            is LMActionPause -> action.duration?.let { Thread.sleep(it) }
+                        }
                     }
-                }
-            }?:also {
-                log.info("No scene with name '$name'")
+                }?:also {
+                log.info("No scene with name '$sceneName'")
+            }
+        } else {
+            log.info("Scene '$sceneName' already set - skipping")
         }
     }
 
