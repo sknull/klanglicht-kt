@@ -22,7 +22,13 @@ class ShellyColor(
         return ShellyColor(deviceId, ipAddress, color.clone(), deviceGain, deviceTurnOn)
     }
 
-    override fun getTurnOn(): Boolean = deviceTurnOn?:false
+    override fun getTurnOn(): Boolean {
+        var turnOn = deviceTurnOn?:false
+        if ((color.red == 0 && color.green == 0  && color.blue == 0) || deviceGain == 0.0f) {
+            turnOn = false
+        }
+        return turnOn
+    }
 
     override fun setTurnOn(turnOn: Boolean?) {
         this.deviceTurnOn = turnOn
@@ -50,7 +56,7 @@ class ShellyColor(
                 rgbColor = color,
                 gain = deviceGain,
                 transitionDuration = transitionDuration,
-                turnOn = deviceTurnOn
+                turnOn = getTurnOn()
             )
         }
     }
