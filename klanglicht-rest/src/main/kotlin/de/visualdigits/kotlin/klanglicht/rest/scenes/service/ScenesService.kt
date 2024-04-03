@@ -28,6 +28,7 @@ class ScenesService(
 
     fun executeScene(sceneName: String) {
         if (sceneName != previousSceneName) {
+            previousSceneName = sceneName
             val lmScene = configHolder.scenes().scenesMap[sceneName]
             lmScene
                 ?.let { s ->
