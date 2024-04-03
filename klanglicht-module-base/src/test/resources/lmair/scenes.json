@@ -3,8 +3,8 @@
   "scenes": {
     "Background": {
       "name": "Background",
-      "hasColorWheel":  true,
-      "colorWheelOddEven":  false,
+      "hasColorWheel": true,
+      "colorWheelOddEven": false,
       "scenes": [
         {
           "name": "Licht TV",
@@ -1038,8 +1038,8 @@
     },
     "Deko": {
       "name": "Deko",
-      "hasColorWheel":  true,
-      "colorWheelOddEven":  false,
+      "hasColorWheel": true,
+      "colorWheelOddEven": false,
       "scenes": [
         {
           "name": "Deko On",
@@ -1177,8 +1177,8 @@
     },
     "Starwars": {
       "name": "Starwars",
-      "hasColorWheel":  true,
-      "colorWheelOddEven":  false,
+      "hasColorWheel": true,
+      "colorWheelOddEven": false,
       "scenes": [
         {
           "name": "Starwars On",
@@ -1316,8 +1316,8 @@
     },
     "Rgbw": {
       "name": "Rgbw",
-      "hasColorWheel":  true,
-      "colorWheelOddEven":  false,
+      "hasColorWheel": true,
+      "colorWheelOddEven": false,
       "scenes": [
         {
           "name": "RGBW On",
@@ -1455,8 +1455,8 @@
     },
     "Dmx": {
       "name": "Dmx",
-      "hasColorWheel":  true,
-      "colorWheelOddEven":  false,
+      "hasColorWheel": true,
+      "colorWheelOddEven": false,
       "scenes": [
         {
           "name": "DMX Red",
@@ -1618,7 +1618,7 @@
     },
     "Bar": {
       "name": "Bar",
-      "hasColorWheel":  true,
+      "hasColorWheel": true,
       "scenes": [
         {
           "name": "Bar On",
@@ -1756,8 +1756,8 @@
     },
     "All": {
       "name": "All",
-      "hasColorWheel":  true,
-      "colorWheelOddEven":  true,
+      "hasColorWheel": true,
+      "colorWheelOddEven": true,
       "scenes": [
         {
           "name": "All Red",
@@ -1862,8 +1862,8 @@
     },
     "Idual": {
       "name": "Idual",
-      "hasColorWheel":  false,
-      "colorWheelOddEven":  false,
+      "hasColorWheel": false,
+      "colorWheelOddEven": false,
       "scenes": [
         {
           "name": "IDual On",
@@ -1929,8 +1929,8 @@
     },
     "Yamaha": {
       "name": "Yamaha",
-      "hasColorWheel":  false,
-      "colorWheelOddEven":  false,
+      "hasColorWheel": false,
+      "colorWheelOddEven": false,
       "scenes": [
         {
           "name": "Surround Standard",
@@ -2056,9 +2056,38 @@
     },
     "Shelly": {
       "name": "Shelly",
-      "hasColorWheel":  false,
-      "colorWheelOddEven":  false,
+      "hasColorWheel": false,
+      "colorWheelOddEven": false,
       "scenes": [
+        {
+          "name": "All Off",
+          "color": "#000000",
+          "actions": [
+            {
+              "shelly": {
+                "ids": "Flur,Schlafzimmer",
+                "turnOn": true
+              }
+            },
+            {
+              "shelly": {
+                "ids": "Wohnzimmer_Deckenlampe,Wohnzimmer_Deckenlampe,Regal,Kristall,Rgbw,Bar,Starwars",
+                "turnOn": false
+              }
+            },
+            {
+              "pause": {
+                "duration": 1000
+              }
+            },
+            {
+              "lmair": {
+                "comment": "Idual Off",
+                "sceneIndex": 1499
+              }
+            }
+          ]
+        },
         {
           "name": "Esstisch An",
           "color": "#ffffff",
