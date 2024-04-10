@@ -1,9 +1,13 @@
 package de.visualdigits.kotlin.klanglicht.rest.shelly.controller
 
+import de.visualdigits.kotlin.klanglicht.hardware.shelly.model.ShellyDevice
+import de.visualdigits.kotlin.klanglicht.hardware.shelly.model.status.Status
 import de.visualdigits.kotlin.klanglicht.rest.hybrid.service.HybridStageService
 import de.visualdigits.kotlin.klanglicht.rest.lightmanager.service.LightmanagerService
 import de.visualdigits.kotlin.klanglicht.rest.shelly.service.ShellyService
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.http.MediaType
+import org.springframework.util.MimeType
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
@@ -13,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController
  * REST controller for shelly devices.
  */
 @RestController
-@RequestMapping("/v1/shelly")
+@RequestMapping("/v1/shelly", produces = [MediaType.APPLICATION_JSON_VALUE])
 class ShellyRestController(
     var shellyService: ShellyService,
     var lightmanagerService: LightmanagerService,
@@ -46,6 +50,11 @@ class ShellyRestController(
         @RequestParam(value = "transition", required = false) transitionDuration: Long?
     ) {
         shellyService.power(ids = ids, turnOn = turnOn, transitionDuration = transitionDuration)
+    }
+
+    @GetMapping("status")
+    fun status(): Map<ShellyDevice, Status> {
+        return shellyService.status()
     }
 
     @GetMapping("hexColor")

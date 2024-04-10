@@ -16,7 +16,7 @@ class ShellyStatus : HtmlRenderable {
             .append("</div>\n")
         sb.append("<div class=\"category\">\n")
         renderLabel(sb, "Shelly Dashboard")
-        shellyService.status().forEach { device: ShellyDevice, status: Status ->
+        shellyService.status().forEach { (device: ShellyDevice, status: Status) ->
             sb.append("  <div class=\"floatgroup\">\n")
             renderLabel(sb, device.name)
             sb.append("    <div class=\"sub-group\">\n")
@@ -69,7 +69,7 @@ class ShellyStatus : HtmlRenderable {
     private fun renderPanel(sb: StringBuilder, clazz: String, bgColor: String, value: String?) {
         sb.append("      <div class=\"").append(clazz).append("\" style=\"background-color:").append(bgColor)
             .append("\" >\n")
-        if (value != null && !value.isEmpty()) {
+        if (!value.isNullOrEmpty()) {
             renderLabel(sb, value)
         }
         sb.append("      </div> <!-- ").append(clazz).append(" -->\n")

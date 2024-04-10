@@ -49,7 +49,8 @@ class ShellyService(
 
     fun status(): Map<ShellyDevice, Status> {
         val statusMap: MutableMap<ShellyDevice, Status> = LinkedHashMap()
-        configHolder.preferences?.getShellyDevices()?.forEach { device ->
+        val shellyDevices = configHolder.preferences?.getShellyDevices()
+        shellyDevices?.forEach { device ->
             val ipAddress: String = device.ipAddress
             var status: Status?
             try {
