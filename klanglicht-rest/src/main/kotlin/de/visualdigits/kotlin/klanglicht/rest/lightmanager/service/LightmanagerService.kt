@@ -3,6 +3,7 @@ package de.visualdigits.kotlin.klanglicht.rest.lightmanager.service
 import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.client.LightmanagerClient
 import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm.LMMarkers
 import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm.LMParams
+import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm.LMScenes
 import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm.LMZones
 import de.visualdigits.kotlin.klanglicht.rest.configuration.ConfigHolder
 import jakarta.annotation.PostConstruct
@@ -33,6 +34,10 @@ class LightmanagerService(
 
     fun knownActors(): Map<Int, String>? {
         return client?.knownActors()
+    }
+
+    fun scenes(): LMScenes? {
+        return client?.scenes()
     }
 
     fun markers(): LMMarkers? {
