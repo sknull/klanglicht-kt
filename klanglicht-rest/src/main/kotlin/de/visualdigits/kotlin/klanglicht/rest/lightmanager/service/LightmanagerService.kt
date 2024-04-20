@@ -11,9 +11,10 @@ import org.springframework.stereotype.Service
 
 @Service
 class LightmanagerService(
+    private val configHolder: ConfigHolder,
+
     var lightmanagerUrl: String? = null,
-    var client: LightmanagerClient? = null,
-    val configHolder: ConfigHolder
+    var client: LightmanagerClient? = null
 ) {
 
     @PostConstruct

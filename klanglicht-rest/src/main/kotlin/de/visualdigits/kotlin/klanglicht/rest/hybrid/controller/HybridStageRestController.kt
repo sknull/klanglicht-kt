@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/v1/hybrid/json")
 class HybridStageRestController(
-    val hybridStageService: HybridStageService
+    private val hybridStageService: HybridStageService
 ) {
 
     @GetMapping("hexColor")

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/v1/yamaha/xml")
 class YamahaRestController(
-    val yamahaService: YamahaService
+    private val yamahaService: YamahaService
 ) {
 
     private val log: Logger = LoggerFactory.getLogger(javaClass)

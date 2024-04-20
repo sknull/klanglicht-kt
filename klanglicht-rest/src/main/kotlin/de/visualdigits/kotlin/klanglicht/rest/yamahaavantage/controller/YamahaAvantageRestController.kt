@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/v1/yamaha/avantage/json")
 class YamahaAvantageRestController(
-    val yamahaAvantageService: YamahaAvantageService
+    private val yamahaAvantageService: YamahaAvantageService
 ) {
 
     private val log: Logger = LoggerFactory.getLogger(javaClass)

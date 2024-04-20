@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service
 
 @Service
 class ShellyService(
-    val configHolder: ConfigHolder
+    private val configHolder: ConfigHolder
 ) {
 
     private val log: Logger = LoggerFactory.getLogger(javaClass)

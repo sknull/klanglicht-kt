@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/v1/lightmanager/json", produces = [MediaType.APPLICATION_JSON_VALUE])
 class LightmanagerRestController(
-    var lightmanagerService: LightmanagerService
+    private val lightmanagerService: LightmanagerService
 ) {
 
     @GetMapping("params")

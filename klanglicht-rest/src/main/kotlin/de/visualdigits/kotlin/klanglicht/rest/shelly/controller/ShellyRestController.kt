@@ -17,9 +17,9 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/v1/shelly", produces = [MediaType.APPLICATION_JSON_VALUE])
 class ShellyRestController(
-    var shellyService: ShellyService,
-    var lightmanagerService: LightmanagerService,
-    val hybridStageService: HybridStageService
+    private val shellyService: ShellyService,
+    private val lightmanagerService: LightmanagerService,
+    private val hybridStageService: HybridStageService
 ) {
 
 

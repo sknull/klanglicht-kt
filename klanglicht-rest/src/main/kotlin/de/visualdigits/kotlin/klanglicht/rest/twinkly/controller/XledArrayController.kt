@@ -24,7 +24,7 @@ import java.io.File
 @RestController()
 @RequestMapping("/twinkly/api/v1/xledarray")
 class XledArrayController(
-    var configHolder: ConfigHolder
+    private val configHolder: ConfigHolder
 ) {
 
     private val log = LoggerFactory.getLogger(XledArrayController::class.java)

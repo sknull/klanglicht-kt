@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping
 @Controller
 @RequestMapping("/v1/lightmanager/web")
 class LightmanagerWebController(
-    var configHolder: ConfigHolder,
-    var lightmanagerService: LightmanagerService
+    private val configHolder: ConfigHolder,
+    private val lightmanagerService: LightmanagerService
 ) {
 
     @GetMapping("/scenes", produces = ["application/xhtml+xml"])

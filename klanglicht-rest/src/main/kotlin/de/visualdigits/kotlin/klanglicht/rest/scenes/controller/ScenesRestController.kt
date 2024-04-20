@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/v1/scenes/json", produces = ["application/json"])
 class ScenesRestController(
-    val scenesService: ScenesService
+    private val scenesService: ScenesService
 ) {
 
     @GetMapping("sceneNames")

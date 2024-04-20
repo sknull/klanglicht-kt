@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 @Controller
 @RequestMapping("/v1/hybrid/web")
 class HybridStageWebController(
-    var configHolder: ConfigHolder,
+    private val configHolder: ConfigHolder,
 ) {
 
     @GetMapping("/scenes", produces = ["application/xhtml+xml"])

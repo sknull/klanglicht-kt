@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController()
 @RequestMapping("/twinkly/api/v1/xleddevice")
 class XledDeviceController(
-    private var configHolder: ConfigHolder
+    private val configHolder: ConfigHolder
 ) {
 
     private val log = LoggerFactory.getLogger(XledDeviceController::class.java)

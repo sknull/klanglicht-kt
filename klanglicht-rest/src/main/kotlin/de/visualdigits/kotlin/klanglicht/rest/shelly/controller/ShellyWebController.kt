@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping
 @Controller
 @RequestMapping("/v1/shelly/web")
 class ShellyWebController(
-    var configHolder: ConfigHolder,
-    var shellyService: ShellyService
+    private val configHolder: ConfigHolder,
+    private val shellyService: ShellyService
 ) {
 
     @GetMapping("powers", produces = ["application/xhtml+xml"])

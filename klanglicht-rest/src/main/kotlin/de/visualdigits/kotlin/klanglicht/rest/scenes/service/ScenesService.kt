@@ -15,8 +15,8 @@ import org.springframework.stereotype.Service
 
 @Service
 class ScenesService(
-    private var shellyService: ShellyService,
-    private var lightmanagerService: LightmanagerService,
+    private val shellyService: ShellyService,
+    private val lightmanagerService: LightmanagerService,
     private val hybridStageService: HybridStageService,
     private val yamahaAvantageService: YamahaAvantageService,
     private val configHolder: ConfigHolder

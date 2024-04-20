@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service
 
 @Service
 class HybridStageService(
-    val configHolder: ConfigHolder
+    private val configHolder: ConfigHolder
 ) {
 
     private val log: Logger = LoggerFactory.getLogger(javaClass)

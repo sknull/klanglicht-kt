@@ -8,10 +8,10 @@ import org.springframework.stereotype.Service
 
 @Service
 class YamahaService(
-    val configHolder: ConfigHolder
+    private val configHolder: ConfigHolder
 ) {
 
-    var client: YamahaReceiverClient? = null
+    private var client: YamahaReceiverClient? = null
 
     @PostConstruct
     fun initialize() {

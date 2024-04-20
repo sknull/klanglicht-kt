@@ -11,9 +11,9 @@ import org.springframework.stereotype.Service
 
 @Service
 class YamahaAvantageService(
-    val configHolder: ConfigHolder
+    private val configHolder: ConfigHolder
 ) {
-    var client: YamahaAvantageReceiverClient? = null
+    private var client: YamahaAvantageReceiverClient? = null
 
     @PostConstruct
     fun initialize() {
