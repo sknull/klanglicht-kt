@@ -10,11 +10,11 @@ class ColorWheel(
 
     private val log: Logger = LoggerFactory.getLogger(javaClass)
 
-    override fun toHtml(configHolder: ConfigHolder): String {
+    override fun toHtml(configHolder: ConfigHolder?): String {
         return toHtml(configHolder, false)
     }
 
-    fun toHtml(configHolder: ConfigHolder, oddEven: Boolean): String {
+    fun toHtml(configHolder: ConfigHolder?, oddEven: Boolean): String {
         val wheelId = id!!.replace(" ", "")
 
         val sb = StringBuilder()
@@ -50,17 +50,17 @@ class ColorWheel(
         sb.append("\t\t</div><!-- colorwheel-panel -->\n")
     }
 
-    private fun renderScript(sb: StringBuilder, wheelId: String, oddEven: Boolean, configHolder: ConfigHolder) {
+    private fun renderScript(sb: StringBuilder, wheelId: String, oddEven: Boolean, configHolder: ConfigHolder?) {
         if (oddEven) {
             sb.append("\t\t<script type=\"application/javascript\">\n")
 
-            val hexColorOdd = configHolder.getColor("${wheelId}Odd")?:"000000"
+            val hexColorOdd = configHolder?.getColor("${wheelId}Odd")?:"000000"
             sb.append("\t\t\tvar colorWheel${wheelId}Odd = new iro.ColorPicker(\"#colorwheel-${wheelId}Odd\", {\n")
             sb.append("\t\t\t\twheelLightness: false,\n")
             sb.append("\t\t\t\tcolor: \"${hexColorOdd}\"\n")
             sb.append("\t\t\t});\n\n")
 
-            val hexColorEven = configHolder.getColor("${wheelId}Even")?:"000000"
+            val hexColorEven = configHolder?.getColor("${wheelId}Even")?:"000000"
             sb.append("\t\t\tvar colorWheel${wheelId}Even = new iro.ColorPicker(\"#colorwheel-${wheelId}Even\", {\n")
             sb.append("\t\t\t\twheelLightness: false,\n")
             sb.append("\t\t\t\tcolor: \"${hexColorEven}\"\n")
@@ -80,9 +80,9 @@ class ColorWheel(
 
             sb.append("\t\t</script>\n")
         } else {
-            val hexColor = configHolder.getFadeable(wheelId)
+            val hexColor = configHolder?.getFadeable(wheelId)
                 ?.getRgbColor()?.web()
-                ?:configHolder.getColor(wheelId)
+                ?:configHolder?.getColor(wheelId)
                 ?:"000000"
             sb.append("\t\t<script type=\"application/javascript\">\n")
 

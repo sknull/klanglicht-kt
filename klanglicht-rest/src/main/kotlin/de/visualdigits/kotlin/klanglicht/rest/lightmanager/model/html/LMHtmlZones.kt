@@ -7,7 +7,7 @@ class LMHtmlZones(
     val zones: LMZones
 ) : HtmlRenderable {
 
-    override fun toHtml(configHolder: ConfigHolder): String {
+    override fun toHtml(configHolder: ConfigHolder?): String {
         val sb = StringBuilder()
         sb.append("<div class=\"title\" onclick=\"toggleFullScreen();\" title=\"Toggle Fullscreen\">")
             .append(zones.name)

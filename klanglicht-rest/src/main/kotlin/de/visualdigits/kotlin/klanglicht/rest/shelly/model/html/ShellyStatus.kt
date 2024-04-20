@@ -75,7 +75,7 @@ class ShellyStatus : HtmlRenderable {
         sb.append("      </div> <!-- ").append(clazz).append(" -->\n")
     }
 
-    override fun toHtml(configHolder: ConfigHolder): String? {
+    override fun toHtml(configHolder: ConfigHolder?): String? {
         return null
     }
 }

@@ -7,7 +7,7 @@ class ColorWheelOddEven(
     val id: String? = null
 ) : HtmlRenderable {
 
-    override fun toHtml(configHolder: ConfigHolder): String {
+    override fun toHtml(configHolder: ConfigHolder?): String {
         return "    <div class=\"colorwheel-wrapper\">\n" +
                 "\t\t<div class=\"colorwheel-title\"><span class=\"label\">COLORPICKER</span></div>\n" +
                 "\t\t<div class=\"colorwheel-panel\">\n" +

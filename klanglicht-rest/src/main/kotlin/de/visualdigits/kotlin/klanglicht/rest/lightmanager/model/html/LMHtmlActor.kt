@@ -13,7 +13,7 @@ class LMHtmlActor(
     val actor: LMActor
 ) : HtmlRenderable {
 
-    override fun toHtml(configHolder: ConfigHolder): String {
+    override fun toHtml(configHolder: ConfigHolder?): String {
         val sb = StringBuilder()
         sb.append("      <div class=\"panel\">\n")
         renderLabel(sb, actor.name)

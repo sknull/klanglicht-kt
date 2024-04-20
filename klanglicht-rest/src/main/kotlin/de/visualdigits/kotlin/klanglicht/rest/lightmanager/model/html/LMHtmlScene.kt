@@ -8,13 +8,13 @@ class LMHtmlScene(
     val scene: LMScene
 ) : HtmlRenderable {
 
-    override fun toHtml(configHolder: ConfigHolder): String {
+    override fun toHtml(configHolder: ConfigHolder?): String {
         return toHtml(configHolder, "")
     }
 
-    fun toHtml(configHolder: ConfigHolder, group: String): String {
+    fun toHtml(configHolder: ConfigHolder?, group: String): String {
 //        val url = configHolder.preferences?.getService("lmair")?.url
-        val url = configHolder.preferences?.ownUrl
+        val url = configHolder?.preferences?.ownUrl
         val sb = StringBuilder()
         sb.append("      <div class=\"button\"")
         if (scene.color.isNotEmpty()) {

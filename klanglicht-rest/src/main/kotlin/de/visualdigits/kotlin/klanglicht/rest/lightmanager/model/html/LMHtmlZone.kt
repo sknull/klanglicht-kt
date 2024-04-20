@@ -7,7 +7,7 @@ class LMHtmlZone(
     val zone: LMZone
 ): HtmlRenderable {
 
-    override fun toHtml(configHolder: ConfigHolder): String {
+    override fun toHtml(configHolder: ConfigHolder?): String {
         val sb = StringBuilder()
         sb.append("  <div class=\"group\">\n")
         renderLabel(sb, zone.name)

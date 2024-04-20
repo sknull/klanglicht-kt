@@ -8,7 +8,7 @@ class LMHtmlScenes(
     val scene: LMScenes
 ) : HtmlRenderable {
 
-    override fun toHtml(configHolder: ConfigHolder): String {
+    override fun toHtml(configHolder: ConfigHolder?): String {
         val sb = StringBuilder()
         sb.append("<div class=\"title\" onclick=\"toggleFullScreen();\" title=\"Toggle Fullscreen\">")
             .append(scene.name)
@@ -16,7 +16,7 @@ class LMHtmlScenes(
         sb.append("<div class=\"center-category\">\n")
         renderLabel(sb, "C U R R E N T   S C E N E")
         sb.append("<div class=\"center-group\">\n")
-        configHolder.currentScene?.fadeables()?.forEach { fadeable ->
+        configHolder?.currentScene?.fadeables()?.forEach { fadeable ->
             val color = fadeable.getRgbColor()?.web()?:"#000000"
             val html = renderPanel("circle", color, "")
             sb.append(html)
@@ -49,7 +49,7 @@ class LMHtmlScenes(
     }
 
     private fun renderScenesGroup(
-        configHolder: ConfigHolder,
+        configHolder: ConfigHolder?,
         sceneGroup: LMSceneGroup
     ): String {
         val sb = StringBuilder()
