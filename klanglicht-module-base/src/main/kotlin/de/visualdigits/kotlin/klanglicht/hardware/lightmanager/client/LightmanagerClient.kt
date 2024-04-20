@@ -1,19 +1,8 @@
 package de.visualdigits.kotlin.klanglicht.hardware.lightmanager.client
 
-import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.json.LmAirProject
-import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.json.NType
-import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm.LMActionHybrid
-import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm.LMActionLmAir
-import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm.LMActionLmYamahaAvantage
-import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm.LMActionPause
-import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm.LMActionShelly
-import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm.LMActionUrl
-import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm.LMActor
 import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm.LMMarker
 import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm.LMMarkers
 import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm.LMParams
-import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm.LMScene
-import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm.LMScenes
 import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm.LMZones
 import de.visualdigits.kotlin.util.get
 import de.visualdigits.kotlin.util.post
@@ -64,20 +53,6 @@ class LightmanagerClient(
         return zones
     }
 
-    fun getActorById(actorId: Int): LMActor? {
-        var a: LMActor? = null
-        val zones: LMZones = zones()
-        for (zone in zones.zones) {
-            for (actor in zone.actors) {
-                if (actor.id == actorId) {
-                    a = actor
-                    break
-                }
-            }
-        }
-        return a
-    }
-
     fun knownActors(): Map<Int, String> {
         val actors: MutableMap<Int, String> = mutableMapOf()
         val zones: LMZones = zones()
@@ -87,91 +62,6 @@ class LightmanagerClient(
             }
         }
         return actors
-    }
-
-    fun scenes(lmAirProject: LmAirProject? = null): LMScenes {
-        val document = Jsoup.parse(html()!!)
-        val setupName = document.select("div[id=mytitle]").first()?.text()
-        val scenes = LMScenes(setupName)
-        document
-            .select("div[id=scenes]")
-            .first()
-            ?.select("div[class=sbElement]")
-            ?.forEach { elem -> scenes.add(LMScene(name = elem.child(0).text())) }
-        determineActions(lmAirProject, scenes)
-        return scenes
-    }
-
-    private fun determineActions(
-        lmAirProject: LmAirProject?,
-        scenes: LMScenes
-    ) {
-        if (lmAirProject != null) {
-            scenes.scenes.values.forEach { g ->
-                g.scenes.forEach { scene ->
-                    lmAirProject.scenesMap[scene.name]?.let { s ->
-                        val actuatorProperties = s.getActuatorProperties()
-                        scene.actions = actuatorProperties.mapNotNull { ap ->
-                            when (ap.ntype) {
-                                NType.irlan -> {
-                                    lmAirProject.actuatorsMap[ap.actorIndex]?.let { actuator ->
-                                        val url = if (ap.command == 1) {
-                                            actuator.properties?.url2
-                                        } else {
-                                            actuator.properties?.url
-                                        }
-                                        if (url != null) {
-                                            val uu = if (url.startsWith("http")) url else "http://$url"
-                                            val u = URL(uu)
-                                            val params = u.query
-                                                .split("&")
-                                                .filter { p -> p.isNotEmpty() }
-                                                .map { p -> p.split("=") }
-                                                .filter { p -> p.size == 2 }.associate { p -> Pair(p[0], p[1]) }
-                                            when (u.path) {
-                                                "/v1/yamaha/avantage/json/surroundProgram" ->
-                                                    LMActionLmYamahaAvantage(
-                                                        command = "surroundProgram",
-                                                        program = params["program"]
-                                                    )
-
-                                                "/v1/shelly/power" ->
-                                                    LMActionShelly(
-                                                        ids = params["ids"],
-                                                        turnOn = params["turnOn"]?.let { p -> p.toBoolean()}?:false
-                                                    )
-
-                                                "/v1/hybrid/json/hexColor" ->
-                                                    LMActionHybrid(
-                                                        ids = params["ids"],
-                                                        hexColors = params["hexColors"],
-                                                        gains = params["gains"],
-                                                    )
-                                                else ->
-                                                    LMActionUrl(
-                                                        url = url.substringAfter("v1/")
-                                                    )
-                                            }
-                                        } else {
-                                            val param = if (ap.command == 1) {
-                                                1499
-                                            } else {
-                                                42
-                                            }
-                                            LMActionLmAir(sceneIndex = param)
-                                        }
-                                    }
-                                }
-
-                                NType.pause -> LMActionPause(duration = ap.duration?.let { d -> 1000 * d } ?: 0)
-                                else ->
-                                    null
-                            }
-                        }
-                    }
-                }
-            }
-        }
     }
 
     fun markers(): LMMarkers {

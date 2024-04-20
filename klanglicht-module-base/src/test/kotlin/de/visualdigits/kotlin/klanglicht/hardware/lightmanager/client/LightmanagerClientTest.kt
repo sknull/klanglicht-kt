@@ -3,7 +3,6 @@ package de.visualdigits.kotlin.klanglicht.hardware.lightmanager.client
 import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.databind.SerializationFeature
 import com.fasterxml.jackson.module.kotlin.jacksonMapperBuilder
-import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.json.LmAirProject
 import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm.LMScenes
 import org.junit.jupiter.api.Test
 import java.io.File
@@ -55,26 +54,8 @@ class LightmanagerClientTest {
     }
 
     @Test
-    fun testScrapeScenes() {
-        val lmAirProject = LmAirProject.unmarshall(File(ClassLoader.getSystemResource("lmair/lmair-config.json").toURI()))
-        val scenes = client.scenes(lmAirProject)
-        val json = mapper.writeValueAsString(scenes)
-
-        println(json)
-    }
-
-    @Test
-    fun testScrapeSceneConfig() {
-        val lmAirProject = LmAirProject.unmarshall(File(ClassLoader.getSystemResource("lmair/lmair-config.json").toURI()))
-        val scenes = client.scenes(lmAirProject)
-        val json = mapper.writeValueAsString(scenes)
-
-        println(json)
-    }
-
-    @Test
     fun testLoadScenes() {
-        val file = File(ClassLoader.getSystemResource("lmair/scenes.json").toURI())
+        val file = File(ClassLoader.getSystemResource(".klanglicht/preferences/scenes.json").toURI())
         val scenes = LMScenes.unmarshall(file)
         println(scenes)
     }
