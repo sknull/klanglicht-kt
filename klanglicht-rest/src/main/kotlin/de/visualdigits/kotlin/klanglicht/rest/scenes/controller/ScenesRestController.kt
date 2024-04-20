@@ -30,11 +30,11 @@ class ScenesRestController(
     fun hybrid(
         @RequestParam(value = "ids", required = false, defaultValue = "") ids: String,
         @RequestParam(value = "hexColors", required = false, defaultValue = "") hexColors: String,
-        @RequestParam(value = "gains", required = false, defaultValue = "") gains: String,
+        @RequestParam(value = "gains", required = false, defaultValue = "1.0") gains: String,
     ) {
         scenesService.hybrid(
-            ids = ids.split(",").map { it.trim() },
-            hexColors = hexColors.split(",").map { it.trim() },
+            ids = ids.split(",").map { it.trim() }.filter { it.isNotEmpty() },
+            hexColors = hexColors.split(",").map { it.trim() }.filter { it.isNotEmpty() },
             gains = gains.split(",").map { it.toDouble() })
     }
 
