@@ -7,7 +7,7 @@ import de.visualdigits.kotlin.twinkly.model.device.xled.XledArray
 class TwinklyConfiguration(
     val name: String,
     val deviceOrigin: String,
-    val gain: Float,
+    val gain: Double,
     val array: Array<Array<XledDeviceConfiguration>>
 ) {
 

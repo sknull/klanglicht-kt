@@ -129,17 +129,17 @@ data class Preferences(
         val gains = stage.mapNotNull { sd ->
             when (sd.type) {
                 HybridDeviceType.dmx -> {
-                    dmx?.dmxDevices?.get(sd.id)?.gain?:1.0f
+                    dmx?.dmxDevices?.get(sd.id)?.gain?:1.0
                 }
 
                 HybridDeviceType.shelly -> getShellyGain(sd.id)
                 HybridDeviceType.twinkly -> getTwinklyConfiguration(sd.id)?.let { if (it.xledArray.isLoggedIn()) it.gain else null }
                 else -> null
             }
-        }.joinToString(",")
+        }
         return HybridScene(
-            ids = stage.joinToString(",") { it.id },
-            hexColors = "000000",
+            ids = stage.map { it.id },
+            hexColors = listOf("000000"),
             gains = gains,
             turnOns = "false",
             preferences = this
@@ -180,7 +180,7 @@ data class Preferences(
     fun getDmxFixture(baseChannel: Int) = fixtures[baseChannel]
 
 
-    fun getShellyGain(id: String): Float = shellyMap[id]?.gain?:1.0f
+    fun getShellyGain(id: String): Double = shellyMap[id]?.gain?:1.0
 
     fun getShellyDevice(id: String): ShellyDevice? = shellyMap[id]
     fun getShellyDevices(): List<ShellyDevice> = shelly?:listOf()

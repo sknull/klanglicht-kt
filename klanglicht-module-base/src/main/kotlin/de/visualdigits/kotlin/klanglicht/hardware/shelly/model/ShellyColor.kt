@@ -12,7 +12,7 @@ class ShellyColor(
     private val deviceId: String,
     val ipAddress: String,
     private var color: RGBColor,
-    private var deviceGain: Float,
+    private var deviceGain: Double,
     private var deviceTurnOn: Boolean?
 ) : Fadeable<ShellyColor> {
 
@@ -24,7 +24,7 @@ class ShellyColor(
 
     override fun getTurnOn(): Boolean {
         var turnOn = deviceTurnOn?:false
-        if ((color.red == 0 && color.green == 0  && color.blue == 0) || deviceGain == 0.0f) {
+        if ((color.red == 0 && color.green == 0  && color.blue == 0) || deviceGain == 0.0) {
             turnOn = false
         }
         return turnOn
@@ -36,9 +36,9 @@ class ShellyColor(
 
     override fun getId(): String = deviceId
 
-    override fun getGain(): Float = deviceGain
+    override fun getGain(): Double = deviceGain
 
-    override fun setGain(gain: Float) {
+    override fun setGain(gain: Double) {
         this.deviceGain = gain
     }
 
@@ -63,7 +63,7 @@ class ShellyColor(
 
     override fun fade(other: Any, factor: Double): ShellyColor {
         return if (other is ShellyColor) {
-            ShellyColor(deviceId, ipAddress, color.fade(other.color, factor),  min(1.0, (deviceGain + factor * (other.deviceGain - deviceGain))).toFloat(), other.deviceTurnOn)
+            ShellyColor(deviceId, ipAddress, color.fade(other.color, factor),  min(1.0, (deviceGain + factor * (other.deviceGain - deviceGain))), other.deviceTurnOn)
         } else {
             throw IllegalArgumentException("Cannot not fade another type")
         }

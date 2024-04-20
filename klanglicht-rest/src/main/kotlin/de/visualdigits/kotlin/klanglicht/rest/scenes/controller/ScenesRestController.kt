@@ -32,7 +32,10 @@ class ScenesRestController(
         @RequestParam(value = "hexColors", required = false, defaultValue = "") hexColors: String,
         @RequestParam(value = "gains", required = false, defaultValue = "") gains: String,
     ) {
-        scenesService.hybrid(ids, hexColors, gains)
+        scenesService.hybrid(
+            ids = ids.split(",").map { it.trim() },
+            hexColors = hexColors.split(",").map { it.trim() },
+            gains = gains.split(",").map { it.toDouble() })
     }
 
     @GetMapping("shelly")
@@ -41,7 +44,7 @@ class ScenesRestController(
         @RequestParam(value = "turnOn", required = false, defaultValue = "true") turnOn: Boolean,
         @RequestParam(value = "transition", required = false) transitionDuration: Long
     ) {
-        scenesService.shelly(ids, turnOn, transitionDuration)
+        scenesService.shelly(ids.split(",").map { it.trim() }, turnOn, transitionDuration)
     }
 
     @GetMapping("lmair")

@@ -15,958 +15,1986 @@
       "scenes": [
         {
           "name": "All Red",
-          "color": "#ff0000",
+          "color": [
+            "#ff0000"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "ff0000"
+                "hexColors": [
+                  "ff0000"
+                ]
               }
             }
           ]
         },
         {
           "name": "All Dark Red",
-          "color": "#880000",
+          "color": [
+            "#880000"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "880000"
+                "hexColors": [
+                  "880000"
+                ]
               }
             }
           ]
         },
         {
           "name": "All Green",
-          "color": "#00ff00",
+          "color": [
+            "#00ff00"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "00ff00"
+                "hexColors": [
+                  "00ff00"
+                ]
               }
             }
           ]
         },
         {
           "name": "All Dark Green",
-          "color": "#008800",
+          "color": [
+            "#008800"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "00ff00"
+                "hexColors": [
+                  "00ff00"
+                ]
               }
             }
           ]
         },
         {
           "name": "All Blue",
-          "color": "#0000ff",
+          "color": [
+            "#0000ff"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "0000ff"
+                "hexColors": [
+                  "0000ff"
+                ]
               }
             }
           ]
         },
         {
           "name": "All Dark Blue",
-          "color": "#000088",
+          "color": [
+            "#000088"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "000088"
+                "hexColors": [
+                  "000088"
+                ]
               }
             }
           ]
         },
         {
           "name": "All Yellow",
-          "color": "#ffff00",
+          "color": [
+            "#ffff00"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "ffff00"
+                "hexColors": [
+                  "ffff00"
+                ]
               }
             }
           ]
         },
         {
           "name": "All Cyan",
-          "color": "#00ffff",
+          "color": [
+            "#00ffff"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "00ffff"
+                "hexColors": [
+                  "00ffff"
+                ]
               }
             }
           ]
         },
         {
           "name": "All Dark Cyan",
-          "color": "#008888",
+          "color": [
+            "#008888"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "008888"
+                "hexColors": [
+                  "008888"
+                ]
               }
             }
           ]
         },
         {
           "name": "All Magenta",
-          "color": "#ff00ff",
+          "color": [
+            "#ff00ff"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "ff00ff"
+                "hexColors": [
+                  "ff00ff"
+                ]
               }
             }
           ]
         },
         {
           "name": "All Orange",
-          "color": "#ff8000",
+          "color": [
+            "#ff8000"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "ff8000"
+                "hexColors": [
+                  "ff8000"
+                ]
               }
             }
           ]
         },
         {
           "name": "All Purple",
-          "color": "#8000ff",
+          "color": [
+            "#8000ff"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "8000ff"
+                "hexColors": [
+                  "8000ff"
+                ]
               }
             }
           ]
         },
         {
           "name": "All Teal",
-          "color": "#2388ad",
+          "color": [
+            "#2388ad"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "2388ad"
+                "hexColors": [
+                  "2388ad"
+                ]
               }
             }
           ]
         },
         {
           "name": "All White",
-          "color": "#808080",
+          "color": [
+            "#808080"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "ffffff"
+                "hexColors": [
+                  "ffffff"
+                ]
               }
             }
           ]
         },
         {
           "name": "All Red / Blue",
-          "color": "#0000ff,#ff0000,#ff0000,#0000ff",
+          "color": [
+            "#0000ff",
+            "#ff0000",
+            "#ff0000",
+            "#0000ff"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "0000ff,0000ff,ff0000,ff0000,ff0000,ff0000,0000ff"
+                "hexColors": [
+                  "0000ff",
+                  "0000ff",
+                  "ff0000",
+                  "ff0000",
+                  "ff0000",
+                  "ff0000",
+                  "0000ff"
+                ]
               }
             }
           ]
         },
         {
           "name": "All Dark Red / Blue",
-          "color": "#000088,#880000,#880000,#000088",
+          "color": [
+            "#000088",
+            "#880000",
+            "#880000",
+            "#000088"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "000088,000088,880000,880000,880000,880000,000088"
+                "hexColors": [
+                  "000088",
+                  "000088",
+                  "880000",
+                  "880000",
+                  "880000",
+                  "880000",
+                  "000088"
+                ]
               }
             }
           ]
         },
         {
           "name": "All Blue / Red",
-          "color": "#ff0000,#0000ff,#0000ff,#ff0000",
+          "color": [
+            "#ff0000",
+            "#0000ff",
+            "#0000ff",
+            "#ff0000"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "ff0000,ff0000,0000ff,0000ff,0000ff,0000ff,ff0000"
+                "hexColors": [
+                  "ff0000",
+                  "ff0000",
+                  "0000ff",
+                  "0000ff",
+                  "0000ff",
+                  "0000ff",
+                  "ff0000"
+                ]
               }
             }
           ]
         },
         {
           "name": "All Dark Blue / Red",
-          "color": "#880000,#000088,#000088,#880000",
+          "color": [
+            "#880000",
+            "#000088",
+            "#000088",
+            "#880000"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "880000,880000,000088,000088,000088,000088,880000"
+                "hexColors": [
+                  "880000",
+                  "880000",
+                  "000088",
+                  "000088",
+                  "000088",
+                  "000088",
+                  "880000"
+                ]
               }
             }
           ]
         },
         {
           "name": "All Green / Red",
-          "color": "#ff0000,#00ff00,#00ff00,#ff0000",
+          "color": [
+            "#ff0000",
+            "#00ff00",
+            "#00ff00",
+            "#ff0000"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "ff0000,ff0000,00ff00,00ff00,00ff00,00ff00,ff0000"
+                "hexColors": [
+                  "ff0000",
+                  "ff0000",
+                  "00ff00",
+                  "00ff00",
+                  "00ff00",
+                  "00ff00",
+                  "ff0000"
+                ]
               }
             }
           ]
         },
         {
           "name": "All Dark Green / Red",
-          "color": "#880000,#008800,#008800,#880000",
+          "color": [
+            "#880000",
+            "#008800",
+            "#008800",
+            "#880000"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "880000,880000,008800,008800,008800,008800,880000"
+                "hexColors": [
+                  "880000",
+                  "880000",
+                  "008800",
+                  "008800",
+                  "008800",
+                  "008800",
+                  "880000"
+                ]
               }
             }
           ]
         },
         {
           "name": "All Red / Green",
-          "color": "#00ff00,#ff0000,#ff0000,#00ff00",
+          "color": [
+            "#00ff00",
+            "#ff0000",
+            "#ff0000",
+            "#00ff00"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "00ff00,00ff00,ff0000,ff0000,ff0000,ff0000,00ff00"
+                "hexColors": [
+                  "00ff00",
+                  "00ff00",
+                  "ff0000",
+                  "ff0000",
+                  "ff0000",
+                  "ff0000",
+                  "00ff00"
+                ]
               }
             }
           ]
         },
         {
           "name": "All Dark Red / Green",
-          "color": "#008800,#880000,#880000,#008800",
+          "color": [
+            "#008800",
+            "#880000",
+            "#880000",
+            "#008800"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "008800,008800,880000,880000,880000,880000,008800"
+                "hexColors": [
+                  "008800",
+                  "008800",
+                  "880000",
+                  "880000",
+                  "880000",
+                  "880000",
+                  "008800"
+                ]
               }
             }
           ]
         },
         {
           "name": "All Green / Blue",
-          "color": "#0000ff,#00ff00,#00ff00,#0000ff",
+          "color": [
+            "#0000ff",
+            "#00ff00",
+            "#00ff00",
+            "#0000ff"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "0000ff,0000ff,00ff00,00ff00,00ff00,00ff00,0000ff"
+                "hexColors": [
+                  "0000ff",
+                  "0000ff",
+                  "00ff00",
+                  "00ff00",
+                  "00ff00",
+                  "00ff00",
+                  "0000ff"
+                ]
               }
             }
           ]
         },
         {
           "name": "All Dark Green / Blue",
-          "color": "#000088,#008800,#008800,#000088",
+          "color": [
+            "#000088",
+            "#008800",
+            "#008800",
+            "#000088"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "000088,000088,008800,008800,008800,008800,000088"
+                "hexColors": [
+                  "000088",
+                  "000088",
+                  "008800",
+                  "008800",
+                  "008800",
+                  "008800",
+                  "000088"
+                ]
               }
             }
           ]
         },
         {
           "name": "All Blue / Green",
-          "color": "#00ff00,#0000ff,#0000ff,#00ff00",
+          "color": [
+            "#00ff00",
+            "#0000ff",
+            "#0000ff",
+            "#00ff00"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "00ff00,00ff00,0000ff,0000ff,0000ff,0000ff,00ff00"
+                "hexColors": [
+                  "00ff00",
+                  "00ff00",
+                  "0000ff",
+                  "0000ff",
+                  "0000ff",
+                  "0000ff",
+                  "00ff00"
+                ]
               }
             }
           ]
         },
         {
           "name": "All Dark Blue / Green",
-          "color": "#008800,#000088,#000088,#008800",
+          "color": [
+            "#008800",
+            "#000088",
+            "#000088",
+            "#008800"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "008800,008800,000088,000088,000088,000088,008800"
+                "hexColors": [
+                  "008800",
+                  "008800",
+                  "000088",
+                  "000088",
+                  "000088",
+                  "000088",
+                  "008800"
+                ]
               }
             }
           ]
         },
         {
           "name": "All Blue / Cyan",
-          "color": "#00ffff,#0000ff,#0000ff,#00ffff",
+          "color": [
+            "#00ffff",
+            "#0000ff",
+            "#0000ff",
+            "#00ffff"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "00ffff,00ffff,0000ff,0000ff,0000ff,0000ff,00ffff"
+                "hexColors": [
+                  "00ffff",
+                  "00ffff",
+                  "0000ff",
+                  "0000ff",
+                  "0000ff",
+                  "0000ff",
+                  "00ffff"
+                ]
               }
             }
           ]
         },
         {
           "name": "All Dark Blue / Cyan",
-          "color": "#008888,#000088,#000088,#008888",
+          "color": [
+            "#008888",
+            "#000088",
+            "#000088",
+            "#008888"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "008888,008888,000088,000088,000088,000088,008888"
+                "hexColors": [
+                  "008888",
+                  "008888",
+                  "000088",
+                  "000088",
+                  "000088",
+                  "000088",
+                  "008888"
+                ]
               }
             }
           ]
         },
         {
           "name": "All Green / Magenta",
-          "color": "#ff00ff,#00ff00,#00ff00,#ff00ff",
+          "color": [
+            "#ff00ff",
+            "#00ff00",
+            "#00ff00",
+            "#ff00ff"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "ff00ff,ff00ff,00ff00,00ff00,00ff00,00ff00,ff00ff"
+                "hexColors": [
+                  "ff00ff",
+                  "ff00ff",
+                  "00ff00",
+                  "00ff00",
+                  "00ff00",
+                  "00ff00",
+                  "ff00ff"
+                ]
               }
             }
           ]
         },
         {
           "name": "All Magenta / Green",
-          "color": "#00ff00,#ff00ff,#ff00ff,#00ff00",
+          "color": [
+            "#00ff00",
+            "#ff00ff",
+            "#ff00ff",
+            "#00ff00"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "00ff00,00ff00,ff00ff,ff00ff,ff00ff,ff00ff,00ff00"
+                "hexColors": [
+                  "00ff00",
+                  "00ff00",
+                  "ff00ff",
+                  "ff00ff",
+                  "ff00ff",
+                  "ff00ff",
+                  "00ff00"
+                ]
               }
             }
           ]
         },
         {
           "name": "All Green / Yellow",
-          "color": "#ffff00,#00ff00,#00ff00,#ffff00",
+          "color": [
+            "#ffff00",
+            "#00ff00",
+            "#00ff00",
+            "#ffff00"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "ffff00,ffff00,00ff00,00ff00,00ff00,00ff00,ffff00"
+                "hexColors": [
+                  "ffff00",
+                  "ffff00",
+                  "00ff00",
+                  "00ff00",
+                  "00ff00",
+                  "00ff00",
+                  "ffff00"
+                ]
               }
             }
           ]
         },
         {
           "name": "All Yellow / Green",
-          "color": "#00ff00,#ffff00,#ffff00,#00ff00",
+          "color": [
+            "#00ff00",
+            "#ffff00",
+            "#ffff00",
+            "#00ff00"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "00ff00,00ff00,ffff00,ffff00,ffff00,ffff00,00ff00"
+                "hexColors": [
+                  "00ff00",
+                  "00ff00",
+                  "ffff00",
+                  "ffff00",
+                  "ffff00",
+                  "ffff00",
+                  "00ff00"
+                ]
               }
             }
           ]
         },
         {
           "name": "All Cyan / Blue",
-          "color": "#0000ff,#00ffff,#00ffff,#0000ff",
+          "color": [
+            "#0000ff",
+            "#00ffff",
+            "#00ffff",
+            "#0000ff"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "0000ff,0000ff,00ffff,00ffff,00ffff,00ffff,0000ff"
+                "hexColors": [
+                  "0000ff",
+                  "0000ff",
+                  "00ffff",
+                  "00ffff",
+                  "00ffff",
+                  "00ffff",
+                  "0000ff"
+                ]
               }
             }
           ]
         },
         {
           "name": "All Dark Cyan / Blue",
-          "color": "#000088,#008888,#008888,#000088",
+          "color": [
+            "#000088",
+            "#008888",
+            "#008888",
+            "#000088"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "000088,000088,008888,008888,008888,008888,000088"
+                "hexColors": [
+                  "000088",
+                  "000088",
+                  "008888",
+                  "008888",
+                  "008888",
+                  "008888",
+                  "000088"
+                ]
               }
             }
           ]
         },
         {
           "name": "All Orange / Teal",
-          "color": "#2388ad,#ff8000,#ff8000,#2388ad",
+          "color": [
+            "#2388ad",
+            "#ff8000",
+            "#ff8000",
+            "#2388ad"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "2388ad,2388ad,ff8000,ff8000,ff8000,ff8000,2388ad"
+                "hexColors": [
+                  "2388ad",
+                  "2388ad",
+                  "ff8000",
+                  "ff8000",
+                  "ff8000",
+                  "ff8000",
+                  "2388ad"
+                ]
               }
             }
           ]
         },
         {
           "name": "All Teal / Orange",
-          "color": "#ff8000,#2388ad,#2388ad,#ff8000",
+          "color": [
+            "#ff8000",
+            "#2388ad",
+            "#2388ad",
+            "#ff8000"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "ff8000,ff8000,2388ad,2388ad,2388ad,2388ad,ff8000"
+                "hexColors": [
+                  "ff8000",
+                  "ff8000",
+                  "2388ad",
+                  "2388ad",
+                  "2388ad",
+                  "2388ad",
+                  "ff8000"
+                ]
               }
             }
           ]
         },
         {
           "name": "All Orange / Purple",
-          "color": "#8000ff,#ff8000,#ff8000,#8000ff",
+          "color": [
+            "#8000ff",
+            "#ff8000",
+            "#ff8000",
+            "#8000ff"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "8000ff,8000ff,ff8000,ff8000,ff8000,ff8000,8000ff"
+                "hexColors": [
+                  "8000ff",
+                  "8000ff",
+                  "ff8000",
+                  "ff8000",
+                  "ff8000",
+                  "ff8000",
+                  "8000ff"
+                ]
               }
             }
           ]
         },
         {
           "name": "All Purple / Orange",
-          "color": "#ff8000,#8000ff,#8000ff,#ff8000",
+          "color": [
+            "#ff8000",
+            "#8000ff",
+            "#8000ff",
+            "#ff8000"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "ff8000,ff8000,8000ff,8000ff,8000ff,8000ff,ff8000"
+                "hexColors": [
+                  "ff8000",
+                  "ff8000",
+                  "8000ff",
+                  "8000ff",
+                  "8000ff",
+                  "8000ff",
+                  "ff8000"
+                ]
               }
             }
           ]
         },
         {
           "name": "All Yellow / Purple",
-          "color": "#8000ff,#ffff00,#ffff00,#8000ff",
+          "color": [
+            "#8000ff",
+            "#ffff00",
+            "#ffff00",
+            "#8000ff"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "8000ff,8000ff,ffff00,ffff00,ffff00,ffff00,8000ff"
+                "hexColors": [
+                  "8000ff",
+                  "8000ff",
+                  "ffff00",
+                  "ffff00",
+                  "ffff00",
+                  "ffff00",
+                  "8000ff"
+                ]
               }
             }
           ]
         },
         {
           "name": "All Purple / Yellow",
-          "color": "#ffff00,#8000ff,#8000ff,#ffff00",
+          "color": [
+            "#ffff00",
+            "#8000ff",
+            "#8000ff",
+            "#ffff00"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "ffff00,ffff00,8000ff,8000ff,8000ff,8000ff,ffff00"
+                "hexColors": [
+                  "ffff00",
+                  "ffff00",
+                  "8000ff",
+                  "8000ff",
+                  "8000ff",
+                  "8000ff",
+                  "ffff00"
+                ]
               }
             }
           ]
         },
         {
           "name": "All Yellow / Magenta",
-          "color": "#ff00ff,#ffff00,#ffff00,#ff00ff",
+          "color": [
+            "#ff00ff",
+            "#ffff00",
+            "#ffff00",
+            "#ff00ff"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "ff00ff,ff00ff,ffff00,ffff00,ffff00,ffff00,ff00ff"
+                "hexColors": [
+                  "ff00ff",
+                  "ff00ff",
+                  "ffff00",
+                  "ffff00",
+                  "ffff00",
+                  "ffff00",
+                  "ff00ff"
+                ]
               }
             }
           ]
         },
         {
           "name": "All Magenta / Yellow",
-          "color": "#ffff00,#ff00ff,#ff00ff,#ffff00",
+          "color": [
+            "#ffff00",
+            "#ff00ff",
+            "#ff00ff",
+            "#ffff00"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "ffff00,ffff00,ff00ff,ff00ff,ff00ff,ff00ff,ffff00"
+                "hexColors": [
+                  "ffff00",
+                  "ffff00",
+                  "ff00ff",
+                  "ff00ff",
+                  "ff00ff",
+                  "ff00ff",
+                  "ffff00"
+                ]
               }
             }
           ]
         },
         {
           "name": "All Purple / Magenta",
-          "color": "#ff00ff,#8000ff,#8000ff,#ff00ff",
+          "color": [
+            "#ff00ff",
+            "#8000ff",
+            "#8000ff",
+            "#ff00ff"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "ff00ff,ff00ff,8000ff,8000ff,8000ff,8000ff,ff00ff"
+                "hexColors": [
+                  "ff00ff",
+                  "ff00ff",
+                  "8000ff",
+                  "8000ff",
+                  "8000ff",
+                  "8000ff",
+                  "ff00ff"
+                ]
               }
             }
           ]
         },
         {
           "name": "All Magenta / Purple",
-          "color": "#8000ff,#ff00ff,#ff00ff,#8000ff",
+          "color": [
+            "#8000ff",
+            "#ff00ff",
+            "#ff00ff",
+            "#8000ff"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "8000ff,8000ff,ff00ff,ff00ff,ff00ff,ff00ff,8000ff"
+                "hexColors": [
+                  "8000ff",
+                  "8000ff",
+                  "ff00ff",
+                  "ff00ff",
+                  "ff00ff",
+                  "ff00ff",
+                  "8000ff"
+                ]
               }
             }
           ]
         },
         {
           "name": "All White / Blue",
-          "color": "#0000ff,#ffffff,#ffffff,#0000ff",
+          "color": [
+            "#0000ff",
+            "#ffffff",
+            "#ffffff",
+            "#0000ff"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "0000ff,0000ff,ffffff,ffffff,ffffff,ffffff,0000ff"
+                "hexColors": [
+                  "0000ff",
+                  "0000ff",
+                  "ffffff",
+                  "ffffff",
+                  "ffffff",
+                  "ffffff",
+                  "0000ff"
+                ]
               }
             }
           ]
         },
         {
           "name": "All Blue / White",
-          "color": "#ffffff,#0000ff,#0000ff,#ffffff",
+          "color": [
+            "#ffffff",
+            "#0000ff",
+            "#0000ff",
+            "#ffffff"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "ffffff,ffffff,0000ff,0000ff,0000ff,0000ff,ffffff"
+                "hexColors": [
+                  "ffffff",
+                  "ffffff",
+                  "0000ff",
+                  "0000ff",
+                  "0000ff",
+                  "0000ff",
+                  "ffffff"
+                ]
               }
             }
           ]
         },
         {
           "name": "All Red / White",
-          "color": "#ffffff,#ff0000,#ff0000,#ffffff",
+          "color": [
+            "#ffffff",
+            "#ff0000",
+            "#ff0000",
+            "#ffffff"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "ffffff,ffffff,ff0000,ff0000,ff0000,ff0000,ffffff"
+                "hexColors": [
+                  "ffffff",
+                  "ffffff",
+                  "ff0000",
+                  "ff0000",
+                  "ff0000",
+                  "ff0000",
+                  "ffffff"
+                ]
               }
             }
           ]
         },
         {
           "name": "All White / Red",
-          "color": "#ff0000,#ffffff,#ffffff,#ff0000",
+          "color": [
+            "#ff0000",
+            "#ffffff",
+            "#ffffff",
+            "#ff0000"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "ff0000,ff0000,ffffff,ffffff,ffffff,ffffff,ff0000"
+                "hexColors": [
+                  "ff0000",
+                  "ff0000",
+                  "ffffff",
+                  "ffffff",
+                  "ffffff",
+                  "ffffff",
+                  "ff0000"
+                ]
               }
             }
           ]
         },
         {
           "name": "All Rainbow Blue-Red",
-          "color": "#0000ff,#00ffff,#00ff00,#ffff00,#ff8000,#ff0000",
+          "color": [
+            "#0000ff",
+            "#00ffff",
+            "#00ff00",
+            "#ffff00",
+            "#ff8000",
+            "#ff0000"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "0000ff,00ffff,00ff00,80ff00,ffff00,ff3000,ff0000"
+                "hexColors": [
+                  "0000ff",
+                  "00ffff",
+                  "00ff00",
+                  "80ff00",
+                  "ffff00",
+                  "ff3000",
+                  "ff0000"
+                ]
               }
             }
           ]
         },
         {
           "name": "All Rainbow Red-Blue",
-          "color": "#ff0000,#ff8000,#ffff00,#00ff00,#00ffff,#0000ff",
+          "color": [
+            "#ff0000",
+            "#ff8000",
+            "#ffff00",
+            "#00ff00",
+            "#00ffff",
+            "#0000ff"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "ff0000,ff3000,ffff00,80ff00,00ff00,00ffff,0000ff"
+                "hexColors": [
+                  "ff0000",
+                  "ff3000",
+                  "ffff00",
+                  "80ff00",
+                  "00ff00",
+                  "00ffff",
+                  "0000ff"
+                ]
               }
             }
           ]
         },
         {
           "name": "All Rainbow Dark Blue-Red",
-          "color": "#000080,#008080,#008000,#808000,#808000,#800000",
+          "color": [
+            "#000080",
+            "#008080",
+            "#008000",
+            "#808000",
+            "#808000",
+            "#800000"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "000080,008080,008000,808000,808000,803000,800000"
+                "hexColors": [
+                  "000080",
+                  "008080",
+                  "008000",
+                  "808000",
+                  "808000",
+                  "803000",
+                  "800000"
+                ]
               }
             }
           ]
         },
         {
           "name": "All Rainbow Dark Red-Blue",
-          "color": "#800000,#808000,#808000,#008000,#008080,#000080",
+          "color": [
+            "#800000",
+            "#808000",
+            "#808000",
+            "#008000",
+            "#008080",
+            "#000080"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "800000,803000,808000,808000,008000,008080,000080"
+                "hexColors": [
+                  "800000",
+                  "803000",
+                  "808000",
+                  "808000",
+                  "008000",
+                  "008080",
+                  "000080"
+                ]
               }
             }
           ]
         },
         {
           "name": "All purple-green",
-          "color": "#8000ff,#00ff00,#8000ff,#00ff00,#8000ff",
+          "color": [
+            "#8000ff",
+            "#00ff00",
+            "#8000ff",
+            "#00ff00",
+            "#8000ff"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "8000ff,00ff00,8000ff,00ff00,8000ff,00ff00,8000ff"
+                "hexColors": [
+                  "8000ff",
+                  "00ff00",
+                  "8000ff",
+                  "00ff00",
+                  "8000ff",
+                  "00ff00",
+                  "8000ff"
+                ]
               }
             }
           ]
         },
         {
           "name": "All green-purple",
-          "color": "#00ff00,#8000ff,#00ff00,#8000ff,#00ff00",
+          "color": [
+            "#00ff00",
+            "#8000ff",
+            "#00ff00",
+            "#8000ff",
+            "#00ff00"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "00ff00,8000ff,00ff00,8000ff,00ff00,8000ff,008800"
+                "hexColors": [
+                  "00ff00",
+                  "8000ff",
+                  "00ff00",
+                  "8000ff",
+                  "00ff00",
+                  "8000ff",
+                  "008800"
+                ]
               }
             }
           ]
         },
         {
           "name": "All blue-green",
-          "color": "#0000ff,#00ff00,#0000ff,#00ff00,#0000ff",
+          "color": [
+            "#0000ff",
+            "#00ff00",
+            "#0000ff",
+            "#00ff00",
+            "#0000ff"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "0000ff,00ff00,0000ff,00ff00,0000ff,00ff00,0000ff"
+                "hexColors": [
+                  "0000ff",
+                  "00ff00",
+                  "0000ff",
+                  "00ff00",
+                  "0000ff",
+                  "00ff00",
+                  "0000ff"
+                ]
               }
             }
           ]
         },
         {
           "name": "All green-blue",
-          "color": "#00ff00,#0000ff,#00ff00,#0000ff,#00ff00",
+          "color": [
+            "#00ff00",
+            "#0000ff",
+            "#00ff00",
+            "#0000ff",
+            "#00ff00"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "00ff00,0000ff,00ff00,0000ff,00ff00,0000ff,00ff00"
+                "hexColors": [
+                  "00ff00",
+                  "0000ff",
+                  "00ff00",
+                  "0000ff",
+                  "00ff00",
+                  "0000ff",
+                  "00ff00"
+                ]
               }
             }
           ]
         },
         {
           "name": "All red-green",
-          "color": "#ff0000,#00ff00,#ff0000,#00ff00,#ff0000",
+          "color": [
+            "#ff0000",
+            "#00ff00",
+            "#ff0000",
+            "#00ff00",
+            "#ff0000"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "ff0000,00ff00,ff0000,00ff00,ff0000,00ff00,ff0000"
+                "hexColors": [
+                  "ff0000",
+                  "00ff00",
+                  "ff0000",
+                  "00ff00",
+                  "ff0000",
+                  "00ff00",
+                  "ff0000"
+                ]
               }
             }
           ]
         },
         {
           "name": "All green-red",
-          "color": "#00ff00,#ff0000,#00ff00,#ff0000,#00ff00",
+          "color": [
+            "#00ff00",
+            "#ff0000",
+            "#00ff00",
+            "#ff0000",
+            "#00ff00"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "00ff00,ff0000,00ff00,ff0000,00ff00,ff0000,00ff00"
+                "hexColors": [
+                  "00ff00",
+                  "ff0000",
+                  "00ff00",
+                  "ff0000",
+                  "00ff00",
+                  "ff0000",
+                  "00ff00"
+                ]
               }
             }
           ]
         },
         {
           "name": "All blue-cyan",
-          "color": "#0000ff,#00ffff,#0000ff,#00ffff,#0000ff",
+          "color": [
+            "#0000ff",
+            "#00ffff",
+            "#0000ff",
+            "#00ffff",
+            "#0000ff"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "0000ff,00ffff,0000ff,00ffff,0000ff,00ffff,0000ff"
+                "hexColors": [
+                  "0000ff",
+                  "00ffff",
+                  "0000ff",
+                  "00ffff",
+                  "0000ff",
+                  "00ffff",
+                  "0000ff"
+                ]
               }
             }
           ]
         },
         {
           "name": "All cyan-blue",
-          "color": "#00ffff,#0000ff,#00ffff,#0000ff,#00ffff",
+          "color": [
+            "#00ffff",
+            "#0000ff",
+            "#00ffff",
+            "#0000ff",
+            "#00ffff"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "00ffff,0000ff,00ffff,0000ff,00ffff,0000ff,00ffff"
+                "hexColors": [
+                  "00ffff",
+                  "0000ff",
+                  "00ffff",
+                  "0000ff",
+                  "00ffff",
+                  "0000ff",
+                  "00ffff"
+                ]
               }
             }
           ]
         },
         {
           "name": "All blue-yellow",
-          "color": "#0000ff,#ffff00,#0000ff,#ffff00,#0000ff",
+          "color": [
+            "#0000ff",
+            "#ffff00",
+            "#0000ff",
+            "#ffff00",
+            "#0000ff"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "0000ff,ffff00,0000ff,ffff00,0000ff,ffff00,0000ff"
+                "hexColors": [
+                  "0000ff",
+                  "ffff00",
+                  "0000ff",
+                  "ffff00",
+                  "0000ff",
+                  "ffff00",
+                  "0000ff"
+                ]
               }
             }
           ]
         },
         {
           "name": "All yellow-blue",
-          "color": "#ffff00,#0000ff,#ffff00,#0000ff,#ffff00",
+          "color": [
+            "#ffff00",
+            "#0000ff",
+            "#ffff00",
+            "#0000ff",
+            "#ffff00"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "ffff00,0000ff,ffff00,0000ff,ffff00,0000ff,ffff00"
+                "hexColors": [
+                  "ffff00",
+                  "0000ff",
+                  "ffff00",
+                  "0000ff",
+                  "ffff00",
+                  "0000ff",
+                  "ffff00"
+                ]
               }
             }
           ]
         },
         {
           "name": "All blue-white",
-          "color": "#0000ff,#ffffff,#0000ff,#ffffff,#0000ff",
+          "color": [
+            "#0000ff",
+            "#ffffff",
+            "#0000ff",
+            "#ffffff",
+            "#0000ff"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "0000ff,ffffff,0000ff,ffffff,0000ff,ffffff,0000ff"
+                "hexColors": [
+                  "0000ff",
+                  "ffffff",
+                  "0000ff",
+                  "ffffff",
+                  "0000ff",
+                  "ffffff",
+                  "0000ff"
+                ]
               }
             }
           ]
         },
         {
           "name": "All white-blue",
-          "color": "#ffffff,#0000ff,#ffffff,#0000ff,#ffffff",
+          "color": [
+            "#ffffff",
+            "#0000ff",
+            "#ffffff",
+            "#0000ff",
+            "#ffffff"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "ffffff,0000ff,ffffff,0000ff,ffffff,0000ff,ffffff"
+                "hexColors": [
+                  "ffffff",
+                  "0000ff",
+                  "ffffff",
+                  "0000ff",
+                  "ffffff",
+                  "0000ff",
+                  "ffffff"
+                ]
               }
             }
           ]
         },
         {
           "name": "All green-yellow",
-          "color": "#00ff00,#ffff00,#00ff00,#ffff00,#00ff00",
+          "color": [
+            "#00ff00",
+            "#ffff00",
+            "#00ff00",
+            "#ffff00",
+            "#00ff00"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "00ff00,ffff00,00ff00,ffff00,00ff00,ffff00,00ff00"
+                "hexColors": [
+                  "00ff00",
+                  "ffff00",
+                  "00ff00",
+                  "ffff00",
+                  "00ff00",
+                  "ffff00",
+                  "00ff00"
+                ]
               }
             }
           ]
         },
         {
           "name": "All yellow-green",
-          "color": "#ffff00,#00ff00,#ffff00,#00ff00,#ffff00",
+          "color": [
+            "#ffff00",
+            "#00ff00",
+            "#ffff00",
+            "#00ff00",
+            "#ffff00"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "ffff00,00ff00,ffff00,00ff00,ffff00,00ff00,ffff00"
+                "hexColors": [
+                  "ffff00",
+                  "00ff00",
+                  "ffff00",
+                  "00ff00",
+                  "ffff00",
+                  "00ff00",
+                  "ffff00"
+                ]
               }
             }
           ]
         },
         {
           "name": "All purple-yellow",
-          "color": "#8000ff,#ffff00,#8000ff,#ffff00,#8000ff",
+          "color": [
+            "#8000ff",
+            "#ffff00",
+            "#8000ff",
+            "#ffff00",
+            "#8000ff"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "8000ff,ffff00,8000ff,ffff00,8000ff,ffff00,8000ff"
+                "hexColors": [
+                  "8000ff",
+                  "ffff00",
+                  "8000ff",
+                  "ffff00",
+                  "8000ff",
+                  "ffff00",
+                  "8000ff"
+                ]
               }
             }
           ]
         },
         {
           "name": "All yellow-purple",
-          "color": "#ffff00,#8000ff,#ffff00,#8000ff,#ffff00",
+          "color": [
+            "#ffff00",
+            "#8000ff",
+            "#ffff00",
+            "#8000ff",
+            "#ffff00"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "ffff00,8000ff,ffff00,8000ff,ffff00,8000ff,ffff00"
+                "hexColors": [
+                  "ffff00",
+                  "8000ff",
+                  "ffff00",
+                  "8000ff",
+                  "ffff00",
+                  "8000ff",
+                  "ffff00"
+                ]
               }
             }
           ]
         },
         {
           "name": "All yellow-magenta",
-          "color": "#ffff00,#ff00ff,#ffff00,#ff00ff,#ffff00,#ff00ff,#ffff00",
+          "color": [
+            "#ffff00",
+            "#ff00ff",
+            "#ffff00",
+            "#ff00ff",
+            "#ffff00",
+            "#ff00ff",
+            "#ffff00"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "ffff00,ff00ff,ffff00,ff00ff,ffff00,ff00ff,ffff00"
+                "hexColors": [
+                  "ffff00",
+                  "ff00ff",
+                  "ffff00",
+                  "ff00ff",
+                  "ffff00",
+                  "ff00ff",
+                  "ffff00"
+                ]
               }
             }
           ]
         },
         {
           "name": "All magenta-yellow",
-          "color": "#ff00ff,#ffff00,#ff00ff,#ffff00,#ff00ff,#ffff00,#ff00ff",
+          "color": [
+            "#ff00ff",
+            "#ffff00",
+            "#ff00ff",
+            "#ffff00",
+            "#ff00ff",
+            "#ffff00",
+            "#ff00ff"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "ff00ff,ffff00,ff00ff,ffff00,ffff00,ff00ff"
+                "hexColors": [
+                  "ff00ff",
+                  "ffff00",
+                  "ff00ff",
+                  "ffff00",
+                  "ffff00",
+                  "ff00ff"
+                ]
               }
             }
           ]
         },
         {
           "name": "All purple-orange",
-          "color": "#8000ff,#ff8000,#8000ff,#ff8000,#8000ff",
+          "color": [
+            "#8000ff",
+            "#ff8000",
+            "#8000ff",
+            "#ff8000",
+            "#8000ff"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "8000ff,ff8000,8000ff,ff8000,8000ff,ff8000,8000ff"
+                "hexColors": [
+                  "8000ff",
+                  "ff8000",
+                  "8000ff",
+                  "ff8000",
+                  "8000ff",
+                  "ff8000",
+                  "8000ff"
+                ]
               }
             }
           ]
         },
         {
           "name": "All orange-purple",
-          "color": "#ff8000,#8000ff,#ff8000,#8000ff,#ff8000",
+          "color": [
+            "#ff8000",
+            "#8000ff",
+            "#ff8000",
+            "#8000ff",
+            "#ff8000"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "ff8000,8000ff,ff8000,8000ff,ff8000,8000ff,ff8000"
+                "hexColors": [
+                  "ff8000",
+                  "8000ff",
+                  "ff8000",
+                  "8000ff",
+                  "ff8000",
+                  "8000ff",
+                  "ff8000"
+                ]
               }
             }
           ]
         },
         {
           "name": "All red-orange",
-          "color": "#ff0000,#ff8000,#ff0000,#ff8000,#ff0000",
+          "color": [
+            "#ff0000",
+            "#ff8000",
+            "#ff0000",
+            "#ff8000",
+            "#ff0000"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "ff0000,ff8000,ff0000,ff8000,ff0000,ff8000,ff0000"
+                "hexColors": [
+                  "ff0000",
+                  "ff8000",
+                  "ff0000",
+                  "ff8000",
+                  "ff0000",
+                  "ff8000",
+                  "ff0000"
+                ]
               }
             }
           ]
         },
         {
           "name": "All orange-red",
-          "color": "#ff8000,#ff0000,#ff8000,#ff0000,#ff8000",
+          "color": [
+            "#ff8000",
+            "#ff0000",
+            "#ff8000",
+            "#ff0000",
+            "#ff8000"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "ff8000,ff0000,ff8000,ff0000,ff8000,ff0000,ff8000"
+                "hexColors": [
+                  "ff8000",
+                  "ff0000",
+                  "ff8000",
+                  "ff0000",
+                  "ff8000",
+                  "ff0000",
+                  "ff8000"
+                ]
               }
             }
           ]
         },
         {
           "name": "All yellow-orange",
-          "color": "#ffff00,#ff8000,#ffff00,#ff8000,#ffff00",
+          "color": [
+            "#ffff00",
+            "#ff8000",
+            "#ffff00",
+            "#ff8000",
+            "#ffff00"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "ffff00,ff8000,ffff00,ff8000,ffff00,ff8000,ffff00"
+                "hexColors": [
+                  "ffff00",
+                  "ff8000",
+                  "ffff00",
+                  "ff8000",
+                  "ffff00",
+                  "ff8000",
+                  "ffff00"
+                ]
               }
             }
           ]
         },
         {
           "name": "All orange-yellow",
-          "color": "#ff8000,#ffff00,#ff8000,#ffff00,#ff8000",
+          "color": [
+            "#ff8000",
+            "#ffff00",
+            "#ff8000",
+            "#ffff00",
+            "#ff8000"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "ff8000,ffff00,ff8000,ffff00,ff8000,ffff00,ff8000"
+                "hexColors": [
+                  "ff8000",
+                  "ffff00",
+                  "ff8000",
+                  "ffff00",
+                  "ff8000",
+                  "ffff00",
+                  "ff8000"
+                ]
               }
             }
           ]
         },
         {
           "name": "All red-blue",
-          "color": "#ff0000,#0000ff,#ff0000,#0000ff,#ff0000",
+          "color": [
+            "#ff0000",
+            "#0000ff",
+            "#ff0000",
+            "#0000ff",
+            "#ff0000"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "ff0000,0000ff,ff0000,0000ff,ff0000,0000ff,ff0000"
+                "hexColors": [
+                  "ff0000",
+                  "0000ff",
+                  "ff0000",
+                  "0000ff",
+                  "ff0000",
+                  "0000ff",
+                  "ff0000"
+                ]
               }
             }
           ]
         },
         {
           "name": "All blue-red",
-          "color": "#0000ff,#ff0000,#0000ff,#ff0000,#0000ff",
+          "color": [
+            "#0000ff",
+            "#ff0000",
+            "#0000ff",
+            "#ff0000",
+            "#0000ff"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "0000ff,ff0000,0000ff,ff0000,0000ff,ff0000,0000ff"
+                "hexColors": [
+                  "0000ff",
+                  "ff0000",
+                  "0000ff",
+                  "ff0000",
+                  "0000ff",
+                  "ff0000",
+                  "0000ff"
+                ]
               }
             }
           ]
         },
         {
           "name": "All green-orange",
-          "color": "#00ff00,#ff8000,#00ff00,#ff8000,#00ff00",
+          "color": [
+            "#00ff00",
+            "#ff8000",
+            "#00ff00",
+            "#ff8000",
+            "#00ff00"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "00ff00,ff8000,00ff00,ff8000,00ff00,ff8000,00ff00"
+                "hexColors": [
+                  "00ff00",
+                  "ff8000",
+                  "00ff00",
+                  "ff8000",
+                  "00ff00",
+                  "ff8000",
+                  "00ff00"
+                ]
               }
             }
           ]
         },
         {
           "name": "All orange-green",
-          "color": "#ff8000,#00ff00,#ff8000,#00ff00,#ff8000",
+          "color": [
+            "#ff8000",
+            "#00ff00",
+            "#ff8000",
+            "#00ff00",
+            "#ff8000"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "ff8000,00ff00,ff8000,00ff00,ff8000,00ff00,ff8000"
+                "hexColors": [
+                  "ff8000",
+                  "00ff00",
+                  "ff8000",
+                  "00ff00",
+                  "ff8000",
+                  "00ff00",
+                  "ff8000"
+                ]
               }
             }
           ]
         },
         {
           "name": "All Enterprise E",
-          "color": "#000088,#000088,#ffff80,#000088,#000088,#000088,#000088",
+          "color": [
+            "#000088",
+            "#000088",
+            "#ffff80",
+            "#000088",
+            "#000088",
+            "#000088",
+            "#000088"
+          ],
           "actions": []
         },
         {
           "name": "All LightBlue",
-          "color": "#7777ff,#aaaaff,#7777ff,#aaaaff,#7777ff,#aaaaff,#7777ff",
+          "color": [
+            "#7777ff",
+            "#aaaaff",
+            "#7777ff",
+            "#aaaaff",
+            "#7777ff",
+            "#aaaaff",
+            "#7777ff"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "7777ff,aaaaff,7777ff,aaaaff,7777ff,aaaaff,7777ff"
+                "hexColors": [
+                  "7777ff",
+                  "aaaaff",
+                  "7777ff",
+                  "aaaaff",
+                  "7777ff",
+                  "aaaaff",
+                  "7777ff"
+                ]
               }
             }
           ]
         },
         {
           "name": "All Christmas",
-          "color": "#990000,#009900,#990000,#009900,#990000,#009900,#990000",
+          "color": [
+            "#990000",
+            "#009900",
+            "#990000",
+            "#009900",
+            "#990000",
+            "#009900",
+            "#990000"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "990000,009900,990000,009900,990000,009900,990000"
+                "hexColors": [
+                  "990000",
+                  "009900",
+                  "990000",
+                  "009900",
+                  "990000",
+                  "009900",
+                  "990000"
+                ]
               }
             }
           ]
         },
         {
           "name": "All White",
-          "color": "#ffffff",
+          "color": [
+            "#ffffff"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "ffffff"
+                "hexColors": [
+                  "ffffff"
+                ]
               }
             }
           ]
         },
         {
           "name": "All Warm White",
-          "color": "#ffde59",
+          "color": [
+            "#ffde59"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "000000,000000,94832d,94832d,94832d,94832d,000000",
-                "gains": "1.0"
+                "hexColors": [
+                  "000000",
+                  "000000",
+                  "94832d",
+                  "94832d",
+                  "94832d",
+                  "94832d",
+                  "000000"
+                ],
+                "gains": [
+                  1.0
+                ]
               }
             }
           ]
         },
         {
           "name": "All Black",
-          "color": "#303030",
+          "color": [
+            "#303030"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "000000"
+                "hexColors": [
+                  "000000"
+                ]
               }
             }
           ]
         },
         {
           "name": "Licht TV",
-          "color": "#fffad5",
+          "color": [
+            "#fffad5"
+          ],
           "actions": [
             {
               "shelly": {
-                "ids": "Wohnzimmer_Deckenlampe,Flur,Kristall,Schlafzimmer",
+                "ids": [
+                  "Wohnzimmer_Deckenlampe",
+                  "Flur",
+                  "Kristall",
+                  "Schlafzimmer"
+                ],
                 "turnOn": false
               }
             },
             {
               "hybrid": {
-                "hexColors": "000000,000000,94832d,94832d,94832d,94832d,000000"
+                "hexColors": [
+                  "000000",
+                  "000000",
+                  "94832d",
+                  "94832d",
+                  "94832d",
+                  "94832d",
+                  "000000"
+                ]
               }
             },
             {
@@ -982,7 +2010,9 @@
             },
             {
               "hybrid": {
-                "hexColors": "000000"
+                "hexColors": [
+                  "000000"
+                ]
               }
             },
             {
@@ -992,7 +2022,9 @@
             },
             {
               "shelly": {
-                "ids": "Wohnzimmer_Esstisch",
+                "ids": [
+                  "Wohnzimmer_Esstisch"
+                ],
                 "turnOn": false
               }
             }
@@ -1000,7 +2032,9 @@
         },
         {
           "name": "TV Licht Aus",
-          "color": "#000000",
+          "color": [
+            "#000000"
+          ],
           "actions": [
             {
               "lmair": {
@@ -1012,12 +2046,27 @@
         },
         {
           "name": "Licht Kino",
-          "color": "#000088,#000088,#880000,#880000",
+          "color": [
+            "#000088",
+            "#000088",
+            "#880000",
+            "#880000"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "000000,000000,94832d,94832d,94832d,94832d,000000",
-                "gains": "1.0"
+                "hexColors": [
+                  "000000",
+                  "000000",
+                  "94832d",
+                  "94832d",
+                  "94832d",
+                  "94832d",
+                  "000000"
+                ],
+                "gains": [
+                  1.0
+                ]
               }
             },
             {
@@ -1038,7 +2087,15 @@
             },
             {
               "hybrid": {
-                "hexColors": "7777ff,aaaaff,7777ff,aaaaff,7777ff,aaaaff,7777ff"
+                "hexColors": [
+                  "7777ff",
+                  "aaaaff",
+                  "7777ff",
+                  "aaaaff",
+                  "7777ff",
+                  "aaaaff",
+                  "7777ff"
+                ]
               }
             },
             {
@@ -1048,7 +2105,15 @@
             },
             {
               "hybrid": {
-                "hexColors": "000088,000088,ffffcc,000088,000088,000088,000088"
+                "hexColors": [
+                  "000088",
+                  "000088",
+                  "ffffcc",
+                  "000088",
+                  "000088",
+                  "000088",
+                  "000088"
+                ]
               }
             },
             {
@@ -1058,19 +2123,42 @@
             },
             {
               "hybrid": {
-                "hexColors": "880000,880000,000088,000088,000088,000088,880000"
+                "hexColors": [
+                  "880000",
+                  "880000",
+                  "000088",
+                  "000088",
+                  "000088",
+                  "000088",
+                  "880000"
+                ]
               }
             }
           ]
         },
         {
           "name": "Licht Kino Kurz",
-          "color": "#000088,#000088,#880000,#880000",
+          "color": [
+            "#000088",
+            "#000088",
+            "#880000",
+            "#880000"
+          ],
           "actions": [
             {
               "hybrid": {
-                "hexColors": "000000,000000,94832d,94832d,94832d,94832d,000000",
-                "gains": "1.0"
+                "hexColors": [
+                  "000000",
+                  "000000",
+                  "94832d",
+                  "94832d",
+                  "94832d",
+                  "94832d",
+                  "000000"
+                ],
+                "gains": [
+                  1.0
+                ]
               }
             },
             {
@@ -1081,7 +2169,15 @@
             },
             {
               "hybrid": {
-                "hexColors": "880000,880000,000088,000088,000088,000088,880000"
+                "hexColors": [
+                  "880000",
+                  "880000",
+                  "000088",
+                  "000088",
+                  "000088",
+                  "000088",
+                  "880000"
+                ]
               }
             }
           ]
@@ -1095,156 +2191,260 @@
       "scenes": [
         {
           "name": "Deko Red",
-          "color": "#ff0000",
+          "color": [
+            "#ff0000"
+          ],
           "actions": [
             {
               "hybrid": {
-                "ids": "Starwars,Bar,Rgbw",
-                "hexColors": "ff0000"
+                "ids": [
+                  "Starwars",
+                  "Bar",
+                  "Rgbw"
+                ],
+                "hexColors": [
+                  "ff0000"
+                ]
               }
             }
           ]
         },
         {
           "name": "Deko Dark Red",
-          "color": "#880000",
+          "color": [
+            "#880000"
+          ],
           "actions": [
             {
               "hybrid": {
-                "ids": "Starwars,Bar,Rgbw",
-                "hexColors": "880000"
+                "ids": [
+                  "Starwars",
+                  "Bar",
+                  "Rgbw"
+                ],
+                "hexColors": [
+                  "880000"
+                ]
               }
             }
           ]
         },
         {
           "name": "Deko Green",
-          "color": "#00ff00",
+          "color": [
+            "#00ff00"
+          ],
           "actions": [
             {
               "hybrid": {
-                "ids": "Starwars,Bar,Rgbw",
-                "hexColors": "00ff00"
+                "ids": [
+                  "Starwars",
+                  "Bar",
+                  "Rgbw"
+                ],
+                "hexColors": [
+                  "00ff00"
+                ]
               }
             }
           ]
         },
         {
           "name": "Deko Dark Green",
-          "color": "#008800",
+          "color": [
+            "#008800"
+          ],
           "actions": [
             {
               "hybrid": {
-                "ids": "Starwars,Bar,Rgbw",
-                "hexColors": "00ff00"
+                "ids": [
+                  "Starwars",
+                  "Bar",
+                  "Rgbw"
+                ],
+                "hexColors": [
+                  "00ff00"
+                ]
               }
             }
           ]
         },
         {
           "name": "Deko Blue",
-          "color": "#0000ff",
+          "color": [
+            "#0000ff"
+          ],
           "actions": [
             {
               "hybrid": {
-                "ids": "Starwars,Bar,Rgbw",
-                "hexColors": "0000ff"
+                "ids": [
+                  "Starwars",
+                  "Bar",
+                  "Rgbw"
+                ],
+                "hexColors": [
+                  "0000ff"
+                ]
               }
             }
           ]
         },
         {
           "name": "Deko Dark Blue",
-          "color": "#000088",
+          "color": [
+            "#000088"
+          ],
           "actions": [
             {
               "hybrid": {
-                "ids": "Starwars,Bar,Rgbw",
-                "hexColors": "000088"
+                "ids": [
+                  "Starwars",
+                  "Bar",
+                  "Rgbw"
+                ],
+                "hexColors": [
+                  "000088"
+                ]
               }
             }
           ]
         },
         {
           "name": "Deko Yellow",
-          "color": "#ffff00",
+          "color": [
+            "#ffff00"
+          ],
           "actions": [
             {
               "hybrid": {
-                "ids": "Starwars,Bar,Rgbw",
-                "hexColors": "ffff00"
+                "ids": [
+                  "Starwars",
+                  "Bar",
+                  "Rgbw"
+                ],
+                "hexColors": [
+                  "ffff00"
+                ]
               }
             }
           ]
         },
         {
           "name": "Deko Cyan",
-          "color": "#00ffff",
+          "color": [
+            "#00ffff"
+          ],
           "actions": [
             {
               "hybrid": {
-                "ids": "Starwars,Bar,Rgbw",
-                "hexColors": "00ffff"
+                "ids": [
+                  "Starwars",
+                  "Bar",
+                  "Rgbw"
+                ],
+                "hexColors": [
+                  "00ffff"
+                ]
               }
             }
           ]
         },
         {
           "name": "Deko Magenta",
-          "color": "#ff00ff",
+          "color": [
+            "#ff00ff"
+          ],
           "actions": [
             {
               "hybrid": {
-                "ids": "Starwars,Bar,Rgbw",
-                "hexColors": "ff00ff"
+                "ids": [
+                  "Starwars",
+                  "Bar",
+                  "Rgbw"
+                ],
+                "hexColors": [
+                  "ff00ff"
+                ]
               }
             }
           ]
         },
         {
           "name": "Deko Orange",
-          "color": "#ff8000",
+          "color": [
+            "#ff8000"
+          ],
           "actions": [
             {
               "hybrid": {
-                "ids": "Starwars,Bar,Rgbw",
-                "hexColors": "ff8000"
+                "ids": [
+                  "Starwars",
+                  "Bar",
+                  "Rgbw"
+                ],
+                "hexColors": [
+                  "ff8000"
+                ]
               }
             }
           ]
         },
         {
           "name": "Deko Purple",
-          "color": "#8000ff",
+          "color": [
+            "#8000ff"
+          ],
           "actions": [
             {
               "hybrid": {
-                "ids": "Starwars,Bar,Rgbw",
-                "hexColors": "8000ff"
+                "ids": [
+                  "Starwars",
+                  "Bar",
+                  "Rgbw"
+                ],
+                "hexColors": [
+                  "8000ff"
+                ]
               }
             }
           ]
         },
         {
           "name": "Deko Teal",
-          "color": "#2388ad",
+          "color": [
+            "#2388ad"
+          ],
           "actions": [
             {
               "hybrid": {
-                "ids": "Starwars,Bar,Rgbw",
-                "hexColors": "2388ad"
+                "ids": [
+                  "Starwars",
+                  "Bar",
+                  "Rgbw"
+                ],
+                "hexColors": [
+                  "2388ad"
+                ]
               }
             }
           ]
         },
         {
           "name": "Deko White",
-          "color": "#808080",
+          "color": [
+            "#808080"
+          ],
           "actions": [
             {
               "hybrid": {
-                "ids": "Starwars,Bar,Rgbw",
-                "hexColors": "ffffff"
+                "ids": [
+                  "Starwars",
+                  "Bar",
+                  "Rgbw"
+                ],
+                "hexColors": [
+                  "ffffff"
+                ]
               }
             }
           ]
@@ -1258,156 +2458,234 @@
       "scenes": [
         {
           "name": "Starwars Red",
-          "color": "#ff0000",
+          "color": [
+            "#ff0000"
+          ],
           "actions": [
             {
               "hybrid": {
-                "ids": "Starwars",
-                "hexColors": "ff0000"
+                "ids": [
+                  "Starwars"
+                ],
+                "hexColors": [
+                  "ff0000"
+                ]
               }
             }
           ]
         },
         {
           "name": "Starwars Dark Red",
-          "color": "#880000",
+          "color": [
+            "#880000"
+          ],
           "actions": [
             {
               "hybrid": {
-                "ids": "Starwars",
-                "hexColors": "880000"
+                "ids": [
+                  "Starwars"
+                ],
+                "hexColors": [
+                  "880000"
+                ]
               }
             }
           ]
         },
         {
           "name": "Starwars Green",
-          "color": "#00ff00",
+          "color": [
+            "#00ff00"
+          ],
           "actions": [
             {
               "hybrid": {
-                "ids": "Starwars",
-                "hexColors": "00ff00"
+                "ids": [
+                  "Starwars"
+                ],
+                "hexColors": [
+                  "00ff00"
+                ]
               }
             }
           ]
         },
         {
           "name": "Starwars Dark Green",
-          "color": "#008800",
+          "color": [
+            "#008800"
+          ],
           "actions": [
             {
               "hybrid": {
-                "ids": "Starwars",
-                "hexColors": "00ff00"
+                "ids": [
+                  "Starwars"
+                ],
+                "hexColors": [
+                  "00ff00"
+                ]
               }
             }
           ]
         },
         {
           "name": "Starwars Blue",
-          "color": "#0000ff",
+          "color": [
+            "#0000ff"
+          ],
           "actions": [
             {
               "hybrid": {
-                "ids": "Starwars",
-                "hexColors": "0000ff"
+                "ids": [
+                  "Starwars"
+                ],
+                "hexColors": [
+                  "0000ff"
+                ]
               }
             }
           ]
         },
         {
           "name": "Starwars Dark Blue",
-          "color": "#000088",
+          "color": [
+            "#000088"
+          ],
           "actions": [
             {
               "hybrid": {
-                "ids": "Starwars",
-                "hexColors": "000088"
+                "ids": [
+                  "Starwars"
+                ],
+                "hexColors": [
+                  "000088"
+                ]
               }
             }
           ]
         },
         {
           "name": "Starwars Yellow",
-          "color": "#ffff00",
+          "color": [
+            "#ffff00"
+          ],
           "actions": [
             {
               "hybrid": {
-                "ids": "Starwars",
-                "hexColors": "ffff00"
+                "ids": [
+                  "Starwars"
+                ],
+                "hexColors": [
+                  "ffff00"
+                ]
               }
             }
           ]
         },
         {
           "name": "Starwars Cyan",
-          "color": "#00ffff",
+          "color": [
+            "#00ffff"
+          ],
           "actions": [
             {
               "hybrid": {
-                "ids": "Starwars",
-                "hexColors": "00ffff"
+                "ids": [
+                  "Starwars"
+                ],
+                "hexColors": [
+                  "00ffff"
+                ]
               }
             }
           ]
         },
         {
           "name": "Starwars Magenta",
-          "color": "#ff00ff",
+          "color": [
+            "#ff00ff"
+          ],
           "actions": [
             {
               "hybrid": {
-                "ids": "Starwars",
-                "hexColors": "ff00ff"
+                "ids": [
+                  "Starwars"
+                ],
+                "hexColors": [
+                  "ff00ff"
+                ]
               }
             }
           ]
         },
         {
           "name": "Starwars Orange",
-          "color": "#ff8000",
+          "color": [
+            "#ff8000"
+          ],
           "actions": [
             {
               "hybrid": {
-                "ids": "Starwars",
-                "hexColors": "ff8000"
+                "ids": [
+                  "Starwars"
+                ],
+                "hexColors": [
+                  "ff8000"
+                ]
               }
             }
           ]
         },
         {
           "name": "Starwars Purple",
-          "color": "#8000ff",
+          "color": [
+            "#8000ff"
+          ],
           "actions": [
             {
               "hybrid": {
-                "ids": "Starwars",
-                "hexColors": "8000ff"
+                "ids": [
+                  "Starwars"
+                ],
+                "hexColors": [
+                  "8000ff"
+                ]
               }
             }
           ]
         },
         {
           "name": "Starwars Teal",
-          "color": "#2388ad",
+          "color": [
+            "#2388ad"
+          ],
           "actions": [
             {
               "hybrid": {
-                "ids": "Starwars",
-                "hexColors": "2388ad"
+                "ids": [
+                  "Starwars"
+                ],
+                "hexColors": [
+                  "2388ad"
+                ]
               }
             }
           ]
         },
         {
           "name": "Starwars White",
-          "color": "#808080",
+          "color": [
+            "#808080"
+          ],
           "actions": [
             {
               "hybrid": {
-                "ids": "Starwars",
-                "hexColors": "ffffff"
+                "ids": [
+                  "Starwars"
+                ],
+                "hexColors": [
+                  "ffffff"
+                ]
               }
             }
           ]
@@ -1421,156 +2699,234 @@
       "scenes": [
         {
           "name": "Rgbw Red",
-          "color": "#ff0000",
+          "color": [
+            "#ff0000"
+          ],
           "actions": [
             {
               "hybrid": {
-                "ids": "Rgbw",
-                "hexColors": "ff0000"
+                "ids": [
+                  "Rgbw"
+                ],
+                "hexColors": [
+                  "ff0000"
+                ]
               }
             }
           ]
         },
         {
           "name": "Rgbw Dark Red",
-          "color": "#880000",
+          "color": [
+            "#880000"
+          ],
           "actions": [
             {
               "hybrid": {
-                "ids": "Rgbw",
-                "hexColors": "880000"
+                "ids": [
+                  "Rgbw"
+                ],
+                "hexColors": [
+                  "880000"
+                ]
               }
             }
           ]
         },
         {
           "name": "Rgbw Green",
-          "color": "#00ff00",
+          "color": [
+            "#00ff00"
+          ],
           "actions": [
             {
               "hybrid": {
-                "ids": "Rgbw",
-                "hexColors": "00ff00"
+                "ids": [
+                  "Rgbw"
+                ],
+                "hexColors": [
+                  "00ff00"
+                ]
               }
             }
           ]
         },
         {
           "name": "Rgbw Dark Green",
-          "color": "#008800",
+          "color": [
+            "#008800"
+          ],
           "actions": [
             {
               "hybrid": {
-                "ids": "Rgbw",
-                "hexColors": "00ff00"
+                "ids": [
+                  "Rgbw"
+                ],
+                "hexColors": [
+                  "00ff00"
+                ]
               }
             }
           ]
         },
         {
           "name": "Rgbw Blue",
-          "color": "#0000ff",
+          "color": [
+            "#0000ff"
+          ],
           "actions": [
             {
               "hybrid": {
-                "ids": "Rgbw",
-                "hexColors": "0000ff"
+                "ids": [
+                  "Rgbw"
+                ],
+                "hexColors": [
+                  "0000ff"
+                ]
               }
             }
           ]
         },
         {
           "name": "Rgbw Dark Blue",
-          "color": "#000088",
+          "color": [
+            "#000088"
+          ],
           "actions": [
             {
               "hybrid": {
-                "ids": "Rgbw",
-                "hexColors": "000088"
+                "ids": [
+                  "Rgbw"
+                ],
+                "hexColors": [
+                  "000088"
+                ]
               }
             }
           ]
         },
         {
           "name": "Rgbw Yellow",
-          "color": "#ffff00",
+          "color": [
+            "#ffff00"
+          ],
           "actions": [
             {
               "hybrid": {
-                "ids": "Rgbw",
-                "hexColors": "ffff00"
+                "ids": [
+                  "Rgbw"
+                ],
+                "hexColors": [
+                  "ffff00"
+                ]
               }
             }
           ]
         },
         {
           "name": "Rgbw Cyan",
-          "color": "#00ffff",
+          "color": [
+            "#00ffff"
+          ],
           "actions": [
             {
               "hybrid": {
-                "ids": "Rgbw",
-                "hexColors": "00ffff"
+                "ids": [
+                  "Rgbw"
+                ],
+                "hexColors": [
+                  "00ffff"
+                ]
               }
             }
           ]
         },
         {
           "name": "Rgbw Magenta",
-          "color": "#ff00ff",
+          "color": [
+            "#ff00ff"
+          ],
           "actions": [
             {
               "hybrid": {
-                "ids": "Rgbw",
-                "hexColors": "ff00ff"
+                "ids": [
+                  "Rgbw"
+                ],
+                "hexColors": [
+                  "ff00ff"
+                ]
               }
             }
           ]
         },
         {
           "name": "Rgbw Orange",
-          "color": "#ff8000",
+          "color": [
+            "#ff8000"
+          ],
           "actions": [
             {
               "hybrid": {
-                "ids": "Rgbw",
-                "hexColors": "ff8000"
+                "ids": [
+                  "Rgbw"
+                ],
+                "hexColors": [
+                  "ff8000"
+                ]
               }
             }
           ]
         },
         {
           "name": "Rgbw Purple",
-          "color": "#8000ff",
+          "color": [
+            "#8000ff"
+          ],
           "actions": [
             {
               "hybrid": {
-                "ids": "Rgbw",
-                "hexColors": "8000ff"
+                "ids": [
+                  "Rgbw"
+                ],
+                "hexColors": [
+                  "8000ff"
+                ]
               }
             }
           ]
         },
         {
           "name": "Rgbw Teal",
-          "color": "#2388ad",
+          "color": [
+            "#2388ad"
+          ],
           "actions": [
             {
               "hybrid": {
-                "ids": "Rgbw",
-                "hexColors": "2388ad"
+                "ids": [
+                  "Rgbw"
+                ],
+                "hexColors": [
+                  "2388ad"
+                ]
               }
             }
           ]
         },
         {
           "name": "Rgbw White",
-          "color": "#808080",
+          "color": [
+            "#808080"
+          ],
           "actions": [
             {
               "hybrid": {
-                "ids": "Rgbw",
-                "hexColors": "ffffff"
+                "ids": [
+                  "Rgbw"
+                ],
+                "hexColors": [
+                  "ffffff"
+                ]
               }
             }
           ]
@@ -1584,156 +2940,273 @@
       "scenes": [
         {
           "name": "DMX Red",
-          "color": "#ff0000",
+          "color": [
+            "#ff0000"
+          ],
           "actions": [
             {
               "hybrid": {
-                "ids": "15,29,21,1",
-                "hexColors": "ff0000"
+                "ids": [
+                  "15",
+                  "29",
+                  "21",
+                  "1"
+                ],
+                "hexColors": [
+                  "ff0000"
+                ]
               }
             }
           ]
         },
         {
           "name": "DMX Dark Red",
-          "color": "#880000",
+          "color": [
+            "#880000"
+          ],
           "actions": [
             {
               "hybrid": {
-                "ids": "15,29,21,1",
-                "hexColors": "880000"
+                "ids": [
+                  "15",
+                  "29",
+                  "21",
+                  "1"
+                ],
+                "hexColors": [
+                  "880000"
+                ]
               }
             }
           ]
         },
         {
           "name": "DMX Green",
-          "color": "#00ff00",
+          "color": [
+            "#00ff00"
+          ],
           "actions": [
             {
               "hybrid": {
-                "ids": "15,29,21,1",
-                "hexColors": "00ff00"
+                "ids": [
+                  "15",
+                  "29",
+                  "21",
+                  "1"
+                ],
+                "hexColors": [
+                  "00ff00"
+                ]
               }
             }
           ]
         },
         {
           "name": "DMX Dark Green",
-          "color": "#008800",
+          "color": [
+            "#008800"
+          ],
           "actions": [
             {
               "hybrid": {
-                "ids": "15,29,21,1",
-                "hexColors": "00ff00"
+                "ids": [
+                  "15",
+                  "29",
+                  "21",
+                  "1"
+                ],
+                "hexColors": [
+                  "00ff00"
+                ]
               }
             }
           ]
         },
         {
           "name": "DMX Blue",
-          "color": "#0000ff",
+          "color": [
+            "#0000ff"
+          ],
           "actions": [
             {
               "hybrid": {
-                "ids": "15,29,21,1",
-                "hexColors": "0000ff"
+                "ids": [
+                  "15",
+                  "29",
+                  "21",
+                  "1"
+                ],
+                "hexColors": [
+                  "0000ff"
+                ]
               }
             }
           ]
         },
         {
           "name": "DMX Dark Blue",
-          "color": "#000088",
+          "color": [
+            "#000088"
+          ],
           "actions": [
             {
               "hybrid": {
-                "ids": "15,29,21,1",
-                "hexColors": "000088"
+                "ids": [
+                  "15",
+                  "29",
+                  "21",
+                  "1"
+                ],
+                "hexColors": [
+                  "000088"
+                ]
               }
             }
           ]
         },
         {
           "name": "DMX Yellow",
-          "color": "#ffff00",
+          "color": [
+            "#ffff00"
+          ],
           "actions": [
             {
               "hybrid": {
-                "ids": "15,29,21,1",
-                "hexColors": "ffff00"
+                "ids": [
+                  "15",
+                  "29",
+                  "21",
+                  "1"
+                ],
+                "hexColors": [
+                  "ffff00"
+                ]
               }
             }
           ]
         },
         {
           "name": "DMX Cyan",
-          "color": "#00ffff",
+          "color": [
+            "#00ffff"
+          ],
           "actions": [
             {
               "hybrid": {
-                "ids": "15,29,21,1",
-                "hexColors": "00ffff"
+                "ids": [
+                  "15",
+                  "29",
+                  "21",
+                  "1"
+                ],
+                "hexColors": [
+                  "00ffff"
+                ]
               }
             }
           ]
         },
         {
           "name": "DMX Magenta",
-          "color": "#ff00ff",
+          "color": [
+            "#ff00ff"
+          ],
           "actions": [
             {
               "hybrid": {
-                "ids": "15,29,21,1",
-                "hexColors": "ff00ff"
+                "ids": [
+                  "15",
+                  "29",
+                  "21",
+                  "1"
+                ],
+                "hexColors": [
+                  "ff00ff"
+                ]
               }
             }
           ]
         },
         {
           "name": "DMX Orange",
-          "color": "#ff8000",
+          "color": [
+            "#ff8000"
+          ],
           "actions": [
             {
               "hybrid": {
-                "ids": "15,29,21,1",
-                "hexColors": "ff8000"
+                "ids": [
+                  "15",
+                  "29",
+                  "21",
+                  "1"
+                ],
+                "hexColors": [
+                  "ff8000"
+                ]
               }
             }
           ]
         },
         {
           "name": "DMX Purple",
-          "color": "#8000ff",
+          "color": [
+            "#8000ff"
+          ],
           "actions": [
             {
               "hybrid": {
-                "ids": "15,29,21,1",
-                "hexColors": "8000ff"
+                "ids": [
+                  "15",
+                  "29",
+                  "21",
+                  "1"
+                ],
+                "hexColors": [
+                  "8000ff"
+                ]
               }
             }
           ]
         },
         {
           "name": "DMX Teal",
-          "color": "#2388ad",
+          "color": [
+            "#2388ad"
+          ],
           "actions": [
             {
               "hybrid": {
-                "ids": "15,29,21,1",
-                "hexColors": "2388ad"
+                "ids": [
+                  "15",
+                  "29",
+                  "21",
+                  "1"
+                ],
+                "hexColors": [
+                  "2388ad"
+                ]
               }
             }
           ]
         },
         {
           "name": "DMX White",
-          "color": "#808080",
+          "color": [
+            "#808080"
+          ],
           "actions": [
             {
               "hybrid": {
-                "ids": "15,29,21,1",
-                "hexColors": "ffffff"
+                "ids": [
+                  "15",
+                  "29",
+                  "21",
+                  "1"
+                ],
+                "hexColors": [
+                  "ffffff"
+                ]
               }
             }
           ]
@@ -1746,156 +3219,234 @@
       "scenes": [
         {
           "name": "Bar Red",
-          "color": "#ff0000",
+          "color": [
+            "#ff0000"
+          ],
           "actions": [
             {
               "hybrid": {
-                "ids": "Bar",
-                "hexColors": "ff0000"
+                "ids": [
+                  "Bar"
+                ],
+                "hexColors": [
+                  "ff0000"
+                ]
               }
             }
           ]
         },
         {
           "name": "Bar Dark Red",
-          "color": "#880000",
+          "color": [
+            "#880000"
+          ],
           "actions": [
             {
               "hybrid": {
-                "ids": "Bar",
-                "hexColors": "880000"
+                "ids": [
+                  "Bar"
+                ],
+                "hexColors": [
+                  "880000"
+                ]
               }
             }
           ]
         },
         {
           "name": "Bar Green",
-          "color": "#00ff00",
+          "color": [
+            "#00ff00"
+          ],
           "actions": [
             {
               "hybrid": {
-                "ids": "Bar",
-                "hexColors": "00ff00"
+                "ids": [
+                  "Bar"
+                ],
+                "hexColors": [
+                  "00ff00"
+                ]
               }
             }
           ]
         },
         {
           "name": "Bar Dark Green",
-          "color": "#008800",
+          "color": [
+            "#008800"
+          ],
           "actions": [
             {
               "hybrid": {
-                "ids": "Bar",
-                "hexColors": "00ff00"
+                "ids": [
+                  "Bar"
+                ],
+                "hexColors": [
+                  "00ff00"
+                ]
               }
             }
           ]
         },
         {
           "name": "Bar Blue",
-          "color": "#0000ff",
+          "color": [
+            "#0000ff"
+          ],
           "actions": [
             {
               "hybrid": {
-                "ids": "Bar",
-                "hexColors": "0000ff"
+                "ids": [
+                  "Bar"
+                ],
+                "hexColors": [
+                  "0000ff"
+                ]
               }
             }
           ]
         },
         {
           "name": "Bar Dark Blue",
-          "color": "#000088",
+          "color": [
+            "#000088"
+          ],
           "actions": [
             {
               "hybrid": {
-                "ids": "Bar",
-                "hexColors": "000088"
+                "ids": [
+                  "Bar"
+                ],
+                "hexColors": [
+                  "000088"
+                ]
               }
             }
           ]
         },
         {
           "name": "Bar Yellow",
-          "color": "#ffff00",
+          "color": [
+            "#ffff00"
+          ],
           "actions": [
             {
               "hybrid": {
-                "ids": "Bar",
-                "hexColors": "ffff00"
+                "ids": [
+                  "Bar"
+                ],
+                "hexColors": [
+                  "ffff00"
+                ]
               }
             }
           ]
         },
         {
           "name": "Bar Cyan",
-          "color": "#00ffff",
+          "color": [
+            "#00ffff"
+          ],
           "actions": [
             {
               "hybrid": {
-                "ids": "Bar",
-                "hexColors": "00ffff"
+                "ids": [
+                  "Bar"
+                ],
+                "hexColors": [
+                  "00ffff"
+                ]
               }
             }
           ]
         },
         {
           "name": "Bar Magenta",
-          "color": "#ff00ff",
+          "color": [
+            "#ff00ff"
+          ],
           "actions": [
             {
               "hybrid": {
-                "ids": "Bar",
-                "hexColors": "ff00ff"
+                "ids": [
+                  "Bar"
+                ],
+                "hexColors": [
+                  "ff00ff"
+                ]
               }
             }
           ]
         },
         {
           "name": "Bar Orange",
-          "color": "#ff8000",
+          "color": [
+            "#ff8000"
+          ],
           "actions": [
             {
               "hybrid": {
-                "ids": "Bar",
-                "hexColors": "ff8000"
+                "ids": [
+                  "Bar"
+                ],
+                "hexColors": [
+                  "ff8000"
+                ]
               }
             }
           ]
         },
         {
           "name": "Bar Purple",
-          "color": "#8000ff",
+          "color": [
+            "#8000ff"
+          ],
           "actions": [
             {
               "hybrid": {
-                "ids": "Bar",
-                "hexColors": "8000ff"
+                "ids": [
+                  "Bar"
+                ],
+                "hexColors": [
+                  "8000ff"
+                ]
               }
             }
           ]
         },
         {
           "name": "Bar Teal",
-          "color": "#2388ad",
+          "color": [
+            "#2388ad"
+          ],
           "actions": [
             {
               "hybrid": {
-                "ids": "Bar",
-                "hexColors": "2388ad"
+                "ids": [
+                  "Bar"
+                ],
+                "hexColors": [
+                  "2388ad"
+                ]
               }
             }
           ]
         },
         {
           "name": "Bar White",
-          "color": "#808080",
+          "color": [
+            "#808080"
+          ],
           "actions": [
             {
               "hybrid": {
-                "ids": "Bar",
-                "hexColors": "ffffff"
+                "ids": [
+                  "Bar"
+                ],
+                "hexColors": [
+                  "ffffff"
+                ]
               }
             }
           ]
@@ -1909,7 +3460,9 @@
       "scenes": [
         {
           "name": "IDual On",
-          "color": "#ffffff",
+          "color": [
+            "#ffffff"
+          ],
           "actions": [
             {
               "lmair": {
@@ -1921,7 +3474,9 @@
         },
         {
           "name": "IDual Off",
-          "color": "#000000",
+          "color": [
+            "#000000"
+          ],
           "actions": [
             {
               "lmair": {
@@ -1933,7 +3488,9 @@
         },
         {
           "name": "IDual DayWhite",
-          "color": "#ffffff",
+          "color": [
+            "#ffffff"
+          ],
           "actions": [
             {
               "lmair": {
@@ -1945,7 +3502,9 @@
         },
         {
           "name": "IDual ColdWhite",
-          "color": "#d5f1ff",
+          "color": [
+            "#d5f1ff"
+          ],
           "actions": [
             {
               "lmair": {
@@ -1957,7 +3516,9 @@
         },
         {
           "name": "IDual WarmWhite",
-          "color": "#fffad5",
+          "color": [
+            "#fffad5"
+          ],
           "actions": [
             {
               "lmair": {
@@ -1976,7 +3537,10 @@
       "scenes": [
         {
           "name": "Sci-Fi",
-          "color": "#1100ff,#000088",
+          "color": [
+            "#1100ff",
+            "#000088"
+          ],
           "actions": [
             {
               "yamahaAvantage": {
@@ -1988,7 +3552,10 @@
         },
         {
           "name": "Spectacle",
-          "color": "#ff1100,#880000",
+          "color": [
+            "#ff1100",
+            "#880000"
+          ],
           "actions": [
             {
               "yamahaAvantage": {
@@ -2000,7 +3567,10 @@
         },
         {
           "name": "Adventure",
-          "color": "#66ff00,#00aa00",
+          "color": [
+            "#66ff00",
+            "#00aa00"
+          ],
           "actions": [
             {
               "yamahaAvantage": {
@@ -2012,7 +3582,10 @@
         },
         {
           "name": "The Roxy Theatre",
-          "color": "#ffcc00,#ffff00",
+          "color": [
+            "#ffcc00",
+            "#ffff00"
+          ],
           "actions": [
             {
               "yamahaAvantage": {
@@ -2024,7 +3597,10 @@
         },
         {
           "name": "The Bottom Line",
-          "color": "#ffcc00,#ffff00",
+          "color": [
+            "#ffcc00",
+            "#ffff00"
+          ],
           "actions": [
             {
               "yamahaAvantage": {
@@ -2036,7 +3612,10 @@
         },
         {
           "name": "Hall In Munich",
-          "color": "#aa00ff,#3300aa",
+          "color": [
+            "#aa00ff",
+            "#3300aa"
+          ],
           "actions": [
             {
               "yamahaAvantage": {
@@ -2048,7 +3627,10 @@
         },
         {
           "name": "Hall In Vienna",
-          "color": "#aa00ff,#3300aa",
+          "color": [
+            "#aa00ff",
+            "#3300aa"
+          ],
           "actions": [
             {
               "yamahaAvantage": {
@@ -2060,7 +3642,9 @@
         },
         {
           "name": "Standard",
-          "color": "#cccccc",
+          "color": [
+            "#cccccc"
+          ],
           "actions": [
             {
               "yamahaAvantage": {
@@ -2072,7 +3656,9 @@
         },
         {
           "name": "Surround Decoder",
-          "color": "#cccccc",
+          "color": [
+            "#cccccc"
+          ],
           "actions": [
             {
               "yamahaAvantage": {
@@ -2084,7 +3670,9 @@
         },
         {
           "name": "7ch Stereo",
-          "color": "#cccccc",
+          "color": [
+            "#cccccc"
+          ],
           "actions": [
             {
               "yamahaAvantage": {
@@ -2103,17 +3691,23 @@
       "scenes": [
         {
           "name": "All Off",
-          "color": "#000000",
+          "color": [
+            "#000000"
+          ],
           "actions": [
             {
               "shelly": {
-                "ids": "Flur,Schlafzimmer",
+                "ids": [
+                  "Flur,Schlafzimmer"
+                ],
                 "turnOn": true
               }
             },
             {
               "shelly": {
-                "ids": "Wohnzimmer_Deckenlampe,Regal,Kristall,Rgbw,Bar,Starwars",
+                "ids": [
+                  "Wohnzimmer_Deckenlampe,Regal,Kristall,Rgbw,Bar,Starwars"
+                ],
                 "turnOn": false
               }
             },
@@ -2124,7 +3718,9 @@
             },
             {
               "shelly": {
-                "ids": "Wohnzimmer_Esstisch",
+                "ids": [
+                  "Wohnzimmer_Esstisch"
+                ],
                 "turnOn": false
               }
             },
@@ -2138,11 +3734,15 @@
         },
         {
           "name": "Esstisch An",
-          "color": "#ffffff",
+          "color": [
+            "#ffffff"
+          ],
           "actions": [
             {
               "shelly": {
-                "ids": "Wohnzimmer_Esstisch",
+                "ids": [
+                  "Wohnzimmer_Esstisch"
+                ],
                 "turnOn": true
               }
             }
@@ -2150,11 +3750,15 @@
         },
         {
           "name": "Esstisch Aus",
-          "color": "#000000",
+          "color": [
+            "#000000"
+          ],
           "actions": [
             {
               "shelly": {
-                "ids": "Wohnzimmer_Esstisch",
+                "ids": [
+                  "Wohnzimmer_Esstisch"
+                ],
                 "turnOn": false
               }
             }
@@ -2162,11 +3766,15 @@
         },
         {
           "name": "Deckenlampe On",
-          "color": "#ffffff",
+          "color": [
+            "#ffffff"
+          ],
           "actions": [
             {
               "shelly": {
-                "ids": "Wohnzimmer_Deckenlampe",
+                "ids": [
+                  "Wohnzimmer_Deckenlampe"
+                ],
                 "turnOn": true
               }
             }
@@ -2174,11 +3782,15 @@
         },
         {
           "name": "Deckenlampe Off",
-          "color": "#000000",
+          "color": [
+            "#000000"
+          ],
           "actions": [
             {
               "shelly": {
-                "ids": "Wohnzimmer_Deckenlampe",
+                "ids": [
+                  "Wohnzimmer_Deckenlampe"
+                ],
                 "turnOn": false
               }
             }
@@ -2186,7 +3798,9 @@
         },
         {
           "name": "Deckenfluter On",
-          "color": "#ffffff",
+          "color": [
+            "#ffffff"
+          ],
           "actions": [
             {
               "lmair": {
@@ -2198,7 +3812,9 @@
         },
         {
           "name": "Deckenfluter Dim",
-          "color": "#888888",
+          "color": [
+            "#888888"
+          ],
           "actions": [
             {
               "lmair": {
@@ -2210,7 +3826,9 @@
         },
         {
           "name": "Deckenfluter Off",
-          "color": "#000000",
+          "color": [
+            "#000000"
+          ],
           "actions": [
             {
               "lmair": {
@@ -2222,11 +3840,15 @@
         },
         {
           "name": "Salzkristall On",
-          "color": "#ffffff",
+          "color": [
+            "#ffffff"
+          ],
           "actions": [
             {
               "shelly": {
-                "ids": "Kristall",
+                "ids": [
+                  "Kristall"
+                ],
                 "turnOn": true
               }
             }
@@ -2234,11 +3856,15 @@
         },
         {
           "name": "Salzkristall Off",
-          "color": "#000000",
+          "color": [
+            "#000000"
+          ],
           "actions": [
             {
               "shelly": {
-                "ids": "Kristall",
+                "ids": [
+                  "Kristall"
+                ],
                 "turnOn": false
               }
             }
@@ -2246,11 +3872,15 @@
         },
         {
           "name": "Flur On",
-          "color": "#ffffff",
+          "color": [
+            "#ffffff"
+          ],
           "actions": [
             {
               "shelly": {
-                "ids": "Flur",
+                "ids": [
+                  "Flur"
+                ],
                 "turnOn": true
               }
             }
@@ -2258,11 +3888,15 @@
         },
         {
           "name": "Flur Off",
-          "color": "#000000",
+          "color": [
+            "#000000"
+          ],
           "actions": [
             {
               "shelly": {
-                "ids": "Flur",
+                "ids": [
+                  "Flur"
+                ],
                 "turnOn": false
               }
             }
@@ -2270,11 +3904,15 @@
         },
         {
           "name": "Schlafzimmer On",
-          "color": "#ffffff",
+          "color": [
+            "#ffffff"
+          ],
           "actions": [
             {
               "shelly": {
-                "ids": "Schlafzimmer",
+                "ids": [
+                  "Schlafzimmer"
+                ],
                 "turnOn": true
               }
             }
@@ -2282,11 +3920,15 @@
         },
         {
           "name": "Schlafzimmer Off",
-          "color": "#000000",
+          "color": [
+            "#000000"
+          ],
           "actions": [
             {
               "shelly": {
-                "ids": "Schlafzimmer",
+                "ids": [
+                  "Schlafzimmer"
+                ],
                 "turnOn": false
               }
             }

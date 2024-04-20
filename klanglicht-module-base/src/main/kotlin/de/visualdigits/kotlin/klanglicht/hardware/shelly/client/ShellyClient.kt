@@ -41,7 +41,7 @@ object ShellyClient {
     fun setColor(
         ipAddress: String,
         rgbColor: RGBColor,
-        gain: Float,
+        gain: Double,
         transitionDuration: Long = 1, // zero is interpreted as empty which leads to the default of 2000 millis
         turnOn: Boolean? = true,
     ): Light? {

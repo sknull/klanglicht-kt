@@ -38,14 +38,14 @@ class ParameterSet(
 
     override fun getId(): String = baseChannel.toString()
 
-    override fun getGain(): Float = parameters
+    override fun getGain(): Double = parameters
         .filterIsInstance<IntParameter>()
         .filter { it.name == "MasterDimmer" }
         .firstOrNull()
-        ?.let { it.value / 255.0f }
-        ?:1.0f
+        ?.let { it.value / 255.0 }
+        ?:1.0
 
-    override fun setGain(gain: Float) {
+    override fun setGain(gain: Double) {
         parameters
             .filterIsInstance<IntParameter>()
             .filter { it.name == "MasterDimmer" }

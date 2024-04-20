@@ -18,8 +18,8 @@ class ShellyColorTest {
     @Test
     fun testTiming() {
         val shellyDevice = preferences.getShellyDevice("Starwars")!!
-        val red = ShellyColor("Starwars", shellyDevice.ipAddress, RGBColor(255, 0, 0), 1.0f, true)
-        val green = ShellyColor("Starwars", shellyDevice.ipAddress, RGBColor(0, 255, 0), 1.0f, true)
+        val red = ShellyColor("Starwars", shellyDevice.ipAddress, RGBColor(255, 0, 0), 1.0, true)
+        val green = ShellyColor("Starwars", shellyDevice.ipAddress, RGBColor(0, 255, 0), 1.0, true)
         val t = System.currentTimeMillis()
         red.write(preferences, transitionDuration = 3000)
         val d = System.currentTimeMillis() - t
@@ -30,8 +30,8 @@ class ShellyColorTest {
      fun testFade() {
         val shellyDevice = preferences.getShellyDevice("Starwars")
         if (shellyDevice != null) {
-            val color1 = ShellyColor("foo", shellyDevice.ipAddress, RGBColor(255, 0, 0), 1.0f, true)
-            val color2 = ShellyColor("bar", shellyDevice.ipAddress, RGBColor(0, 255, 0), 1.0f, true)
+            val color1 = ShellyColor("foo", shellyDevice.ipAddress, RGBColor(255, 0, 0), 1.0, true)
+            val color2 = ShellyColor("bar", shellyDevice.ipAddress, RGBColor(0, 255, 0), 1.0, true)
 //            color2.write()
 
             for (i in 0 until 5) {

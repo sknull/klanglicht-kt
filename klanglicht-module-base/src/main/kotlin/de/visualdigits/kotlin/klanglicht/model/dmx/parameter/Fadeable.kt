@@ -12,9 +12,9 @@ interface Fadeable<T : Fadeable<T>> {
     fun setTurnOn(turnOn: Boolean?) {
     }
 
-    fun getGain(): Float = 1.0f
+    fun getGain(): Double = 1.0
 
-    fun setGain(gain: Float) {
+    fun setGain(gain: Double) {
     }
 
     fun getRgbColor(): RGBColor? = null

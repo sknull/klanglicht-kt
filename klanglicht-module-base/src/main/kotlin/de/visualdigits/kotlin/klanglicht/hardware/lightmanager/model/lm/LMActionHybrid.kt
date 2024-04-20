@@ -1,9 +1,9 @@
 package de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm
 
 class LMActionHybrid(
-    val ids: String? = null,
-    val hexColors: String? = null,
-    val gains: String? = null,
+    val ids: List<String> = listOf(),
+    val hexColors: List<String> = listOf(),
+    val gains: List<Double> = listOf(),
 ) : LMAction() {
 
     override fun toString(): String {

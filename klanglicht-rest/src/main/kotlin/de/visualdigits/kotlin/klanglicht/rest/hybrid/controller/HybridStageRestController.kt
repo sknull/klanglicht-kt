@@ -24,9 +24,9 @@ class HybridStageRestController(
         @RequestParam(value = "storeName", required = false) storeName: String?
     ) {
         hybridStageService.hexColor(
-            ids = ids,
-            hexColors = hexColors,
-            gains = gains,
+            ids = ids.split(",").map { it.trim() },
+            hexColors = hexColors.split(",").map { it.trim() },
+            gains = gains.split(",").map { it.toDouble() },
             transition = transition,
             turnOn = turnOn,
             store = store,

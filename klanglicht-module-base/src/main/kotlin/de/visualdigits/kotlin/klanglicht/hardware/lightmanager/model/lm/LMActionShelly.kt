@@ -1,7 +1,7 @@
 package de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm
 
 class LMActionShelly(
-    val ids: String? = null,
+    val ids: List<String> = listOf(),
     val turnOn: Boolean?= null
 ) : LMAction() {
 

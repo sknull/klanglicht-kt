@@ -11,7 +11,7 @@ import de.visualdigits.kotlin.twinkly.model.color.RGBColor as TwinklyRGBColor
 class XledFrameFadeable(
     private val deviceId: String,
     private var xledFrame: XledFrame,
-    private var deviceGain: Float
+    private var deviceGain: Double
 ) : Fadeable<XledFrameFadeable> {
 
     private val log: Logger = LoggerFactory.getLogger(javaClass)
@@ -28,9 +28,9 @@ class XledFrameFadeable(
 
     override fun getId(): String = deviceId
 
-    override fun getGain(): Float = deviceGain
+    override fun getGain(): Double = deviceGain
 
-    override fun setGain(gain: Float) {
+    override fun setGain(gain: Double) {
         this.deviceGain = gain
     }
 
@@ -49,7 +49,7 @@ class XledFrameFadeable(
             val xledArray = twinklyDevice.xledArray
             if (write && xledArray.isLoggedIn()) {
                 log.debug("Writing xledFrame\n{}", this)
-                xledArray.setBrightness(deviceGain)
+                xledArray.setBrightness(deviceGain.toFloat())
                 xledFrame.play(xledArray)
             }
         }

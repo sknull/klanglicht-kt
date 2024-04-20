@@ -11,7 +11,7 @@ data class ShellyDevice(
     val model: String = "",
     val command: String = "",
     val ipAddress: String = "",
-    val gain: Float = 0.0f
+    val gain: Double = 0.0
 ) {
 
     override fun toString(): String {
@@ -48,7 +48,7 @@ data class ShellyDevice(
 
     fun setColor(
         rgbColor: RGBColor,
-        gain: Float = 1.0f,
+        gain: Double = 1.0,
         transitionDuration: Long = 0,
         turnOn: Boolean = true,
     ): Light? {

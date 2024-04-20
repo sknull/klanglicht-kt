@@ -64,7 +64,7 @@ class ScenesService(
 
     fun sceneNames(): Set<String> = configHolder.scenes().scenesMap.keys
 
-    fun hybrid(ids: String, hexColors: String, gains: String) {
+    fun hybrid(ids: List<String>, hexColors: List<String>, gains: List<Double>) {
         hybridStageService.hexColor(
             ids = ids,
             hexColors = hexColors,
@@ -72,7 +72,7 @@ class ScenesService(
         )
     }
 
-    fun shelly(ids: String, turnOn: Boolean, transitionDuration: Long) {
+    fun shelly(ids: List<String>, turnOn: Boolean, transitionDuration: Long) {
         shellyService.power(ids = ids, turnOn = turnOn, transitionDuration = transitionDuration)
     }
 

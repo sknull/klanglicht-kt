@@ -14,16 +14,16 @@ class HybridDmxSceneTest {
     @Test
     fun testFade() {
         val scene1 = HybridScene(
-            ids = "Starwars,Rgbw,15,29,Bar",
-            hexColors = "#ff0000,#00ff00,#0000ff,#ffff00,#00ffff",
-            gains = "",
+            ids = listOf("Starwars", "Rgbw", "15", "29", "Bar"),
+            hexColors = listOf("#ff0000", "#00ff00", "#0000ff", "#ffff00", "#00ffff"),
+            gains = listOf(1.0),
             preferences = preferences
         )
 //        println(scene1)
         val scene2 = HybridScene(
-            ids = "Starwars,Rgbw,15,29,Bar",
-            hexColors = "#00ffff,#ff00ff,#ffff00,#0000ff,#ff0000",
-            gains = "",
+            ids = listOf("Starwars", "Rgbw", "15", "29", "Bar"),
+            hexColors = listOf("#00ffff", "#ff00ff", "#ffff00", "#0000ff", "#ff0000"),
+            gains = listOf(1.0),
             preferences = preferences
         )
         Thread.sleep(5000)

@@ -26,9 +26,9 @@ class HybridStageService(
      * @param storeName An additional name to strore values.
      */
     fun hexColor(
-        ids: String? = null,
-        hexColors: String? = null,
-        gains: String? = null,
+        ids: List<String> = listOf(),
+        hexColors: List<String> = listOf(),
+        gains: List<Double> = listOf(),
         transition: Long? = null,
         turnOn: Boolean = true,
         store: Boolean = true,
@@ -44,7 +44,7 @@ class HybridStageService(
         if (store) {
             configHolder.updateScene(nextScene!!)
             if (storeName != null) {
-                configHolder.putColor(storeName, hexColors)
+                configHolder.putColor(storeName, hexColors.joinToString(","))
             }
         }
         log.info("nextScene: $nextScene")
@@ -61,35 +61,26 @@ class HybridStageService(
 
 
     fun restoreColors(
-        ids: String,
+        ids: List<String>,
         transitionDuration: Long?
     ) {
-        val lIds = ids
-            .split(",")
-            .filter { it.trim().isNotEmpty() }
-            .map { it.trim() }
-
-        lIds.forEach { id ->
+        ids.forEach { id ->
             configHolder.getFadeable(id)?.write(configHolder.preferences!!, transitionDuration = transitionDuration?:configHolder.preferences?.fadeDurationDefault?:1000)
         }
     }
 
     fun gain(
-        ids: String,
+        ids: List<String>,
         gain: Int,
         transitionDuration: Long?
     ) {
-        val lIds = ids
-            .split(",")
-            .filter { it.trim().isNotEmpty() }
-            .map { it.trim() }
-        lIds.forEach { id ->
+        ids.forEach { id ->
             val sid = id.trim()
             val shellyDevice = configHolder.preferences?.getShellyDevice(sid)
             if (shellyDevice != null) {
                 val ipAddress: String = shellyDevice.ipAddress
                 val lastColor = configHolder.getFadeable(sid)
-                lastColor?.setGain(gain.toFloat())
+                lastColor?.setGain(gain.toDouble())
                 try {
                     ShellyClient.setGain(ipAddress = ipAddress, gain = gain, transitionDuration = transitionDuration?: configHolder.preferences?.fadeDurationDefault?:1000)
                 } catch (e: Exception) {

@@ -16,16 +16,11 @@ class ShellyService(
     private val log: Logger = LoggerFactory.getLogger(javaClass)
 
     fun power(
-        ids: String? = null,
+        ids: List<String> = listOf(),
         turnOn: Boolean? = true,
         transitionDuration: Long? = 2000
     ) {
-        val lIds = ids
-            ?.split(",")
-            ?.filter { it.trim().isNotEmpty() }
-            ?.map { it.trim() }
-            ?: listOf()
-        lIds.forEach { id ->
+        ids.forEach { id ->
         val sid = id.trim()
             val shellyDevice = configHolder.preferences?.getShellyDevice(sid)
             if (shellyDevice != null) {

@@ -22,18 +22,18 @@ class HybridScene() : Fadeable<HybridScene> {
 
     private val log: Logger = LoggerFactory.getLogger(javaClass)
 
-    private var ids: String? = null
-    private var hexColors: String? = null
-    private var gains: String? = null
+    private var ids: List<String> = listOf()
+    private var hexColors: List<String> = listOf()
+    private var gains: List<Double> = listOf()
     private var turnOns: String? = null
     private var preferences: Preferences? = null
 
     private val fadeables: MutableMap<String, Fadeable<*>> = mutableMapOf()
 
     constructor(
-        ids: String? = null,
-        hexColors: String? = null,
-        gains: String? = null,
+        ids: List<String> = listOf(),
+        hexColors: List<String> = listOf(),
+        gains: List<Double> = listOf(),
         turnOns: String? = "true",
         preferences: Preferences? = null
     ) : this() {
@@ -95,35 +95,23 @@ class HybridScene() : Fadeable<HybridScene> {
     }
 
     private fun initializeFromFadeables() {
-        this.ids = this.fadeables().map { sc -> sc.getId() }.joinToString(",")
-        this.hexColors = this.fadeables().mapNotNull { sc -> sc.getRgbColor()?.hex() }.joinToString(",")
-        this.gains = this.fadeables().map { sc -> sc.getGain() }.joinToString(",")
+        this.ids = this.fadeables().map { sc -> sc.getId() }
+        this.hexColors = this.fadeables().mapNotNull { sc -> sc.getRgbColor()?.hex() }
+        this.gains = this.fadeables().map { sc -> sc.getGain() }
         this.turnOns = this.fadeables().mapNotNull { sc -> sc.getTurnOn() }.joinToString(",")
     }
 
     private fun initializeFromParameters() {
-        val lIds = if (ids?.isNotEmpty() == true) {
-            ids?.split(",")
-                ?.filter { it.isNotEmpty() }
-                ?.map { it.trim() }
-                ?: listOf()
+        val lIds = if (ids.isNotEmpty() == true) {
+            ids
         } else {
             preferences?.getStageIds() ?: listOf()
         }
 
-        val lHexColors = hexColors
-            ?.split(",")
-            ?.filter { it.isNotEmpty() }
-            ?: listOf()
-        val nh = lHexColors.size - 1
+        val nh = hexColors.size - 1
         var h = 0
 
-        val lGains = gains
-            ?.split(",")
-            ?.filter { it.isNotEmpty() }
-            ?.map { it.toFloat() }
-            ?: listOf()
-        val ng = lGains.size - 1
+        val ng = gains.size - 1
         var g = 0
 
         val lTurnOns = turnOns
@@ -141,16 +129,16 @@ class HybridScene() : Fadeable<HybridScene> {
                 .forEach { twinklyDevice ->
                     val xa = twinklyDevice.xledArray
                     if (xa.isLoggedIn()) {
-                        val lc = RGBColor(lHexColors.last())
+                        val lc = RGBColor(hexColors.last())
                         val frame = XledFrame(
                             width = xa.width,
                             height = xa.height,
                             initialColor = TwinklyRGBColor(lc.red, lc.green, lc.blue)
                         )
-                        val nc = lHexColors.size
+                        val nc = hexColors.size
                         val barWidth = xa.width / nc
                         for (x in 0 until nc - 1) {
-                            val rgbColor = RGBColor(lHexColors[x])
+                            val rgbColor = RGBColor(hexColors[x])
                             val bar = XledFrame(
                                 width = barWidth,
                                 height = xa.height,
@@ -171,8 +159,8 @@ class HybridScene() : Fadeable<HybridScene> {
         lIds.forEach { id ->
             val device = preferences?.getHybridDevice(id)
             if (device != null) {
-                val hexColor = lHexColors[min(nh, h++)]
-                val gain = lGains.getOrNull(min(ng, g++))
+                val hexColor = hexColors[min(nh, h++)]
+                val gain = gains.getOrNull(min(ng, g++))
                 val turnOn = lTurnOns.getOrNull(min(nt, t++)) ?: false
                 val rgbColor = RGBColor(hexColor)
                 when (device.type) {
@@ -219,12 +207,12 @@ class HybridScene() : Fadeable<HybridScene> {
 
     fun getTurnOn(id: String): Boolean? = fadeables[id]?.getTurnOn()
 
-    fun setGain(id: String, gain: Float) {
+    fun setGain(id: String, gain: Double) {
         fadeables[id]?.setGain(gain)
         initializeFromFadeables()
     }
 
-    fun getGain(id: String): Float = fadeables[id]?.getGain() ?: 1.0f
+    fun getGain(id: String): Double = fadeables[id]?.getGain() ?: 1.0
 
     fun setRgbColor(id: String, rgbColor: RGBColor) {
         fadeables[id]?.setRgbColor(rgbColor)
