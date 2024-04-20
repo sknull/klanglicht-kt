@@ -8,6 +8,6 @@ class LMScene(
 ) {
 
     override fun toString(): String {
-        return "$name: $color${if (actions.isNotEmpty()) "\n    - ${actions.joinToString("\n    - ")}" else ""}"
+        return "$name: ${color.joinToString(",")}${if (actions.isNotEmpty()) "\n    - ${actions.joinToString("\n    - ")}" else ""}"
     }
 }

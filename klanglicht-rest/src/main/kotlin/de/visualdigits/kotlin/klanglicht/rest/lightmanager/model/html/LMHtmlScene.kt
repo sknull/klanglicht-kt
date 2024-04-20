@@ -17,19 +17,20 @@ class LMHtmlScene(
         val url = configHolder.preferences?.ownUrl
         val sb = StringBuilder()
         sb.append("      <div class=\"button\"")
-        if (scene.color?.isNotEmpty() == true) {
-            if (scene.color?.contains(",") == true) {
+        if (scene.color.isNotEmpty()) {
+            val sceneColor = scene.color.joinToString(",")
+            if (scene.color.size > 1) {
                 sb.append(" style=\"background: -moz-linear-gradient(left, ")
-                    .append(scene.color)
+                    .append(sceneColor)
                     .append("); background: -webkit-linear-gradient(left, ")
-                    .append(scene.color)
+                    .append(sceneColor)
                     .append("); background: linear-gradient(to right, ")
-                    .append(scene.color)
+                    .append(sceneColor)
                     .append(");\"")
             }
             else {
                 sb.append(" style=\"background-color: ")
-                    .append(scene.color)
+                    .append(sceneColor)
                     .append(";\"")
             }
         }
