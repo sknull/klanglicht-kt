@@ -1,4 +1,4 @@
-package de.visualdigits.kotlin.klanglicht.hardware.color
+package de.visualdigits.kotlin.klanglicht.model.color
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test

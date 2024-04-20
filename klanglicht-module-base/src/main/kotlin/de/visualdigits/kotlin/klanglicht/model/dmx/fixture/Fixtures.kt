@@ -1,4 +1,4 @@
-package de.visualdigits.kotlin.klanglicht.hardware.dmx.fixture
+package de.visualdigits.kotlin.klanglicht.model.dmx.fixture
 
 import java.io.File
 import java.nio.file.Paths

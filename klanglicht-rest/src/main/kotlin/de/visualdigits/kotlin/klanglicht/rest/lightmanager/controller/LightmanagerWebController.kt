@@ -1,10 +1,9 @@
 package de.visualdigits.kotlin.klanglicht.rest.lightmanager.controller
 
 import de.visualdigits.kotlin.klanglicht.rest.configuration.ConfigHolder
-import de.visualdigits.kotlin.klanglicht.rest.lightmanager.service.LightmanagerService
 import de.visualdigits.kotlin.klanglicht.rest.lightmanager.model.html.LMHtmlScenes
 import de.visualdigits.kotlin.klanglicht.rest.lightmanager.model.html.LMHtmlZones
-import org.springframework.beans.factory.annotation.Autowired
+import de.visualdigits.kotlin.klanglicht.rest.lightmanager.service.LightmanagerService
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.GetMapping

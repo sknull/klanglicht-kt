@@ -1,7 +1,7 @@
 package de.visualdigits.kotlin.klanglicht.hardware.yamahaadvantage.client
 
-import de.visualdigits.kotlin.klanglicht.hardware.preferences.Preferences
-import org.junit.jupiter.api.Assertions.*
+import de.visualdigits.kotlin.klanglicht.model.preferences.Preferences
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import java.io.File

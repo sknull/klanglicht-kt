@@ -1,4 +1,4 @@
-package de.visualdigits.kotlin.klanglicht.hardware.color
+package de.visualdigits.kotlin.klanglicht.model.color
 
 import kotlin.math.floor
 import kotlin.math.roundToInt

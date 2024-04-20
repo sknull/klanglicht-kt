@@ -1,6 +1,6 @@
-package de.visualdigits.kotlin.klanglicht.hardware.hybrid
+package de.visualdigits.kotlin.klanglicht.model.hybrid
 
-import de.visualdigits.kotlin.klanglicht.hardware.preferences.Preferences
+import de.visualdigits.kotlin.klanglicht.model.preferences.Preferences
 import de.visualdigits.kotlin.util.SystemUtils
 import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test

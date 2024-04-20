@@ -1,7 +1,7 @@
-package de.visualdigits.kotlin.klanglicht.hardware.dmx.model
+package de.visualdigits.kotlin.klanglicht.model.dmx.model
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
-import de.visualdigits.kotlin.klanglicht.hardware.dmx.fixture.Fixture
+import de.visualdigits.kotlin.klanglicht.model.dmx.fixture.Fixture
 
 
 @JsonIgnoreProperties("fixture")

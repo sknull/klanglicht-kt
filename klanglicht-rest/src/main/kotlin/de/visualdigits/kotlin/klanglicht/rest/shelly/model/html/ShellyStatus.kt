@@ -1,8 +1,8 @@
 package de.visualdigits.kotlin.klanglicht.rest.shelly.model.html
 
-import de.visualdigits.kotlin.klanglicht.hardware.color.RGBColor
 import de.visualdigits.kotlin.klanglicht.hardware.shelly.model.ShellyDevice
 import de.visualdigits.kotlin.klanglicht.hardware.shelly.model.status.Status
+import de.visualdigits.kotlin.klanglicht.model.color.RGBColor
 import de.visualdigits.kotlin.klanglicht.rest.configuration.ConfigHolder
 import de.visualdigits.kotlin.klanglicht.rest.lightmanager.model.html.HtmlRenderable
 import de.visualdigits.kotlin.klanglicht.rest.shelly.service.ShellyService

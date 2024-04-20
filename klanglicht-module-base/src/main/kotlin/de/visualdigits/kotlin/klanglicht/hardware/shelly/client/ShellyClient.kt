@@ -1,8 +1,8 @@
 package de.visualdigits.kotlin.klanglicht.hardware.shelly.client
 
-import de.visualdigits.kotlin.klanglicht.hardware.color.RGBColor
 import de.visualdigits.kotlin.klanglicht.hardware.shelly.model.status.Light
 import de.visualdigits.kotlin.klanglicht.hardware.shelly.model.status.Status
+import de.visualdigits.kotlin.klanglicht.model.color.RGBColor
 import de.visualdigits.kotlin.util.get
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory

@@ -1,12 +1,12 @@
-package de.visualdigits.kotlin.klanglicht.hardware.hybrid
+package de.visualdigits.kotlin.klanglicht.model.hybrid
 
-import de.visualdigits.kotlin.klanglicht.hardware.color.RGBColor
-import de.visualdigits.kotlin.klanglicht.hardware.dmx.parameter.Fadeable
-import de.visualdigits.kotlin.klanglicht.hardware.dmx.parameter.IntParameter
-import de.visualdigits.kotlin.klanglicht.hardware.dmx.parameter.ParameterSet
-import de.visualdigits.kotlin.klanglicht.hardware.preferences.Preferences
 import de.visualdigits.kotlin.klanglicht.hardware.shelly.model.ShellyColor
 import de.visualdigits.kotlin.klanglicht.hardware.twinkly.model.XledFrameFadeable
+import de.visualdigits.kotlin.klanglicht.model.color.RGBColor
+import de.visualdigits.kotlin.klanglicht.model.dmx.parameter.Fadeable
+import de.visualdigits.kotlin.klanglicht.model.dmx.parameter.IntParameter
+import de.visualdigits.kotlin.klanglicht.model.dmx.parameter.ParameterSet
+import de.visualdigits.kotlin.klanglicht.model.preferences.Preferences
 import de.visualdigits.kotlin.twinkly.model.playable.XledFrame
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch

@@ -1,6 +1,6 @@
-package de.visualdigits.kotlin.klanglicht.hardware.preferences
+package de.visualdigits.kotlin.klanglicht.model.preferences
 
-import de.visualdigits.kotlin.klanglicht.hardware.color.RGBColor
+import de.visualdigits.kotlin.klanglicht.model.color.RGBColor
 import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import java.io.File

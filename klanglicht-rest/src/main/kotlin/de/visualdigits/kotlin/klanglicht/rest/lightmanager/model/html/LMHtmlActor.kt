@@ -2,13 +2,12 @@ package de.visualdigits.kotlin.klanglicht.rest.lightmanager.model.html
 
 import com.fasterxml.jackson.annotation.JsonIgnore
 import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.client.LightmanagerClient
+import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.json.RequestType
 import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm.LMActor
 import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm.LMDefaultRequest
 import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm.LMMarker
 import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm.LMRequest
-import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.json.RequestType
 import de.visualdigits.kotlin.klanglicht.rest.configuration.ConfigHolder
-import de.visualdigits.kotlin.klanglicht.rest.lightmanager.service.LightmanagerService
 
 class LMHtmlActor(
     val actor: LMActor

@@ -1,7 +1,7 @@
-package de.visualdigits.kotlin.klanglicht.hardware.dmx.parameter
+package de.visualdigits.kotlin.klanglicht.model.dmx.parameter
 
 import com.fasterxml.jackson.module.kotlin.jacksonMapperBuilder
-import de.visualdigits.kotlin.klanglicht.hardware.preferences.Preferences
+import de.visualdigits.kotlin.klanglicht.model.preferences.Preferences
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import java.io.File

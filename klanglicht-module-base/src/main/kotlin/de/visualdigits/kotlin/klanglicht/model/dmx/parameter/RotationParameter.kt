@@ -1,6 +1,6 @@
-package de.visualdigits.kotlin.klanglicht.hardware.dmx.parameter
+package de.visualdigits.kotlin.klanglicht.model.dmx.parameter
 
-import de.visualdigits.kotlin.klanglicht.hardware.dmx.fixture.Fixture
+import de.visualdigits.kotlin.klanglicht.model.dmx.fixture.Fixture
 import kotlin.math.asin
 import kotlin.math.atan2
 import kotlin.math.cos

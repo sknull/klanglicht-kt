@@ -1,6 +1,6 @@
-package de.visualdigits.kotlin.klanglicht.hardware.color
+package de.visualdigits.kotlin.klanglicht.model.color
 
-import de.visualdigits.kotlin.klanglicht.hardware.dmx.parameter.Parameter
+import de.visualdigits.kotlin.klanglicht.model.dmx.parameter.Parameter
 
 interface Color<T : Color<T>> : Parameter<T> {
 

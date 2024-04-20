@@ -7,7 +7,6 @@ import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm.LMScenes
 import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm.LMZones
 import de.visualdigits.kotlin.klanglicht.rest.configuration.ConfigHolder
 import jakarta.annotation.PostConstruct
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
 @Service

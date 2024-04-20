@@ -1,7 +1,6 @@
 package de.visualdigits.kotlin.klanglicht.rest.lightmanager.model.html
 
 import de.visualdigits.kotlin.klanglicht.rest.configuration.ConfigHolder
-import de.visualdigits.kotlin.klanglicht.rest.lightmanager.model.html.HtmlRenderable
 
 
 class ColorWheelOddEven(

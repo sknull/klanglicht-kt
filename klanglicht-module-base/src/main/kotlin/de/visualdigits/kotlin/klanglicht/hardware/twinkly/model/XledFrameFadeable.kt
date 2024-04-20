@@ -1,8 +1,8 @@
 package de.visualdigits.kotlin.klanglicht.hardware.twinkly.model
 
-import de.visualdigits.kotlin.klanglicht.hardware.color.RGBColor
-import de.visualdigits.kotlin.klanglicht.hardware.dmx.parameter.Fadeable
-import de.visualdigits.kotlin.klanglicht.hardware.preferences.Preferences
+import de.visualdigits.kotlin.klanglicht.model.color.RGBColor
+import de.visualdigits.kotlin.klanglicht.model.dmx.parameter.Fadeable
+import de.visualdigits.kotlin.klanglicht.model.preferences.Preferences
 import de.visualdigits.kotlin.twinkly.model.playable.XledFrame
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory

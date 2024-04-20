@@ -1,9 +1,9 @@
 package de.visualdigits.kotlin.klanglicht.hardware.shelly.model
 
-import de.visualdigits.kotlin.klanglicht.hardware.color.RGBColor
 import de.visualdigits.kotlin.klanglicht.hardware.shelly.client.ShellyClient
 import de.visualdigits.kotlin.klanglicht.hardware.shelly.model.status.Light
 import de.visualdigits.kotlin.klanglicht.hardware.shelly.model.status.Status
+import de.visualdigits.kotlin.klanglicht.model.color.RGBColor
 
 
 data class ShellyDevice(

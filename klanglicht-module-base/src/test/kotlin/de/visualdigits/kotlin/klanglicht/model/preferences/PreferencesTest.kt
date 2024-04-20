@@ -1,11 +1,7 @@
-package de.visualdigits.kotlin.klanglicht.hardware.preferences
+package de.visualdigits.kotlin.klanglicht.model.preferences
 
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.databind.SerializationFeature
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
-import com.fasterxml.jackson.module.kotlin.jacksonMapperBuilder
-import de.visualdigits.kotlin.klanglicht.hardware.hybrid.HybridScene
-import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.Test
 import java.io.File
 

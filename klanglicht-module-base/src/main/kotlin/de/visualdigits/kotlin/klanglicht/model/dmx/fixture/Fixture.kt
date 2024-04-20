@@ -1,9 +1,9 @@
-package de.visualdigits.kotlin.klanglicht.hardware.dmx.fixture
+package de.visualdigits.kotlin.klanglicht.model.dmx.fixture
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.module.kotlin.jacksonMapperBuilder
-import de.visualdigits.kotlin.klanglicht.hardware.dmx.parameter.IntParameter
-import de.visualdigits.kotlin.klanglicht.hardware.dmx.parameter.ParameterSet
+import de.visualdigits.kotlin.klanglicht.model.dmx.parameter.IntParameter
+import de.visualdigits.kotlin.klanglicht.model.dmx.parameter.ParameterSet
 import java.io.File
 import java.nio.file.Paths
 import kotlin.math.max

@@ -1,7 +1,7 @@
-package de.visualdigits.kotlin.klanglicht.hardware.dmx.parameter
+package de.visualdigits.kotlin.klanglicht.model.dmx.parameter
 
-import de.visualdigits.kotlin.klanglicht.hardware.color.RGBColor
-import de.visualdigits.kotlin.klanglicht.hardware.preferences.Preferences
+import de.visualdigits.kotlin.klanglicht.model.color.RGBColor
+import de.visualdigits.kotlin.klanglicht.model.preferences.Preferences
 
 interface Fadeable<T : Fadeable<T>> {
 

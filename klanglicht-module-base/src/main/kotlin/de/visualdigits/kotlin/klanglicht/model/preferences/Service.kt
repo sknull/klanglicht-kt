@@ -1,4 +1,4 @@
-package de.visualdigits.kotlin.klanglicht.hardware.preferences
+package de.visualdigits.kotlin.klanglicht.model.preferences
 
 
 data class Service(

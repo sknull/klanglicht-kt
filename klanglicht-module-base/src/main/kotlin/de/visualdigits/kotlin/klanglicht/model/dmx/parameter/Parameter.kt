@@ -1,4 +1,4 @@
-package de.visualdigits.kotlin.klanglicht.hardware.dmx.parameter
+package de.visualdigits.kotlin.klanglicht.model.dmx.parameter
 
 interface Parameter<T : Parameter<T>> : Fadeable<T> {
 

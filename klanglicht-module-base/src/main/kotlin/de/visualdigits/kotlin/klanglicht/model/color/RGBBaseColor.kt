@@ -1,4 +1,4 @@
-package de.visualdigits.kotlin.klanglicht.hardware.color
+package de.visualdigits.kotlin.klanglicht.model.color
 
 import java.lang.Long.decode
 import java.lang.Long.toHexString

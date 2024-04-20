@@ -5,9 +5,7 @@ import de.visualdigits.kotlin.klanglicht.hardware.shelly.model.status.Status
 import de.visualdigits.kotlin.klanglicht.rest.hybrid.service.HybridStageService
 import de.visualdigits.kotlin.klanglicht.rest.lightmanager.service.LightmanagerService
 import de.visualdigits.kotlin.klanglicht.rest.shelly.service.ShellyService
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.MediaType
-import org.springframework.util.MimeType
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam

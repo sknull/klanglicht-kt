@@ -1,7 +1,7 @@
-package de.visualdigits.kotlin.klanglicht.hardware.fixture
+package de.visualdigits.kotlin.klanglicht.model.fixture
 
 import com.fasterxml.jackson.module.kotlin.jacksonMapperBuilder
-import de.visualdigits.kotlin.klanglicht.hardware.dmx.fixture.Fixture
+import de.visualdigits.kotlin.klanglicht.model.dmx.fixture.Fixture
 import org.junit.jupiter.api.Test
 import java.io.File
 

@@ -1,7 +1,7 @@
 package de.visualdigits.kotlin.klanglicht.rest.hybrid.service
 
-import de.visualdigits.kotlin.klanglicht.hardware.hybrid.HybridScene
 import de.visualdigits.kotlin.klanglicht.hardware.shelly.client.ShellyClient
+import de.visualdigits.kotlin.klanglicht.model.hybrid.HybridScene
 import de.visualdigits.kotlin.klanglicht.rest.configuration.ConfigHolder
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory

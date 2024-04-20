@@ -17,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo
     Type(name = "yamahaAvantage", value = LMActionLmYamahaAvantage::class),
     Type(name = "lmair", value = LMActionLmAir::class),
 )
-abstract class LMAction() {
+abstract class LMAction {
 
     open fun url(): String = ""
 }

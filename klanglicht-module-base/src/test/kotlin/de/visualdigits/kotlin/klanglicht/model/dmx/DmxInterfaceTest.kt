@@ -1,10 +1,10 @@
 package de.visualdigits.kotlin.klanglicht.model.dmx
 
-import de.visualdigits.kotlin.klanglicht.hardware.color.RGBColor
-import de.visualdigits.kotlin.klanglicht.hardware.dmx.parameter.IntParameter
-import de.visualdigits.kotlin.klanglicht.hardware.dmx.parameter.ParameterSet
-import de.visualdigits.kotlin.klanglicht.hardware.dmx.parameter.DmxScene
-import de.visualdigits.kotlin.klanglicht.hardware.preferences.Preferences
+import de.visualdigits.kotlin.klanglicht.model.color.RGBColor
+import de.visualdigits.kotlin.klanglicht.model.dmx.parameter.DmxScene
+import de.visualdigits.kotlin.klanglicht.model.dmx.parameter.IntParameter
+import de.visualdigits.kotlin.klanglicht.model.dmx.parameter.ParameterSet
+import de.visualdigits.kotlin.klanglicht.model.preferences.Preferences
 import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import java.io.File

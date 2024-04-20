@@ -8,7 +8,6 @@ import de.visualdigits.kotlin.klanglicht.hardware.yamahaadvantage.model.features
 import de.visualdigits.kotlin.klanglicht.rest.configuration.ConfigHolder
 import jakarta.annotation.PostConstruct
 import org.springframework.stereotype.Service
-import java.net.URL
 
 @Service
 class YamahaAvantageService(

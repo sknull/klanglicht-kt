@@ -1,4 +1,4 @@
-package de.visualdigits.kotlin.klanglicht.hardware.dmx.model
+package de.visualdigits.kotlin.klanglicht.model.dmx.model
 
 enum class DmxInterfaceType {
 

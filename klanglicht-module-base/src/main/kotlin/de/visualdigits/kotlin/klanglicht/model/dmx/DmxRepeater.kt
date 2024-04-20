@@ -1,4 +1,4 @@
-package de.visualdigits.kotlin.klanglicht.hardware.dmx
+package de.visualdigits.kotlin.klanglicht.model.dmx
 
 import org.slf4j.LoggerFactory
 
