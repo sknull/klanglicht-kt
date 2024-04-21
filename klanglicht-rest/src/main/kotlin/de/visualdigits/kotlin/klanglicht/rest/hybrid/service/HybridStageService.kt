@@ -43,31 +43,20 @@ class HybridStageService(
         }
         if (store) {
             prefs.updateScene(nextScene!!)
+            val keys = prefs.preferences?.stage?.map { it.id }?:listOf()
+            val remaining = prefs.preferences?.colorWheels?.map { it.id }?.toMutableSet()?:mutableSetOf()
+
             if (storeName != null) {
                 prefs.putColor(storeName, hexColors.joinToString(","))
+                remaining.remove(storeName)
             }
-
-            val keys = prefs.preferences?.stage?.map { it.id }?:listOf()
-            val remaining = prefs.preferences?.colorWheels?.toMutableSet()?:mutableSetOf()
 
             val pairs = hexColors.chunked(2)
-            val stagePairs = keys.chunked(2)?: listOf()
+            val stagePairs = keys.chunked(2)
 
-            val even = pairs.mapNotNull {if (it.isNotEmpty()) it.first() else null }
-            val stageEven = stagePairs.mapNotNull {if (it.isNotEmpty()) it.first() else null }
-            val evenColor = even.first()
-            if (even.all { it == evenColor }) {
-                prefs.putColor("AllEven", evenColor)
-                remaining.remove("AllEven")
-                stageEven.forEach { id ->
-                    prefs.putColor(id, evenColor)
-                    remaining.remove(id)
-                }
-            }
-
-            val odd = if (pairs.size == 1 && pairs.first().size == 1) listOf(pairs.first().first()) else pairs.mapNotNull { if (it.size > 1) it[1] else null }
-            val stageOdd = stagePairs.mapNotNull { if (it.size > 1) it[1] else null }
-            val oddColor = odd.first()
+            val odd = pairs.mapNotNull { if (it.isNotEmpty()) it[0] else null }
+            val stageOdd = stagePairs.mapNotNull { if (it.isNotEmpty()) it[0] else null }
+            val oddColor = odd.firstOrNull()
             if (odd.all { it == oddColor }) {
                 val hexColor = oddColor
                 prefs.putColor("AllOdd", hexColor)
@@ -78,12 +67,24 @@ class HybridStageService(
                 }
             }
 
+            val even = pairs.mapNotNull {if (it.size > 1) it[1] else null }
+            val stageEven = stagePairs.mapNotNull {if (it.size > 1) it[1] else null }
+            val evenColor = even.firstOrNull()
+            if (even.all { it == evenColor }) {
+                prefs.putColor("AllEven", evenColor)
+                remaining.remove("AllEven")
+                stageEven.forEach { id ->
+                    prefs.putColor(id, evenColor)
+                    remaining.remove(id)
+                }
+            }
+
             val allColors = hexColors.first()
             if (hexColors.all { it == allColors }) {
                 remaining.remove("All")
-                prefs.preferences?.colorWheels?.forEach { id ->
-                    prefs.putColor(id, allColors)
-                    remaining.remove(id)
+                prefs.preferences?.colorWheels?.forEach { cw ->
+                    prefs.putColor(cw.id, allColors)
+                    remaining.remove(cw.id)
                 }
             }
 

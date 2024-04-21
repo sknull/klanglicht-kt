@@ -22,7 +22,7 @@ import java.io.File
 import java.nio.file.Paths
 
 
-@JsonIgnoreProperties("klanglichtDir", "dmxInterface", "fixtures", "serviceMap", "shellyMap", "twinklyMap", "stageMap", "log")
+@JsonIgnoreProperties("klanglichtDir", "dmxInterface", "fixtures", "serviceMap", "shellyMap", "twinklyMap", "stageMap", "colorWheelMap", "log")
 class Preferences(
     var name: String = "",
     var theme: String = "",
@@ -31,7 +31,7 @@ class Preferences(
     var shelly: List<ShellyDevice>? = listOf(),
     var twinkly: List<TwinklyConfiguration>? = listOf(),
     var stage: List<HybridDevice> = listOf(),
-    var colorWheels: List<String> = listOf(),
+    var colorWheels: List<ColorWheel> = listOf(),
     var dmx: Dmx? = null
 ) {
 
@@ -53,6 +53,8 @@ class Preferences(
     private var xledDevices: Map<String, XLedDevice> = mapOf()
 
     private var repeater: DmxRepeater? = null
+
+    private var colorWheelMap: Map<String, ColorWheel> = mapOf()
 
     companion object {
 
@@ -139,6 +141,8 @@ class Preferences(
             Pair(config.name, config.xledArray)
         } ?: mapOf()
         this.xledDevices = xledDevices
+
+        colorWheelMap = colorWheels.map { cw -> Pair(cw.id, cw) }.toMap()
     }
 
     fun getStageIds(): List<String> = stage.map { it.id }
@@ -185,4 +189,6 @@ class Preferences(
     fun getXledArray(id: String): XledArray? = xledArrays[id]
 
     fun getXledArrays(): List<XledArray> = xledArrays.values.toList()
+
+    fun getColorWheel(id: String): ColorWheel? = colorWheelMap[id]
 }
