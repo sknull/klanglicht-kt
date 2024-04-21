@@ -2,8 +2,11 @@ package de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonInclude
+import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.SerializationFeature
+import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
 import com.fasterxml.jackson.module.kotlin.jacksonMapperBuilder
+import com.fasterxml.jackson.module.kotlin.kotlinModule
 import java.io.File
 import java.util.Locale
 
@@ -16,10 +19,8 @@ class LMScenes(
     val scenesMap: LinkedHashMap<String, LMScene> = LinkedHashMap()
 
     companion object {
-        private val mapper = jacksonMapperBuilder()
-            .serializationInclusion(JsonInclude.Include.NON_NULL)
-            .enable(SerializationFeature.INDENT_OUTPUT)
-            .build()
+        private val mapper = ObjectMapper(YAMLFactory())
+            .registerModule(kotlinModule())
 
         fun unmarshall(file: File): LMScenes {
             val lmScenes = mapper.readValue(file, LMScenes::class.java)

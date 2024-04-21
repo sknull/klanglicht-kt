@@ -65,7 +65,7 @@ class ApplicationPreferences {
     }
 
     fun putColor(id: String, hexColor: String?) {
-        hexColor?.let { colorStore[id] = it }
+        hexColor?.let { colorStore[id] = it }?:also { colorStore.remove(id) }
     }
 
     fun getColor(id: String): String? {
@@ -73,6 +73,8 @@ class ApplicationPreferences {
     }
 
     fun scenes(): LMScenes {
-        return LMScenes.unmarshall(Paths.get(klanglichtDirectory.canonicalPath, "preferences", "scenes.json").toFile())
+        // Not including this into spring boot configuration as we want this to be loaded each time
+        // to make runtime changes possible here.
+        return LMScenes.unmarshall(Paths.get(klanglichtDirectory.canonicalPath, "resources", "scenes.yml").toFile())
     }
 }

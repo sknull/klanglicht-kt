@@ -31,6 +31,7 @@ class Preferences(
     var shelly: List<ShellyDevice>? = listOf(),
     var twinkly: List<TwinklyConfiguration>? = listOf(),
     var stage: List<HybridDevice> = listOf(),
+    var colorWheels: List<String> = listOf(),
     var dmx: Dmx? = null
 ) {
 
