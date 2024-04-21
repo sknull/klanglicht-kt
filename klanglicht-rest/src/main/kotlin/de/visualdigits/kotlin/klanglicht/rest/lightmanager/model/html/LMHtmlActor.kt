@@ -7,13 +7,14 @@ import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm.LMActor
 import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm.LMDefaultRequest
 import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm.LMMarker
 import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm.LMRequest
+import de.visualdigits.kotlin.klanglicht.rest.configuration.ApplicationPreferences
 import de.visualdigits.kotlin.klanglicht.rest.configuration.ConfigHolder
 
 class LMHtmlActor(
     val actor: LMActor
 ) : HtmlRenderable {
 
-    override fun toHtml(configHolder: ConfigHolder?): String {
+    override fun toHtml(prefs: ApplicationPreferences, configHolder: ConfigHolder?): String {
         val sb = StringBuilder()
         sb.append("      <div class=\"panel\">\n")
         renderLabel(sb, actor.name)

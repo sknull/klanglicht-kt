@@ -3,6 +3,7 @@ package de.visualdigits.kotlin.klanglicht.rest.shelly.service
 import de.visualdigits.kotlin.klanglicht.hardware.shelly.client.ShellyClient
 import de.visualdigits.kotlin.klanglicht.hardware.shelly.model.ShellyDevice
 import de.visualdigits.kotlin.klanglicht.hardware.shelly.model.status.Status
+import de.visualdigits.kotlin.klanglicht.rest.configuration.ApplicationPreferences
 import de.visualdigits.kotlin.klanglicht.rest.configuration.ConfigHolder
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service
 
 @Service
 class ShellyService(
+    private val prefs: ApplicationPreferences,
     private val configHolder: ConfigHolder
 ) {
 
@@ -33,7 +35,7 @@ class ShellyService(
                         ipAddress = ipAddress,
                         command = command,
                         turnOn = turnOn,
-                        transitionDuration = transitionDuration?: configHolder.preferences?.fadeDurationDefault?:1000
+                        transitionDuration = transitionDuration?: prefs.fadeDurationDefault?:1000
                     )
                 } catch (e: Exception) {
                     log.warn("Could not set power for shelly devica at '$ipAddress'")

@@ -2,13 +2,14 @@ package de.visualdigits.kotlin.klanglicht.rest.lightmanager.model.html
 
 import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm.LMSceneGroup
 import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm.LMScenes
+import de.visualdigits.kotlin.klanglicht.rest.configuration.ApplicationPreferences
 import de.visualdigits.kotlin.klanglicht.rest.configuration.ConfigHolder
 
 class LMHtmlScenes(
     val scene: LMScenes
 ) : HtmlRenderable {
 
-    override fun toHtml(configHolder: ConfigHolder?): String {
+    override fun toHtml(prefs: ApplicationPreferences, configHolder: ConfigHolder?): String {
         val sb = StringBuilder()
         sb.append("<div class=\"title\" onclick=\"toggleFullScreen();\" title=\"Toggle Fullscreen\">")
             .append(scene.name)
@@ -28,6 +29,7 @@ class LMHtmlScenes(
         renderLabel(sb, "S C E N E S")
         scene.scenes.values.forEach { sceneGroup ->
             val html = renderScenesGroup(
+                prefs,
                 configHolder,
                 sceneGroup
             )
@@ -49,6 +51,7 @@ class LMHtmlScenes(
     }
 
     private fun renderScenesGroup(
+        prefs: ApplicationPreferences,
         configHolder: ConfigHolder?,
         sceneGroup: LMSceneGroup
     ): String {
@@ -73,12 +76,12 @@ class LMHtmlScenes(
         }
         sb.append("\">\n")
         sceneGroup.scenes.forEach { scene ->
-            sb.append(LMHtmlScene(scene).toHtml(configHolder, sceneGroup.name))
+            sb.append(LMHtmlScene(scene).toHtml(prefs, configHolder, sceneGroup.name))
         }
         sb.append("    </div><!-- sub-group -->\n")
         sb.append("  </div><!-- group -->\n")
         if (sceneGroup.hasColorWheel) {
-            val html: String = ColorWheel(sceneGroup.name).toHtml(configHolder, sceneGroup.colorWheelOddEven)
+            val html: String = ColorWheel(sceneGroup.name).toHtml(prefs, configHolder, sceneGroup.colorWheelOddEven)
             sb.append(html)
         }
         return sb.toString()

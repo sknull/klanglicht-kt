@@ -28,7 +28,9 @@ class ResourceController(
 
     @GetMapping("/resources/**")
     fun resource(request: HttpServletRequest, response: HttpServletResponse) {
-        val src = getRequestUri(request)?.substring("/resources".length)?:""
+        val src = URLDecoder
+            .decode(request.requestURI, request.characterEncoding)
+            ?.substring("/resources".length)?:""
         val file = configHolder.getAbsoluteResource(src)
         try {
             FileInputStream(file).use { ins ->
@@ -60,14 +62,5 @@ class ResourceController(
             log.debug("Could not detrmine mime type for resource '{}'", file)
         }
         return mimeType
-    }
-
-    private fun getRequestUri(request: HttpServletRequest): String? {
-        return try {
-            URLDecoder.decode(request.requestURI, request.characterEncoding)
-        } catch (e: UnsupportedEncodingException) {
-            log.debug("Could not decode url '{}'", request)
-            null
-        }
     }
 }

@@ -24,10 +24,6 @@ import java.nio.file.Paths
 
 @JsonIgnoreProperties("klanglichtDir", "dmxInterface", "fixtures", "serviceMap", "shellyMap", "twinklyMap", "stageMap", "log")
 data class Preferences(
-    val name: String = "",
-    val theme: String = "",
-    val fadeDurationDefault: Long = 1000,
-    val ownUrl: String = "http://localhost:8888",
     private val services: List<Service> = listOf(),
     private val shelly: List<ShellyDevice>? = listOf(),
     private val twinkly: List<TwinklyConfiguration>? = listOf(),

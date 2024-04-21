@@ -1,5 +1,6 @@
 package de.visualdigits.kotlin.klanglicht.rest.lightmanager.model.html
 
+import de.visualdigits.kotlin.klanglicht.rest.configuration.ApplicationPreferences
 import de.visualdigits.kotlin.klanglicht.rest.configuration.ConfigHolder
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -10,11 +11,11 @@ class ColorWheel(
 
     private val log: Logger = LoggerFactory.getLogger(javaClass)
 
-    override fun toHtml(configHolder: ConfigHolder?): String {
-        return toHtml(configHolder, false)
+    override fun toHtml(prefs: ApplicationPreferences, configHolder: ConfigHolder?): String {
+        return toHtml(prefs, configHolder, false)
     }
 
-    fun toHtml(configHolder: ConfigHolder?, oddEven: Boolean): String {
+    fun toHtml(prefs: ApplicationPreferences, configHolder: ConfigHolder?, oddEven: Boolean): String {
         val wheelId = id!!.replace(" ", "")
 
         val sb = StringBuilder()

@@ -3,3 +3,5 @@
 lsp/
 *.log
 *.iml
+**/application-local.yml
+

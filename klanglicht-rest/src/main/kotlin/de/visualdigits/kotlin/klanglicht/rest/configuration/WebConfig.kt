@@ -16,6 +16,7 @@ import java.nio.file.Paths
 
 @Configuration
 open class WebConfig(
+    private val prefs: ApplicationPreferences,
     private val configHolder: ConfigHolder
 ) : WebMvcConfigurer {
 
@@ -31,7 +32,7 @@ open class WebConfig(
             configHolder.klanglichtDirectory.absolutePath,
             "resources",
             "themes",
-            configHolder.preferences?.theme,
+            prefs.theme,
             "templates"
         ).toFile().absolutePath.replace("\\", "/") + "/"
         templateResolver.prefix = templatesPath

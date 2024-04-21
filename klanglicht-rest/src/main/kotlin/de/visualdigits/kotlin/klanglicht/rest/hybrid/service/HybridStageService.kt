@@ -2,6 +2,7 @@ package de.visualdigits.kotlin.klanglicht.rest.hybrid.service
 
 import de.visualdigits.kotlin.klanglicht.hardware.shelly.client.ShellyClient
 import de.visualdigits.kotlin.klanglicht.model.hybrid.HybridScene
+import de.visualdigits.kotlin.klanglicht.rest.configuration.ApplicationPreferences
 import de.visualdigits.kotlin.klanglicht.rest.configuration.ConfigHolder
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service
 
 @Service
 class HybridStageService(
+    private val prefs: ApplicationPreferences,
     private val configHolder: ConfigHolder
 ) {
 
@@ -49,7 +51,7 @@ class HybridStageService(
         }
         log.info("nextScene: $nextScene")
 
-        currentScene?.fade(nextScene!!, transition?: configHolder.preferences?.fadeDurationDefault?:1000, configHolder.preferences!!)
+        currentScene?.fade(nextScene!!, transition?: prefs.fadeDurationDefault, configHolder.preferences!!)
     }
 
     fun putColor(
@@ -65,7 +67,7 @@ class HybridStageService(
         transitionDuration: Long?
     ) {
         ids.forEach { id ->
-            configHolder.getFadeable(id)?.write(configHolder.preferences!!, transitionDuration = transitionDuration?:configHolder.preferences?.fadeDurationDefault?:1000)
+            configHolder.getFadeable(id)?.write(configHolder.preferences!!, transitionDuration = transitionDuration?:prefs.fadeDurationDefault)
         }
     }
 
@@ -82,7 +84,7 @@ class HybridStageService(
                 val lastColor = configHolder.getFadeable(sid)
                 lastColor?.setGain(gain.toDouble())
                 try {
-                    ShellyClient.setGain(ipAddress = ipAddress, gain = gain, transitionDuration = transitionDuration?: configHolder.preferences?.fadeDurationDefault?:1000)
+                    ShellyClient.setGain(ipAddress = ipAddress, gain = gain, transitionDuration = transitionDuration?: prefs.fadeDurationDefault)
                 } catch (e: Exception) {
                     log.warn("Could not get gain for shelly at '$ipAddress'")
                 }
