@@ -1,5 +1,8 @@
 package de.visualdigits.kotlin.klanglicht.rest.yamahaavantage.webclient
 
+import com.fasterxml.jackson.databind.SerializationFeature
+import com.fasterxml.jackson.module.kotlin.jacksonMapperBuilder
+import com.fasterxml.jackson.module.kotlin.jsonMapper
 import de.visualdigits.kotlin.klanglicht.rest.yamahaavantage.service.YamahaAvantageService
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Disabled
@@ -16,6 +19,8 @@ class YamahaAvantageReceiverClientTest @Autowired constructor(
     private val client: YamahaAvantageService
 ) {
 
+    private val mapper = jacksonMapperBuilder().enable(SerializationFeature.INDENT_OUTPUT).build()
+
     @Test
     fun testSet() {
 //        val responseCode = client.setSurroundProgram("Sci-Fi")
@@ -26,19 +31,19 @@ class YamahaAvantageReceiverClientTest @Autowired constructor(
     @Test
     fun testInfo() {
         val deviceInfo = client.deviceInfo()
-        println(deviceInfo)
+        println(mapper.writeValueAsString(deviceInfo))
     }
 
     @Test
     fun testFeatures() {
         val features = client.features()
-        println(features)
+        println(mapper.writeValueAsString(features))
     }
 
     @Test
     fun testSoundProgramList() {
         val soundProgramList = client.soundProgramList()
-        println(soundProgramList.soundProgramList.sorted().joinToString("\n"))
+        println(soundProgramList?.soundProgramList?.sorted()?.joinToString("\n"))
     }
 }
 

@@ -6,6 +6,7 @@ import de.visualdigits.kotlin.klanglicht.hardware.yamahaadvantage.model.Response
 import de.visualdigits.kotlin.klanglicht.hardware.yamahaadvantage.model.SoundProgramList
 import de.visualdigits.kotlin.klanglicht.hardware.yamahaadvantage.model.deviceinfo.DeviceInfo
 import de.visualdigits.kotlin.klanglicht.hardware.yamahaadvantage.model.features.Features
+import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
@@ -17,8 +18,7 @@ class YamahaAvantageService(
     @Qualifier("webClientReceiver") private val webClientReceiver: WebClient,
 ) {
 
-    @Value("\${application.services.receiver.url}")
-    private var urlReceiver: String = ""
+    private val log = LoggerFactory.getLogger(javaClass)
 
     companion object {
 
@@ -53,35 +53,54 @@ class YamahaAvantageService(
         }
     }
 
-    fun deviceInfo(): DeviceInfo {
-        val deviceInfo = URL("$urlReceiver/YamahaExtendedControl/v1/system/getDeviceInfo").readText()
-        return mapper.readValue(deviceInfo, DeviceInfo::class.java)
+    fun deviceInfo(): DeviceInfo? {
+        return webClientReceiver
+            .get()
+            .uri("/YamahaExtendedControl/v1/system/getDeviceInfo")
+            .retrieve()
+            .bodyToMono(DeviceInfo::class.java)
+            .block()
     }
 
-    fun features(): Features {
-        val features = URL("$urlReceiver/YamahaExtendedControl/v1/system/getFeatures").readText()
-        return mapper.readValue(features, Features::class.java)
+    fun features(): Features? {
+        return webClientReceiver
+            .get()
+            .uri("/YamahaExtendedControl/v1/system/getFeatures")
+            .retrieve()
+            .bodyToMono(Features::class.java)
+            .block()
     }
 
-    fun soundProgramList(): SoundProgramList {
-        val soundProgramList = URL("$urlReceiver/YamahaExtendedControl/v1/main/getSoundProgramList").readText()
-        return mapper.readValue(soundProgramList, SoundProgramList::class.java)
+    fun soundProgramList(): SoundProgramList? {
+        return webClientReceiver
+            .get()
+            .uri("/YamahaExtendedControl/v1/main/getSoundProgramList")
+            .retrieve()
+            .bodyToMono(SoundProgramList::class.java)
+            .block()
     }
 
     fun setVolume(volume: Int) {
-        URL("$urlReceiver/YamahaExtendedControl/v1/main/setVolume?volume=$volume").readText()
+        webClientReceiver
+            .get()
+            .uri("/YamahaExtendedControl/v1/main/setVolume?volume=$volume")
+            .retrieve()
+            .bodyToMono(String::class.java)
+            .block()
     }
 
     fun setSurroundProgram(program: String?): ResponseCode {
-        println("Setting program '${mapPrograms[program]}'")
-        return try {
-            program?.let { p ->
-                mapPrograms[p]
-                    ?.let { URL("$urlReceiver/YamahaExtendedControl/v1/main/setSoundProgram?program=$it").readText() }
-                    ?.let { mapper.readValue(it, ResponseCode::class.java) }
-            }?:ResponseCode(0)
-        } catch (e: JsonProcessingException) {
-            throw IllegalStateException("Could not read from api", e)
-        }
+        log.info("Setting program '${mapPrograms[program]}'")
+        return program?.let { p ->
+            mapPrograms[p]
+                ?.let {
+                    webClientReceiver
+                        .get()
+                        .uri("/YamahaExtendedControl/v1/main/setSoundProgram?program=$it")
+                        .retrieve()
+                        .bodyToMono(ResponseCode::class.java)
+                        .block()
+                }
+        }?:ResponseCode(0)
     }
 }
