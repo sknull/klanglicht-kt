@@ -5,7 +5,7 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement
 
 
 @JacksonXmlRootElement(localName = "FKey")
-class FKey : XmlEntity() {
+class FKey : XmlEntity {
     @JacksonXmlProperty(localName = "Title", isAttribute = true)
     val title: String? = null
 

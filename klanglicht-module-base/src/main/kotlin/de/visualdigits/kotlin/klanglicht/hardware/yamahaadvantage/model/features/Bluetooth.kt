@@ -3,7 +3,7 @@ package de.visualdigits.kotlin.klanglicht.hardware.yamahaadvantage.model.feature
 
 import com.fasterxml.jackson.annotation.JsonProperty
 
-data class Bluetooth(
+class Bluetooth(
     @JsonProperty("update_cancelable") val updateCancelable: Boolean = false,
     @JsonProperty("tx_connectivity_type_max") val txConnectivityTypeMax: Int = 0
 )

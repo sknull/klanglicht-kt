@@ -1,13 +1,5 @@
-package de.visualdigits.kotlin.klanglicht.hardware.lightmanager.client
+package de.visualdigits.kotlin.klanglicht.rest.lightmanager.webclient
 
-import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.json.LmAirProject
-import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.json.NType
-import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm.LMActionHybrid
-import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm.LMActionLmAir
-import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm.LMActionLmYamahaAvantage
-import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm.LMActionPause
-import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm.LMActionShelly
-import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm.LMActionUrl
 import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm.LMMarker
 import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm.LMMarkers
 import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm.LMParams

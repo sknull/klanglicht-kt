@@ -1,7 +1,7 @@
 package de.visualdigits.kotlin.klanglicht.model.dmx.fixture
 
 
-data class Channel(
+class Channel(
     val channelOffset: Int = 0,
     val function: String? = null,
     val maxValue: Int = 255,

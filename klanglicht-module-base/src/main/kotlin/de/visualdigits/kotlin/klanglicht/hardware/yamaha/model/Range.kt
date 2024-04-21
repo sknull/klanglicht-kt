@@ -5,7 +5,7 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlText
 
 
 @JacksonXmlRootElement(localName = "Range")
-class Range : XmlEntity() {
+class Range : XmlEntity {
     @JacksonXmlText
     val value: String? = null
 }

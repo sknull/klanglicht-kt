@@ -3,7 +3,7 @@ package de.visualdigits.kotlin.klanglicht.hardware.yamahaadvantage.model.devicei
 
 import com.fasterxml.jackson.annotation.JsonProperty
 
-data class DeviceInfo(
+class DeviceInfo(
     @JsonProperty("response_code") val responseCode: Int = 0,
     @JsonProperty("model_name") val modelName: String = "",
     val destination: String = "",

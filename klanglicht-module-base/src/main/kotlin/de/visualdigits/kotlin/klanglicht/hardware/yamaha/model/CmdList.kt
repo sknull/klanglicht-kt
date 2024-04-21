@@ -5,7 +5,7 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement
 
 @JacksonXmlRootElement(localName = "Cmd_List")
-class CmdList : XmlEntity() {
+class CmdList : XmlEntity {
     @JacksonXmlProperty(localName = "Define")
     @JacksonXmlElementWrapper(localName = "Define", useWrapping = false)
     val define: List<Define> = listOf()

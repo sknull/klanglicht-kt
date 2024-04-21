@@ -1,14 +1,13 @@
 package de.visualdigits.kotlin.klanglicht.rest.lightmanager.model.html
 
 import de.visualdigits.kotlin.klanglicht.rest.configuration.ApplicationPreferences
-import de.visualdigits.kotlin.klanglicht.rest.configuration.ConfigHolder
 
 
 class ColorWheelOddEven(
     val id: String? = null
 ) : HtmlRenderable {
 
-    override fun toHtml(prefs: ApplicationPreferences, configHolder: ConfigHolder?): String {
+    override fun toHtml(prefs: ApplicationPreferences): String {
         return "    <div class=\"colorwheel-wrapper\">\n" +
                 "\t\t<div class=\"colorwheel-title\"><span class=\"label\">COLORPICKER</span></div>\n" +
                 "\t\t<div class=\"colorwheel-panel\">\n" +

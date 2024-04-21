@@ -15,9 +15,8 @@ import org.thymeleaf.templateresolver.ITemplateResolver
 import java.nio.file.Paths
 
 @Configuration
-open class WebConfig(
-    private val prefs: ApplicationPreferences,
-    private val configHolder: ConfigHolder
+class WebConfig(
+    private val prefs: ApplicationPreferences
 ) : WebMvcConfigurer {
 
     override fun addCorsMappings(registry: CorsRegistry) {
@@ -26,13 +25,13 @@ open class WebConfig(
 
     @Bean
     @Description("Thymeleaf file system template resolver serving HTML 5")
-    open fun templateResolver(): ITemplateResolver {
+    fun templateResolver(): ITemplateResolver {
         val templateResolver = FileTemplateResolver()
         val templatesPath = Paths.get(
-            configHolder.klanglichtDirectory.absolutePath,
+            prefs.klanglichtDirectory.absolutePath,
             "resources",
             "themes",
-            prefs.theme,
+            prefs.preferences?.theme,
             "templates"
         ).toFile().absolutePath.replace("\\", "/") + "/"
         templateResolver.prefix = templatesPath
@@ -45,7 +44,7 @@ open class WebConfig(
 
     @Bean
     @Description("Thymeleaf template engine with Spring integration")
-    open fun templateEngine(): SpringTemplateEngine {
+    fun templateEngine(): SpringTemplateEngine {
         val templateEngine = SpringTemplateEngine()
         templateEngine.setTemplateResolver(templateResolver())
         return templateEngine
@@ -53,7 +52,7 @@ open class WebConfig(
 
     @Bean
     @Description("Thymeleaf view resolver")
-    open fun viewResolver(): ViewResolver {
+    fun viewResolver(): ViewResolver {
         val viewResolver = ThymeleafViewResolver()
         viewResolver.templateEngine = templateEngine()
         viewResolver.characterEncoding = "UTF-8"

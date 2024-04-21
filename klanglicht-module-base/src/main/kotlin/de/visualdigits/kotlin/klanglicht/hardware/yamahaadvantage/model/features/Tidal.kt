@@ -1,6 +1,6 @@
 package de.visualdigits.kotlin.klanglicht.hardware.yamahaadvantage.model.features
 
 
-data class Tidal(
+class Tidal(
     val mode: String = ""
 )

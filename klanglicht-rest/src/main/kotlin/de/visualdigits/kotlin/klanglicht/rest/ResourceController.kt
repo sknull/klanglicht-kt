@@ -1,6 +1,6 @@
 package de.visualdigits.kotlin.klanglicht.rest
 
-import de.visualdigits.kotlin.klanglicht.rest.configuration.ConfigHolder
+import de.visualdigits.kotlin.klanglicht.rest.configuration.ApplicationPreferences
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
 import org.apache.tika.detect.Detector
@@ -16,12 +16,11 @@ import java.io.BufferedInputStream
 import java.io.File
 import java.io.FileInputStream
 import java.io.IOException
-import java.io.UnsupportedEncodingException
 import java.net.URLDecoder
 
 @Controller
 class ResourceController(
-    val configHolder: ConfigHolder
+    val prefs: ApplicationPreferences
 ) {
 
     private val log: Logger = LoggerFactory.getLogger(javaClass)
@@ -31,7 +30,7 @@ class ResourceController(
         val src = URLDecoder
             .decode(request.requestURI, request.characterEncoding)
             ?.substring("/resources".length)?:""
-        val file = configHolder.getAbsoluteResource(src)
+        val file = prefs.getAbsoluteResource(src)
         try {
             FileInputStream(file).use { ins ->
                 response.outputStream.use { outs ->

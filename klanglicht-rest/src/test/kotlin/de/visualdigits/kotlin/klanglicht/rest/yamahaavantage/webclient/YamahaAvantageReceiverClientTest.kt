@@ -1,4 +1,4 @@
-package de.visualdigits.kotlin.klanglicht.hardware.yamahaadvantage.client
+package de.visualdigits.kotlin.klanglicht.rest.yamahaavantage.webclient
 
 import de.visualdigits.kotlin.klanglicht.model.preferences.Preferences
 import org.junit.jupiter.api.Assertions.assertEquals

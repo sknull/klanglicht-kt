@@ -3,7 +3,7 @@ package de.visualdigits.kotlin.klanglicht.hardware.yamahaadvantage.model.feature
 
 import com.fasterxml.jackson.annotation.JsonProperty
 
-data class Distribution(
+class Distribution(
     val version: Double = 0.0,
     @JsonProperty("compatible_client") val compatibleClient: List<Int> = listOf(),
     @JsonProperty("client_max") val clientMax: Int = 0,

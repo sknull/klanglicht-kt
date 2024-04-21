@@ -12,7 +12,7 @@ import kotlin.math.round
 
 
 @JsonIgnoreProperties("channelsForCurrentMode")
-data class Fixture(
+class Fixture(
     val calibration: Calibration = Calibration(),
     val channels: Map<String, List<Channel>> = mapOf(),
     val colorPresets: Map<String, Map<String, Int>> = mapOf(),

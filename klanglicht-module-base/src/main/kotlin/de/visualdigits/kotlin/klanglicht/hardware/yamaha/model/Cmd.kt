@@ -6,7 +6,7 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlText
 
 
 @JacksonXmlRootElement(localName = "Cmd")
-class Cmd : XmlEntity() {
+class Cmd : XmlEntity {
     @JacksonXmlProperty(localName = "ID", isAttribute = true)
     val id: String? = null
 

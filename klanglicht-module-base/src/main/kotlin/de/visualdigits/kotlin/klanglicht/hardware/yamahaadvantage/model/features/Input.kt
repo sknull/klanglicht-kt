@@ -3,7 +3,7 @@ package de.visualdigits.kotlin.klanglicht.hardware.yamahaadvantage.model.feature
 
 import com.fasterxml.jackson.annotation.JsonProperty
 
-data class Input(
+class Input(
     val id: String = "",
     @JsonProperty("distribution_enable") val distributionEnable: Boolean = false,
     @JsonProperty("rename_enable") val renameEnable: Boolean = false,

@@ -4,7 +4,7 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
 
 
-class Param : XmlEntity() {
+class Param : XmlEntity {
     @JacksonXmlProperty(localName = "Func")
     var function: String? = null
 

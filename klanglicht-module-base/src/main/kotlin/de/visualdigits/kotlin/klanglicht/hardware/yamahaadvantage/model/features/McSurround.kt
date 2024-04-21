@@ -3,7 +3,7 @@ package de.visualdigits.kotlin.klanglicht.hardware.yamahaadvantage.model.feature
 
 import com.fasterxml.jackson.annotation.JsonProperty
 
-data class McSurround(
+class McSurround(
     val version: Double = 0.0,
     @JsonProperty("func_list") val funcList: List<String> = listOf(),
     @JsonProperty("master_role") val masterRole: MasterRole = MasterRole(),

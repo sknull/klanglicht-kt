@@ -2,20 +2,19 @@ package de.visualdigits.kotlin.klanglicht.rest.lightmanager.model.html
 
 import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm.LMScene
 import de.visualdigits.kotlin.klanglicht.rest.configuration.ApplicationPreferences
-import de.visualdigits.kotlin.klanglicht.rest.configuration.ConfigHolder
 
 
 class LMHtmlScene(
     val scene: LMScene
 ) : HtmlRenderable {
 
-    override fun toHtml(prefs: ApplicationPreferences, configHolder: ConfigHolder?): String {
-        return toHtml(prefs, configHolder, "")
+    override fun toHtml(prefs: ApplicationPreferences): String {
+        return toHtml(prefs, "")
     }
 
-    fun toHtml(prefs: ApplicationPreferences, configHolder: ConfigHolder?, group: String): String {
+    fun toHtml(prefs: ApplicationPreferences, group: String): String {
 //        val url = configHolder.preferences?.getService("lmair")?.url
-        val url = prefs.ownUrl
+        val url = prefs.preferences?.ownUrl
         val sb = StringBuilder()
         sb.append("      <div class=\"button\"")
         if (scene.color.isNotEmpty()) {

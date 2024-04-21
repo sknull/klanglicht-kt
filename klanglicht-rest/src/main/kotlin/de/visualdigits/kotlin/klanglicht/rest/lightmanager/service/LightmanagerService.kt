@@ -1,17 +1,17 @@
 package de.visualdigits.kotlin.klanglicht.rest.lightmanager.service
 
-import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.client.LightmanagerClient
 import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm.LMMarkers
 import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm.LMParams
 import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm.LMScenes
 import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm.LMZones
-import de.visualdigits.kotlin.klanglicht.rest.configuration.ConfigHolder
+import de.visualdigits.kotlin.klanglicht.rest.configuration.ApplicationPreferences
+import de.visualdigits.kotlin.klanglicht.rest.lightmanager.webclient.LightmanagerClient
 import jakarta.annotation.PostConstruct
 import org.springframework.stereotype.Service
 
 @Service
 class LightmanagerService(
-    private val configHolder: ConfigHolder,
+    private val prefs: ApplicationPreferences,
 
     var lightmanagerUrl: String? = null,
     var client: LightmanagerClient? = null
@@ -20,7 +20,7 @@ class LightmanagerService(
     @PostConstruct
     fun initialize() {
         if (lightmanagerUrl == null) {
-            lightmanagerUrl = configHolder.preferences?.getService("lmair")?.url!!
+            lightmanagerUrl = prefs.preferences?.getService("lmair")?.url
         }
         client = lightmanagerUrl?.let { LightmanagerClient(it) }
     }

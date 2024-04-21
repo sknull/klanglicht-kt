@@ -4,7 +4,7 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlText
 
 
-class Locator : XmlEntity() {
+class Locator : XmlEntity {
     @JacksonXmlProperty(localName = "ID", isAttribute = true)
     val id: String? = null
 

@@ -1,4 +1,4 @@
-package de.visualdigits.kotlin.klanglicht.hardware.yamahaadvantage.client
+package de.visualdigits.kotlin.klanglicht.rest.yamahaavantage.webclient
 
 import com.fasterxml.jackson.core.JsonProcessingException
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper

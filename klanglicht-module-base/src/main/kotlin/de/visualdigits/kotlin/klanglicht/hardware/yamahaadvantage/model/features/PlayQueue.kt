@@ -1,6 +1,6 @@
 package de.visualdigits.kotlin.klanglicht.hardware.yamahaadvantage.model.features
 
 
-data class PlayQueue(
+class PlayQueue(
     val size: Int = 0
 )

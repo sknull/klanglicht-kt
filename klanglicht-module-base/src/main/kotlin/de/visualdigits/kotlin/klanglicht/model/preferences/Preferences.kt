@@ -23,12 +23,16 @@ import java.nio.file.Paths
 
 
 @JsonIgnoreProperties("klanglichtDir", "dmxInterface", "fixtures", "serviceMap", "shellyMap", "twinklyMap", "stageMap", "log")
-data class Preferences(
-    private val services: List<Service> = listOf(),
-    private val shelly: List<ShellyDevice>? = listOf(),
-    private val twinkly: List<TwinklyConfiguration>? = listOf(),
-    private val stage: List<HybridDevice> = listOf(),
-    private val dmx: Dmx? = null
+class Preferences(
+    var name: String = "",
+    var theme: String = "",
+    var fadeDurationDefault: Long = 0,
+    var ownUrl: String = "",
+    var services: List<Service> = listOf(),
+    var shelly: List<ShellyDevice>? = listOf(),
+    var twinkly: List<TwinklyConfiguration>? = listOf(),
+    var stage: List<HybridDevice> = listOf(),
+    var dmx: Dmx? = null
 ) {
 
     private val log: Logger = LoggerFactory.getLogger(javaClass)
@@ -71,6 +75,27 @@ data class Preferences(
 
             return preferences!!
         }
+    }
+
+    fun initialHybridScene(): HybridScene {
+        val gains = stage.mapNotNull { sd ->
+            when (sd.type) {
+                HybridDeviceType.dmx -> {
+                    dmx?.dmxDevices?.get(sd.id)?.gain?:1.0
+                }
+
+                HybridDeviceType.shelly -> getShellyGain(sd.id)
+                HybridDeviceType.twinkly -> getTwinklyConfiguration(sd.id)?.let { if (it.xledArray.isLoggedIn()) it.gain else null }
+                else -> null
+            }
+        }
+        return HybridScene(
+            ids = stage.map { it.id },
+            hexColors = listOf("000000"),
+            gains = gains,
+            turnOns = "false",
+            preferences = this
+        )
     }
 
     fun initialize(klanglichtDirectory: File) {
@@ -119,27 +144,6 @@ data class Preferences(
             Pair(config.name, config.xledArray)
         } ?: mapOf()
         this.xledDevices = xledDevices
-    }
-
-    fun initialHybridScene(): HybridScene {
-        val gains = stage.mapNotNull { sd ->
-            when (sd.type) {
-                HybridDeviceType.dmx -> {
-                    dmx?.dmxDevices?.get(sd.id)?.gain?:1.0
-                }
-
-                HybridDeviceType.shelly -> getShellyGain(sd.id)
-                HybridDeviceType.twinkly -> getTwinklyConfiguration(sd.id)?.let { if (it.xledArray.isLoggedIn()) it.gain else null }
-                else -> null
-            }
-        }
-        return HybridScene(
-            ids = stage.map { it.id },
-            hexColors = listOf("000000"),
-            gains = gains,
-            turnOns = "false",
-            preferences = this
-        )
     }
 
     fun getService(id: String): Service? = serviceMap[id]

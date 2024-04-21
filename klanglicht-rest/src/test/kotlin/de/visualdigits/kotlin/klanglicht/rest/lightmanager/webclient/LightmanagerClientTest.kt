@@ -1,4 +1,4 @@
-package de.visualdigits.kotlin.klanglicht.hardware.lightmanager.client
+package de.visualdigits.kotlin.klanglicht.rest.lightmanager.webclient
 
 import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.databind.SerializationFeature
@@ -8,11 +8,6 @@ import org.junit.jupiter.api.Test
 import java.io.File
 
 class LightmanagerClientTest {
-
-    private val mapper = jacksonMapperBuilder()
-        .serializationInclusion(JsonInclude.Include.NON_NULL)
-        .enable(SerializationFeature.INDENT_OUTPUT)
-        .build()
 
     val client = LightmanagerClient(lightmanagerUrl = "http://192.168.178.28")
 

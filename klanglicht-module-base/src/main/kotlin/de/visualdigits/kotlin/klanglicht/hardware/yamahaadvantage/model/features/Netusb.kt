@@ -3,7 +3,7 @@ package de.visualdigits.kotlin.klanglicht.hardware.yamahaadvantage.model.feature
 
 import com.fasterxml.jackson.annotation.JsonProperty
 
-data class Netusb(
+class Netusb(
     @JsonProperty("func_list") val funcList: List<String> = listOf(),
     val preset: PresetX = PresetX(),
     @JsonProperty("recent_info") val recentInfo: RecentInfo = RecentInfo(),

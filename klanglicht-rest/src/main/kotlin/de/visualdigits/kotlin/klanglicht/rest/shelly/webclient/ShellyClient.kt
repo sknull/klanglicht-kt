@@ -1,4 +1,4 @@
-package de.visualdigits.kotlin.klanglicht.hardware.shelly.client
+package de.visualdigits.kotlin.klanglicht.rest.shelly.webclient
 
 import de.visualdigits.kotlin.klanglicht.hardware.shelly.model.status.Light
 import de.visualdigits.kotlin.klanglicht.hardware.shelly.model.status.Status

@@ -1,6 +1,6 @@
 package de.visualdigits.kotlin.klanglicht.rest.twinkly.controller
 
-import de.visualdigits.kotlin.klanglicht.rest.configuration.ConfigHolder
+import de.visualdigits.kotlin.klanglicht.rest.configuration.ApplicationPreferences
 import de.visualdigits.kotlin.twinkly.model.color.RGBWColor
 import de.visualdigits.kotlin.twinkly.model.device.xled.response.Brightness
 import de.visualdigits.kotlin.twinkly.model.device.xled.response.Saturation
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController()
 @RequestMapping("/twinkly/api/v1/xleddevice")
 class XledDeviceController(
-    private val configHolder: ConfigHolder
+    private val prefs: ApplicationPreferences
 ) {
 
     private val log = LoggerFactory.getLogger(XledDeviceController::class.java)
@@ -25,7 +25,7 @@ class XledDeviceController(
         @PathVariable device: String
     ) {
         log.info("Powering on $device")
-        configHolder.preferences?.getXledDevice(device)?.powerOn()
+        prefs.preferences?.getXledDevice(device)?.powerOn()
     }
 
     @PutMapping("/{device}/power/off")
@@ -33,7 +33,7 @@ class XledDeviceController(
         @PathVariable device: String
     ) {
         log.info("Powering off $device")
-        configHolder.preferences?.getXledDevice(device)?.powerOff()
+        prefs.preferences?.getXledDevice(device)?.powerOff()
     }
 
     @GetMapping("/{device}/brightness", produces = ["application/json"])
@@ -41,7 +41,7 @@ class XledDeviceController(
         @PathVariable device: String
     ): Brightness? {
         log.info("Getting saturation")
-        return configHolder.preferences?.getXledDevice(device)?.getBrightness()
+        return prefs.preferences?.getXledDevice(device)?.getBrightness()
     }
 
     @PutMapping("/{device}/brightness/{brightness}")
@@ -50,7 +50,7 @@ class XledDeviceController(
         @PathVariable brightness: Float,
     ) {
         log.info("Setting brightness to $brightness")
-        configHolder.preferences?.getXledDevice(device)?.setBrightness(brightness)
+        prefs.preferences?.getXledDevice(device)?.setBrightness(brightness)
     }
 
     @GetMapping("/{device}/saturation", produces = ["application/json"])
@@ -58,7 +58,7 @@ class XledDeviceController(
         @PathVariable device: String
     ): Saturation? {
         log.info("Getting saturation")
-        return configHolder.preferences?.getXledDevice(device)?.getSaturation()
+        return prefs.preferences?.getXledDevice(device)?.getSaturation()
     }
 
     @PutMapping("/{device}/saturation/{saturation}")
@@ -67,7 +67,7 @@ class XledDeviceController(
         @PathVariable saturation: Float,
     ) {
         log.info("Setting saturation to $saturation")
-        configHolder.preferences?.getXledDevice(device)?.setSaturation(saturation)
+        prefs.preferences?.getXledDevice(device)?.setSaturation(saturation)
     }
 
     @PutMapping("/{device}/mode/{mode}")
@@ -76,7 +76,7 @@ class XledDeviceController(
         @PathVariable mode: String,
     ) {
         log.info("Setting saturation to $mode")
-        configHolder.preferences?.getXledDevice(device)?.setMode(DeviceMode.valueOf(mode))
+        prefs.preferences?.getXledDevice(device)?.setMode(DeviceMode.valueOf(mode))
     }
 
     @PutMapping("/{device}/color/{red}/{green}/{blue}/{white}")
@@ -89,7 +89,7 @@ class XledDeviceController(
     ) {
         val rgbwColor = RGBWColor(red, green, blue, white)
         log.info("Showing color ${rgbwColor.ansiColor()}")
-        configHolder.preferences?.getXledDevice(device)?.setMode(DeviceMode.color)
-        configHolder.preferences?.getXledDevice(device)?.setColor(rgbwColor)
+        prefs.preferences?.getXledDevice(device)?.setMode(DeviceMode.color)
+        prefs.preferences?.getXledDevice(device)?.setColor(rgbwColor)
     }
 }

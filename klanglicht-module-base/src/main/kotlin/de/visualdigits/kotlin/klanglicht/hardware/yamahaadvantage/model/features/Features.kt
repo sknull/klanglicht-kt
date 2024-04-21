@@ -3,7 +3,7 @@ package de.visualdigits.kotlin.klanglicht.hardware.yamahaadvantage.model.feature
 
 import com.fasterxml.jackson.annotation.JsonProperty
 
-data class Features(
+class Features(
     @JsonProperty("response_code") val responseCode: Int = 0,
     val system: System = System(),
     val zone: List<Zone> = listOf(),

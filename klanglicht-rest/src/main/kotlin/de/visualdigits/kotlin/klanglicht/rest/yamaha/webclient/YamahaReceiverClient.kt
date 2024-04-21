@@ -1,4 +1,4 @@
-package de.visualdigits.kotlin.klanglicht.hardware.yamaha.client
+package de.visualdigits.kotlin.klanglicht.rest.yamaha.webclient
 
 import de.visualdigits.kotlin.klanglicht.hardware.yamaha.model.Menu
 import de.visualdigits.kotlin.klanglicht.hardware.yamaha.model.UnitDescription

@@ -3,13 +3,12 @@ package de.visualdigits.kotlin.klanglicht.rest.lightmanager.model.html
 import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm.LMSceneGroup
 import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm.LMScenes
 import de.visualdigits.kotlin.klanglicht.rest.configuration.ApplicationPreferences
-import de.visualdigits.kotlin.klanglicht.rest.configuration.ConfigHolder
 
 class LMHtmlScenes(
     val scene: LMScenes
 ) : HtmlRenderable {
 
-    override fun toHtml(prefs: ApplicationPreferences, configHolder: ConfigHolder?): String {
+    override fun toHtml(prefs: ApplicationPreferences): String {
         val sb = StringBuilder()
         sb.append("<div class=\"title\" onclick=\"toggleFullScreen();\" title=\"Toggle Fullscreen\">")
             .append(scene.name)
@@ -17,7 +16,7 @@ class LMHtmlScenes(
         sb.append("<div class=\"center-category\">\n")
         renderLabel(sb, "C U R R E N T   S C E N E")
         sb.append("<div class=\"center-group\">\n")
-        configHolder?.currentScene?.fadeables()?.forEach { fadeable ->
+        prefs.currentScene?.fadeables()?.forEach { fadeable ->
             val color = fadeable.getRgbColor()?.web()?:"#000000"
             val html = renderPanel("circle", color, "")
             sb.append(html)
@@ -30,7 +29,6 @@ class LMHtmlScenes(
         scene.scenes.values.forEach { sceneGroup ->
             val html = renderScenesGroup(
                 prefs,
-                configHolder,
                 sceneGroup
             )
             sb.append(html)
@@ -52,7 +50,6 @@ class LMHtmlScenes(
 
     private fun renderScenesGroup(
         prefs: ApplicationPreferences,
-        configHolder: ConfigHolder?,
         sceneGroup: LMSceneGroup
     ): String {
         val sb = StringBuilder()
@@ -76,12 +73,12 @@ class LMHtmlScenes(
         }
         sb.append("\">\n")
         sceneGroup.scenes.forEach { scene ->
-            sb.append(LMHtmlScene(scene).toHtml(prefs, configHolder, sceneGroup.name))
+            sb.append(LMHtmlScene(scene).toHtml(prefs, sceneGroup.name))
         }
         sb.append("    </div><!-- sub-group -->\n")
         sb.append("  </div><!-- group -->\n")
         if (sceneGroup.hasColorWheel) {
-            val html: String = ColorWheel(sceneGroup.name).toHtml(prefs, configHolder, sceneGroup.colorWheelOddEven)
+            val html: String = ColorWheel(sceneGroup.name).toHtml(prefs, sceneGroup.colorWheelOddEven)
             sb.append(html)
         }
         return sb.toString()

@@ -3,7 +3,7 @@ package de.visualdigits.kotlin.klanglicht.hardware.yamahaadvantage.model.feature
 
 import com.fasterxml.jackson.annotation.JsonProperty
 
-data class System(
+class System(
     @JsonProperty("func_list") val funcList: List<String> = listOf(),
     @JsonProperty("zone_num") val zoneNum: Int = 0,
     @JsonProperty("input_list") val inputList: List<Input> = listOf(),

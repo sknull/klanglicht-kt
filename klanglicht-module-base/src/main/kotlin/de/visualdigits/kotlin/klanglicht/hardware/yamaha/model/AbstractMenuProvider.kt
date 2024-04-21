@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty
 
-abstract class AbstractMenuProvider : XmlEntity() {
+abstract class AbstractMenuProvider : XmlEntity {
 
     @JacksonXmlProperty(localName = "Menu")
     @JacksonXmlElementWrapper(localName = "Menu", useWrapping = false)

@@ -6,7 +6,7 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlText
 
 
 @JacksonXmlRootElement(localName = "Language")
-class Language : XmlEntity() {
+class Language : XmlEntity {
     @JacksonXmlProperty(localName = "Code", isAttribute = true)
     val code: String? = null
 

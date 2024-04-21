@@ -1,32 +1,31 @@
 package de.visualdigits.kotlin.klanglicht.rest.lightmanager.model.html
 
 import com.fasterxml.jackson.annotation.JsonIgnore
-import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.client.LightmanagerClient
 import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.json.RequestType
 import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm.LMActor
 import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm.LMDefaultRequest
 import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm.LMMarker
 import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm.LMRequest
 import de.visualdigits.kotlin.klanglicht.rest.configuration.ApplicationPreferences
-import de.visualdigits.kotlin.klanglicht.rest.configuration.ConfigHolder
+import de.visualdigits.kotlin.klanglicht.rest.lightmanager.webclient.LightmanagerClient
 
 class LMHtmlActor(
     val actor: LMActor
 ) : HtmlRenderable {
 
-    override fun toHtml(prefs: ApplicationPreferences, configHolder: ConfigHolder?): String {
+    override fun toHtml(prefs: ApplicationPreferences): String {
         val sb = StringBuilder()
         sb.append("      <div class=\"panel\">\n")
         renderLabel(sb, actor.name)
         renderRequests(sb)
         // fixme - yet not working reliable enough
-//        renderSlider(sb, configHolder);
+//        renderSlider(sb, prefs, configHolder);
         sb.append("      </div><!-- actor -->\n")
         return sb.toString()
     }
 
-    private fun renderSlider(sb: StringBuilder, configHolder: ConfigHolder) {
-        val lightmanagerUrl = configHolder.preferences?.getService("lmair")?.url
+    private fun renderSlider(sb: StringBuilder, prefs: ApplicationPreferences) {
+        val lightmanagerUrl = prefs.preferences?.getService("lmair")?.url
         if (actor.isDimmer == true) {
             val actorId = actor.id
             val drq = getRequestBySmkState(1)

@@ -5,7 +5,7 @@ import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm.LMAction
 import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm.LMActionLmYamahaAvantage
 import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm.LMActionPause
 import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm.LMActionShelly
-import de.visualdigits.kotlin.klanglicht.rest.configuration.ConfigHolder
+import de.visualdigits.kotlin.klanglicht.rest.configuration.ApplicationPreferences
 import de.visualdigits.kotlin.klanglicht.rest.hybrid.service.HybridStageService
 import de.visualdigits.kotlin.klanglicht.rest.lightmanager.service.LightmanagerService
 import de.visualdigits.kotlin.klanglicht.rest.shelly.service.ShellyService
@@ -15,11 +15,11 @@ import org.springframework.stereotype.Service
 
 @Service
 class ScenesService(
+    private val prefs: ApplicationPreferences,
     private val shellyService: ShellyService,
     private val lightmanagerService: LightmanagerService,
     private val hybridStageService: HybridStageService,
-    private val yamahaAvantageService: YamahaAvantageService,
-    private val configHolder: ConfigHolder
+    private val yamahaAvantageService: YamahaAvantageService
 ) {
 
     private val log = LoggerFactory.getLogger(javaClass)
@@ -29,7 +29,7 @@ class ScenesService(
     fun executeScene(sceneName: String) {
         if (sceneName != previousSceneName) {
             previousSceneName = sceneName
-            val lmScene = configHolder.scenes().scenesMap[sceneName]
+            val lmScene = prefs.scenes().scenesMap[sceneName]
             lmScene
                 ?.let { s ->
                     log.info("Executing scene '$sceneName'...")
@@ -62,7 +62,7 @@ class ScenesService(
         }
     }
 
-    fun sceneNames(): Set<String> = configHolder.scenes().scenesMap.keys
+    fun sceneNames(): Set<String> = prefs.scenes().scenesMap.keys
 
     fun hybrid(ids: List<String>, hexColors: List<String>, gains: List<Double>) {
         hybridStageService.hexColor(

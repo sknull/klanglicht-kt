@@ -1,7 +1,7 @@
 package de.visualdigits.kotlin.klanglicht.model.dmx.model
 
 
-data class Dmx(
+class Dmx(
     val port: String = "",
     val interfaceType: DmxInterfaceType = DmxInterfaceType.Dummy,
     val frameTime: Long = 40L,

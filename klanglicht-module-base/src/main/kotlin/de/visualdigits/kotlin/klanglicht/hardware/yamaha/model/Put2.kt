@@ -5,7 +5,7 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement
 
 
 @JacksonXmlRootElement(localName = "Put_2")
-class Put2 : XmlEntity() {
+class Put2 : XmlEntity {
     @JacksonXmlProperty(localName = "Cmd")
     val command: Cmd? = null
 

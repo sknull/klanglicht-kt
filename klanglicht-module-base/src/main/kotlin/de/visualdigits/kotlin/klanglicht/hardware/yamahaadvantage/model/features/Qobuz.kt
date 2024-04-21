@@ -3,6 +3,6 @@ package de.visualdigits.kotlin.klanglicht.hardware.yamahaadvantage.model.feature
 
 import com.fasterxml.jackson.annotation.JsonProperty
 
-data class Qobuz(
+class Qobuz(
     @JsonProperty("login_type") val loginType: String = ""
 )

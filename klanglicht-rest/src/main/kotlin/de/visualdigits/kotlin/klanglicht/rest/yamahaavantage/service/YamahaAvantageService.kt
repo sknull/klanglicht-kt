@@ -1,17 +1,17 @@
 package de.visualdigits.kotlin.klanglicht.rest.yamahaavantage.service
 
-import de.visualdigits.kotlin.klanglicht.hardware.yamahaadvantage.client.YamahaAvantageReceiverClient
+import de.visualdigits.kotlin.klanglicht.rest.yamahaavantage.webclient.YamahaAvantageReceiverClient
 import de.visualdigits.kotlin.klanglicht.hardware.yamahaadvantage.model.ResponseCode
 import de.visualdigits.kotlin.klanglicht.hardware.yamahaadvantage.model.SoundProgramList
 import de.visualdigits.kotlin.klanglicht.hardware.yamahaadvantage.model.deviceinfo.DeviceInfo
 import de.visualdigits.kotlin.klanglicht.hardware.yamahaadvantage.model.features.Features
-import de.visualdigits.kotlin.klanglicht.rest.configuration.ConfigHolder
+import de.visualdigits.kotlin.klanglicht.rest.configuration.ApplicationPreferences
 import jakarta.annotation.PostConstruct
 import org.springframework.stereotype.Service
 
 @Service
 class YamahaAvantageService(
-    private val configHolder: ConfigHolder
+    private val prefs: ApplicationPreferences
 ) {
     private var client: YamahaAvantageReceiverClient? = null
 
@@ -19,7 +19,7 @@ class YamahaAvantageService(
     fun initialize() {
         if (client == null) {
             client = YamahaAvantageReceiverClient(
-                configHolder.preferences?.getService("receiver")?.url!!
+                prefs.preferences?.getService("receiver")?.url!!
             )
         }
     }

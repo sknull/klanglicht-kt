@@ -1,11 +1,13 @@
 package de.visualdigits.kotlin.klanglicht.hardware.shelly.model
 
-import de.visualdigits.kotlin.klanglicht.hardware.shelly.client.ShellyClient
+import de.visualdigits.kotlin.klanglicht.hardware.shelly.model.status.Light
 import de.visualdigits.kotlin.klanglicht.model.color.RGBColor
 import de.visualdigits.kotlin.klanglicht.model.dmx.parameter.Fadeable
 import de.visualdigits.kotlin.klanglicht.model.preferences.Preferences
+import de.visualdigits.kotlin.util.get
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import java.net.URL
 import kotlin.math.min
 
 class ShellyColor(
@@ -51,13 +53,9 @@ class ShellyColor(
     override fun write(preferences: Preferences?, write: Boolean, transitionDuration: Long) {
         if (write) {
             log.debug("Set shelly color {}", color.ansiColor())
-            ShellyClient.setColor(
-                ipAddress = ipAddress,
-                rgbColor = color,
-                gain = deviceGain,
-                transitionDuration = transitionDuration,
-                turnOn = getTurnOn()
-            )
+            log.debug("setColor: $ipAddress = ${color.ansiColor()} [$deviceGain]")
+            URL("http://$ipAddress/color/0?turn=${if (getTurnOn() == true) "on" else "off"}&red=${color.red}&green=${color.green}&blue=${color.blue}&white=0&gain=${(100 * deviceGain).toInt()}&transition=$transitionDuration&")
+                .get<Light>()
         }
     }
 

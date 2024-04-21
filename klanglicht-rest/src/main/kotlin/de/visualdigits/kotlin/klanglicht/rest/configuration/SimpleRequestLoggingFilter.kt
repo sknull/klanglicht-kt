@@ -4,7 +4,7 @@ import jakarta.servlet.http.HttpServletRequest
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.web.filter.AbstractRequestLoggingFilter
 
-open class SimpleRequestLoggingFilter : AbstractRequestLoggingFilter() {
+class SimpleRequestLoggingFilter : AbstractRequestLoggingFilter() {
 
     @Value("\${server.logging.requestLogging}")
     private var enableReuestLogging: Boolean? = false

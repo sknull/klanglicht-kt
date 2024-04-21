@@ -5,7 +5,7 @@ import de.visualdigits.kotlin.klanglicht.model.dmx.fixture.Fixture
 
 
 @JsonIgnoreProperties("fixture")
-data class DmxDevice(
+class DmxDevice(
     val manufacturer: String = "",
     val model: String = "",
     val mode: String = "",

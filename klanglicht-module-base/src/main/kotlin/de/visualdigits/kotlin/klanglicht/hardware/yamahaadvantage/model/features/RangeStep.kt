@@ -1,7 +1,7 @@
 package de.visualdigits.kotlin.klanglicht.hardware.yamahaadvantage.model.features
 
 
-data class RangeStep(
+class RangeStep(
     val id: String = "",
     val min: Double = 0.0,
     val max: Double = 0.0,

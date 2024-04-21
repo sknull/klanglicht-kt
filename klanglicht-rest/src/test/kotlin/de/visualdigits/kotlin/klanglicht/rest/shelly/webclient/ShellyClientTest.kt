@@ -1,4 +1,4 @@
-package de.visualdigits.kotlin.klanglicht.hardware.shelly.client
+package de.visualdigits.kotlin.klanglicht.rest.shelly.webclient
 
 import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
