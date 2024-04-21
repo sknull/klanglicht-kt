@@ -27,6 +27,9 @@ class ApplicationPreferences {
     @Value("\${application.klanglichtDirectory}")
     var klanglichtDirectory: File = File("/")
 
+    @Value("\${application.services.lmair.url}")
+    var urlLightmanager: String = ""
+
     var currentScene: HybridScene? = null
     val colorStore: MutableMap<String, String> = mutableMapOf()
 

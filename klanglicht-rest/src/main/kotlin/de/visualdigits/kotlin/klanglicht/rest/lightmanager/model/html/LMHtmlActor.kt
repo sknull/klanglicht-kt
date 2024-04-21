@@ -7,7 +7,7 @@ import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm.LMDefaul
 import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm.LMMarker
 import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm.LMRequest
 import de.visualdigits.kotlin.klanglicht.rest.configuration.ApplicationPreferences
-import de.visualdigits.kotlin.klanglicht.rest.lightmanager.webclient.LightmanagerClient
+import de.visualdigits.kotlin.klanglicht.rest.lightmanager.service.LightmanagerService
 
 class LMHtmlActor(
     val actor: LMActor
@@ -25,7 +25,6 @@ class LMHtmlActor(
     }
 
     private fun renderSlider(sb: StringBuilder, prefs: ApplicationPreferences) {
-        val lightmanagerUrl = prefs.preferences?.getService("lmair")?.url
         if (actor.isDimmer == true) {
             val actorId = actor.id
             val drq = getRequestBySmkState(1)
@@ -41,7 +40,7 @@ class LMHtmlActor(
                 .append("  <script>document.getElementById(\"slider-")
                 .append(actorId)
                 .append("\").oninput = function() { request('")
-                .append(lightmanagerUrl)
+                .append(prefs.urlLightmanager)
                 .append("/control', 'POST', '")
                 .append(requestTemplate)
                 .append("'.replace('\${level}', this.value)); }</script>\n")
@@ -67,10 +66,10 @@ class LMHtmlActor(
         }
         if (colorOff?.isEmpty() == true) {
             colorOff =
-                colorOff.ifEmpty { LightmanagerClient.COLOR_OFF }
+                colorOff.ifEmpty { LightmanagerService.COLOR_OFF }
         }
         if (colorOn?.isEmpty() == true) {
-            colorOn = colorOn.ifEmpty { LightmanagerClient.COLOR_ON }
+            colorOn = colorOn.ifEmpty { LightmanagerService.COLOR_ON }
         }
         val lmRequests = actor.requests.values.toList()
         if (lmRequests.isNotEmpty() && lmRequests.first() is LMDefaultRequest) {

@@ -1,15 +1,22 @@
 package de.visualdigits.kotlin.klanglicht.rest.lightmanager.webclient
 
-import com.fasterxml.jackson.annotation.JsonInclude
-import com.fasterxml.jackson.databind.SerializationFeature
-import com.fasterxml.jackson.module.kotlin.jacksonMapperBuilder
 import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm.LMScenes
+import de.visualdigits.kotlin.klanglicht.rest.lightmanager.service.LightmanagerService
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.extension.ExtendWith
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.test.context.junit.jupiter.SpringExtension
 import java.io.File
 
-class LightmanagerClientTest {
+@Disabled("only for local testing")
+@ExtendWith(SpringExtension::class)
+@SpringBootTest
+class LightmanagerClientTest @Autowired constructor(
+    private val client: LightmanagerService
+) {
 
-    val client = LightmanagerClient(lightmanagerUrl = "http://192.168.178.28")
 
     @Test
     fun testIdualBlue() {

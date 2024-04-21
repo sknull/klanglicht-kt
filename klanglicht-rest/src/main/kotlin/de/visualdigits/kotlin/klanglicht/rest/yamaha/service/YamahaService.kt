@@ -1,38 +1,42 @@
 package de.visualdigits.kotlin.klanglicht.rest.yamaha.service
 
-import de.visualdigits.kotlin.klanglicht.rest.yamaha.webclient.YamahaReceiverClient
+import de.visualdigits.kotlin.klanglicht.hardware.yamaha.model.Menu
 import de.visualdigits.kotlin.klanglicht.hardware.yamaha.model.UnitDescription
-import de.visualdigits.kotlin.klanglicht.rest.configuration.ApplicationPreferences
-import jakarta.annotation.PostConstruct
+import de.visualdigits.kotlin.util.get
+import de.visualdigits.kotlin.util.post
+import org.springframework.beans.factory.annotation.Qualifier
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
+import org.springframework.web.reactive.function.client.WebClient
+import java.net.URL
 
 @Service
 class YamahaService(
-    private val prefs: ApplicationPreferences
+    @Qualifier("webClientReceiver") private val webClientReceiver: WebClient,
 ) {
 
-    private var client: YamahaReceiverClient? = null
-
-    @PostConstruct
-    fun initialize() {
-        if (client == null) {
-            client = prefs.preferences?.getService("receiver")?.url?.let { YamahaReceiverClient(it) }
-        }
-    }
+    @Value("\${application.services.receiver.url}")
+    private var urlReceiver: String = ""
 
     fun description(): UnitDescription? {
-        return client?.description()
+        return URL("$urlReceiver/YamahaRemoteControl/desc.xml").get<UnitDescription>()
     }
 
     fun control(body: String): String? {
-        return client?.control(body)
+        return URL("$urlReceiver/YamahaRemoteControl/ctrl").post<String>(body.toByteArray())
     }
 
     fun controlVolume(volume: Int) {
-        client?.controlVolume(volume)
+        description()
+            ?.getMenu<Menu>("Main Zone/Volume/Level")
+            ?.createCommand(volume.toString())
+            ?.let { control(it) }
     }
 
     fun controlSurroundProgram(program: String?) {
-         client?.controlSurroundProgram(program)
+        val command = description()
+            ?.getMenu<Menu>("Main Zone/Setup/Surround/Program")
+            ?.createCommand(program)
+            ?.let { control(it) }
     }
 }

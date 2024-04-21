@@ -28,7 +28,6 @@ class Preferences(
     var theme: String = "",
     var fadeDurationDefault: Long = 0,
     var ownUrl: String = "",
-    var services: List<Service> = listOf(),
     var shelly: List<ShellyDevice>? = listOf(),
     var twinkly: List<TwinklyConfiguration>? = listOf(),
     var stage: List<HybridDevice> = listOf(),
@@ -41,8 +40,6 @@ class Preferences(
 
     /** contains the list of channels for a given base dmx channel. */
     private var fixtures: Map<Int, List<Channel>> = mapOf()
-
-    private var serviceMap: Map<String, Service> = mapOf()
 
     private var shellyMap: Map<String, ShellyDevice> = mapOf()
 
@@ -125,9 +122,6 @@ class Preferences(
             dmxInterface = DmxInterface.load(DmxInterfaceType.Dummy)
         }
 
-        serviceMap = services.associateBy { it.name }
-        log.info("## Services: ${serviceMap.keys}")
-
         stageMap = stage
             .filter { it.type != HybridDeviceType.twinkly || getTwinklyConfiguration(it.id)?.xledArray?.isLoggedIn() == true }
             .associateBy { it.id }
@@ -145,8 +139,6 @@ class Preferences(
         } ?: mapOf()
         this.xledDevices = xledDevices
     }
-
-    fun getService(id: String): Service? = serviceMap[id]
 
     fun getStageIds(): List<String> = stage.map { it.id }
 
