@@ -10,15 +10,15 @@ import org.springframework.web.bind.annotation.RequestMapping
 @Controller
 @RequestMapping("/v1/hybrid/web")
 class HybridStageWebController(
-    private val prefs: ApplicationPreferences
+    private val prefs: ApplicationPreferences,
+    private val scenes: LMHtmlScenes,
 ) {
 
     @GetMapping("/scenes", produces = ["application/xhtml+xml"])
     fun scenes(model: Model): String {
         model.addAttribute("theme", prefs.preferences?.theme)
         model.addAttribute("title", "Scenes")
-        val scenes = LMHtmlScenes(prefs.scenes())
-        model.addAttribute("content", scenes.toHtml(prefs))
+        model.addAttribute("content", scenes.renderScenes(prefs.scenes()))
         return "pagetemplate"
     }
 }

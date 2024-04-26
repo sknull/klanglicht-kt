@@ -3,22 +3,25 @@ package de.visualdigits.kotlin.klanglicht.rest.shelly.model.html
 import de.visualdigits.kotlin.klanglicht.hardware.shelly.model.ShellyDevice
 import de.visualdigits.kotlin.klanglicht.hardware.shelly.model.status.Status
 import de.visualdigits.kotlin.klanglicht.model.color.RGBColor
-import de.visualdigits.kotlin.klanglicht.rest.configuration.ApplicationPreferences
-import de.visualdigits.kotlin.klanglicht.rest.lightmanager.model.html.HtmlRenderable
 import de.visualdigits.kotlin.klanglicht.rest.shelly.service.ShellyService
+import org.springframework.stereotype.Service
 
-class ShellyStatus : HtmlRenderable {
+@Service
+class ShellyStatus(
+    private val shellyService: ShellyService
+) {
 
-    fun toHtml(shellyService: ShellyService): String {
+    fun renderShellyStatus(): String {
         val sb = StringBuilder()
         sb.append("<div class=\"title\" onclick=\"toggleFullScreen();\" title=\"Toggle Fullscreen\">")
             .append("Current Power Values")
             .append("</div>\n")
         sb.append("<div class=\"category\">\n")
-        renderLabel(sb, "Shelly Dashboard")
+
+        sb.append("<span class=\"label\">").append("Shelly Dashboard").append("</span>\n")
         shellyService.status().forEach { (device: ShellyDevice, status: Status) ->
             sb.append("  <div class=\"floatgroup\">\n")
-            renderLabel(sb, device.name)
+            sb.append("<span class=\"label\">").append(device.name).append("</span>\n")
             sb.append("    <div class=\"sub-group\">\n")
 
             // power
@@ -26,7 +29,7 @@ class ShellyStatus : HtmlRenderable {
             var bgColor = "#aaaaaa"
             val isOnline = "offline" != status.mode
             if (isOnline) {
-                power = status.meters?.map { it.power?:0.0 }?:listOf(0.0)
+                power = status.meters?.map { it.power ?: 0.0 } ?: listOf(0.0)
                 val totalPower = power.reduce { a, b -> a + b }
                 bgColor = if (totalPower > 0.0) "red" else "green"
             }
@@ -38,7 +41,7 @@ class ShellyStatus : HtmlRenderable {
             if (isOnline) {
                 val relays = status.relays
                 if (relays != null) {
-                    isOn = relays.any { it.isOn == true}
+                    isOn = relays.any { it.isOn == true }
                     bgColor = if (isOn) "red" else "green"
                 } else {
                     val lights = status.lights
@@ -70,12 +73,8 @@ class ShellyStatus : HtmlRenderable {
         sb.append("      <div class=\"").append(clazz).append("\" style=\"background-color:").append(bgColor)
             .append("\" >\n")
         if (!value.isNullOrEmpty()) {
-            renderLabel(sb, value)
+            sb.append("<span class=\"label\">").append(value).append("</span>\n")
         }
         sb.append("      </div> <!-- ").append(clazz).append(" -->\n")
-    }
-
-    override fun toHtml(prefs: ApplicationPreferences): String? {
-        return null
     }
 }

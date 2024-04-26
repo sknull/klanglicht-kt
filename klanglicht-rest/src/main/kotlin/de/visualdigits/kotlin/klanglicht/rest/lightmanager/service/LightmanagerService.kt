@@ -11,11 +11,6 @@ import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
 import org.springframework.web.reactive.function.client.WebClient
-import kotlin.collections.Map
-import kotlin.collections.MutableMap
-import kotlin.collections.firstOrNull
-import kotlin.collections.forEach
-import kotlin.collections.mutableMapOf
 import kotlin.collections.set
 
 @Service
@@ -92,8 +87,7 @@ class LightmanagerService(
             ?.firstOrNull()
             ?.text()
             ?:""
-        val markers = LMMarkers()
-        markers.name = setupName
+        val markers = LMMarkers(name = setupName)
         document
             ?.select("div[id=marker]")
             ?.firstOrNull()

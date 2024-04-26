@@ -1,7 +1,7 @@
 package de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm
 
 class LMScene(
-    var name: String? = null,
+    var name: String,
     var color: List<String> = listOf(),
 
     var actions: List<LMAction> = listOf()

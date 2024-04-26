@@ -2,8 +2,8 @@ package de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm
 
 
 class LMMarker(
-    var id: Int? = null,
-    var name: String? = null,
+    var id: Int,
+    var name: String,
     var colorOff: String? = null,
     var colorOn: String? = null,
     var state: Boolean? = null,

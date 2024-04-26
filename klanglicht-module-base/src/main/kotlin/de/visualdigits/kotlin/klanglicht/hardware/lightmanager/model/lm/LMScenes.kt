@@ -24,7 +24,7 @@ class LMScenes(
 
         fun unmarshall(file: File): LMScenes {
             val lmScenes = mapper.readValue(file, LMScenes::class.java)
-            lmScenes.scenes.values.forEach { g -> g.scenes.forEach { s -> lmScenes.scenesMap[s.name!!] = s }  }
+            lmScenes.scenes.values.forEach { g -> g.scenes.forEach { s -> lmScenes.scenesMap[s.name] = s }  }
             return lmScenes
         }
     }
@@ -34,12 +34,12 @@ class LMScenes(
     }
 
     fun add(scene: LMScene) {
-        scenesMap[scene.name!!] = scene
+        scenesMap[scene.name] = scene
         var group: String? = "common"
         val attributes = LMNamedAttributes(scene.name, "group", "color")
         if (attributes.matched()) {
             val name = attributes.name
-            if (name?.isNotEmpty() == true) {
+            if (name.isNotEmpty() == true) {
                 scene.name = name
             }
             val g = attributes["group"]

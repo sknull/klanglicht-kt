@@ -27,7 +27,7 @@ class LMZones(
             zoneElem
                 .select("div[class=sbElement]")
                 .forEach { actorElem -> addActor(lightmanagerUrl, markers, zone, actorElem) }
-            if (!zone.actors.isEmpty()) {
+            if (zone.actors.isNotEmpty()) {
                 zones.add(zone)
             }
         }

@@ -13,14 +13,14 @@ import org.springframework.web.bind.annotation.RequestMapping
 @RequestMapping("/v1/shelly/web")
 class ShellyWebController(
     private val prefs: ApplicationPreferences,
-    private val shellyService: ShellyService
+    private val shellyStatus: ShellyStatus
 ) {
 
     @GetMapping("powers", produces = ["application/xhtml+xml"])
     fun currentPowers(model: Model, request: HttpServletRequest?): String {
         model.addAttribute("theme", prefs.preferences?.theme)
         model.addAttribute("title", "Current Power Values")
-        model.addAttribute("content", ShellyStatus().toHtml(shellyService))
+        model.addAttribute("content", shellyStatus.renderShellyStatus())
         return "pagetemplate"
     }
 }

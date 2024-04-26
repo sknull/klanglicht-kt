@@ -1,21 +1,21 @@
 package de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm
 
 class LMMarkers(
-    var name: String? = null,
-    var markers: MutableMap<Int, LMMarker> = mutableMapOf()
+    var name: String,
+    private var markers: MutableMap<Int, LMMarker> = mutableMapOf()
 ) {
     fun add(marker: LMMarker) {
         val attributes = LMNamedAttributes(marker.name, "separate", "actorId", "state")
         if (attributes.matched()) {
             val name = attributes.name
-            if (name?.isNotEmpty() == true) {
+            if (name.isNotEmpty()) {
                 marker.name = name
             }
             marker.separate = attributes.getOrDefault("separate", "false").toBoolean()
             marker.actorId = attributes["actorId"]
             marker.markerState = attributes["state"]
         }
-        markers[marker.id!!] = marker
+        markers[marker.id] = marker
     }
 
     operator fun get(id: Int): LMMarker? {

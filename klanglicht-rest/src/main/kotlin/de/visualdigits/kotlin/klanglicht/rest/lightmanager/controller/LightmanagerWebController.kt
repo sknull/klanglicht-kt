@@ -13,15 +13,16 @@ import org.springframework.web.bind.annotation.RequestMapping
 @RequestMapping("/v1/lightmanager/web")
 class LightmanagerWebController(
     private val prefs: ApplicationPreferences,
-    private val lightmanagerService: LightmanagerService
+    private val lightmanagerService: LightmanagerService,
+    private val scenes: LMHtmlScenes,
+    private val zones: LMHtmlZones
 ) {
 
     @GetMapping("/scenes", produces = ["application/xhtml+xml"])
     fun scenes(model: Model): String {
         model.addAttribute("theme", prefs.preferences?.theme)
         model.addAttribute("title", "Scenes")
-        val scenes = lightmanagerService.scenes()?.let { LMHtmlScenes(it) }
-        model.addAttribute("content", scenes?.toHtml(prefs))
+        model.addAttribute("content", scenes.renderScenes(lightmanagerService.scenes()))
         return "pagetemplate"
     }
 
@@ -29,8 +30,7 @@ class LightmanagerWebController(
     fun zones(model: Model): String {
         model.addAttribute("theme", prefs.preferences?.theme)
         model.addAttribute("title", "Zones")
-        val zones = lightmanagerService.zones()?.let { LMHtmlZones(it) }
-        model.addAttribute("content", zones?.toHtml(prefs))
+        model.addAttribute("content", zones.renderZones())
         return "pagetemplate"
     }
 }

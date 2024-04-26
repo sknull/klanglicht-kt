@@ -4,12 +4,12 @@ import java.util.TreeMap
 import java.util.regex.Pattern
 
 class LMNamedAttributes(
-    s: String?,
+    s: String,
     vararg attributes: String
 ) {
 
     private var matched = false
-    var name: String? = null
+    var name: String = ""
     val attributesMap: MutableMap<String, String> = TreeMap()
 
     init {
