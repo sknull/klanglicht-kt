@@ -5,15 +5,16 @@ import com.fasterxml.jackson.annotation.JsonIgnore
 class LMActor(
     var id: Int? = null,
     var name: String? = null,
-    var markers: MutableMap<String, LMMarker?> = mutableMapOf(),
-    var actorOff: String? = null,
-    var actorOn: String? = null,
+    var actorOff: List<String> = listOf(),
+    var actorOn: List<String> = listOf(),
     var colorOff: String? = null,
     var colorOn: String? = null,
     var isDimmer: Boolean? = null,
-    var requests: MutableMap<String, LMRequest> = mutableMapOf(),
-    var requestsBySmkState: MutableMap<Int, LMDefaultRequest> = mutableMapOf()
 ) {
+
+    var markers: MutableMap<String, LMMarker?> = mutableMapOf()
+    var requests: MutableMap<String, LMRequest> = mutableMapOf()
+    var requestsBySmkState: MutableMap<Int, LMDefaultRequest> = mutableMapOf()
 
     fun addRequest(key: String, request: LMRequest) {
         requests[key] = request

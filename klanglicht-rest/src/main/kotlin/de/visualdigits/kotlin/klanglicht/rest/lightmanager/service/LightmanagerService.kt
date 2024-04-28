@@ -43,10 +43,10 @@ class LightmanagerService(
             ?.firstOrNull()
             ?.text()
             ?:""
-        val zones = LMZones(setUpName)
+        val zones = LMZones(setUpName, urlLightmanager)
         document
             ?.select("div[class=bigBlock]")
-            ?.forEach { zoneElem -> zones.add(urlLightmanager, markers, zoneElem) }
+            ?.forEach { zoneElem -> zones.add(markers, zoneElem) }
         return zones
     }
 

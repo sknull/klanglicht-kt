@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service
 @Service
 class LMHtmlScenes(
     private val prefs: ApplicationPreferences
-) {
+) : LMHtml() {
 
     @Value("\${server.port}")
     private var port: Int = 0
@@ -46,9 +46,6 @@ class LMHtmlScenes(
         val sb = StringBuilder()
         sb.append("      <div class=\"circle\" style=\"background-color:").append(bgColor)
             .append("\" >\n")
-//        if (!value.isNullOrEmpty()) {
-//            sb.append("<span class=\"label\">").append(value).append("</span>\n")
-//        }
         sb.append("      </div> <!-- circle -->\n")
         return sb.toString()
     }
@@ -56,6 +53,7 @@ class LMHtmlScenes(
     private fun renderScenesGroup(
         sceneGroup: LMSceneGroup
     ): String {
+        val baseUrl = prefs.preferences?.baseUrl?.let{ "$it:$port" }?:"http://localhost:$port"
         val sb = StringBuilder()
         sb.append("  <div class=\"group")
         if (sceneGroup.hasColorWheel) {
@@ -77,11 +75,12 @@ class LMHtmlScenes(
         }
         sb.append("\">\n")
         sceneGroup.scenes.forEach { scene ->
-            val sceneColor = scene.color.joinToString(",")
-            val label = if (scene.name.lowercase().startsWith(sceneGroup.name.lowercase())) {
+            val value = if (scene.name.lowercase().startsWith(sceneGroup.name.lowercase())) {
                 scene.name.substring(sceneGroup.name.length).trim { it <= ' ' }
             } else scene.name
-            sb.append(renderButton(scene.name, label, sceneColor))
+            val url = "request('${baseUrl}/v1/scenes/json/control?name=${scene.name}')"
+            val color = scene.color.joinToString(",")
+            sb.append(renderButton(value, url, color))
         }
         sb.append("    </div><!-- sub-group -->\n")
         sb.append("  </div><!-- group -->\n")
@@ -92,65 +91,36 @@ class LMHtmlScenes(
         return sb.toString()
     }
 
-    private fun renderButton(name: String, label: String, sceneColor: String): String {
-        val baseUrl = prefs.preferences?.baseUrl?.let{ "$it:$port" }?:"http://localhost:$port"
-        val sb = StringBuilder()
-        sb.append("      <div class=\"button\"")
-        if (sceneColor.contains(",")) {
-            sb.append(" style=\"background: -moz-linear-gradient(left, ")
-                .append(sceneColor)
-                .append("); background: -webkit-linear-gradient(left, ")
-                .append(sceneColor)
-                .append("); background: linear-gradient(to right, ")
-                .append(sceneColor)
-                .append(");\"")
-        } else {
-            sb.append(" style=\"background-color: ")
-                .append(sceneColor)
-                .append(";\"")
-        }
-        sb.append("><input type=\"submit\" value=\"")
-            .append(label)
-            .append("\" onclick=\"request('")
-            .append(baseUrl)
-            .append("/v1/scenes/json/control?name=")
-            .append(name)
-            .append("');\"/></div>\n")
-        return sb.toString()
-    }
-
     private fun renderColorWheel(id: String, oddEven: Boolean): String {
         val baseUrl = prefs.preferences?.baseUrl?.let{ "$it:$port" }?:"http://localhost:$port"
         val wheelId = id.replace(" ", "")
         val sb = StringBuilder()
         if (oddEven) {
-            sb.append("\t<div class=\"colorwheel-wrapper-oddeven\">\n")
+            sb.append("  <div class=\"colorwheel-wrapper-oddeven\">\n")
             sb.append(renderColorWheelPanel(id, wheelId, true))
             sb.append(renderColorWheelPanel(id, wheelId, false))
-
             sb.append(renderScriptOddEven(wheelId, baseUrl))
-            sb.append("\t\t</div><!-- colorwheel-wrapper-oddeven -->\n")
+            sb.append("    </div><!-- colorwheel-wrapper-oddeven -->\n")
         } else {
-            sb.append("\t<div class=\"colorwheel-wrapper\">\n")
+            sb.append("  <div class=\"colorwheel-wrapper\">\n")
             sb.append(renderColorWheelPanel(id, wheelId, null))
-
             sb.append(renderScriptStandalone(wheelId, baseUrl))
-            sb.append("\t\t</div><!-- colorwheel-wrapper -->\n")
+            sb.append("    </div><!-- colorwheel-wrapper -->\n")
         }
         return sb.toString()
     }
 
     private fun renderColorWheelPanel(id: String, wheelId: String, odd: Boolean?): String {
         val sb = StringBuilder()
-        sb.append("\t\t<div class=\"colorwheel-panel\">\n")
+        sb.append("    <div class=\"colorwheel-panel\">\n")
         if (odd != null) {
-            sb.append("\t\t<div class=\"colorwheel-title\"><span class=\"label\">COLORPICKER - $id - ${if (odd) "Odd" else "Even"}</span></div>\n")
-            sb.append("\t\t\t<div class=\"color-wheel\" id=\"colorwheel-${wheelId}${if (odd) "Odd" else "Even"}\"></div>\n")
+            sb.append("    <div class=\"colorwheel-title\"><span class=\"label\">COLORPICKER - $id - ${if (odd) "Odd" else "Even"}</span></div>\n")
+            sb.append("      <div class=\"color-wheel\" id=\"colorwheel-${wheelId}${if (odd) "Odd" else "Even"}\"></div>\n")
         } else {
-            sb.append("\t\t<div class=\"colorwheel-title\"><span class=\"label\">COLORPICKER - $id</span></div>\n")
-            sb.append("\t\t\t<div class=\"color-wheel\" id=\"colorwheel-${wheelId}\"></div>\n")
+            sb.append("    <div class=\"colorwheel-title\"><span class=\"label\">COLORPICKER - $id</span></div>\n")
+            sb.append("      <div class=\"color-wheel\" id=\"colorwheel-${wheelId}\"></div>\n")
         }
-        sb.append("\t\t</div><!-- colorwheel-panel -->\n")
+        sb.append("    </div><!-- colorwheel-panel -->\n")
         return sb.toString()
     }
 

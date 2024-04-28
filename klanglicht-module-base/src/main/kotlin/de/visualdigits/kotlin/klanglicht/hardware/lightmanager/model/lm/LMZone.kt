@@ -7,9 +7,10 @@ class LMZone(
     val name: String? = null,
     val logo: String? = null,
     val tempChannel: Int? = null,
-    val arrow: String? = null,
-    val actors: MutableList<LMActor> = ArrayList()
+    val arrow: String? = null
 ) : Comparable<LMZone> {
+
+    val actors: MutableList<LMActor> = ArrayList()
 
     fun addActor(actor: LMActor) {
         actors.add(actor)

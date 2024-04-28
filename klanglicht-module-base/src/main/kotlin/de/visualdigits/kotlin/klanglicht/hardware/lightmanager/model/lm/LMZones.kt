@@ -10,10 +10,12 @@ import java.util.Arrays
 
 class LMZones(
     val name: String? = null,
-    val zones: MutableList<LMZone> = mutableListOf()
+    private val lightmanagerUrl: String
 ) {
 
-    fun add(lightmanagerUrl: String, markers: LMMarkers, zoneElem: Element) {
+    val zones: MutableList<LMZone> = mutableListOf()
+
+    fun add(markers: LMMarkers, zoneElem: Element) {
         val id: String = zoneElem.attr("id")
         if (id.startsWith("z")) {
             val headElem = zoneElem.select("div[class=bbHead]").first()!!
@@ -26,26 +28,21 @@ class LMZones(
             )
             zoneElem
                 .select("div[class=sbElement]")
-                .forEach { actorElem -> addActor(lightmanagerUrl, markers, zone, actorElem) }
+                .forEach { actorElem -> addActor(markers, zone, actorElem) }
             if (zone.actors.isNotEmpty()) {
                 zones.add(zone)
             }
         }
     }
 
-    private fun addActor(lightmanagerUrl: String, markers: LMMarkers, zone: LMZone, actorElem: Element) {
-        val actor = LMActor()
-        val aid: Int = actorElem.attr("id").substring(1).toInt()
-        actor.id = aid
-        val actorOff: String = actorElem.attr("data-aoff")
-        var colorOff =
-            if (actorOff.isNotEmpty()) actorOff.split(",".toRegex()).dropLastWhile { it.isEmpty() }
-                .toTypedArray()[1].trim { it <= ' ' }
-            else ""
-        val actorOn: String = actorElem.attr("data-aon")
-        val colorOn = if (actorOn.isNotEmpty()) actorOn.split(",".toRegex()).dropLastWhile { it.isEmpty() }
-            .toTypedArray()[1].trim { it <= ' ' }
-        else ""
+    private fun addActor(markers: LMMarkers, zone: LMZone, actorElem: Element) {
+        val actor = LMActor(
+            id = actorElem.attr("id").substring(1).toInt()
+        )
+        val actorOff = actorElem.attr("data-aoff").split(",").map { it.trim() }.filter { it.isNotEmpty() }
+        var colorOff = actorOff.getOrElse(1) { "" }
+        val actorOn = actorElem.attr("data-aon").split(",").map { it.trim() }.filter { it.isNotEmpty() }
+        val colorOn = actorOn.getOrElse(1) { "" }
         var name = actorElem.child(0).text()
         val attributes = LMNamedAttributes(name, "color")
         if (attributes.matched()) {
@@ -60,9 +57,8 @@ class LMZones(
             val mid = dataMarker.toInt()
             val marker = markers[mid]
             actor.addMarker(marker)
-        }
-        else {
-            val actorMarkers = markers.getByActorId(aid)
+        } else {
+            val actorMarkers = markers.getByActorId(actorElem.attr("id").substring(1).toInt())
             actorMarkers.forEach { marker ->
                 actor.addMarker(marker)
             }
@@ -74,18 +70,18 @@ class LMZones(
             .forEach { elem ->
                 elem.children()
                     .forEach { child ->
-                        addRequest(lightmanagerUrl, actor, child)
+                        addRequest(actor, child)
                     }
             }
         zone.addActor(actor)
     }
 
-    private fun addRequest(lightmanagerUrl: String, actor: LMActor, child: Element) {
+    private fun addRequest(actor: LMActor, child: Element) {
         if ("input" == child.tagName()) {
             val rq = LMDefaultRequest()
             val name: String = child.attr("value")
             rq.name = name
-            val allParams = setUri(lightmanagerUrl, child, rq)
+            val allParams = setUri(child, rq)
             val typ = getParams(allParams, "typ", 1)
             rq.type = if (typ.isNotEmpty()) RequestType.getByName(typ[0]) else RequestType.UNKNOWN
             val did = getParams(allParams, "did", 1)
@@ -122,7 +118,7 @@ class LMZones(
         return deviceId
     }
 
-    private fun setUri(lightmanagerUrl: String, child: Element, rq: LMDefaultRequest): List<String> {
+    private fun setUri(child: Element, rq: LMDefaultRequest): List<String> {
         var allParams: List<String> = ArrayList()
         var request = ""
         try {
