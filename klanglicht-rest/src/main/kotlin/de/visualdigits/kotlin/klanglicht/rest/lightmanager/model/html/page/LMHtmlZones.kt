@@ -1,4 +1,4 @@
-package de.visualdigits.kotlin.klanglicht.rest.lightmanager.model.html
+package de.visualdigits.kotlin.klanglicht.rest.lightmanager.model.html.page
 
 import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.json.RequestType
 import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm.LMActor
@@ -24,26 +24,26 @@ class LMHtmlZones(
         sb.append("<div class=\"category\">\n")
         sb.append("<span class=\"label\">").append("Z O N E S").append("</span>\n")
         zones.zones.forEach { zone ->
-            sb.append(renderZone(zone, prefs))
+            sb.append(renderZone(zone))
         }
         sb.append("</div><!-- zones -->\n\n")
         return sb.toString()
     }
 
-    private fun renderZone(zone: LMZone, prefs: ApplicationPreferences): String {
+    private fun renderZone(zone: LMZone): String {
         val sb = StringBuilder()
         sb.append("  <div class=\"group\">\n")
         sb.append("<span class=\"label\">").append(zone.name).append("</span>\n")
         sb.append("    <div class=\"sub-group\">\n")
         zone.actors.forEach { actor ->
-            sb.append(renderActor(actor, prefs))
+            sb.append(renderActor(actor))
         }
         sb.append("    </div><!-- sub-group -->\n")
             .append("  </div><!-- group -->\n")
         return sb.toString()
     }
 
-    fun renderActor(actor: LMActor, prefs: ApplicationPreferences): String {
+    private fun renderActor(actor: LMActor): String {
         val sb = StringBuilder()
         sb.append("      <div class=\"panel\">\n")
         sb.append("<span class=\"label\">").append(actor.name).append("</span>\n")
@@ -103,7 +103,7 @@ class LMHtmlZones(
                 sb.append("        </div><!-- double-button -->\n")
             } else {
                 val rq0 = lmRequests.first() as LMDefaultRequest
-                val smkState0 = determineSmkState(rq0)
+                val smkState0 = rq0.hasSmk() && rq0.smk?.get(1) == 1
                 val rq: LMRequest = if (markerIsOn == true && !smkState0 || markerIsOn != true && smkState0) {
                     rq0
                 } else if (lmRequests.size > 1) {
@@ -111,16 +111,18 @@ class LMHtmlZones(
                 } else {
                     rq0
                 }
-                sb.append(renderRequest(
-                    styleClass = "button",
-                    markerIsOn = markerIsOn,
-                    colorOff = colorOff,
-                    colorOn = colorOn,
-                    rq = rq,
-                    unified = true,
-                    isSeparate = false,
-                    hasSeparateMarkers = false
-                ))
+                sb.append(
+                    renderRequest(
+                        styleClass = "button",
+                        markerIsOn = markerIsOn,
+                        colorOff = colorOff,
+                        colorOn = colorOn,
+                        rq = rq,
+                        unified = true,
+                        isSeparate = false,
+                        hasSeparateMarkers = false
+                    )
+                )
             }
         }
         return sb.toString()
@@ -138,7 +140,7 @@ class LMHtmlZones(
     ): String {
         val sb = StringBuilder()
         if (rq is LMDefaultRequest) {
-            val isOn = determineSmkState(rq)
+            val isOn = rq.hasSmk() && rq.smk?.get(1) == 1
             sb.append("        <div class=\"")
                 .append(styleClass)
                 .append("\"")
@@ -198,9 +200,5 @@ class LMHtmlZones(
 //                            LMCamRequest crq = (LMCamRequest) rq;
 //                        }
         return sb.toString()
-    }
-
-    private fun determineSmkState(drq: LMDefaultRequest): Boolean {
-        return drq.hasSmk() && drq.smk?.get(1) == 1
     }
 }

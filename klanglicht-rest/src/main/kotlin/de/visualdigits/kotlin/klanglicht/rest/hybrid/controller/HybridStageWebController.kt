@@ -1,7 +1,7 @@
 package de.visualdigits.kotlin.klanglicht.rest.hybrid.controller
 
 import de.visualdigits.kotlin.klanglicht.rest.configuration.ApplicationPreferences
-import de.visualdigits.kotlin.klanglicht.rest.lightmanager.model.html.LMHtmlScenes
+import de.visualdigits.kotlin.klanglicht.rest.lightmanager.model.html.page.LMHtmlScenes
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.GetMapping

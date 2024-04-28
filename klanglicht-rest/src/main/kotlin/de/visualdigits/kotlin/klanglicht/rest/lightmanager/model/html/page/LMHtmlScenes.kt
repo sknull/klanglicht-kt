@@ -1,6 +1,5 @@
-package de.visualdigits.kotlin.klanglicht.rest.lightmanager.model.html
+package de.visualdigits.kotlin.klanglicht.rest.lightmanager.model.html.page
 
-import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm.LMScene
 import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm.LMSceneGroup
 import de.visualdigits.kotlin.klanglicht.hardware.lightmanager.model.lm.LMScenes
 import de.visualdigits.kotlin.klanglicht.rest.configuration.ApplicationPreferences
@@ -31,7 +30,6 @@ class LMHtmlScenes(
         sb.append("<span class=\"label\">").append("S C E N E S").append("</span>\n")
         scenes.scenes.values.forEach { sceneGroup ->
             val html = renderScenesGroup(
-                prefs,
                 sceneGroup
             )
             sb.append(html)
@@ -52,7 +50,6 @@ class LMHtmlScenes(
     }
 
     private fun renderScenesGroup(
-        prefs: ApplicationPreferences,
         sceneGroup: LMSceneGroup
     ): String {
         val sb = StringBuilder()
@@ -76,67 +73,49 @@ class LMHtmlScenes(
         }
         sb.append("\">\n")
         sceneGroup.scenes.forEach { scene ->
-            sb.append(renderScene(scene, prefs, sceneGroup.name))
+            val sceneColor = scene.color.joinToString(",")
+            val label = if (scene.name.lowercase().startsWith(sceneGroup.name.lowercase())) {
+                scene.name.substring(sceneGroup.name.length).trim { it <= ' ' }
+            } else scene.name
+            sb.append(renderButton(scene.name, label, sceneColor))
         }
         sb.append("    </div><!-- sub-group -->\n")
         sb.append("  </div><!-- group -->\n")
         if (sceneGroup.hasColorWheel) {
-            val html: String = renderColorWheel(sceneGroup.name, prefs, sceneGroup.colorWheelOddEven)
+            val html: String = renderColorWheel(sceneGroup.name, sceneGroup.colorWheelOddEven)
             sb.append(html)
         }
         return sb.toString()
     }
 
-    fun renderScene(scene: LMScene, prefs: ApplicationPreferences, group: String): String {
-//        val url = configHolder.preferences?.getService("lmair")?.url
+    private fun renderButton(name: String, label: String, sceneColor: String): String {
         val url = prefs.preferences?.ownUrl
         val sb = StringBuilder()
         sb.append("      <div class=\"button\"")
-        if (scene.color.isNotEmpty()) {
-            val sceneColor = scene.color.joinToString(",")
-            if (scene.color.size > 1) {
-                sb.append(" style=\"background: -moz-linear-gradient(left, ")
-                    .append(sceneColor)
-                    .append("); background: -webkit-linear-gradient(left, ")
-                    .append(sceneColor)
-                    .append("); background: linear-gradient(to right, ")
-                    .append(sceneColor)
-                    .append(");\"")
-            }
-            else {
-                sb.append(" style=\"background-color: ")
-                    .append(sceneColor)
-                    .append(";\"")
-            }
+        if (sceneColor.contains(",")) {
+            sb.append(" style=\"background: -moz-linear-gradient(left, ")
+                .append(sceneColor)
+                .append("); background: -webkit-linear-gradient(left, ")
+                .append(sceneColor)
+                .append("); background: linear-gradient(to right, ")
+                .append(sceneColor)
+                .append(");\"")
+        } else {
+            sb.append(" style=\"background-color: ")
+                .append(sceneColor)
+                .append(";\"")
         }
-        val label = normalizeLabel(scene, group)
         sb.append("><input type=\"submit\" value=\"")
             .append(label)
             .append("\" onclick=\"request('")
             .append(url)
             .append("/v1/scenes/json/control?name=")
-//            .append("/control?scene=")
-            .append(scene.name)
+            .append(name)
             .append("');\"/></div>\n")
         return sb.toString()
     }
 
-    /**
-     * Removes the group name from the label (if matches).
-     *
-     * @param group The current group this scene belongs to.
-     *
-     * @return String
-     */
-    private fun normalizeLabel(scene: LMScene, group: String): String {
-        var label = scene.name
-        if (label.lowercase().startsWith(group.lowercase())) {
-            label = label.substring(group.length).trim { it <= ' ' }
-        }
-        return label
-    }
-
-    fun renderColorWheel(id: String, prefs: ApplicationPreferences, oddEven: Boolean): String {
+    private fun renderColorWheel(id: String, oddEven: Boolean): String {
         val wheelId = id.replace(" ", "")
         val sb = StringBuilder()
         if (oddEven) {
@@ -144,13 +123,13 @@ class LMHtmlScenes(
             sb.append(renderColorWheelPanel(id, wheelId, true))
             sb.append(renderColorWheelPanel(id, wheelId, false))
 
-            sb.append(renderScript(wheelId, true, prefs))
+            sb.append(renderScript(wheelId, true))
             sb.append("\t\t</div><!-- colorwheel-wrapper-oddeven -->\n")
         } else {
             sb.append("\t<div class=\"colorwheel-wrapper\">\n")
             sb.append(renderColorWheelPanel(id, wheelId, null))
 
-            sb.append(renderScript(wheelId, false, prefs))
+            sb.append(renderScript(wheelId, false))
             sb.append("\t\t</div><!-- colorwheel-wrapper -->\n")
         }
         return sb.toString()
@@ -170,7 +149,7 @@ class LMHtmlScenes(
         return sb.toString()
     }
 
-    private fun renderScript(wheelId: String, oddEven: Boolean, prefs: ApplicationPreferences): String {
+    private fun renderScript(wheelId: String, oddEven: Boolean): String {
         val sb = StringBuilder()
         val ownUrl = prefs.preferences?.ownUrl
         if (oddEven) {

@@ -2,7 +2,6 @@ package de.visualdigits.kotlin.klanglicht.rest.lightmanager.service
 
 import com.fasterxml.jackson.databind.SerializationFeature
 import com.fasterxml.jackson.module.kotlin.jacksonMapperBuilder
-import de.visualdigits.kotlin.klanglicht.rest.lightmanager.model.html.LMHtmlZones
 import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
