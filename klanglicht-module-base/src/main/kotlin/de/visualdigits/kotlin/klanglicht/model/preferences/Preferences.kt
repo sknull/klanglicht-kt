@@ -27,7 +27,7 @@ class Preferences(
     var name: String = "",
     var theme: String = "",
     var fadeDurationDefault: Long = 0,
-    var ownUrl: String = "",
+    var baseUrl: String? = null,
     var shelly: List<ShellyDevice>? = listOf(),
     var twinkly: List<TwinklyConfiguration>? = listOf(),
     var stage: List<HybridDevice> = listOf(),
