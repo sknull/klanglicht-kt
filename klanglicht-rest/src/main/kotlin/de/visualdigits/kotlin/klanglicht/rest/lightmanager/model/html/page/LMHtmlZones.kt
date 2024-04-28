@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service
 
 @Service
 class LMHtmlZones(
-    private val prefs: ApplicationPreferences,
     private val lightmanagerService: LightmanagerService
 ) {
 
