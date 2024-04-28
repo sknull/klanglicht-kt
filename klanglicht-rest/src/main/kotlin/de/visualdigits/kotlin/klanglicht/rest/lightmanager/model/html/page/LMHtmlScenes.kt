@@ -190,10 +190,7 @@ class LMHtmlScenes(
     }
 
     private fun renderScriptStandalone(wheelId: String, baseUrl: String): String {
-        val hexColor = prefs.getFadeable(wheelId)
-            ?.getRgbColor()?.web()
-            ?:prefs.getColor(wheelId)
-            ?:"000000"
+        val hexColor = prefs.getColor(wheelId)?:"000000"
         val colorWheelDevices = prefs.preferences?.getColorWheel(wheelId)?.devices?.joinToString(",")
 
         return """

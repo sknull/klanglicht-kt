@@ -47,27 +47,13 @@ class HybridScene() : Fadeable<HybridScene> {
         initializeFromFadeables() // modify attributes after updating fadeables
     }
 
-    constructor(
-        fadeables: MutableMap<String, Fadeable<*>>,
-        preferences: Preferences?
-    ) : this() {
-        this.fadeables.clear()
-        this.preferences = preferences
-        update(fadeables)
-    }
-
-    fun repr(): String {
-        return fadeables
-            .map { "${it.key}: ${it.value.getRgbColor()?.ansiColor()} [${it.value.getGain()}]" }
-            .joinToString("")
-            .trim()
-    }
-
     override fun toString(): String {
         return fadeables
             .mapNotNull { it.value.getRgbColor()?.ansiColor() }
             .joinToString("")
-            .trim()
+            .trim() + " " +
+        fadeables
+            .mapNotNull { it.value.getRgbColor()?.hex() }
     }
 
     override fun clone(): HybridScene {
