@@ -1,0 +1,13 @@
+package de.visualdigits.klanglicht.hardware.lightmanager.model.lm
+
+class LMScene(
+    var name: String,
+    var color: List<String> = listOf(),
+
+    var actions: List<LMAction> = listOf()
+) {
+
+    override fun toString(): String {
+        return "$name: ${color.joinToString(",")}${if (actions.isNotEmpty()) "\n    - ${actions.joinToString("\n    - ")}" else ""}"
+    }
+}

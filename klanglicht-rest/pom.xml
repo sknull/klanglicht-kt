@@ -171,7 +171,7 @@
         <version>${version.spring-boot}</version>
         <configuration>
           <executable>true</executable>
-          <mainClass>de.visualdigits.kotlin.Application</mainClass>
+          <mainClass>de.visualdigits.klanglicht.Application</mainClass>
         </configuration>
         <executions>
           <execution>
