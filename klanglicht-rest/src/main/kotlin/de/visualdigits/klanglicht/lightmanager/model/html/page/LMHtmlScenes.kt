@@ -1,8 +1,8 @@
 package de.visualdigits.klanglicht.lightmanager.model.html.page
 
+import de.visualdigits.klanglicht.configuration.ApplicationPreferences
 import de.visualdigits.klanglicht.hardware.lightmanager.model.lm.LMSceneGroup
 import de.visualdigits.klanglicht.hardware.lightmanager.model.lm.LMScenes
-import de.visualdigits.klanglicht.configuration.ApplicationPreferences
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
 

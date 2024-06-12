@@ -21,4 +21,10 @@ class YamahaAvantageRestController(
         log.info("Setting surround sound program to '$program'")
         yamahaAvantageService.setSurroundProgram(program)
     }
+
+    @PutMapping("/setPureDirect")
+    fun controlSurroundProgram(@RequestParam("enable") enable: Boolean) {
+        log.info("Setting pure direct to '$enable'")
+        yamahaAvantageService.setPureDirect(enable)
+    }
 }

@@ -1,6 +1,5 @@
 package de.visualdigits.klanglicht.shelly.service
 
-import de.visualdigits.klanglicht.shelly.service.ShellyService
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import org.springframework.beans.factory.annotation.Autowired

@@ -1,11 +1,11 @@
 package de.visualdigits.klanglicht.scenes.service
 
+import de.visualdigits.klanglicht.configuration.ApplicationPreferences
 import de.visualdigits.klanglicht.hardware.lightmanager.model.lm.LMActionHybrid
 import de.visualdigits.klanglicht.hardware.lightmanager.model.lm.LMActionLmAir
 import de.visualdigits.klanglicht.hardware.lightmanager.model.lm.LMActionLmYamahaAvantage
 import de.visualdigits.klanglicht.hardware.lightmanager.model.lm.LMActionPause
 import de.visualdigits.klanglicht.hardware.lightmanager.model.lm.LMActionShelly
-import de.visualdigits.klanglicht.configuration.ApplicationPreferences
 import de.visualdigits.klanglicht.hybrid.service.HybridStageService
 import de.visualdigits.klanglicht.lightmanager.service.LightmanagerService
 import de.visualdigits.klanglicht.shelly.service.ShellyService
@@ -48,6 +48,7 @@ class ScenesService(
                             is LMActionLmYamahaAvantage -> {
                                 when (action.command) {
                                     "surroundProgram" -> yamahaAvantageService.setSurroundProgram(program = action.program)
+                                    "setPureDirect" -> yamahaAvantageService.setPureDirect(enable = action.enable)
                                 }
                             }
 
@@ -80,9 +81,10 @@ class ScenesService(
         lightmanagerService.controlIndex(index = sceneIndex)
     }
 
-    fun yamahaAvantage(command: String, program: String) {
+    fun yamahaAvantage(command: String, program: String, enable: Boolean) {
         when (command) {
             "surroundProgram" -> yamahaAvantageService.setSurroundProgram(program = program)
+            "setPureDirect" -> yamahaAvantageService.setPureDirect(enable = enable)
         }
     }
 }

@@ -53,8 +53,9 @@ class ScenesRestController(
     @GetMapping("yamahaAvantage")
     fun yamaha(
         @RequestParam(value = "command") command: String,
-        @RequestParam(value = "program") program: String
+        @RequestParam(value = "program") program: String,
+        @RequestParam(value = "enable") enable: Boolean
     ) {
-        scenesService.yamahaAvantage(command, program)
+        scenesService.yamahaAvantage(command, program, enable)
     }
 }

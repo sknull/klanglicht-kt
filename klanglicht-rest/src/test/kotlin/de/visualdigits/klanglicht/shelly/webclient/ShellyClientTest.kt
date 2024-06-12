@@ -1,6 +1,5 @@
 package de.visualdigits.klanglicht.shelly.webclient
 
-import de.visualdigits.klanglicht.shelly.webclient.ShellyClient
 import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 

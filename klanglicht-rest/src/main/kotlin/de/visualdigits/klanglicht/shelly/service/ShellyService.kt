@@ -1,8 +1,8 @@
 package de.visualdigits.klanglicht.shelly.service
 
+import de.visualdigits.klanglicht.configuration.ApplicationPreferences
 import de.visualdigits.klanglicht.hardware.shelly.model.ShellyDevice
 import de.visualdigits.klanglicht.hardware.shelly.model.status.Status
-import de.visualdigits.klanglicht.configuration.ApplicationPreferences
 import de.visualdigits.klanglicht.shelly.webclient.ShellyClient
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory

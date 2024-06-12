@@ -1,7 +1,7 @@
 package de.visualdigits.klanglicht.hybrid.service
 
-import de.visualdigits.klanglicht.model.hybrid.HybridScene
 import de.visualdigits.klanglicht.configuration.ApplicationPreferences
+import de.visualdigits.klanglicht.model.hybrid.HybridScene
 import de.visualdigits.klanglicht.shelly.webclient.ShellyClient
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory

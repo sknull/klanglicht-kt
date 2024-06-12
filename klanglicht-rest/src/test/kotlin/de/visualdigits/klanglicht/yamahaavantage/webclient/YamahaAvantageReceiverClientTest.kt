@@ -2,7 +2,6 @@ package de.visualdigits.klanglicht.yamahaavantage.webclient
 
 import com.fasterxml.jackson.databind.SerializationFeature
 import com.fasterxml.jackson.module.kotlin.jacksonMapperBuilder
-import com.fasterxml.jackson.module.kotlin.jsonMapper
 import de.visualdigits.klanglicht.yamahaavantage.service.YamahaAvantageService
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Disabled

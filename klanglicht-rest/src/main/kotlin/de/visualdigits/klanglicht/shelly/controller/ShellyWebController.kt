@@ -2,7 +2,6 @@ package de.visualdigits.klanglicht.shelly.controller
 
 import de.visualdigits.klanglicht.configuration.ApplicationPreferences
 import de.visualdigits.klanglicht.shelly.model.html.ShellyStatus
-import de.visualdigits.klanglicht.shelly.service.ShellyService
 import jakarta.servlet.http.HttpServletRequest
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model

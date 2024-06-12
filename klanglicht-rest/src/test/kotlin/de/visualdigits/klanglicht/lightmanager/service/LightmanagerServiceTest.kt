@@ -3,7 +3,6 @@ package de.visualdigits.klanglicht.lightmanager.service
 import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.databind.SerializationFeature
 import com.fasterxml.jackson.module.kotlin.jacksonMapperBuilder
-import de.visualdigits.klanglicht.lightmanager.service.LightmanagerService
 import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith

@@ -1,6 +1,5 @@
 package de.visualdigits.klanglicht.yamahaavantage.service
 
-import com.fasterxml.jackson.core.JsonProcessingException
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import de.visualdigits.klanglicht.hardware.yamahaadvantage.model.ResponseCode
 import de.visualdigits.klanglicht.hardware.yamahaadvantage.model.SoundProgramList
@@ -8,10 +7,8 @@ import de.visualdigits.klanglicht.hardware.yamahaadvantage.model.deviceinfo.Devi
 import de.visualdigits.klanglicht.hardware.yamahaadvantage.model.features.Features
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Qualifier
-import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
 import org.springframework.web.reactive.function.client.WebClient
-import java.net.URL
 
 @Service
 class YamahaAvantageService(
@@ -84,6 +81,15 @@ class YamahaAvantageService(
         webClientReceiver
             .get()
             .uri("/YamahaExtendedControl/v1/main/setVolume?volume=$volume")
+            .retrieve()
+            .bodyToMono(String::class.java)
+            .block()
+    }
+
+    fun setPureDirect(enable: Boolean?) {
+        webClientReceiver
+            .get()
+            .uri("/YamahaExtendedControl/v1/main/setPureDirect?enable=$enable")
             .retrieve()
             .bodyToMono(String::class.java)
             .block()
