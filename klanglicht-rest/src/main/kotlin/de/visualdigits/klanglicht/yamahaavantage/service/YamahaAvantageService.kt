@@ -42,7 +42,7 @@ class YamahaAvantageService(
             mapPrograms["Hall in Munich"] = "munich"
             mapPrograms["Hall in Vienna"] = "vienna"
 
-            mapPrograms["2ch Stereo"] = "all_ch_stereo"
+            mapPrograms["2ch Stereo"] = "2ch_stereo"
             mapPrograms["7ch Stereo"] = "all_ch_stereo"
             mapPrograms["Straight"] = "straight"
 
