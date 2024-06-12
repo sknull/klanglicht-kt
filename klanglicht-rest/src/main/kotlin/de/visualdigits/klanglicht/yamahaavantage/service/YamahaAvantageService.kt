@@ -9,6 +9,8 @@ import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.stereotype.Service
 import org.springframework.web.reactive.function.client.WebClient
+import java.net.URLDecoder
+import java.nio.charset.StandardCharsets
 
 @Service
 class YamahaAvantageService(
@@ -96,13 +98,12 @@ class YamahaAvantageService(
     }
 
     fun setSurroundProgram(program: String?): ResponseCode {
-        log.info("Setting program '${mapPrograms[program]}'")
         return program?.let { p ->
-            mapPrograms[p]
-                ?.let {
-                    webClientReceiver
+            mapPrograms[URLDecoder.decode(p, StandardCharsets.UTF_8)]?.let { mp ->
+                log.info("Setting program '$mp'...")
+                webClientReceiver
                         .get()
-                        .uri("/YamahaExtendedControl/v1/main/setSoundProgram?program=$it")
+                        .uri("/YamahaExtendedControl/v1/main/setSoundProgram?program=$mp")
                         .retrieve()
                         .bodyToMono(ResponseCode::class.java)
                         .block()
