@@ -47,5 +47,12 @@
       <version>2.16.1</version>
     </dependency>
 
+    <!-- commons -->
+    <dependency>
+      <groupId>org.shredzone.commons</groupId>
+      <artifactId>commons-suncalc</artifactId>
+      <version>3.11</version>
+    </dependency>
+
   </dependencies>
 </project>
