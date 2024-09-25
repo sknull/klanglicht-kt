@@ -19,7 +19,7 @@ class LMScenes(
         private val mapper = ObjectMapper(YAMLFactory())
             .registerModule(kotlinModule())
 
-        fun unmarshall(file: File): LMScenes {
+        fun readValue(file: File): LMScenes {
             val lmScenes = mapper.readValue(file, LMScenes::class.java)
             lmScenes.scenes.values.forEach { g -> g.scenes.forEach { s -> lmScenes.scenesMap[s.name] = s }  }
             return lmScenes

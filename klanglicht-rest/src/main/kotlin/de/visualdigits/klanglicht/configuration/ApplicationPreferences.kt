@@ -72,6 +72,6 @@ class ApplicationPreferences {
     fun scenes(): LMScenes {
         // Not including this into spring boot configuration as we want this to be loaded each time
         // to make runtime changes possible here.
-        return LMScenes.unmarshall(Paths.get(klanglichtDirectory.canonicalPath, "resources", "scenes.yml").toFile())
+        return LMScenes.readValue(Paths.get(klanglichtDirectory.canonicalPath, "resources", "scenes.yml").toFile())
     }
 }

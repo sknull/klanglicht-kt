@@ -33,29 +33,33 @@ class ScenesService(
             lmScene
                 ?.let { s ->
                     log.info("Executing scene '$sceneName'...")
-                    s.actions.forEach { action ->
-                        log.info("  Executing action '$action'...")
-                        when (action) {
-                            is LMActionLmAir ->
-                                lightmanagerService.controlIndex(index = action.sceneIndex)
+                    if (s.condition == null || s.condition?.evaluate(prefs.preferences!!) == true) {
+                        s.actions.forEach { action ->
+                            log.info("  Executing action '$action'...")
+                            when (action) {
+                                is LMActionLmAir ->
+                                    lightmanagerService.controlIndex(index = action.sceneIndex)
 
-                            is LMActionShelly ->
-                                shellyService.power(ids = action.ids, turnOn = action.turnOn)
+                                is LMActionShelly ->
+                                    shellyService.power(ids = action.ids, turnOn = action.turnOn)
 
-                            is LMActionHybrid ->
-                                hybridStageService.hexColor(ids = action.ids, hexColors = action.hexColors, gains = action.gains)
+                                is LMActionHybrid ->
+                                    hybridStageService.hexColor(ids = action.ids, hexColors = action.hexColors, gains = action.gains)
 
-                            is LMActionLmYamahaAvantage -> {
-                                when (action.command) {
-                                    "surroundProgram" -> yamahaAvantageService.setSurroundProgram(program = action.program)
-                                    "setPureDirect" -> yamahaAvantageService.setPureDirect(enable = action.enable)
+                                is LMActionLmYamahaAvantage -> {
+                                    when (action.command) {
+                                        "surroundProgram" -> yamahaAvantageService.setSurroundProgram(program = action.program)
+                                        "setPureDirect" -> yamahaAvantageService.setPureDirect(enable = action.enable)
+                                    }
                                 }
-                            }
 
-                            is LMActionPause -> action.duration?.let { Thread.sleep(it) }
+                                is LMActionPause -> action.duration?.let { Thread.sleep(it) }
+                            }
                         }
+                    } else {
+                        log.info("Condition '${s.condition?.javaClass?.simpleName}' not true - skipping actions")
                     }
-                }?:also {
+              }?:also {
                 log.info("No scene with name '$sceneName'")
             }
         } else {

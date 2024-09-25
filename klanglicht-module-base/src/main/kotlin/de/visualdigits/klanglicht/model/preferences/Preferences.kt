@@ -25,6 +25,8 @@ import java.nio.file.Paths
 @JsonIgnoreProperties("klanglichtDir", "dmxInterface", "fixtures", "serviceMap", "shellyMap", "twinklyMap", "stageMap", "colorWheelMap", "log")
 class Preferences(
     var name: String = "",
+    var installationLat: Double = 0.0,
+    var installationLon: Double = 0.0,
     var theme: String = "",
     var fadeDurationDefault: Long = 0,
     var baseUrl: String? = null,

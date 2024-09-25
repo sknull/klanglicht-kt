@@ -25,6 +25,11 @@
       <artifactId>twinkly-api</artifactId>
       <version>${version.twinkly}</version>
     </dependency>
+    <dependency>
+      <groupId>de.visualdiggits</groupId>
+      <artifactId>solar-time</artifactId>
+      <version>1.0.0-SNAPSHOT</version>
+    </dependency>
 
     <!-- serial port -->
     <dependency>

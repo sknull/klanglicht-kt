@@ -58,7 +58,7 @@ class LightmanagerClientTest @Autowired constructor(
     @Test
     fun testLoadScenes() {
         val file = File(ClassLoader.getSystemResource(".klanglicht/preferences/scenes.json").toURI())
-        val scenes = LMScenes.unmarshall(file)
+        val scenes = LMScenes.readValue(file)
         println(scenes)
     }
 }
