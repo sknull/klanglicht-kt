@@ -27,4 +27,10 @@ class YamahaAvantageRestController(
         log.info("Setting pure direct to '$enable'")
         yamahaAvantageService.setPureDirect(enable)
     }
+
+    @PutMapping("/requestSystemReboot")
+    fun requestSystemReboot() {
+        log.info("Requesting system reboot")
+        yamahaAvantageService.requestSystemReboot()
+    }
 }

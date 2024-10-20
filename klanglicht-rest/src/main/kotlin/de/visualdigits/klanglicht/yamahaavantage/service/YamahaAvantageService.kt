@@ -70,6 +70,15 @@ class YamahaAvantageService(
             .block()
     }
 
+    fun requestSystemReboot(): ResponseCode? {
+        return webClientReceiver
+            .get()
+            .uri("/YamahaExtendedControl/v1/system/requestSystemReboot")
+            .retrieve()
+            .bodyToMono(ResponseCode::class.java)
+            .block()
+    }
+
     fun soundProgramList(): SoundProgramList? {
         return webClientReceiver
             .get()
