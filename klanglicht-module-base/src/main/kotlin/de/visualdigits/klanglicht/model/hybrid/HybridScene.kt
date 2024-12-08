@@ -4,6 +4,7 @@ import de.visualdigits.klanglicht.hardware.shelly.model.ShellyColor
 import de.visualdigits.klanglicht.hardware.twinkly.model.XledFrameFadeable
 import de.visualdigits.klanglicht.model.color.BlendMode
 import de.visualdigits.klanglicht.model.color.RGBColor
+import de.visualdigits.klanglicht.model.dmx.model.Dmx
 import de.visualdigits.klanglicht.model.dmx.parameter.Fadeable
 import de.visualdigits.klanglicht.model.dmx.parameter.IntParameter
 import de.visualdigits.klanglicht.model.dmx.parameter.ParameterSet
@@ -19,7 +20,9 @@ import kotlin.math.min
 import kotlin.math.roundToInt
 import de.visualdigits.kotlin.twinkly.model.color.RGBColor as TwinklyRGBColor
 
-class HybridScene() : Fadeable<HybridScene> {
+class HybridScene(
+    private val preferences: Preferences
+) : Fadeable<HybridScene> {
 
     private val log: Logger = LoggerFactory.getLogger(javaClass)
 
@@ -27,7 +30,6 @@ class HybridScene() : Fadeable<HybridScene> {
     private var hexColors: List<String> = listOf()
     private var gains: List<Double> = listOf()
     private var turnOns: String? = null
-    private var preferences: Preferences? = null
 
     private val fadeables: MutableMap<String, Fadeable<*>> = mutableMapOf()
 
@@ -36,13 +38,12 @@ class HybridScene() : Fadeable<HybridScene> {
         hexColors: List<String> = listOf(),
         gains: List<Double> = listOf(),
         turnOns: String? = "true",
-        preferences: Preferences? = null
-    ) : this() {
+        preferences: Preferences
+    ) : this(preferences) {
         this.ids = ids
         this.hexColors = hexColors
         this.gains = gains
         this.turnOns = turnOns
-        this.preferences = preferences
 
         initializeFromParameters()
         initializeFromFadeables() // modify attributes after updating fadeables
@@ -136,7 +137,8 @@ class HybridScene() : Fadeable<HybridScene> {
                         val fadeable = XledFrameFadeable(
                             deviceId = twinklyDevice.name,
                             xledFrame = frame,
-                            deviceGain = twinklyDevice.gain
+                            deviceGain = twinklyDevice.gain,
+                            preferences = preferences
                         )
                         fadeables[twinklyDevice.name] = fadeable
                     }
@@ -152,7 +154,7 @@ class HybridScene() : Fadeable<HybridScene> {
                 val rgbColor = RGBColor(hexColor)
                 when (device.type) {
                     HybridDeviceType.dmx -> {
-                        val dmxDevice = preferences?.getDmxDevice(id)
+                        val dmxDevice = preferences?.dmx?.dmxDevices?.get(id)
                         if (dmxDevice != null) {
                             val effectiveGain = gain ?: dmxDevice.gain
                             val paramGain = (255 * effectiveGain).roundToInt()
@@ -211,7 +213,7 @@ class HybridScene() : Fadeable<HybridScene> {
     override fun fade(
         other: HybridScene,
         fadeDuration: Long,
-        preferences: Preferences
+        dmx: Dmx
     ) {
         if (fadeDuration > 0) {
             runBlocking {
@@ -223,13 +225,13 @@ class HybridScene() : Fadeable<HybridScene> {
                         val otherFadeable = it.value as ShellyColor
                         val fadeable = fadeables[otherFadeable.getId()]
                         if (fadeable != null && otherFadeable.getRgbColor() != fadeable.getRgbColor()) {
-                            launch { otherFadeable.write(preferences, true, fadeDuration) }
+                            launch { otherFadeable.write(dmx, true, fadeDuration) }
                         }
                     }
                 }
 
                 // take total launch costs for shelly devices into account - use at least time for one dmx frame
-                val dmxFrameTime = preferences.getDmxFrameTime()
+                val dmxFrameTime = dmx.frameTime
                 val remainingDuration = max(dmxFrameTime, fadeDuration - System.currentTimeMillis() + t)
                 val step = 1.0 / remainingDuration.toDouble() * dmxFrameTime.toDouble()
 
@@ -254,20 +256,18 @@ class HybridScene() : Fadeable<HybridScene> {
                 var factor = 0.0
                 while (factor <= 1.0) {
                     if (otherParameterSets.isNotEmpty()) { // only write to dmx interface if needed
-                        preferences.let {
-                            // first collect all frame data for the dmx frame to avoid lots of costly write operations to a serial interface
-                            otherParameterSets.forEach { (id, otherParameterSet) ->
-                                val parameterSet = parameterSets[id]
-                                if (parameterSet != null && otherParameterSet.getRgbColor() != parameterSet.getRgbColor()) {
-                                    val faded = parameterSet.fade(otherParameterSet, factor, BlendMode.AVERAGE)
-                                    preferences.setDmxData(
-                                        baseChannel = faded.baseChannel,
-                                        bytes = faded.toBytes(it)
-                                    )
-                                }
+                        // first collect all frame data for the dmx frame to avoid lots of costly write operations to a serial interface
+                        otherParameterSets.forEach { (id, otherParameterSet) ->
+                            val parameterSet = parameterSets[id]
+                            if (parameterSet != null && otherParameterSet.getRgbColor() != parameterSet.getRgbColor()) {
+                                val faded = parameterSet.fade(otherParameterSet, factor, BlendMode.AVERAGE)
+                                dmx.setDmxData(
+                                    baseChannel = faded.baseChannel,
+                                    bytes = faded.toBytes(dmx)
+                                )
                             }
-                            preferences.writeDmxData()
                         }
+                        dmx.writeDmxData()
                     }
 
                     if (otherXledFrames.isNotEmpty()) {
@@ -275,7 +275,7 @@ class HybridScene() : Fadeable<HybridScene> {
                             val xledFrame = xledFrames[id]
                             if (xledFrame != null) {
                                 val faded = xledFrame.fade(otherXledFrame, factor, BlendMode.AVERAGE)
-                                faded.write(preferences, true)
+                                faded.write(dmx, true)
                             }
                         }
                     }
@@ -286,35 +286,33 @@ class HybridScene() : Fadeable<HybridScene> {
             }
         }
 
-        other.write(preferences)
+        other.write(dmx)
     }
 
-    override fun write(preferences: Preferences?, write: Boolean, transitionDuration: Long) {
+    override fun write(dmx: Dmx, write: Boolean, transitionDuration: Long) {
         val parameterSets = fadeables().filterIsInstance<ParameterSet>()
         if (parameterSets.isNotEmpty()) { // only write to dmx interface if needed
-            preferences?.let {
-                // first collect all frame data for the dmx frame to avoid lots of costly write operations to a serial interface
-                parameterSets.forEach { parameterSet ->
-                    preferences.setDmxData(
-                        baseChannel = parameterSet.baseChannel,
-                        bytes = parameterSet.toBytes(it)
-                    )
-                }
-                if (write) {
-                    log.debug("Writing hybrid scene {}", this)
-                    preferences.writeDmxData()
-                }
+            // first collect all frame data for the dmx frame to avoid lots of costly write operations to a serial interface
+            parameterSets.forEach { parameterSet ->
+                dmx.setDmxData(
+                    baseChannel = parameterSet.baseChannel,
+                    bytes = parameterSet.toBytes(dmx)
+                )
+            }
+            if (write) {
+                log.debug("Writing hybrid scene {}", this)
+                dmx.writeDmxData()
             }
         }
 
         // call twinkly interface which is not so fast
         fadeables().filterIsInstance<XledFrameFadeable>().forEach {
-            it.write(preferences, true)
+            it.write(dmx, true)
         }
 
         // call shelly interface which is pretty fast
         fadeables().filterIsInstance<ShellyColor>().forEach {
-            it.write(preferences, true)
+            it.write(dmx, true)
         }
     }
 

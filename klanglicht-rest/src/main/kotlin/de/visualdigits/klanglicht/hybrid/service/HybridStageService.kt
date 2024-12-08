@@ -36,7 +36,7 @@ class HybridStageService(
     ) {
         val currentScene = prefs.currentScene?.clone()
         val nextScene = prefs.currentScene?.clone()?.let { n ->
-            HybridScene(ids, hexColors, gains, turnOn.toString(), preferences = prefs.preferences).fadeableMap().forEach {
+            HybridScene(ids, hexColors, gains, turnOn.toString(), preferences = prefs.preferences!!).fadeableMap().forEach {
                 n.putFadeable(it.key, it.value)
             }
             n
@@ -94,7 +94,7 @@ class HybridStageService(
         }
         log.info("nextScene: $nextScene")
 
-        currentScene?.fade(nextScene!!, transition?:prefs.preferences?.fadeDurationDefault?:2000, prefs.preferences!!)
+        currentScene?.fade(nextScene!!, transition?:prefs.preferences?.fadeDurationDefault?:2000, prefs.preferences?.dmx!!)
     }
 
     fun putColor(
@@ -110,7 +110,7 @@ class HybridStageService(
         transitionDuration: Long?
     ) {
         ids.forEach { id ->
-            prefs.getFadeable(id)?.write(prefs.preferences, transitionDuration = transitionDuration?: prefs.preferences?.fadeDurationDefault?:2000)
+            prefs.getFadeable(id)?.write(prefs.preferences?.dmx!!, transitionDuration = transitionDuration?: prefs.preferences?.fadeDurationDefault?:2000)
         }
     }
 

@@ -34,8 +34,8 @@ class DmxInterfaceTest {
                 )
             )
         )
-        dmxScene.write(preferences)
-        preferences.writeDmxData()
+        dmxScene.write(preferences.dmx!!)
+        preferences.dmx!!.writeDmxData()
     }
 
     @Test
@@ -53,8 +53,8 @@ class DmxInterfaceTest {
                 )
             )
         )
-        dmxScene.write(preferences)
-        preferences.writeDmxData()
+        dmxScene.write(preferences.dmx!!)
+        preferences.dmx!!.writeDmxData()
     }
 
 //    @Test
@@ -145,7 +145,7 @@ class DmxInterfaceTest {
         parameterSet1: ParameterSet,
         parameterSet2: ParameterSet
     ) {
-        val dmxFrameTime = preferences.getDmxFrameTime()
+        val dmxFrameTime = preferences.dmx!!.frameTime
         val steps = ceil(fadeDuration.toDouble() / dmxFrameTime.toDouble()).toInt()
         val step = 1.0 / steps
         for (f in 0..steps) {
@@ -157,7 +157,7 @@ class DmxInterfaceTest {
                     frame
                 )
             )
-            dmxScene.write(preferences)
+            dmxScene.write(preferences.dmx!!)
             Thread.sleep(dmxFrameTime)
         }
     }

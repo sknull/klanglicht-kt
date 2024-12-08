@@ -24,8 +24,8 @@ class ApplicationPreferences {
 
     var preferences: Preferences? = null
 
-    @Value("\${application.klanglichtDirectory}")
-    var klanglichtDirectory: File = File("/")
+    @Value("\${application.klanglichtDirectory:#{null}}")
+    val klanglichtDirectory: File = File(System.getProperty("user.home"), ".klanglicht")
 
     var currentScene: HybridScene? = null
     val colorStore: MutableMap<String, String> = mutableMapOf()
@@ -38,14 +38,14 @@ class ApplicationPreferences {
         log.info("##")
         log.info("## klanglichtDirectory: " + klanglichtDirectory.absolutePath)
         currentScene = preferences?.initialHybridScene()
-        currentScene?.write(preferences, true, 1000)
+        currentScene?.write(preferences?.dmx!!, true, 1000)
         log.info("#### setUp - end")
     }
 
     @PreDestroy
     fun tearDown() {
         log.info("#### tearDown - start")
-        preferences?.tearDownDmx()
+        preferences?.dmx?.tearDownDmx()
         log.info("#### tearDown - end")
     }
 

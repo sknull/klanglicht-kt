@@ -3,7 +3,7 @@ package de.visualdigits.klanglicht.model.dmx.parameter
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import de.visualdigits.klanglicht.model.color.BlendMode
 import de.visualdigits.klanglicht.model.color.RGBColor
-import de.visualdigits.klanglicht.model.preferences.Preferences
+import de.visualdigits.klanglicht.model.dmx.model.Dmx
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import kotlin.math.roundToInt
@@ -64,20 +64,18 @@ class ParameterSet(
         updateParameterMap()
     }
 
-    fun toBytes(preferences: Preferences): ByteArray {
-        return (preferences.getDmxFixture(baseChannel)?.map { channel ->
+    fun toBytes(dmx: Dmx): ByteArray {
+        return (dmx.fixtures.get(baseChannel)?.map { channel ->
             (parameterMap[channel.name] ?: 0).toByte()
         } ?: listOf()).toByteArray()
     }
 
-    override fun write(preferences: Preferences?, write: Boolean, transitionDuration: Long) {
-        preferences?.let {
-            val bytes = toBytes(it)
-            preferences.setDmxData(baseChannel, bytes)
-            if (write) {
-                log.debug("Writing parameter set {}", this)
-                preferences.writeDmxData()
-            }
+    override fun write(dmx: Dmx, write: Boolean, transitionDuration: Long) {
+        val bytes = toBytes(dmx)
+        dmx.setDmxData(baseChannel, bytes)
+        if (write) {
+            log.debug("Writing parameter set {}", this)
+            dmx.writeDmxData()
         }
     }
 

@@ -39,8 +39,8 @@ class SimpleTest {
             )
         )
 
-        dmxScene.write(preferences)
-        dmxScene.write(preferences)
+        dmxScene.write(preferences.dmx!!)
+        dmxScene.write(preferences.dmx!!)
     }
 
     @Test
@@ -64,7 +64,7 @@ class SimpleTest {
                 ),
             )
         )
-        dmxScene0.write(preferences)
+        dmxScene0.write(preferences.dmx!!)
     }
 
     @Test
@@ -108,7 +108,7 @@ class SimpleTest {
                 ),
             )
         )
-        dmxScene1.write(preferences)
+        dmxScene1.write(preferences.dmx!!)
 
         val dmxScene2 = DmxScene(
             name = "JUnit Test",
@@ -130,10 +130,10 @@ class SimpleTest {
             )
         )
 
-        dmxScene0.fade(dmxScene1, 1000, preferences)
-        dmxScene1.fade(dmxScene2, 2000, preferences)
+        dmxScene0.fade(dmxScene1, 1000, preferences.dmx!!)
+        dmxScene1.fade(dmxScene2, 2000, preferences.dmx!!)
         Thread.sleep(2000)
-        dmxScene2.fade(dmxScene1, 2000, preferences)
-        dmxScene1.fade(dmxScene0, 1000, preferences)
+        dmxScene2.fade(dmxScene1, 2000, preferences.dmx!!)
+        dmxScene1.fade(dmxScene0, 1000, preferences.dmx!!)
     }
 }

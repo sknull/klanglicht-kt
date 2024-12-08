@@ -15,7 +15,7 @@ class StageTest {
 
     @Test
     fun testStage() {
-        prefs.getDmxDevices().forEach { stageFixture ->
+        prefs.dmx!!.getDmxDevices().forEach { stageFixture ->
             val fixture = stageFixture.fixture!!
             println("${stageFixture.manufacturer}_${stageFixture.model}_${stageFixture.mode} [${stageFixture.baseChannel}] hasPano: ${fixture.hasPano()} [max value ${fixture.maxPanoValue()}] hasTilt: ${fixture.hasTilt()} [max value ${fixture.maxTiltValue()}]")
         }

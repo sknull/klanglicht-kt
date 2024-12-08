@@ -2,7 +2,7 @@ package de.visualdigits.klanglicht.model.dmx.parameter
 
 import com.fasterxml.jackson.module.kotlin.jacksonMapperBuilder
 import de.visualdigits.klanglicht.model.color.BlendMode
-import de.visualdigits.klanglicht.model.preferences.Preferences
+import de.visualdigits.klanglicht.model.dmx.model.Dmx
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import java.io.File
@@ -29,20 +29,20 @@ class DmxScene(
     /**
      * Writes the given scene into the internal dmx frame of the interface.
      */
-    override fun write(preferences: Preferences?, write: Boolean, transitionDuration: Long) {
+    override fun write(dmx: Dmx, write: Boolean, transitionDuration: Long) {
         // first collect all frame data for the dmx frame to avoid lots of costly write operations to a serial interface
         parameterSet
             .sortedBy { it.baseChannel }
             .forEach { parameterSet ->
                 val baseChannel = parameterSet.baseChannel
-                val bytes = (preferences?.getDmxFixture(baseChannel)?.map { channel ->
+                val bytes = (dmx.fixtures[baseChannel]?.map { channel ->
                     (parameterSet.parameterMap[channel.name] ?: 0).toByte()
                 } ?: listOf()).toByteArray()
-                preferences?.setDmxData(baseChannel, bytes)
+                dmx.setDmxData(baseChannel, bytes)
             }
         if (write) {
             log.debug("Writing dmx scene {}", this)
-            preferences?.writeDmxData()
+            dmx.writeDmxData()
         }
     }
 

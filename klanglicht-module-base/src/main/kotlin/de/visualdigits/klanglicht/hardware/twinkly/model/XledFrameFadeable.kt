@@ -2,6 +2,7 @@ package de.visualdigits.klanglicht.hardware.twinkly.model
 
 import de.visualdigits.klanglicht.model.color.BlendMode
 import de.visualdigits.klanglicht.model.color.RGBColor
+import de.visualdigits.klanglicht.model.dmx.model.Dmx
 import de.visualdigits.klanglicht.model.dmx.parameter.Fadeable
 import de.visualdigits.klanglicht.model.preferences.Preferences
 import de.visualdigits.kotlin.twinkly.model.playable.XledFrame
@@ -12,7 +13,8 @@ import de.visualdigits.kotlin.twinkly.model.color.RGBColor as TwinklyRGBColor
 class XledFrameFadeable(
     private val deviceId: String,
     private var xledFrame: XledFrame,
-    private var deviceGain: Double
+    private var deviceGain: Double,
+    private val preferences: Preferences
 ) : Fadeable<XledFrameFadeable> {
 
     private val log: Logger = LoggerFactory.getLogger(javaClass)
@@ -22,7 +24,7 @@ class XledFrameFadeable(
     }
 
     override fun clone(): XledFrameFadeable {
-        return XledFrameFadeable(deviceId, xledFrame.clone(), deviceGain)
+        return XledFrameFadeable(deviceId, xledFrame.clone(), deviceGain, preferences)
     }
 
     override fun getTurnOn(): Boolean = true
@@ -44,8 +46,8 @@ class XledFrameFadeable(
         xledFrame.setColor(TwinklyRGBColor(rgbColor.red, rgbColor.green, rgbColor.blue))
     }
 
-    override fun write(preferences: Preferences?, write: Boolean, transitionDuration: Long) {
-        val twinklyDevice = preferences?.getTwinklyConfiguration(deviceId)
+    override fun write(dmx: Dmx, write: Boolean, transitionDuration: Long) {
+        val twinklyDevice = preferences.getTwinklyConfiguration(deviceId)
         if (twinklyDevice != null) {
             val xledArray = twinklyDevice.xledArray
             if (write && xledArray.isLoggedIn()) {
@@ -59,7 +61,7 @@ class XledFrameFadeable(
     override fun fade(other: Any, factor: Double, blendMode: BlendMode): XledFrameFadeable {
         return if (other is XledFrameFadeable) {
             val xledFrame1 = xledFrame.fade(other.xledFrame, factor)
-            XledFrameFadeable(deviceId, xledFrame1, deviceGain)
+            XledFrameFadeable(deviceId, xledFrame1, deviceGain, preferences)
         } else {
             throw IllegalArgumentException("Cannot not fade another type")
         }
