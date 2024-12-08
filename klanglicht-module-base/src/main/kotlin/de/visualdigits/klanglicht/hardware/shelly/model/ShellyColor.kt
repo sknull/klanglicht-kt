@@ -44,7 +44,7 @@ class ShellyColor(
         this.deviceGain = gain
     }
 
-    override fun getRgbColor(): RGBColor = color.clone()
+    override fun toRgbColor(): RGBColor = color.clone()
 
     override fun setRgbColor(rgbColor: RGBColor) {
         color = rgbColor.clone()

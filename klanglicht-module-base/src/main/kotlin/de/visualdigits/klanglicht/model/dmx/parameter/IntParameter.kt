@@ -1,6 +1,7 @@
 package de.visualdigits.klanglicht.model.dmx.parameter
 
 import de.visualdigits.kotlin.twinkly.model.color.BlendMode
+import de.visualdigits.kotlin.twinkly.model.color.RGBColor
 import de.visualdigits.kotlin.twinkly.model.parameter.Parameter
 
 
@@ -20,5 +21,9 @@ class IntParameter(
 
     override fun clone(): IntParameter {
         return IntParameter(name, value)
+    }
+
+    override fun toRgbColor(): RGBColor {
+        return RGBColor(0,0,0)
     }
 }

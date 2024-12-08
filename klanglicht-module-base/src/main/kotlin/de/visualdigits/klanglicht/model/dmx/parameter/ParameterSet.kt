@@ -59,10 +59,10 @@ class ParameterSet(
         updateParameterMap()
     }
 
-    override fun getRgbColor(): RGBColor? = parameters.filterIsInstance<RGBColor>().firstOrNull()
+    override fun toRgbColor(): RGBColor = parameters.filterIsInstance<RGBColor>().firstOrNull()?: RGBColor(0,0,0)
 
     override fun setRgbColor(rgbColor: RGBColor) {
-        getRgbColor()?.setRgbColor(rgbColor)
+        toRgbColor()?.setRgbColor(rgbColor)
         updateParameterMap()
     }
 

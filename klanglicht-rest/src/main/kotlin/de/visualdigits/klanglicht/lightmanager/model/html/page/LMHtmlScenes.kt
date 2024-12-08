@@ -23,7 +23,7 @@ class LMHtmlScenes(
         sb.append("<span class=\"label\">").append("C U R R E N T   S C E N E").append("</span>\n")
         sb.append("<div class=\"center-group\">\n")
         prefs.currentScene?.fadeables()?.forEach { fadeable ->
-            val color = fadeable.getRgbColor()?.web() ?: "#000000"
+            val color = fadeable.toRgbColor()?.web() ?: "#000000"
             val html = renderPanel(color)
             sb.append(html)
         }

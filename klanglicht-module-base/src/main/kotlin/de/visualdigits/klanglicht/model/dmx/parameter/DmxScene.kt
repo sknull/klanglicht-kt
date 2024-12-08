@@ -3,6 +3,7 @@ package de.visualdigits.klanglicht.model.dmx.parameter
 import com.fasterxml.jackson.module.kotlin.jacksonMapperBuilder
 import de.visualdigits.klanglicht.model.dmx.model.Dmx
 import de.visualdigits.kotlin.twinkly.model.color.BlendMode
+import de.visualdigits.kotlin.twinkly.model.color.RGBColor
 import de.visualdigits.kotlin.twinkly.model.parameter.Fadeable
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -69,5 +70,9 @@ class DmxScene(
                 dmx
             )
         } else throw IllegalArgumentException("Cannot not fade another type")
+    }
+
+    override fun toRgbColor(): RGBColor {
+        return RGBColor(0,0,0)
     }
 }

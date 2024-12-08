@@ -35,7 +35,7 @@ class XledFrameDmxFadeable(
         this.deviceGain = gain
     }
 
-    override fun getRgbColor(): RGBColor {
+    override fun toRgbColor(): RGBColor {
         val color = xledFrame[0, 0].toRgbColor()
         return RGBColor(color.red, color.green, color.blue)
     }

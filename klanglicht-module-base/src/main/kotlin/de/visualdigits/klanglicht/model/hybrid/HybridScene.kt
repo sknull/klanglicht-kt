@@ -49,11 +49,11 @@ class HybridScene(
 
     override fun toString(): String {
         return fadeables
-            .mapNotNull { it.value.getRgbColor()?.ansiColor() }
+            .mapNotNull { it.value.toRgbColor()?.ansiColor() }
             .joinToString("")
             .trim() + " " +
         fadeables
-            .mapNotNull { it.value.getRgbColor()?.hex() }
+            .mapNotNull { it.value.toRgbColor()?.hex() }
     }
 
     override fun clone(): HybridScene {
@@ -82,7 +82,7 @@ class HybridScene(
 
     private fun initializeFromFadeables() {
         this.ids = this.fadeables().map { sc -> sc.getId() }
-        this.hexColors = this.fadeables().mapNotNull { sc -> sc.getRgbColor()?.hex() }
+        this.hexColors = this.fadeables().mapNotNull { sc -> sc.toRgbColor()?.hex() }
         this.gains = this.fadeables().map { sc -> sc.getGain() }
         this.turnOns = this.fadeables().mapNotNull { sc -> sc.getTurnOn() }.joinToString(",")
     }
@@ -206,7 +206,7 @@ class HybridScene(
         initializeFromFadeables()
     }
 
-    fun getRgbColor(id: String): RGBColor? = fadeables[id]?.getRgbColor()
+    fun getRgbColor(id: String): RGBColor? = fadeables[id]?.toRgbColor()
 
     override fun fade(
         other: HybridScene,
@@ -222,7 +222,7 @@ class HybridScene(
                     other.fadeableMap().filter { it.value is ShellyColor }.forEach {
                         val otherFadeable = it.value as ShellyColor
                         val fadeable = fadeables[otherFadeable.getId()]
-                        if (fadeable != null && otherFadeable.getRgbColor() != fadeable.getRgbColor()) {
+                        if (fadeable != null && otherFadeable.toRgbColor() != fadeable.toRgbColor()) {
                             launch { otherFadeable.write(true, fadeDuration) }
                         }
                     }
@@ -257,7 +257,7 @@ class HybridScene(
                         // first collect all frame data for the dmx frame to avoid lots of costly write operations to a serial interface
                         otherParameterSets.forEach { (id, otherParameterSet) ->
                             val parameterSet = parameterSets[id]
-                            if (parameterSet != null && otherParameterSet.getRgbColor() != parameterSet.getRgbColor()) {
+                            if (parameterSet != null && otherParameterSet.toRgbColor() != parameterSet.toRgbColor()) {
                                 val faded = parameterSet.fade(otherParameterSet, factor, BlendMode.AVERAGE)
                                 preferences.dmx!!.setDmxData(
                                     baseChannel = faded.baseChannel,
@@ -335,5 +335,9 @@ class HybridScene(
         } else {
             throw IllegalArgumentException("Cannot not fade another type")
         }
+    }
+
+    override fun toRgbColor(): RGBColor {
+        return RGBColor(0,0,0)
     }
 }

@@ -2,6 +2,7 @@ package de.visualdigits.klanglicht.model.dmx.parameter
 
 import de.visualdigits.klanglicht.model.dmx.fixture.Fixture
 import de.visualdigits.kotlin.twinkly.model.color.BlendMode
+import de.visualdigits.kotlin.twinkly.model.color.RGBColor
 import de.visualdigits.kotlin.twinkly.model.parameter.Parameter
 import kotlin.math.asin
 import kotlin.math.atan2
@@ -11,12 +12,9 @@ import kotlin.math.sin
 import kotlin.math.sqrt
 
 class RotationParameter(
-
     /** The fixture for this rotation (needed to calculate raw values). */
     val fixture: Fixture,
-
     val panDegrees: Double,
-
     val tiltDegrees: Double
 ) : Parameter<RotationParameter> {
 
@@ -59,5 +57,9 @@ class RotationParameter(
 
     override fun clone(): RotationParameter {
         return RotationParameter(fixture, panDegrees, tiltDegrees)
+    }
+
+    override fun toRgbColor(): RGBColor {
+        return RGBColor(0,0,0)
     }
 }
