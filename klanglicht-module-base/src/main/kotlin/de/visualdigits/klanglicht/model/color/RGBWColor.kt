@@ -9,20 +9,26 @@ class RGBWColor(
     red: Int = 0,
     green: Int = 0,
     blue: Int = 0,
-    var white: Int = 0
-) : RGBBaseColor<RGBWColor>(red, green, blue) {
+    var white: Int = 0,
+    alpha: Int = 255,
+    normalize: Boolean = false /** Determines if the white is extracted from the other values or not. */
+) : RGBBaseColor<RGBWColor>(red, green, blue, alpha) {
 
-    constructor(value: Long) : this(
-        red = min(a = 255, b = (value and 0xff000000L shr 24).toInt()),
-        green = min(a = 255, b = (value and 0x00ff0000L shr 16).toInt()),
-        blue = min(a = 255, b = (value and 0x0000ff00L shr 8).toInt()),
-        white = min(a = 255, b = (value and 0x000000ffL).toInt()),
+    constructor(rgb: Long, normalize: Boolean = false) : this(
+        red = min(a = 255, b = (rgb and 0xff000000L shr 24).toInt()),
+        green = min(a = 255, b = (rgb and 0x00ff0000L shr 16).toInt()),
+        blue = min(a = 255, b = (rgb and 0x0000ff00L shr 8).toInt()),
+        white = min(a = 255, b = (rgb and 0x000000ffL).toInt()),
+        normalize = normalize
     )
 
-    constructor(hex: String) : this(decode(if (hex.startsWith("#") || hex.startsWith("0x")) hex else "#$hex"))
+    constructor(hex: String, normalize: Boolean = false) : this(
+        rgb = decode(if (hex.startsWith("#") || hex.startsWith("0x")) hex else "#$hex"),
+        normalize = normalize
+    )
 
     init {
-        if (white == 0) {
+        if (normalize && white == 0) {
             white = min(red, min(green, blue))
             super.red -= white
             super.green -= white
@@ -31,7 +37,7 @@ class RGBWColor(
     }
 
     override fun toString(): String {
-        return "[" + listOf(red, green, blue, white).joinToString(", ") + "]"
+        return "[$red, $green, $blue, $white]"
     }
 
     override fun repr(): String {
@@ -45,7 +51,15 @@ class RGBWColor(
         "White" to white
     )
 
-    override fun fade(other: Any, factor: Double): RGBWColor {
+    override fun isBlack(): Boolean = red == 0 && green == 0 && blue == 0 && white == 0
+
+    override fun blend(other: Any, blendMode: BlendMode): RGBWColor {
+        return if (other is RGBWColor) {
+            fade(other, other.alpha / 255.0, blendMode)
+        } else throw IllegalArgumentException("Cannot not fade another type")
+    }
+
+    override fun fade(other: Any, factor: Double, blendMode: BlendMode): RGBWColor {
         return if (other is RGBWColor) {
             RGBWColor(
                 red = min(255, (red + factor * (other.red - red)).roundToInt()),
@@ -63,10 +77,10 @@ class RGBWColor(
     override fun web(): String = "#${hex()}"
 
     override fun ansiColor(): String {
-        return toRGB().ansiColor()
+        return toRgbColor().ansiColor()
     }
 
-    override fun toRGB(): RGBColor {
+    override fun toRgbColor(): RGBColor {
         return RGBColor(
             red = min(255, red + white),
             green = min(255, green + white),
@@ -74,15 +88,15 @@ class RGBWColor(
         )
     }
 
-    override fun toHSV(): HSVColor {
-        return toRGB().toHSV()
+    override fun toHsvColor(): HSVColor {
+        return toRgbColor().toHsvColor()
     }
 
-    override fun toRGBW(): RGBWColor {
+    override fun toRgbwColor(): RGBWColor {
         return this
     }
 
-    override fun toRGBA(): RGBAColor {
-        return toRGB().toRGBA()
+    override fun toRgbaColor(): RGBAColor {
+        return toRgbColor().toRgbaColor()
     }
 }

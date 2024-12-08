@@ -10,19 +10,25 @@ import kotlin.math.roundToInt
 abstract class RGBBaseColor<T : RGBBaseColor<T>>(
     var red: Int = 0,
     var green: Int = 0,
-    var blue: Int = 0
+    var blue: Int = 0,
+    var alpha: Int = 255,
+    val normalize: Boolean = false /** Determines if the white is extracted from the other values or not. */
 ) : Color<T> {
 
-    constructor(value: Long) : this(
-        red = min(a = 255, b = (value and 0x00ff0000L shr 16).toInt()),
-        green = min(a = 255, b = (value and 0x0000ff00L shr 8).toInt()),
-        blue = min(a = 255, b = (value and 0x000000ffL).toInt())
+    constructor(rgb: Long, normalize: Boolean = false) : this(
+        red = min(a = 255, b = (rgb and 0x00ff0000L shr 16).toInt()),
+        green = min(a = 255, b = (rgb and 0x0000ff00L shr 8).toInt()),
+        blue = min(a = 255, b = (rgb and 0x000000ffL).toInt()),
+        normalize = normalize
     )
 
-    constructor(hex: String) : this(decode(if (hex.startsWith("#") || hex.startsWith("0x")) hex else "#$hex"))
+    constructor(hex: String, normalize: Boolean = false) : this(
+        rgb = decode(if (hex.startsWith("#") || hex.startsWith("0x")) hex else "#$hex"),
+        normalize = normalize
+    )
 
     override fun toString(): String {
-        return "[" + listOf(red, green, blue).joinToString(", ") + "]"
+        return "[$red, $green, $blue]"
     }
 
     open fun repr(): String {
@@ -47,6 +53,13 @@ abstract class RGBBaseColor<T : RGBBaseColor<T>>(
         }
     }
 
+    override fun toAwtColor(): java.awt.Color {
+        val rgbColor = toRgbColor()
+        return java.awt.Color(rgbColor.red, rgbColor.green, rgbColor.blue)
+    }
+
+    override fun isBlack(): Boolean = red == 0 && green == 0 && blue == 0
+
     override fun value(): Long = red.toLong() shl 16 or (green.toLong() shl 8) or blue.toLong()
 
     override fun hex(): String = toHexString(value()).padStart( 6, '0')
@@ -55,7 +68,7 @@ abstract class RGBBaseColor<T : RGBBaseColor<T>>(
 
     override fun ansiColor(): String = "\u001B[39m\u001B[48;2;$red;$green;${blue}m \u001B[0m"
 
-    override fun getRgbColor(): RGBColor? = clone().toRGB()
+    override fun getRgbColor(): RGBColor? = clone().toRgbColor()
 
     override fun setRgbColor(rgbColor: RGBColor) {
         red = rgbColor.red
@@ -65,15 +78,15 @@ abstract class RGBBaseColor<T : RGBBaseColor<T>>(
 
     inline fun <reified T : Color<T>> convert(): T {
         return when (T::class) {
-            RGBWColor::class -> toRGBW() as T
-            RGBAColor::class -> toRGBA() as T
-            HSVColor::class -> toHSV() as T
-            RGBBaseColor::class -> toRGB() as T
+            RGBWColor::class -> toRgbwColor() as T
+            RGBAColor::class -> toRgbaColor() as T
+            HSVColor::class -> toHsvColor() as T
+            RGBBaseColor::class -> toRgbColor() as T
             else -> throw IllegalStateException("Unsupported color type")
         }
     }
 
-    override fun toRGB(): RGBColor {
+    override fun toRgbColor(): RGBColor {
         return RGBColor(
             red = red,
             green = green,
@@ -81,7 +94,7 @@ abstract class RGBBaseColor<T : RGBBaseColor<T>>(
         )
     }
 
-    override fun toHSV(): HSVColor {
+    override fun toHsvColor(): HSVColor {
         val r = red.toDouble() / 255
         val g = green.toDouble() / 255
         val b = blue.toDouble() / 255
@@ -113,7 +126,7 @@ abstract class RGBBaseColor<T : RGBBaseColor<T>>(
         return HSVColor(h.toInt(), (100 * s).toInt(), (100 * max).toInt())
     }
 
-    override fun toRGBW(): RGBWColor {
+    override fun toRgbwColor(): RGBWColor {
         val white = min(red, min(green, blue))
         return RGBWColor(
             red = red - white,
@@ -123,7 +136,7 @@ abstract class RGBBaseColor<T : RGBBaseColor<T>>(
         )
     }
 
-    override fun toRGBA(): RGBAColor {
+    override fun toRgbaColor(): RGBAColor {
         val amber: Int
         var r = 0
         var g = 0

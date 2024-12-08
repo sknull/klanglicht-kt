@@ -1,6 +1,7 @@
 package de.visualdigits.klanglicht.hardware.shelly.model
 
 import de.visualdigits.klanglicht.hardware.shelly.model.status.Light
+import de.visualdigits.klanglicht.model.color.BlendMode
 import de.visualdigits.klanglicht.model.color.RGBColor
 import de.visualdigits.klanglicht.model.dmx.parameter.Fadeable
 import de.visualdigits.klanglicht.model.preferences.Preferences
@@ -59,9 +60,9 @@ class ShellyColor(
         }
     }
 
-    override fun fade(other: Any, factor: Double): ShellyColor {
+    override fun fade(other: Any, factor: Double, blendMode: BlendMode): ShellyColor {
         return if (other is ShellyColor) {
-            ShellyColor(deviceId, ipAddress, color.fade(other.color, factor),  min(1.0, (deviceGain + factor * (other.deviceGain - deviceGain))), other.deviceTurnOn)
+            ShellyColor(deviceId, ipAddress, color.fade(other.color, factor, blendMode),  min(1.0, (deviceGain + factor * (other.deviceGain - deviceGain))), other.deviceTurnOn )
         } else {
             throw IllegalArgumentException("Cannot not fade another type")
         }

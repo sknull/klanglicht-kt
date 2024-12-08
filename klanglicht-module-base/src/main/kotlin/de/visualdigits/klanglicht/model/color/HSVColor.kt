@@ -9,7 +9,8 @@ class HSVColor(
     /** 0-100 */
     var s: Int = 0,
     /** 0 -100 */
-    var v: Int = 0
+    var v: Int = 0,
+    var alpha: Int = 255
 ) : Color<HSVColor> {
 
     override fun toString(): String {
@@ -21,7 +22,7 @@ class HSVColor(
     }
 
     override fun parameterMap(): Map<String, Int> {
-        val rgbColor = toRGB()
+        val rgbColor = toRgbColor()
         return mapOf(
             "Red" to rgbColor.red,
             "Green" to rgbColor.green,
@@ -29,9 +30,17 @@ class HSVColor(
         )
     }
 
-    override fun fade(other: Any, factor: Double): HSVColor {
+    override fun isBlack(): Boolean = h == 0 && s == 0 && v == 0
+
+    override fun blend(other: Any, blendMode: BlendMode): HSVColor {
         return if (other is HSVColor) {
-            other.toRGB().fade(other.toRGB(), factor).toHSV()
+            fade(other, other.alpha / 255.0, blendMode)
+        } else throw IllegalArgumentException("Cannot not fade another type")
+    }
+
+    override fun fade(other: Any, factor: Double, blendMode: BlendMode): HSVColor {
+        return if (other is HSVColor) {
+            other.toRgbColor().fade(other.toRgbColor(), factor, blendMode).toHsvColor()
         } else throw IllegalArgumentException("Cannot not fade another type")
     }
 
@@ -39,7 +48,12 @@ class HSVColor(
         return HSVColor(h, s, v)
     }
 
-    override fun toRGB(): RGBColor {
+    override fun toAwtColor(): java.awt.Color {
+        val rgbColor = toRgbColor()
+        return java.awt.Color(rgbColor.red, rgbColor.green, rgbColor.blue)
+    }
+
+    override fun toRgbColor(): RGBColor {
         val h = (this.h / 360.0)
         val s = (this.s / 100.0)
         val v = (this.v / 100.0)
@@ -70,30 +84,30 @@ class HSVColor(
     }
 
     override fun value(): Long {
-        return toRGB().value()
+        return toRgbColor().value()
     }
 
     override fun hex(): String {
-        return toRGB().hex()
+        return toRgbColor().hex()
     }
 
     override fun web(): String {
-        return toRGB().web()
+        return toRgbColor().web()
     }
 
     override fun ansiColor(): String {
-        return toRGB().ansiColor()
+        return toRgbColor().ansiColor()
     }
 
-    override fun toHSV(): HSVColor {
-        return toRGB().toHSV()
+    override fun toHsvColor(): HSVColor {
+        return toRgbColor().toHsvColor()
     }
 
-    override fun toRGBW(): RGBWColor {
-        return toRGB().toRGBW()
+    override fun toRgbwColor(): RGBWColor {
+        return toRgbColor().toRgbwColor()
     }
 
-    override fun toRGBA(): RGBAColor {
-        return toRGB().toRGBA()
+    override fun toRgbaColor(): RGBAColor {
+        return toRgbColor().toRgbaColor()
     }
 }

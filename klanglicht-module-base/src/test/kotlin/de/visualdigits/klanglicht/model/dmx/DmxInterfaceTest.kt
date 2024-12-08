@@ -1,5 +1,6 @@
 package de.visualdigits.klanglicht.model.dmx
 
+import de.visualdigits.klanglicht.model.color.BlendMode
 import de.visualdigits.klanglicht.model.color.RGBColor
 import de.visualdigits.klanglicht.model.dmx.parameter.DmxScene
 import de.visualdigits.klanglicht.model.dmx.parameter.IntParameter
@@ -149,7 +150,7 @@ class DmxInterfaceTest {
         val step = 1.0 / steps
         for (f in 0..steps) {
             val factor = step * f
-            val frame = parameterSet1.fade(parameterSet2, factor)
+            val frame = parameterSet1.fade(parameterSet2, factor, BlendMode.AVERAGE)
             val dmxScene = DmxScene(
                 name = "frame_$f",
                 parameterSet = listOf(

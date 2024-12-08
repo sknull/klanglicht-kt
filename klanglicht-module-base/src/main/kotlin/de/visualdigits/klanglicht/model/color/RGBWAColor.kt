@@ -10,18 +10,39 @@ class RGBWAColor(
     green: Int = 0,
     blue: Int = 0,
     var white: Int = 0,
-    var amber: Int = 0
-) : RGBBaseColor<RGBWAColor>(red, green, blue) {
+    var amber: Int = 0,
+    alpha: Int = 255,
+    normalize: Boolean = false /** Determines if the white is extracted from the other values or not. */
 
-    constructor(value: Long) : this(
-        red = min(a = 255, b = (value and 0xff00000000L shr 32).toInt()),
-        green = min(a = 255, b = (value and 0x00ff000000L shr 24).toInt()),
-        blue = min(a = 255, b = (value and 0x0000ff0000L shr 16).toInt()),
-        white = min(a = 255, b = (value and 0x000000ff00L shr 8).toInt()),
-        amber = min(a = 255, b = (value and 0x00000000ffL).toInt()),
+) : RGBBaseColor<RGBWAColor>(red, green, blue, alpha) {
+
+    constructor(rgb: Long, normalize: Boolean = false) : this(
+        red = min(a = 255, b = (rgb and 0xff00000000L shr 32).toInt()),
+        green = min(a = 255, b = (rgb and 0x00ff000000L shr 24).toInt()),
+        blue = min(a = 255, b = (rgb and 0x0000ff0000L shr 16).toInt()),
+        white = min(a = 255, b = (rgb and 0x000000ff00L shr 8).toInt()),
+        amber = min(a = 255, b = (rgb and 0x00000000ffL).toInt()),
+        normalize = normalize
     )
 
-    constructor(hex: String) : this(decode(if (hex.startsWith("#") || hex.startsWith("0x")) hex else "#$hex"))
+    constructor(hex: String, normalize: Boolean = false) : this(
+        rgb = decode(if (hex.startsWith("#") || hex.startsWith("0x")) hex else "#$hex"),
+        normalize = normalize
+    )
+
+    init {
+        if (normalize && white == 0) {
+            white = min(red, min(green, blue))
+            super.red -= white
+            super.green -= white
+            super.blue -= white
+        }
+        if (normalize && amber == 0) {
+            amber = min(red, green)
+            super.red -= amber
+            super.green -= amber
+        }
+    }
 
     override fun toString(): String {
         return "[" +listOf(red, green, blue, white, amber).joinToString(", ") + "]"
@@ -39,7 +60,13 @@ class RGBWAColor(
         "Amber" to amber
     )
 
-    override fun fade(other: Any, factor: Double): RGBWAColor {
+    override fun blend(other: Any, blendMode: BlendMode): RGBWAColor {
+        return if (other is RGBWAColor) {
+            fade(other, other.alpha / 255.0, blendMode)
+        } else throw IllegalArgumentException("Cannot not fade another type")
+    }
+
+    override fun fade(other: Any, factor: Double, blendMode: BlendMode): RGBWAColor {
         return if (other is RGBWAColor) {
             RGBWAColor(
                 red = min(255, (red + factor * (other.red - red)).roundToInt()),
@@ -58,10 +85,10 @@ class RGBWAColor(
     override fun web(): String = "#${hex()}"
 
     override fun ansiColor(): String {
-        return toRGB().ansiColor()
+        return toRgbColor().ansiColor()
     }
 
-    override fun toRGB(): RGBColor {
+    override fun toRgbColor(): RGBColor {
         return RGBColor(
             red = min(255, red + (amber / RGBAColor.AMBER_FACTOR).roundToInt()) + white,
             green = min(255, green + (amber * RGBAColor.AMBER_FACTOR).roundToInt() + white),
@@ -69,15 +96,15 @@ class RGBWAColor(
         )
     }
 
-    override fun toHSV(): HSVColor {
-        return toRGB().toHSV()
+    override fun toHsvColor(): HSVColor {
+        return toRgbColor().toHsvColor()
     }
 
-    override fun toRGBW(): RGBWColor {
-        return toRGB().toRGBW()
+    override fun toRgbwColor(): RGBWColor {
+        return toRgbColor().toRgbwColor()
     }
 
-    override fun toRGBA(): RGBAColor {
-        return toRGB().toRGBA()
+    override fun toRgbaColor(): RGBAColor {
+        return toRgbColor().toRgbaColor()
     }
 }

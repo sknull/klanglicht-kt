@@ -2,6 +2,7 @@ package de.visualdigits.klanglicht.model.hybrid
 
 import de.visualdigits.klanglicht.hardware.shelly.model.ShellyColor
 import de.visualdigits.klanglicht.hardware.twinkly.model.XledFrameFadeable
+import de.visualdigits.klanglicht.model.color.BlendMode
 import de.visualdigits.klanglicht.model.color.RGBColor
 import de.visualdigits.klanglicht.model.dmx.parameter.Fadeable
 import de.visualdigits.klanglicht.model.dmx.parameter.IntParameter
@@ -258,7 +259,7 @@ class HybridScene() : Fadeable<HybridScene> {
                             otherParameterSets.forEach { (id, otherParameterSet) ->
                                 val parameterSet = parameterSets[id]
                                 if (parameterSet != null && otherParameterSet.getRgbColor() != parameterSet.getRgbColor()) {
-                                    val faded = parameterSet.fade(otherParameterSet, factor)
+                                    val faded = parameterSet.fade(otherParameterSet, factor, BlendMode.AVERAGE)
                                     preferences.setDmxData(
                                         baseChannel = faded.baseChannel,
                                         bytes = faded.toBytes(it)
@@ -273,7 +274,7 @@ class HybridScene() : Fadeable<HybridScene> {
                         otherXledFrames.forEach { (id, otherXledFrame) ->
                             val xledFrame = xledFrames[id]
                             if (xledFrame != null) {
-                                val faded = xledFrame.fade(otherXledFrame, factor)
+                                val faded = xledFrame.fade(otherXledFrame, factor, BlendMode.AVERAGE)
                                 faded.write(preferences, true)
                             }
                         }
@@ -317,7 +318,7 @@ class HybridScene() : Fadeable<HybridScene> {
         }
     }
 
-    override fun fade(other: Any, factor: Double): HybridScene {
+    override fun fade(other: Any, factor: Double, blendMode: BlendMode): HybridScene {
         return if (other is HybridScene) {
             other
         } else {

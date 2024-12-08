@@ -1,6 +1,5 @@
 package de.visualdigits.klanglicht.model.preferences
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import de.visualdigits.klanglicht.hardware.shelly.model.ShellyDevice
 import de.visualdigits.klanglicht.hardware.twinkly.model.TwinklyConfiguration
@@ -22,7 +21,6 @@ import java.io.File
 import java.nio.file.Paths
 
 
-@JsonIgnoreProperties("klanglichtDir", "dmxInterface", "fixtures", "serviceMap", "shellyMap", "twinklyMap", "stageMap", "colorWheelMap", "log")
 class Preferences(
     var name: String = "",
     var installationLat: Double = 0.0,

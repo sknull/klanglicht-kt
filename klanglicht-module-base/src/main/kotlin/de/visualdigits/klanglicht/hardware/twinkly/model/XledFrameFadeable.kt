@@ -1,5 +1,6 @@
 package de.visualdigits.klanglicht.hardware.twinkly.model
 
+import de.visualdigits.klanglicht.model.color.BlendMode
 import de.visualdigits.klanglicht.model.color.RGBColor
 import de.visualdigits.klanglicht.model.dmx.parameter.Fadeable
 import de.visualdigits.klanglicht.model.preferences.Preferences
@@ -55,7 +56,7 @@ class XledFrameFadeable(
         }
     }
 
-    override fun fade(other: Any, factor: Double): XledFrameFadeable {
+    override fun fade(other: Any, factor: Double, blendMode: BlendMode): XledFrameFadeable {
         return if (other is XledFrameFadeable) {
             val xledFrame1 = xledFrame.fade(other.xledFrame, factor)
             XledFrameFadeable(deviceId, xledFrame1, deviceGain)

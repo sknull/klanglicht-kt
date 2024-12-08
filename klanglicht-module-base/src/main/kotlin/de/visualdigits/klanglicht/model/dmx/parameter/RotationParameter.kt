@@ -1,5 +1,6 @@
 package de.visualdigits.klanglicht.model.dmx.parameter
 
+import de.visualdigits.klanglicht.model.color.BlendMode
 import de.visualdigits.klanglicht.model.dmx.fixture.Fixture
 import kotlin.math.asin
 import kotlin.math.atan2
@@ -25,7 +26,7 @@ class RotationParameter(
     override fun parameterMap(): Map<String, Int> =
         fixture.panoParameterSet(panDegrees).parameterMap + fixture.tiltParameterSet(tiltDegrees).parameterMap
 
-    override fun fade(other: Any, factor: Double): RotationParameter {
+    override fun fade(other: Any, factor: Double, blendMode: BlendMode): RotationParameter {
         return if (other is RotationParameter) {
 
             // use great circle to determine intermediate steps

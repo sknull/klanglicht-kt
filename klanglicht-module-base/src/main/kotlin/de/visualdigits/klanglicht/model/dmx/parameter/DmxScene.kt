@@ -1,6 +1,7 @@
 package de.visualdigits.klanglicht.model.dmx.parameter
 
 import com.fasterxml.jackson.module.kotlin.jacksonMapperBuilder
+import de.visualdigits.klanglicht.model.color.BlendMode
 import de.visualdigits.klanglicht.model.preferences.Preferences
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -51,7 +52,8 @@ class DmxScene(
 
     override fun fade(
         other: Any,
-        factor: Double
+        factor: Double,
+        blendMode: BlendMode
     ): DmxScene {
         return if (other is DmxScene) {
             DmxScene(
@@ -60,7 +62,7 @@ class DmxScene(
                     .sortedBy { it.baseChannel }
                     .zip(other.parameterSet.sortedBy { it.baseChannel })
                     .map { (paramsFrom, paramsTo) ->
-                        paramsFrom.fade(paramsTo, factor)
+                        paramsFrom.fade(paramsTo, factor, blendMode)
                     }
             )
         } else throw IllegalArgumentException("Cannot not fade another type")

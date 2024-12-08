@@ -1,6 +1,7 @@
 package de.visualdigits.klanglicht.model.dmx.parameter
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
+import de.visualdigits.klanglicht.model.color.BlendMode
 import de.visualdigits.klanglicht.model.color.RGBColor
 import de.visualdigits.klanglicht.model.preferences.Preferences
 import org.slf4j.Logger
@@ -80,11 +81,11 @@ class ParameterSet(
         }
     }
 
-    override fun fade(other: Any, factor: Double): ParameterSet {
+    override fun fade(other: Any, factor: Double, blendMode: BlendMode): ParameterSet {
         return if (other is ParameterSet) {
             val parameters1 = parameters
                 .zip(other.parameters)
-                .map { it.first.fade(it.second, factor) }
+                .map { it.first.fade(it.second, factor, blendMode) }
                 .toMutableList()
             val parameterSet = ParameterSet(
                 baseChannel = baseChannel,

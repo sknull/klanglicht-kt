@@ -7,16 +7,19 @@ import kotlin.math.roundToInt
 class RGBColor(
    red: Int = 0,
    green: Int = 0,
-   blue: Int = 0
-) : RGBBaseColor<RGBColor>(red, green, blue) {
+   blue: Int = 0,
+   alpha: Int = 255
+) : RGBBaseColor<RGBColor>(red, green, blue, alpha) {
 
-    constructor(value: Long) : this(
-        red = min(a = 255, b = (value and 0x00ff0000L shr 16).toInt()),
-        green = min(a = 255, b = (value and 0x0000ff00L shr 8).toInt()),
-        blue = min(a = 255, b = (value and 0x000000ffL).toInt())
+    constructor(rgb: Long) : this(
+        red = min(a = 255, b = (rgb and 0x00ff0000L shr 16).toInt()),
+        green = min(a = 255, b = (rgb and 0x0000ff00L shr 8).toInt()),
+        blue = min(a = 255, b = (rgb and 0x000000ffL).toInt())
     )
 
-    constructor(hex: String) : this(java.lang.Long.decode(if (hex.startsWith("#") || hex.startsWith("0x")) hex else "#$hex"))
+    constructor(hex: String) : this(
+        rgb = java.lang.Long.decode(if (hex.startsWith("#") || hex.startsWith("0x")) hex else "#$hex")
+    )
 
     override fun parameterMap(): Map<String, Int> = mapOf(
         "Red" to red,
@@ -24,7 +27,13 @@ class RGBColor(
         "Blue" to blue,
     )
 
-    override fun fade(other: Any, factor: Double): RGBColor {
+    override fun blend(other: Any, blendMode: BlendMode): RGBColor {
+        return if (other is RGBColor) {
+            fade(other, other.alpha / 255.0, blendMode)
+        } else throw IllegalArgumentException("Cannot not fade another type")
+    }
+
+    override fun fade(other: Any, factor: Double, blendMode: BlendMode): RGBColor {
         return if (other is RGBColor) {
             RGBColor(
                 red = min(255, (red + factor * (other.red - red)).roundToInt()),
