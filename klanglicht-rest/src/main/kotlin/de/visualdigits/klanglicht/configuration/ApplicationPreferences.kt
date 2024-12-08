@@ -38,7 +38,7 @@ class ApplicationPreferences {
         log.info("##")
         log.info("## klanglichtDirectory: " + klanglichtDirectory.absolutePath)
         currentScene = preferences?.initialHybridScene()
-        currentScene?.write(preferences?.dmx!!, true, 1000)
+        currentScene?.write(true, 1000)
         log.info("#### setUp - end")
     }
 

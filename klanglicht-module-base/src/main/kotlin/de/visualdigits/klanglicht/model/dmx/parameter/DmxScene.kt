@@ -9,7 +9,8 @@ import java.io.File
 
 class DmxScene(
     val name: String,
-    val parameterSet: List<ParameterSet>
+    val parameterSet: List<ParameterSet>,
+    val dmx: Dmx
 ) : Fadeable<DmxScene> {
 
     private val log: Logger = LoggerFactory.getLogger(javaClass)
@@ -29,7 +30,7 @@ class DmxScene(
     /**
      * Writes the given scene into the internal dmx frame of the interface.
      */
-    override fun write(dmx: Dmx, write: Boolean, transitionDuration: Long) {
+    override fun write(write: Boolean, transitionDuration: Long) {
         // first collect all frame data for the dmx frame to avoid lots of costly write operations to a serial interface
         parameterSet
             .sortedBy { it.baseChannel }
@@ -47,7 +48,7 @@ class DmxScene(
     }
 
     override fun clone(): DmxScene {
-        return DmxScene(name, parameterSet.map { it.clone() })
+        return DmxScene(name, parameterSet.map { it.clone() }, dmx)
     }
 
     override fun fade(
@@ -63,7 +64,8 @@ class DmxScene(
                     .zip(other.parameterSet.sortedBy { it.baseChannel })
                     .map { (paramsFrom, paramsTo) ->
                         paramsFrom.fade(paramsTo, factor, blendMode)
-                    }
+                    },
+                dmx
             )
         } else throw IllegalArgumentException("Cannot not fade another type")
     }

@@ -2,7 +2,6 @@ package de.visualdigits.klanglicht.hardware.twinkly.model
 
 import de.visualdigits.klanglicht.model.color.BlendMode
 import de.visualdigits.klanglicht.model.color.RGBColor
-import de.visualdigits.klanglicht.model.dmx.model.Dmx
 import de.visualdigits.klanglicht.model.dmx.parameter.Fadeable
 import de.visualdigits.klanglicht.model.preferences.Preferences
 import de.visualdigits.kotlin.twinkly.model.playable.XledFrame
@@ -10,12 +9,12 @@ import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import de.visualdigits.kotlin.twinkly.model.color.RGBColor as TwinklyRGBColor
 
-class XledFrameFadeable(
+class XledFrameDmxFadeable(
     private val deviceId: String,
     private var xledFrame: XledFrame,
     private var deviceGain: Double,
     private val preferences: Preferences
-) : Fadeable<XledFrameFadeable> {
+) : Fadeable<XledFrameDmxFadeable> {
 
     private val log: Logger = LoggerFactory.getLogger(javaClass)
 
@@ -23,8 +22,8 @@ class XledFrameFadeable(
         return xledFrame.toString()
     }
 
-    override fun clone(): XledFrameFadeable {
-        return XledFrameFadeable(deviceId, xledFrame.clone(), deviceGain, preferences)
+    override fun clone(): XledFrameDmxFadeable {
+        return XledFrameDmxFadeable(deviceId, xledFrame.clone(), deviceGain, preferences)
     }
 
     override fun getTurnOn(): Boolean = true
@@ -46,7 +45,7 @@ class XledFrameFadeable(
         xledFrame.setColor(TwinklyRGBColor(rgbColor.red, rgbColor.green, rgbColor.blue))
     }
 
-    override fun write(dmx: Dmx, write: Boolean, transitionDuration: Long) {
+    override fun write(write: Boolean, transitionDuration: Long) {
         val twinklyDevice = preferences.getTwinklyConfiguration(deviceId)
         if (twinklyDevice != null) {
             val xledArray = twinklyDevice.xledArray
@@ -58,10 +57,10 @@ class XledFrameFadeable(
         }
     }
 
-    override fun fade(other: Any, factor: Double, blendMode: BlendMode): XledFrameFadeable {
-        return if (other is XledFrameFadeable) {
+    override fun fade(other: Any, factor: Double, blendMode: BlendMode): XledFrameDmxFadeable {
+        return if (other is XledFrameDmxFadeable) {
             val xledFrame1 = xledFrame.fade(other.xledFrame, factor)
-            XledFrameFadeable(deviceId, xledFrame1, deviceGain, preferences)
+            XledFrameDmxFadeable(deviceId, xledFrame1, deviceGain, preferences)
         } else {
             throw IllegalArgumentException("Cannot not fade another type")
         }

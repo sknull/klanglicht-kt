@@ -32,10 +32,10 @@ class DmxInterfaceTest {
                         RGBColor(255, 0, 0)
                     )
                 )
-            )
+            ),
+            preferences.dmx!!
         )
-        dmxScene.write(preferences.dmx!!)
-        preferences.dmx!!.writeDmxData()
+        dmxScene.write()
     }
 
     @Test
@@ -51,10 +51,10 @@ class DmxInterfaceTest {
                         RGBColor()
                     )
                 )
-            )
+            ),
+            preferences.dmx!!
         )
-        dmxScene.write(preferences.dmx!!)
-        preferences.dmx!!.writeDmxData()
+        dmxScene.write()
     }
 
 //    @Test
@@ -155,9 +155,10 @@ class DmxInterfaceTest {
                 name = "frame_$f",
                 parameterSet = listOf(
                     frame
-                )
+                ),
+                preferences.dmx!!
             )
-            dmxScene.write(preferences.dmx!!)
+            dmxScene.write()
             Thread.sleep(dmxFrameTime)
         }
     }

@@ -94,7 +94,7 @@ class HybridStageService(
         }
         log.info("nextScene: $nextScene")
 
-        currentScene?.fade(nextScene!!, transition?:prefs.preferences?.fadeDurationDefault?:2000, prefs.preferences?.dmx!!)
+        currentScene?.fade(nextScene!!, transition?:prefs.preferences?.fadeDurationDefault?:2000)
     }
 
     fun putColor(
@@ -110,7 +110,7 @@ class HybridStageService(
         transitionDuration: Long?
     ) {
         ids.forEach { id ->
-            prefs.getFadeable(id)?.write(prefs.preferences?.dmx!!, transitionDuration = transitionDuration?: prefs.preferences?.fadeDurationDefault?:2000)
+            prefs.getFadeable(id)?.write(transitionDuration = transitionDuration?: prefs.preferences?.fadeDurationDefault?:2000)
         }
     }
 

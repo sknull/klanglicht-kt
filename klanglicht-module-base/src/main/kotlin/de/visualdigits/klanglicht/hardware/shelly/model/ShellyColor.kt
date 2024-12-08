@@ -3,9 +3,7 @@ package de.visualdigits.klanglicht.hardware.shelly.model
 import de.visualdigits.klanglicht.hardware.shelly.model.status.Light
 import de.visualdigits.klanglicht.model.color.BlendMode
 import de.visualdigits.klanglicht.model.color.RGBColor
-import de.visualdigits.klanglicht.model.dmx.model.Dmx
 import de.visualdigits.klanglicht.model.dmx.parameter.Fadeable
-import de.visualdigits.klanglicht.model.preferences.Preferences
 import de.visualdigits.kotlin.util.get
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -52,7 +50,7 @@ class ShellyColor(
         color = rgbColor.clone()
     }
 
-    override fun write(dmx: Dmx, write: Boolean, transitionDuration: Long) {
+    override fun write(write: Boolean, transitionDuration: Long) {
         if (write) {
             log.debug("Set shelly color {}", color.ansiColor())
             log.debug("setColor: $ipAddress = ${color.ansiColor()} [$deviceGain]")

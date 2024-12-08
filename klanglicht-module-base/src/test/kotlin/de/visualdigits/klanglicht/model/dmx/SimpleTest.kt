@@ -36,11 +36,11 @@ class SimpleTest {
                         RGBWColor(0, 20, 20, 0)
                     )
                 )
-            )
+            ),
+            preferences.dmx!!
         )
 
-        dmxScene.write(preferences.dmx!!)
-        dmxScene.write(preferences.dmx!!)
+        dmxScene.write()
     }
 
     @Test
@@ -62,9 +62,10 @@ class SimpleTest {
                         RGBWColor(0, 0, 0, 0)
                     )
                 ),
-            )
+            ),
+            preferences.dmx!!
         )
-        dmxScene0.write(preferences.dmx!!)
+        dmxScene0.write()
     }
 
     @Test
@@ -86,7 +87,8 @@ class SimpleTest {
                         RGBWColor(0, 0, 0, 0)
                     )
                 ),
-            )
+            ),
+            preferences.dmx!!
         )
 
         val dmxScene1 = DmxScene(
@@ -106,9 +108,10 @@ class SimpleTest {
                         RGBWColor(255, 0, 0, 0)
                     )
                 ),
-            )
+            ),
+            preferences.dmx!!
         )
-        dmxScene1.write(preferences.dmx!!)
+        dmxScene1.write()
 
         val dmxScene2 = DmxScene(
             name = "JUnit Test",
@@ -125,15 +128,16 @@ class SimpleTest {
                     parameters = mutableListOf(
                         IntParameter("MasterDimmer", 255),
                         RGBWColor(255, 0, 0, 0)
-                    )
+                    ),
                 ),
-            )
+            ),
+            preferences.dmx!!
         )
 
-        dmxScene0.fade(dmxScene1, 1000, preferences.dmx!!)
-        dmxScene1.fade(dmxScene2, 2000, preferences.dmx!!)
+        dmxScene0.fade(dmxScene1, 1000L)
+        dmxScene1.fade(dmxScene2, 2000L)
         Thread.sleep(2000)
-        dmxScene2.fade(dmxScene1, 2000, preferences.dmx!!)
-        dmxScene1.fade(dmxScene0, 1000, preferences.dmx!!)
+        dmxScene2.fade(dmxScene1, 2000L)
+        dmxScene1.fade(dmxScene0, 1000L)
     }
 }

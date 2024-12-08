@@ -2,15 +2,16 @@ package de.visualdigits.klanglicht.model.dmx.parameter
 
 import de.visualdigits.klanglicht.model.color.BlendMode
 import de.visualdigits.klanglicht.model.color.RGBColor
-import de.visualdigits.klanglicht.model.dmx.model.Dmx
 
 interface Fadeable<T : Fadeable<T>> {
 
+    fun clone(): T
+
     fun getId(): String = ""
 
-    fun getTurnOn(): Boolean? = false
+    fun getRgbColor(): RGBColor? = null
 
-    fun setTurnOn(turnOn: Boolean?) {
+    fun setRgbColor(rgbColor: RGBColor) {
         // do something
     }
 
@@ -20,33 +21,29 @@ interface Fadeable<T : Fadeable<T>> {
         // do something
     }
 
-    fun getRgbColor(): RGBColor? = null
+    fun getTurnOn(): Boolean? = false
 
-    fun setRgbColor(rgbColor: RGBColor) {
+    fun setTurnOn(turnOn: Boolean?) {
         // do something
     }
 
     fun fade(
         other: T,
         fadeDuration: Long,
-        dmx: Dmx
+        frameTime: Long = 40L
     ) {
         if (fadeDuration > 0) {
-            val dmxFrameTime = dmx.frameTime
-            val step = 1.0 / fadeDuration.toDouble() * dmxFrameTime.toDouble()
+            val step = 1.0 / fadeDuration.toDouble() * frameTime
             var factor = 0.0
 
             while (factor <= 1.0) {
                 val faded = fade(other, factor, BlendMode.AVERAGE)
-                faded.write(dmx)
+                faded.write()
                 factor += step
-                Thread.sleep(dmxFrameTime)
+                Thread.sleep(frameTime)
             }
         }
-        other.write(dmx)
-    }
-
-    fun write(dmx: Dmx, write: Boolean = true, transitionDuration: Long = 1) {
+        other.write()
     }
 
     /**
@@ -54,5 +51,7 @@ interface Fadeable<T : Fadeable<T>> {
      */
     fun fade(other: Any, factor: Double, blendMode: BlendMode): T
 
-    fun clone(): T
+    fun write(write: Boolean = true, transitionDuration: Long = 1L) {
+        // do something
+    }
 }
