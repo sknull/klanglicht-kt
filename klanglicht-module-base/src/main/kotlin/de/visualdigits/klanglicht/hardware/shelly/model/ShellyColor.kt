@@ -1,9 +1,9 @@
 package de.visualdigits.klanglicht.hardware.shelly.model
 
 import de.visualdigits.klanglicht.hardware.shelly.model.status.Light
-import de.visualdigits.klanglicht.model.color.BlendMode
-import de.visualdigits.klanglicht.model.color.RGBColor
-import de.visualdigits.klanglicht.model.dmx.parameter.Fadeable
+import de.visualdigits.kotlin.twinkly.model.color.BlendMode
+import de.visualdigits.kotlin.twinkly.model.color.RGBColor
+import de.visualdigits.kotlin.twinkly.model.parameter.Fadeable
 import de.visualdigits.kotlin.util.get
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory

@@ -1,10 +1,10 @@
 package de.visualdigits.klanglicht.model.dmx
 
-import de.visualdigits.klanglicht.model.color.RGBWColor
 import de.visualdigits.klanglicht.model.dmx.parameter.DmxScene
 import de.visualdigits.klanglicht.model.dmx.parameter.IntParameter
 import de.visualdigits.klanglicht.model.dmx.parameter.ParameterSet
 import de.visualdigits.klanglicht.model.preferences.Preferences
+import de.visualdigits.kotlin.twinkly.model.color.RGBWColor
 import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import java.io.File

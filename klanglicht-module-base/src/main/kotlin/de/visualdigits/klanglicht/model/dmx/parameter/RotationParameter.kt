@@ -1,7 +1,8 @@
 package de.visualdigits.klanglicht.model.dmx.parameter
 
-import de.visualdigits.klanglicht.model.color.BlendMode
 import de.visualdigits.klanglicht.model.dmx.fixture.Fixture
+import de.visualdigits.kotlin.twinkly.model.color.BlendMode
+import de.visualdigits.kotlin.twinkly.model.parameter.Parameter
 import kotlin.math.asin
 import kotlin.math.atan2
 import kotlin.math.cos

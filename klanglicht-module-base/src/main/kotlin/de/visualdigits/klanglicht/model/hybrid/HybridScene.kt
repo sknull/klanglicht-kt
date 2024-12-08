@@ -2,12 +2,12 @@ package de.visualdigits.klanglicht.model.hybrid
 
 import de.visualdigits.klanglicht.hardware.shelly.model.ShellyColor
 import de.visualdigits.klanglicht.hardware.twinkly.model.XledFrameDmxFadeable
-import de.visualdigits.klanglicht.model.color.BlendMode
-import de.visualdigits.klanglicht.model.color.RGBColor
-import de.visualdigits.klanglicht.model.dmx.parameter.Fadeable
 import de.visualdigits.klanglicht.model.dmx.parameter.IntParameter
 import de.visualdigits.klanglicht.model.dmx.parameter.ParameterSet
 import de.visualdigits.klanglicht.model.preferences.Preferences
+import de.visualdigits.kotlin.twinkly.model.color.BlendMode
+import de.visualdigits.kotlin.twinkly.model.color.RGBColor
+import de.visualdigits.kotlin.twinkly.model.parameter.Fadeable
 import de.visualdigits.kotlin.twinkly.model.playable.XledFrame
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
@@ -17,7 +17,6 @@ import org.slf4j.LoggerFactory
 import kotlin.math.max
 import kotlin.math.min
 import kotlin.math.roundToInt
-import de.visualdigits.kotlin.twinkly.model.color.RGBColor as TwinklyRGBColor
 
 class HybridScene(
     private val preferences: Preferences
@@ -120,7 +119,7 @@ class HybridScene(
                         val frame = XledFrame(
                             width = xa.width,
                             height = xa.height,
-                            initialColor = TwinklyRGBColor(lc.red, lc.green, lc.blue)
+                            initialColor = RGBColor(lc.red, lc.green, lc.blue)
                         )
                         val nc = hexColors.size
                         val barWidth = xa.width / nc
@@ -129,7 +128,7 @@ class HybridScene(
                             val bar = XledFrame(
                                 width = barWidth,
                                 height = xa.height,
-                                initialColor = TwinklyRGBColor(rgbColor.red, rgbColor.green, rgbColor.blue)
+                                initialColor = RGBColor(rgbColor.red, rgbColor.green, rgbColor.blue)
                             )
                             frame.replaceSubFrame(bar, x * barWidth, 0)
                         }

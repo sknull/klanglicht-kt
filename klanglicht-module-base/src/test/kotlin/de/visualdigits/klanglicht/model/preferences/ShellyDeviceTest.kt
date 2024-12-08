@@ -1,7 +1,7 @@
 package de.visualdigits.klanglicht.model.preferences
 
 import de.visualdigits.klanglicht.hardware.shelly.model.status.Light
-import de.visualdigits.klanglicht.model.color.RGBColor
+import de.visualdigits.kotlin.twinkly.model.color.RGBColor
 import de.visualdigits.kotlin.util.get
 import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test

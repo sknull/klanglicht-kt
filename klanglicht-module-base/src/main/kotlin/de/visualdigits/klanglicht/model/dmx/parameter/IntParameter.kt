@@ -1,6 +1,8 @@
 package de.visualdigits.klanglicht.model.dmx.parameter
 
-import de.visualdigits.klanglicht.model.color.BlendMode
+import de.visualdigits.kotlin.twinkly.model.color.BlendMode
+import de.visualdigits.kotlin.twinkly.model.parameter.Parameter
+
 
 class IntParameter(
     val name: String,

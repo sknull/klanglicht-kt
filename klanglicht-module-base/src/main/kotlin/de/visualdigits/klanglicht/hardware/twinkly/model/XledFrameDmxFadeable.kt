@@ -1,13 +1,12 @@
 package de.visualdigits.klanglicht.hardware.twinkly.model
 
-import de.visualdigits.klanglicht.model.color.BlendMode
-import de.visualdigits.klanglicht.model.color.RGBColor
-import de.visualdigits.klanglicht.model.dmx.parameter.Fadeable
 import de.visualdigits.klanglicht.model.preferences.Preferences
+import de.visualdigits.kotlin.twinkly.model.color.BlendMode
+import de.visualdigits.kotlin.twinkly.model.color.RGBColor
+import de.visualdigits.kotlin.twinkly.model.parameter.Fadeable
 import de.visualdigits.kotlin.twinkly.model.playable.XledFrame
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
-import de.visualdigits.kotlin.twinkly.model.color.RGBColor as TwinklyRGBColor
 
 class XledFrameDmxFadeable(
     private val deviceId: String,
@@ -37,12 +36,12 @@ class XledFrameDmxFadeable(
     }
 
     override fun getRgbColor(): RGBColor {
-        val twinklyColor = xledFrame[0, 0].toRGB()
-        return RGBColor(twinklyColor.red, twinklyColor.green, twinklyColor.blue)
+        val color = xledFrame[0, 0].toRgbColor()
+        return RGBColor(color.red, color.green, color.blue)
     }
 
     override fun setRgbColor(rgbColor: RGBColor) {
-        xledFrame.setColor(TwinklyRGBColor(rgbColor.red, rgbColor.green, rgbColor.blue))
+        xledFrame.setColor(RGBColor(rgbColor.red, rgbColor.green, rgbColor.blue))
     }
 
     override fun write(write: Boolean, transitionDuration: Long) {

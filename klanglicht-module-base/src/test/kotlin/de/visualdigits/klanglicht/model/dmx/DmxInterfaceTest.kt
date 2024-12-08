@@ -1,11 +1,11 @@
 package de.visualdigits.klanglicht.model.dmx
 
-import de.visualdigits.klanglicht.model.color.BlendMode
-import de.visualdigits.klanglicht.model.color.RGBColor
 import de.visualdigits.klanglicht.model.dmx.parameter.DmxScene
 import de.visualdigits.klanglicht.model.dmx.parameter.IntParameter
 import de.visualdigits.klanglicht.model.dmx.parameter.ParameterSet
 import de.visualdigits.klanglicht.model.preferences.Preferences
+import de.visualdigits.kotlin.twinkly.model.color.BlendMode
+import de.visualdigits.kotlin.twinkly.model.color.RGBColor
 import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import java.io.File

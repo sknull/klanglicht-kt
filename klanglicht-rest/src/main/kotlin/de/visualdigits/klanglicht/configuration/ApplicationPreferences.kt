@@ -1,9 +1,9 @@
 package de.visualdigits.klanglicht.configuration
 
 import de.visualdigits.klanglicht.hardware.lightmanager.model.lm.LMScenes
-import de.visualdigits.klanglicht.model.dmx.parameter.Fadeable
 import de.visualdigits.klanglicht.model.hybrid.HybridScene
 import de.visualdigits.klanglicht.model.preferences.Preferences
+import de.visualdigits.kotlin.twinkly.model.parameter.Fadeable
 import jakarta.annotation.PostConstruct
 import jakarta.annotation.PreDestroy
 import org.slf4j.Logger

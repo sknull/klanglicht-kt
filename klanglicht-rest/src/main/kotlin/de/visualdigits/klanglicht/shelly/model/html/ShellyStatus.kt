@@ -2,8 +2,8 @@ package de.visualdigits.klanglicht.shelly.model.html
 
 import de.visualdigits.klanglicht.hardware.shelly.model.ShellyDevice
 import de.visualdigits.klanglicht.hardware.shelly.model.status.Status
-import de.visualdigits.klanglicht.model.color.RGBColor
 import de.visualdigits.klanglicht.shelly.service.ShellyService
+import de.visualdigits.kotlin.twinkly.model.color.RGBColor
 import org.springframework.stereotype.Service
 
 @Service

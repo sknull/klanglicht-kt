@@ -2,7 +2,7 @@ package de.visualdigits.klanglicht.shelly.webclient
 
 import de.visualdigits.klanglicht.hardware.shelly.model.status.Light
 import de.visualdigits.klanglicht.hardware.shelly.model.status.Status
-import de.visualdigits.klanglicht.model.color.RGBColor
+import de.visualdigits.kotlin.twinkly.model.color.RGBColor
 import de.visualdigits.kotlin.util.get
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
