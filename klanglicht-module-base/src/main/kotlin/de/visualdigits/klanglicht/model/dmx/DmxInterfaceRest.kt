@@ -11,11 +11,10 @@ class DmxInterfaceRest : DmxInterface() {
     }
 
     override fun write(data: ByteArray) {
-//        Preferences.instance().getFeignClient().writeBytes(data)
+        dmxFrame.data = data.clone()
     }
 
     override fun read(): ByteArray {
-//        dmxFrame.data = DmxFrame(Preferences.instance().getFeignClient().readBytes())
         return dmxFrame.data
     }
 

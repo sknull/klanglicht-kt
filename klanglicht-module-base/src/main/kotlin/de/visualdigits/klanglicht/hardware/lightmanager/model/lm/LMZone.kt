@@ -1,6 +1,6 @@
 package de.visualdigits.klanglicht.hardware.lightmanager.model.lm
 
-import java.util.Objects
+import java.util.*
 
 class LMZone(
     val id: Int? = null,

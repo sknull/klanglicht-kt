@@ -26,6 +26,7 @@ class HybridStageService(
      * @param storeName An additional name to strore values.
      */
     fun hexColor(
+        wheelId: String? = null,
         ids: List<String> = listOf(),
         hexColors: List<String> = listOf(),
         gains: List<Double> = listOf(),
@@ -45,9 +46,13 @@ class HybridStageService(
             prefs.updateScene(nextScene!!)
             val keys = prefs.preferences?.stage?.map { it.id }
             val remaining = prefs.preferences?.colorWheels?.map { it.id }?.toMutableSet()?:mutableSetOf()
-
+            val colors = hexColors.joinToString(",")
+            // update other affected color wheels
+            wheelId
+                ?.let { wid -> prefs.preferences?.getColorWheel(wid)?.updates }
+                ?.forEach { wid -> prefs.putColor(wid, colors) }
             if (storeName != null) {
-                prefs.putColor(storeName, hexColors.joinToString(","))
+                prefs.putColor(storeName, colors)
                 remaining.remove(storeName)
             }
 

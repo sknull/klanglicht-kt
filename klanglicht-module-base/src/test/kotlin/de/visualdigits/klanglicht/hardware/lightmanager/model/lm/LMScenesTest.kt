@@ -7,7 +7,7 @@ class LMScenesTest {
 
     @Test
     fun testReadScenes() {
-        val scenes = LMScenes.readValue(File(ClassLoader.getSystemResource(".klanglicht/resources/scenes.yml").toURI()))
+        val scenes = LMScenes.readValue(File(ClassLoader.getSystemResource(".klanglicht/resources/scenes.json").toURI()))
         println(scenes)
     }
 }

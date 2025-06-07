@@ -24,7 +24,7 @@ class ParameterSet(
     }
 
     override fun toString(): String {
-        return parameters.filterIsInstance<RGBColor>().map { it.ansiColor() }.joinToString("")
+        return parameters.filterIsInstance<RGBColor>().joinToString("") { it.ansiColor() }
     }
 
     override fun clone(): ParameterSet {
@@ -44,17 +44,13 @@ class ParameterSet(
     override fun getId(): String = baseChannel.toString()
 
     override fun getGain(): Double = parameters
-        .filterIsInstance<IntParameter>()
-        .filter { it.name == "MasterDimmer" }
-        .firstOrNull()
+        .filterIsInstance<IntParameter>().firstOrNull { it.name == "MasterDimmer" }
         ?.let { it.value / 255.0 }
         ?:1.0
 
     override fun setGain(gain: Double) {
         parameters
-            .filterIsInstance<IntParameter>()
-            .filter { it.name == "MasterDimmer" }
-            .firstOrNull()
+            .filterIsInstance<IntParameter>().firstOrNull { it.name == "MasterDimmer" }
             ?.let { it.value = (255 * gain).roundToInt() }
         updateParameterMap()
     }
@@ -62,7 +58,7 @@ class ParameterSet(
     override fun toRgbColor(): RGBColor = parameters.filterIsInstance<RGBColor>().firstOrNull()?: RGBColor(0,0,0)
 
     override fun setRgbColor(rgbColor: RGBColor) {
-        toRgbColor()?.setRgbColor(rgbColor)
+        toRgbColor().setRgbColor(rgbColor)
         updateParameterMap()
     }
 

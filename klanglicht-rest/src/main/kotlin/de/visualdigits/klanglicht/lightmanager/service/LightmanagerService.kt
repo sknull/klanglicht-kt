@@ -1,17 +1,11 @@
 package de.visualdigits.klanglicht.lightmanager.service
 
-import de.visualdigits.klanglicht.hardware.lightmanager.model.lm.LMMarker
-import de.visualdigits.klanglicht.hardware.lightmanager.model.lm.LMMarkers
-import de.visualdigits.klanglicht.hardware.lightmanager.model.lm.LMParams
-import de.visualdigits.klanglicht.hardware.lightmanager.model.lm.LMScene
-import de.visualdigits.klanglicht.hardware.lightmanager.model.lm.LMScenes
-import de.visualdigits.klanglicht.hardware.lightmanager.model.lm.LMZones
+import de.visualdigits.klanglicht.hardware.lightmanager.model.lm.*
 import org.jsoup.Jsoup
 import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
 import org.springframework.web.reactive.function.client.WebClient
-import kotlin.collections.set
 
 @Service
 class LightmanagerService(

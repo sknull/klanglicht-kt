@@ -49,11 +49,11 @@ class HybridScene(
 
     override fun toString(): String {
         return fadeables
-            .mapNotNull { it.value.toRgbColor()?.ansiColor() }
+            .mapNotNull { it.value.toRgbColor().ansiColor() }
             .joinToString("")
             .trim() + " " +
         fadeables
-            .mapNotNull { it.value.toRgbColor()?.hex() }
+            .mapNotNull { it.value.toRgbColor().hex() }
     }
 
     override fun clone(): HybridScene {
@@ -75,14 +75,14 @@ class HybridScene(
 
     fun getFadeable(id: String): Fadeable<*>? = fadeables[id]
 
-    fun putFadeable(id: String, Fadeable: Fadeable<*>) {
-        fadeables[id] = Fadeable.clone()
+    fun putFadeable(id: String, fadeable: Fadeable<*>) {
+        fadeables[id] = fadeable.clone()
         initializeFromFadeables()
     }
 
     private fun initializeFromFadeables() {
         this.ids = this.fadeables().map { sc -> sc.getId() }
-        this.hexColors = this.fadeables().mapNotNull { sc -> sc.toRgbColor()?.hex() }
+        this.hexColors = this.fadeables().map { sc -> sc.toRgbColor().hex() }
         this.gains = this.fadeables().map { sc -> sc.getGain() }
         this.turnOns = this.fadeables().mapNotNull { sc -> sc.getTurnOn() }.joinToString(",")
     }
@@ -91,7 +91,7 @@ class HybridScene(
         val lIds = if (ids.isNotEmpty() == true) {
             ids
         } else {
-            preferences?.getStageIds() ?: listOf()
+            preferences.getStageIds()
         }
 
         val nh = hexColors.size - 1
@@ -108,10 +108,10 @@ class HybridScene(
         val nt = lTurnOns.size - 1
         var t = 0
 
-        val twinklyDevices = preferences?.getHybridDevices(HybridDeviceType.twinkly)
-        if (twinklyDevices?.map { it.id }?.any { td -> lIds.any { td == it } } == true) {
+        val twinklyDevices = preferences.getHybridDevices(HybridDeviceType.twinkly)
+        if (twinklyDevices.map { it.id }.any { td -> lIds.any { td == it } } == true) {
             twinklyDevices
-                .mapNotNull { preferences?.getTwinklyConfiguration(it.id) }
+                .mapNotNull { preferences.getTwinklyConfiguration(it.id) }
                 .forEach { twinklyDevice ->
                     val xa = twinklyDevice.xledArray
                     if (xa.isLoggedIn()) {
@@ -148,7 +148,7 @@ class HybridScene(
             if (device != null) {
                 val hexColor = hexColors[min(nh, h++)]
                 val gain = gains.getOrNull(min(ng, g++))
-                val turnOn = lTurnOns.getOrNull(min(nt, t++)) ?: false
+                val turnOn = lTurnOns.getOrNull(min(nt, t++)) == true
                 val rgbColor = RGBColor(hexColor)
                 when (device.type) {
                     HybridDeviceType.dmx -> {
@@ -167,7 +167,7 @@ class HybridScene(
                     }
 
                     HybridDeviceType.shelly -> {
-                        val shellyDevice = preferences?.getShellyDevice(id)
+                        val shellyDevice = preferences.getShellyDevice(id)
                         if (shellyDevice != null) {
                             val effectiveGain = gain ?: shellyDevice.gain
                             ShellyColor(
@@ -243,7 +243,7 @@ class HybridScene(
                     .toMap()
 
                 val xledFrames = fadeables
-//                    .filter { it.value is XledFrameDmxFadeable }
+                    .filter { it.value is XledFrameDmxFadeable }
                     .map { Pair(it.key, it.value as XledFrameDmxFadeable) }
                     .toMap()
                 val otherXledFrames = other.fadeables
@@ -288,12 +288,12 @@ class HybridScene(
     }
 
     private fun bytesFromParameterset(parameterSet: ParameterSet): ByteArray {
-        return (preferences.dmx!!.fixtures.get(parameterSet.baseChannel)?.map { channel ->
+        return (preferences.dmx!!.fixtures[parameterSet.baseChannel]?.map { channel ->
             (parameterSet.parameterMap[channel.name] ?: 0).toByte()
         } ?: listOf()).toByteArray()
     }
 
-    private fun writeParameterSet(parameterSet: ParameterSet, write: Boolean, transitionDuration: Long) {
+    private fun writeParameterSet(parameterSet: ParameterSet, write: Boolean) {
         val bytes = bytesFromParameterset(parameterSet)
         preferences.dmx!!.setDmxData(parameterSet.baseChannel, bytes)
         if (write) {

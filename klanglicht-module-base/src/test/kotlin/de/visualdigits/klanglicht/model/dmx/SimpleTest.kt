@@ -37,7 +37,7 @@ class SimpleTest {
                     )
                 )
             ),
-            preferences.dmx!!
+            preferences?.dmx!!
         )
 
         dmxScene.write()
@@ -63,7 +63,7 @@ class SimpleTest {
                     )
                 ),
             ),
-            preferences.dmx!!
+            preferences?.dmx!!
         )
         dmxScene0.write()
     }
@@ -88,7 +88,7 @@ class SimpleTest {
                     )
                 ),
             ),
-            preferences.dmx!!
+            preferences?.dmx!!
         )
 
         val dmxScene1 = DmxScene(
@@ -109,7 +109,7 @@ class SimpleTest {
                     )
                 ),
             ),
-            preferences.dmx!!
+            preferences?.dmx!!
         )
         dmxScene1.write()
 
@@ -131,7 +131,7 @@ class SimpleTest {
                     ),
                 ),
             ),
-            preferences.dmx!!
+            preferences?.dmx!!
         )
 
         dmxScene0.fade(dmxScene1, 1000L)

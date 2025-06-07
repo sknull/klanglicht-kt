@@ -6,7 +6,7 @@ import java.io.UnsupportedEncodingException
 import java.net.URLDecoder
 import java.net.URLEncoder
 import java.nio.charset.StandardCharsets
-import java.util.Arrays
+import java.util.*
 
 class LMZones(
     val name: String? = null,
@@ -65,7 +65,7 @@ class LMZones(
         }
         actor.actorOff = actorOff
         actor.actorOn = actorOn
-        actor.isDimmer = !actorElem.select("div[class=myslider]").isEmpty()
+        actor.isDimmer = actorElem.select("div[class=myslider]").isNotEmpty()
         actorElem.children()
             .forEach { elem ->
                 elem.children()
@@ -107,7 +107,7 @@ class LMZones(
 
     private fun determineDeviceId(did: List<String>): Long {
         var deviceId = -1L
-        if (!did.isEmpty()) {
+        if (did.isNotEmpty()) {
             val sDeviceId = did[0]
             deviceId = try {
                 sDeviceId.toLong()
@@ -132,7 +132,7 @@ class LMZones(
         val lUri = getParams(allParams, "uri", 1)
         var uri = ""
         try {
-            uri = if (!lUri.isEmpty()) {
+            uri = if (lUri.isNotEmpty()) {
                 lUri[0]
             } else {
                 lightmanagerUrl + "?cmd=" + URLEncoder.encode(request, StandardCharsets.UTF_8)

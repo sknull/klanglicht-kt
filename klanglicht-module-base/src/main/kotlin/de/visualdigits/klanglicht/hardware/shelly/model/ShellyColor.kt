@@ -25,7 +25,7 @@ class ShellyColor(
     }
 
     override fun getTurnOn(): Boolean {
-        var turnOn = deviceTurnOn?:false
+        var turnOn = deviceTurnOn == true
         if ((color.red == 0 && color.green == 0  && color.blue == 0) || deviceGain == 0.0) {
             turnOn = false
         }

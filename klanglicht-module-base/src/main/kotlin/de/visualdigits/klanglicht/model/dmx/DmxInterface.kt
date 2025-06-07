@@ -4,6 +4,8 @@ import de.visualdigits.klanglicht.model.dmx.model.DmxFrame
 import de.visualdigits.klanglicht.model.dmx.model.DmxInterfaceType
 import jssc.SerialPort
 import jssc.SerialPortException
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 import java.lang.Integer.toHexString
 
 
@@ -14,6 +16,9 @@ open class DmxInterface {
     private var serialPort: SerialPort? = null
 
     companion object {
+
+        private val log: Logger = LoggerFactory.getLogger(javaClass)
+
         fun load(type: DmxInterfaceType): DmxInterface {
             return when (type) {
                 DmxInterfaceType.Serial -> DmxInterface()
@@ -47,7 +52,7 @@ open class DmxInterface {
                 serialPort?.openPort()
                 serialPort?.setParams(9600, 8, 1, 0)
             } catch (e: Exception) {
-                System.err.println("Could not open DMX port '$portName'")
+                throw IllegalStateException("Could not open DMX port '$portName'", e)
             }
         }
     }
@@ -84,7 +89,7 @@ open class DmxInterface {
      * @param data The frame data to write.
      */
     open fun write(data: ByteArray) {
-        if (data.size != 512) throw IllegalArgumentException("Data must be exactly 512 bytes long")
+        check(data.size == 512) { "Data must be exactly 512 bytes long" }
         dmxFrame.set(0, data)
         write()
     }
@@ -100,7 +105,7 @@ open class DmxInterface {
                 throw IllegalStateException("Could write dmxFrame to port", e)
             }
         } else {
-            throw IllegalStateException("Tried to write to non open port")
+            error("Tried to write to non open port")
         }
     }
 

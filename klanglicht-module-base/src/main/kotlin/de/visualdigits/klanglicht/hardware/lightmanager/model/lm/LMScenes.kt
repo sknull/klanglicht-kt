@@ -1,11 +1,9 @@
 package de.visualdigits.klanglicht.hardware.lightmanager.model.lm
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
-import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
-import com.fasterxml.jackson.module.kotlin.kotlinModule
+import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import java.io.File
-import java.util.Locale
+import java.util.*
 
 @JsonIgnoreProperties("scenesMap")
 class LMScenes(
@@ -16,8 +14,7 @@ class LMScenes(
     val scenesMap: LinkedHashMap<String, LMScene> = LinkedHashMap()
 
     companion object {
-        private val mapper = ObjectMapper(YAMLFactory())
-            .registerModule(kotlinModule())
+        private val mapper = jacksonObjectMapper()
 
         fun readValue(file: File): LMScenes {
             val lmScenes = mapper.readValue(file, LMScenes::class.java)

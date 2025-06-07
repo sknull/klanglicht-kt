@@ -1,11 +1,7 @@
 package de.visualdigits.klanglicht.scenes.service
 
 import de.visualdigits.klanglicht.configuration.ApplicationPreferences
-import de.visualdigits.klanglicht.hardware.lightmanager.model.lm.LMActionHybrid
-import de.visualdigits.klanglicht.hardware.lightmanager.model.lm.LMActionLmAir
-import de.visualdigits.klanglicht.hardware.lightmanager.model.lm.LMActionLmYamahaAvantage
-import de.visualdigits.klanglicht.hardware.lightmanager.model.lm.LMActionPause
-import de.visualdigits.klanglicht.hardware.lightmanager.model.lm.LMActionShelly
+import de.visualdigits.klanglicht.hardware.lightmanager.model.lm.*
 import de.visualdigits.klanglicht.hybrid.service.HybridStageService
 import de.visualdigits.klanglicht.lightmanager.service.LightmanagerService
 import de.visualdigits.klanglicht.shelly.service.ShellyService
@@ -28,24 +24,18 @@ class ScenesService(
 
     fun executeScene(sceneName: String) {
         if (sceneName != previousSceneName) {
-            previousSceneName = sceneName
             val lmScene = prefs.scenes().scenesMap[sceneName]
             lmScene
                 ?.let { s ->
                     log.info("Executing scene '$sceneName'...")
                     if (s.condition == null || s.condition?.evaluate(prefs.preferences!!) == true) {
+                        previousSceneName = sceneName
                         s.actions.forEach { action ->
                             log.info("  Executing action '$action'...")
                             when (action) {
-                                is LMActionLmAir ->
-                                    lightmanagerService.controlIndex(index = action.sceneIndex)
-
-                                is LMActionShelly ->
-                                    shellyService.power(ids = action.ids, turnOn = action.turnOn)
-
-                                is LMActionHybrid ->
-                                    hybridStageService.hexColor(ids = action.ids, hexColors = action.hexColors, gains = action.gains)
-
+                                is LMActionLmAir -> lightmanagerService.controlIndex(index = action.sceneIndex)
+                                is LMActionShelly -> shellyService.power(ids = action.ids, turnOn = action.turnOn)
+                                is LMActionHybrid -> hybridStageService.hexColor(ids = action.ids, hexColors = action.hexColors, gains = action.gains)
                                 is LMActionLmYamahaAvantage -> {
                                     when (action.command) {
                                         "surroundProgram" -> yamahaAvantageService.setSurroundProgram(program = action.program)

@@ -28,22 +28,25 @@ class Dmx(
     /** contains the list of channels for a given base dmx channel. */
     var fixtures: Map<Int, List<Channel>> = mapOf()
 
+    override fun toString(): String {
+        return "$interfaceType[$port]"
+    }
 
     fun initialize(klanglichtDirectory: File) {
         val dmxFixtures = Fixtures.load(klanglichtDirectory)
-        fixtures = devices?.mapNotNull { stageFixture ->
+        fixtures = devices.mapNotNull { stageFixture ->
             dmxFixtures.getFixture(stageFixture.manufacturer, stageFixture.model)
                 ?.let { fixture ->
                     stageFixture.fixture = fixture
                     fixture.channelsForMode(stageFixture.mode).let { channels -> Pair(stageFixture.baseChannel, channels) }
                 }
-        }?.toMap()
-            ?:mapOf()
+        }.toMap()
 
-        dmxInterface = interfaceType?.let { DmxInterface.load(it) }
+        dmxInterface = interfaceType.let { DmxInterface.load(it) }
+
         dmxInterface?.open(port)
         if (dmxInterface?.isOpen() == true) {
-            log.info("## Dmx interface: ${interfaceType}")
+            log.info("## Dmx interface: $this")
             dmxInterface?.clear()
             if (enableRepeater  == true) {
                 log.info("## Enabled dmx repeater")

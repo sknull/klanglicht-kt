@@ -57,22 +57,22 @@ class ShellyRestController(
 
     @GetMapping("hexColor")
     fun hexColor(
+        @RequestParam(value = "wheelId", required = false, defaultValue = "") wheelId: String,
         @RequestParam(value = "ids", required = false, defaultValue = "") ids: String,
         @RequestParam(value = "hexColors") hexColors: String,
         @RequestParam(value = "gains", required = false, defaultValue = "1.0") gains: String,
         @RequestParam(value = "transition", required = false) transitionDuration: Long?,
         @RequestParam(value = "turnOn", required = false, defaultValue = "true") turnOn: Boolean,
-        @RequestParam(value = "store", required = false, defaultValue = "true") store: Boolean,
-        @RequestParam(value = "storeName", required = false) storeName: String?
+        @RequestParam(value = "store", required = false, defaultValue = "true") store: Boolean
     ) {
         hybridStageService.hexColor(
+            wheelId = wheelId,
             ids = ids.split(",").map { it.trim() }.filter { it.isNotEmpty() },
             hexColors = hexColors.split(",").map { it.trim() }.filter { it.isNotEmpty() },
             gains = gains.split(",").map { it.toDouble() },
             transition = transitionDuration,
             turnOn = turnOn,
-            store = store,
-            storeName = storeName
+            store = store
         )
     }
 

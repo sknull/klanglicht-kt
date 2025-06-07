@@ -30,9 +30,9 @@ class UnitDescription : AbstractMenuProvider() {
     val dspPrograms: Map<String, String>
         get() {
             val menu = getMenu<Menu>("Main Zone/Setup/Surround/Program")
-            return menu.put2.get(0).param1?.direct?.map { direct ->
+            return menu.put2[0].param1?.direct?.associate { direct ->
                 Pair(direct.value!!, direct.iconOn!!)
-            }?.toMap()?:mapOf()
+            } ?:mapOf()
         }
 
     companion object {

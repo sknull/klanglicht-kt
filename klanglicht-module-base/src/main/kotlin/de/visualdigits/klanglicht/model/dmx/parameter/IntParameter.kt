@@ -14,9 +14,9 @@ class IntParameter(
 
     override fun fade(other: Any, factor: Double, blendMode: BlendMode): IntParameter {
         return if (other is IntParameter) {
-            if (name != other.name) throw IllegalArgumentException("Cannot fade different parameters")
+            check(name == other.name) { "Cannot fade different parameters" }
             IntParameter(name, ((value + (other.value - value) * factor).toInt()))
-        } else throw IllegalArgumentException("Cannot not fade another type")
+        } else error("Cannot not fade another type")
     }
 
     override fun clone(): IntParameter {

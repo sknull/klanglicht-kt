@@ -11,14 +11,7 @@ import de.visualdigits.kotlin.twinkly.model.playable.XledSequence
 import de.visualdigits.kotlin.twinkly.model.playable.transition.TransitionDirection
 import de.visualdigits.kotlin.twinkly.model.playable.transition.TransitionType
 import org.slf4j.LoggerFactory
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.PutMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RequestParam
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 import java.io.File
 
 @RestController()
@@ -94,8 +87,6 @@ class XledArrayController(
         if (playable != null && playable?.running == true) {
             stopLoop()
         }
-// todo
-//        currentMode = configHolder?.xledArray?.getMode()
         prefs.preferences?.getXledArrays()?.forEach { it.setMode(DeviceMode.rt) }
         playable = XledFrame(bytes)
         prefs.preferences?.getXledArrays()?.forEach { playable?.playAsync(xled = it) }
@@ -115,8 +106,6 @@ class XledArrayController(
         if (playable != null && playable?.running == true) {
             stopLoop()
         }
-// todo
-//        currentMode = configHolder?.xledArray?.getMode()
         prefs.preferences?.getXledArrays()?.forEach { it.setMode(DeviceMode.rt) }
         playable = XledSequence(frameDelay = frameDelay,
             directory = File(ClassLoader.getSystemResource(directory).toURI()))
@@ -124,7 +113,7 @@ class XledArrayController(
             playable?.playAsync(
                 xled = it,
                 loop = loop,
-                random = random,
+                randomSequence = random,
                 transitionType = transitionType,
                 transitionDirection = transitionDirection,
                 transitionBlendMode = transitionBlendMode,

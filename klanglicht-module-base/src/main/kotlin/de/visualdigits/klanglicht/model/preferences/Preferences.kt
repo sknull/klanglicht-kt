@@ -51,14 +51,14 @@ class Preferences(
 
         fun load(
             klanglichtDirectory: File,
-            preferencesFileName: String = "preferences.json"
+            preferencesFileName: String = "preferences?.json"
         ): Preferences {
             if (preferences == null) {
-                val json = Paths.get(klanglichtDirectory.canonicalPath, "preferences", preferencesFileName).toFile().readText()
-                val prefs = mapper.readValue(json, Preferences::class.java)
-                prefs.initialize(klanglichtDirectory)
-                preferences = prefs
+                val json =
+                    Paths.get(klanglichtDirectory.canonicalPath, "preferences", preferencesFileName).toFile().readText()
+                preferences = mapper.readValue(json, Preferences::class.java)
             }
+            preferences?.initialize(klanglichtDirectory)
 
             return preferences!!
         }
@@ -94,7 +94,7 @@ class Preferences(
         shellyMap = shelly?.associateBy { it.name }?:mapOf()
         log.info("## Shelly devices: ${shellyMap.keys}")
 
-        twinklyMap = twinkly?.map { Pair(it.name, it) }?.toMap()?:mapOf()
+        twinklyMap = twinkly?.associate { Pair(it.name, it) } ?:mapOf()
         log.info("## Twinkly devices: ${twinklyMap.keys}")
 
         val xledDevices: MutableMap<String, XLedDevice> = mutableMapOf()
@@ -103,7 +103,9 @@ class Preferences(
         } ?: mapOf()
         this.xledDevices = xledDevices
 
-        colorWheelMap = colorWheels.map { cw -> Pair(cw.id, cw) }.toMap()
+        dmx?.initialize(klanglichtDirectory)
+
+        colorWheelMap = colorWheels.associate { cw -> Pair(cw.id, cw) }
     }
 
     fun getStageIds(): List<String> = stage.map { it.id }

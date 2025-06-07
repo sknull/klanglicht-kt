@@ -46,8 +46,7 @@ object ShellyClient {
         turnOn: Boolean? = true,
     ): Light? {
         log.debug("setColor: $ipAddress = ${rgbColor.ansiColor()} [$gain]")
-        return URL(
-            "http://$ipAddress/color/0?turn=${if (turnOn == true) "on" else "off"}&red=${rgbColor.red}&green=${rgbColor.green}&blue=${rgbColor.blue}&white=0&gain=${(100 * gain).toInt()}&transition=$transitionDuration&"
+        return URL("http://$ipAddress/color/0?turn=${if (turnOn == true) "on" else "off"}&red=${rgbColor.red}&green=${rgbColor.green}&blue=${rgbColor.blue}&white=0&gain=${(100 * gain).toInt()}&transition=$transitionDuration&"
         ).get<Light>()
     }
 }

@@ -23,7 +23,7 @@ class LMHtmlScenes(
         sb.append("<span class=\"label\">").append("C U R R E N T   S C E N E").append("</span>\n")
         sb.append("<div class=\"center-group\">\n")
         prefs.currentScene?.fadeables()?.forEach { fadeable ->
-            val color = fadeable.toRgbColor()?.web() ?: "#000000"
+            val color = fadeable.toRgbColor().web() ?: "#000000"
             val html = renderPanel(color)
             sb.append(html)
         }
@@ -147,13 +147,13 @@ class LMHtmlScenes(
               colorWheel${wheelId}Odd.on('color:change', function(color, changes){
                 var colorOdd = colorWheel${wheelId}Odd.color.hexString.substring(1);
                 var colorEven = colorWheel${wheelId}Even.color.hexString.substring(1);
-                fetch("$baseUrl/v1/hybrid/json/hexColor?hexColors=" + $colors + "&transition=0&", {method: 'GET'}).catch(err => console.error(err));
+                fetch("$baseUrl/v1/hybrid/json/hexColor?wheelId=$wheelId&hexColors=" + $colors + "&transition=0&storeName=${wheelId}Odd&", {method: 'GET'}).catch(err => console.error(err));
               });
               
               colorWheel${wheelId}Even.on('color:change', function(color, changes){
                 var colorOdd = colorWheel${wheelId}Odd.color.hexString.substring(1);
                 var colorEven = colorWheel${wheelId}Even.color.hexString.substring(1);
-                fetch("$baseUrl/v1/hybrid/json/hexColor?hexColors=" + $colors + "&transition=0&", {method: 'GET'}).catch(err => console.error(err));
+                fetch("$baseUrl/v1/hybrid/json/hexColor?wheelId=$wheelId&hexColors=" + $colors + "&transition=0&storeName=${wheelId}Even&", {method: 'GET'}).catch(err => console.error(err));
               });
             </script>
         """.trimIndent()
@@ -173,7 +173,7 @@ class LMHtmlScenes(
               colorWheel$wheelId.on('color:change', function(color, changes){
                 var colorOdd = colorWheel$wheelId.color.hexString.substring(1);
                 var colorEven = "000000";
-                fetch("$baseUrl/v1/hybrid/json/hexColor?ids=$colorWheelDevices&hexColors=" + colorOdd + "&transition=0&storeName=$wheelId&", {method: 'GET'}).catch(err => console.error(err));
+                fetch("$baseUrl/v1/hybrid/json/hexColor?wheelId=$wheelId&ids=$colorWheelDevices&hexColors=" + colorOdd + "&transition=0&storeName=$wheelId&", {method: 'GET'}).catch(err => console.error(err));
               });
             </script>
         """.trimIndent()

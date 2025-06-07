@@ -45,7 +45,7 @@ class XledFrameDmxFadeable(
     }
 
     override fun write(write: Boolean, transitionDuration: Long) {
-        val twinklyDevice = preferences.getTwinklyConfiguration(deviceId)
+        val twinklyDevice = preferences?.getTwinklyConfiguration(deviceId)
         if (twinklyDevice != null) {
             val xledArray = twinklyDevice.xledArray
             if (write && xledArray.isLoggedIn()) {

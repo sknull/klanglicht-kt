@@ -1,6 +1,6 @@
 package de.visualdigits.klanglicht.hardware.lightmanager.model.lm
 
-import java.util.TreeMap
+import java.util.*
 import java.util.regex.Pattern
 
 class LMNamedAttributes(

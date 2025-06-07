@@ -32,13 +32,15 @@ class ApplicationPreferences {
 
     @PostConstruct
     fun initialize() {
-        preferences?.initialize(klanglichtDirectory)
-
         log.info("#### setUp - start")
         log.info("##")
         log.info("## klanglichtDirectory: " + klanglichtDirectory.absolutePath)
+
+        preferences?.initialize(klanglichtDirectory)
         currentScene = preferences?.initialHybridScene()
         currentScene?.write(true, 1000)
+
+        log.info("##")
         log.info("#### setUp - end")
     }
 
@@ -72,6 +74,6 @@ class ApplicationPreferences {
     fun scenes(): LMScenes {
         // Not including this into spring boot configuration as we want this to be loaded each time
         // to make runtime changes possible here.
-        return LMScenes.readValue(Paths.get(klanglichtDirectory.canonicalPath, "resources", "scenes.yml").toFile())
+        return LMScenes.readValue(Paths.get(klanglichtDirectory.canonicalPath, "resources", "scenes.json").toFile())
     }
 }

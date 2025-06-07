@@ -39,7 +39,7 @@ class LMHtmlZones(
             var colorOn = ""
             val marker = actor.markers["unified"]
             if (actor.markers.containsKey("unified")) {
-                markerIsOn = marker?.state?:false
+                markerIsOn = marker?.state == true
                 colorOff = marker?.colorOff?:""
                 colorOn = marker?.colorOn?:""
             }

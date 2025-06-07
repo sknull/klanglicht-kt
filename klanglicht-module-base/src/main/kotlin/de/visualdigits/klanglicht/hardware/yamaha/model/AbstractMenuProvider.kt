@@ -18,6 +18,7 @@ abstract class AbstractMenuProvider : XmlEntity {
 
     abstract val key: String?
 
+    @Suppress("UNCHECKED_CAST")
     fun <T : AbstractMenuProvider> getMenu(path: String): T {
         var provider: AbstractMenuProvider? = this
         for (key in path.split("/".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()) {
@@ -27,12 +28,10 @@ abstract class AbstractMenuProvider : XmlEntity {
     }
 
     fun initializeTree() {
-        if (menus != null) {
-            menus.forEach { menu ->
-                menu.parent = this
-                tree[menu.name] = menu
-                menu.initializeTree()
-            }
+        menus.forEach { menu ->
+            menu.parent = this
+            tree[menu.name] = menu
+            menu.initializeTree()
         }
     }
 

@@ -12,7 +12,7 @@ import de.visualdigits.klanglicht.model.preferences.Preferences
 @JsonSubTypes(
     Type(name = "night", value = LMConditionNight::class),
 )
-abstract class LMCondition {
+fun interface LMCondition {
 
-    abstract fun evaluate(prefs: Preferences): Boolean
+    fun evaluate(prefs: Preferences): Boolean
 }

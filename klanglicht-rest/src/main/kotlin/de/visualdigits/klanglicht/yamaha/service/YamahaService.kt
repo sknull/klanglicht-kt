@@ -34,7 +34,7 @@ class YamahaService(
     }
 
     fun controlSurroundProgram(program: String?) {
-        val command = description()
+        description()
             ?.getMenu<Menu>("Main Zone/Setup/Surround/Program")
             ?.createCommand(program)
             ?.let { control(it) }

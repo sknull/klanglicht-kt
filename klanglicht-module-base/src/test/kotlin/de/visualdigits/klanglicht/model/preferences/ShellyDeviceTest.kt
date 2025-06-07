@@ -18,7 +18,7 @@ class ShellyDeviceTest {
 
     @Test
     fun testSetColor() {
-        val ipAddress = preferences.getShellyDevice("Starwars")?.ipAddress!!
+        val ipAddress = preferences?.getShellyDevice("Starwars")?.ipAddress!!
         val color = RGBColor(0,0,255)
         URL("http://$ipAddress/color/0?turn=on&red=${color.red}&green=${color.green}&blue=${color.blue}&white=0&gain=100&transition=1&")
             .get<Light>()

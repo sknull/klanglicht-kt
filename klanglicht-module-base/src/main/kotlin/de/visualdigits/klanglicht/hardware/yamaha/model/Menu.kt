@@ -54,7 +54,7 @@ class Menu : AbstractMenuProvider() {
         get() {
             var name = key
             if (name.isNullOrEmpty()) {
-                name = function!!.replace("_", "-") + " " + functionExtension!!.replace("_", "-")
+                name = function?.replace("_", "-") + " " + functionExtension?.replace("_", "-")
             }
             return name
         }

@@ -28,7 +28,9 @@ class DmxInterfaceDummy : DmxInterface() {
         return ByteArray(0)
     }
 
-    override fun write(data: ByteArray) {}
+    override fun write(data: ByteArray) {
+        log.debug("### write data")
+    }
 
     override fun isOpen(): Boolean = true
 }
