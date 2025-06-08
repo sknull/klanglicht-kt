@@ -33,6 +33,8 @@ class ApplicationPreferences {
 
     var stage: Stage? = null
 
+    var scenes: LMScenes? = null
+
     val klanglichtDirectory: File = File(System.getProperty("user.home"), ".klanglicht")
 
     var currentScene: HybridScene? = null
@@ -46,6 +48,7 @@ class ApplicationPreferences {
         log.info("## klanglichtDirectory: " + klanglichtDirectory.canonicalPath)
 
         stage = Stage.readValue(Paths.get(klanglichtDirectory.canonicalPath, "resources", "stage.json").toFile())
+        scenes = LMScenes.readValue(Paths.get(klanglichtDirectory.canonicalPath, "resources", "scenes.json").toFile())
         stage?.devices?.dmx?.initialize(klanglichtDirectory)
         currentScene = stage?.initialHybridScene()
         currentScene?.write(true, 1000)
@@ -87,11 +90,5 @@ class ApplicationPreferences {
 
     fun getColor(id: String): String? {
         return colorStore[id]
-    }
-
-    fun scenes(): LMScenes {
-        // Not including this into spring boot configuration as we want this to be loaded each time
-        // to make runtime changes possible here.
-        return LMScenes.readValue(Paths.get(klanglichtDirectory.canonicalPath, "resources", "scenes.json").toFile())
     }
 }

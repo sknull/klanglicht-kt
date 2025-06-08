@@ -28,7 +28,7 @@ class ScenesService(
 
     fun executeScene(sceneName: String) {
         if (sceneName != previousSceneName) {
-            val lmScene = prefs.scenes().scenesMap[sceneName]
+            val lmScene = prefs.scenes?.scenesMap?.get(sceneName)
             lmScene
                 ?.let { s ->
                     log.info("Executing scene '$sceneName'...")
@@ -61,7 +61,7 @@ class ScenesService(
         }
     }
 
-    fun sceneNames(): Set<String> = prefs.scenes().scenesMap.keys
+    fun sceneNames(): Set<String> = prefs.scenes?.scenesMap?.keys?:setOf()
 
     fun hybrid(ids: List<String>, hexColors: List<String>, gains: List<Double>) {
         hybridStageService.hexColor(

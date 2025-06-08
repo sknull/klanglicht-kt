@@ -1,14 +1,15 @@
-package de.visualdigits.klanglicht.lightmanager.model.html.page
+package de.visualdigits.klanglicht.lightmanager.model.html.page.components
 
 class LMHtmlButton(
     val label: String,
     val href: String,
     val color: String
-) {
+): LMHtml {
 
-    fun html(): String {
+    override fun html(indent: Int): String {
+        val sindent = "  ".repeat(indent)
         val sb = StringBuilder()
-        sb.append("<div class=\"button\"")
+        sb.append("$sindent<div class=\"button\"")
         if (color.contains(",")) {
             sb.append(" style=\"background: -moz-linear-gradient(left, $color); background: -webkit-linear-gradient(left, $color); background: linear-gradient(to right, $color);\"")
         } else {
