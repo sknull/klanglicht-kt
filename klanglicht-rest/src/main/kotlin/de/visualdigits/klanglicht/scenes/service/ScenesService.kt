@@ -28,8 +28,7 @@ class ScenesService(
 
     fun executeScene(sceneName: String) {
         if (sceneName != previousSceneName) {
-            val lmScene = prefs.scenes?.scenesMap?.get(sceneName)
-            lmScene
+            prefs.scenes().scenesMap[sceneName]
                 ?.let { s ->
                     log.info("Executing scene '$sceneName'...")
                     if (s.condition == null || s.condition?.evaluate(prefs.stage!!) == true) {
@@ -39,7 +38,12 @@ class ScenesService(
                             when (action) {
                                 is LMActionLmAir -> lightmanagerService.controlIndex(index = action.sceneIndex)
                                 is LMActionShelly -> shellyService.power(ids = action.ids, turnOn = action.turnOn)
-                                is LMActionHybrid -> hybridStageService.hexColor(ids = action.ids, hexColors = action.hexColors, gains = action.gains)
+                                is LMActionHybrid -> hybridStageService.hexColor(
+                                    ids = action.ids,
+                                    hexColors = action.hexColors,
+                                    gains = action.gains
+                                )
+
                                 is LMActionLmYamahaAvantage -> {
                                     when (action.command) {
                                         "surroundProgram" -> yamahaAvantageService.setSurroundProgram(program = action.program)
@@ -53,7 +57,7 @@ class ScenesService(
                     } else {
                         log.info("Condition '${s.condition?.javaClass?.simpleName}' not true - skipping actions")
                     }
-              }?:also {
+                } ?: also {
                 log.info("No scene with name '$sceneName'")
             }
         } else {
@@ -61,7 +65,7 @@ class ScenesService(
         }
     }
 
-    fun sceneNames(): Set<String> = prefs.scenes?.scenesMap?.keys?:setOf()
+    fun sceneNames(): Set<String> = prefs.scenes().scenesMap.keys
 
     fun hybrid(ids: List<String>, hexColors: List<String>, gains: List<Double>) {
         hybridStageService.hexColor(

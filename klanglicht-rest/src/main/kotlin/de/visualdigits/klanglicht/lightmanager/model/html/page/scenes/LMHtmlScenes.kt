@@ -10,7 +10,7 @@ import kotlin.math.max
  */
 class LMHtmlScenes(
     val prefs: ApplicationPreferences,
-    val scenes: LMScenes? = prefs.scenes
+    val scenes: LMScenes? = prefs.scenes()
 ) : LMHtml {
 
     override fun html(indent: Int): String {
