@@ -16,7 +16,7 @@ class HybridStageWebController(
 
     @GetMapping("/scenes", produces = ["application/xhtml+xml"])
     fun scenes(model: Model): String {
-        model.addAttribute("theme", prefs.preferences?.theme)
+        model.addAttribute("theme", prefs.theme)
         model.addAttribute("title", "Scenes")
         model.addAttribute("content", scenes.renderScenes(prefs.scenes()))
         return "pagetemplate"

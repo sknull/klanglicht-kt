@@ -1,6 +1,6 @@
 package de.visualdigits.klanglicht.lightmanager.webclient
 
-import de.visualdigits.klanglicht.hardware.lightmanager.model.lm.LMScenes
+import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMScenes
 import de.visualdigits.klanglicht.lightmanager.service.LightmanagerService
 import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test

@@ -40,7 +40,7 @@ class ResourceController(
                 }
             }
         } catch (e: IOException) {
-            log.warn("Could not hand out resource: $src")
+            log.error("Could not hand out resource: ${file.canonicalPath}", e)
         }
     }
 

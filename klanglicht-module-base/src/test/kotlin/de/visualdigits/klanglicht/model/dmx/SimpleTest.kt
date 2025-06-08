@@ -3,7 +3,7 @@ package de.visualdigits.klanglicht.model.dmx
 import de.visualdigits.klanglicht.model.dmx.parameter.DmxScene
 import de.visualdigits.klanglicht.model.dmx.parameter.IntParameter
 import de.visualdigits.klanglicht.model.dmx.parameter.ParameterSet
-import de.visualdigits.klanglicht.model.preferences.Preferences
+import de.visualdigits.klanglicht.model.preferences.Stage
 import de.visualdigits.kotlin.twinkly.model.color.RGBWColor
 import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
@@ -12,10 +12,7 @@ import java.io.File
 @Disabled("for local testing only")
 class SimpleTest {
 
-    val preferences = Preferences.load(
-        klanglichtDirectory = File(ClassLoader.getSystemResource(".klanglicht").toURI()),
-        preferencesFileName = "preferences_minimal.json"
-    )
+    val stage = Stage.readValue(File(File(ClassLoader.getSystemResource(".klanglicht").toURI()), "preferences_minimal.json"))
 
     @Test
     fun testRgbw() {
@@ -37,7 +34,7 @@ class SimpleTest {
                     )
                 )
             ),
-            preferences?.dmx!!
+            stage.devices?.dmx!!
         )
 
         dmxScene.write()
@@ -63,7 +60,7 @@ class SimpleTest {
                     )
                 ),
             ),
-            preferences?.dmx!!
+            stage.devices?.dmx!!
         )
         dmxScene0.write()
     }
@@ -88,7 +85,7 @@ class SimpleTest {
                     )
                 ),
             ),
-            preferences?.dmx!!
+            stage.devices?.dmx!!
         )
 
         val dmxScene1 = DmxScene(
@@ -109,7 +106,7 @@ class SimpleTest {
                     )
                 ),
             ),
-            preferences?.dmx!!
+            stage.devices?.dmx!!
         )
         dmxScene1.write()
 
@@ -131,7 +128,7 @@ class SimpleTest {
                     ),
                 ),
             ),
-            preferences?.dmx!!
+            stage.devices?.dmx!!
         )
 
         dmxScene0.fade(dmxScene1, 1000L)

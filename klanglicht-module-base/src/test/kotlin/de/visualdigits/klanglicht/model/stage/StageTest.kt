@@ -1,6 +1,6 @@
 package de.visualdigits.klanglicht.model.stage
 
-import de.visualdigits.klanglicht.model.preferences.Preferences
+import de.visualdigits.klanglicht.model.preferences.Stage
 import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import java.io.File
@@ -8,16 +8,9 @@ import java.io.File
 @Disabled("for local testing only")
 class StageTest {
 
-    private val prefs = Preferences.load(
-        klanglichtDirectory = File(ClassLoader.getSystemResource(".klanglicht").toURI()),
-        preferencesFileName = "preferences_livingroom.json"
-    )
-
     @Test
-    fun testStage() {
-        prefs.dmx!!.getDmxDevices().forEach { stageFixture ->
-            val fixture = stageFixture.fixture!!
-            println("${stageFixture.manufacturer}_${stageFixture.model}_${stageFixture.mode} [${stageFixture.baseChannel}] hasPano: ${fixture.hasPano()} [max value ${fixture.maxPanoValue()}] hasTilt: ${fixture.hasTilt()} [max value ${fixture.maxTiltValue()}]")
-        }
+    fun testReadStage() {
+        val stage = Stage.readValue(File(ClassLoader.getSystemResource(".klanglicht/resources/stage.json").toURI()))
+        println(stage)
     }
 }

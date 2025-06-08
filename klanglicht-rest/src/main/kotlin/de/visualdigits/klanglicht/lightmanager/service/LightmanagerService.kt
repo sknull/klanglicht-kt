@@ -1,14 +1,20 @@
 package de.visualdigits.klanglicht.lightmanager.service
 
-import de.visualdigits.klanglicht.hardware.lightmanager.model.lm.*
+import de.visualdigits.klanglicht.configuration.ApplicationPreferences
+import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMMarker
+import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMMarkers
+import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMParams
+import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMScene
+import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMScenes
+import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMZones
 import org.jsoup.Jsoup
 import org.springframework.beans.factory.annotation.Qualifier
-import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
 import org.springframework.web.reactive.function.client.WebClient
 
 @Service
 class LightmanagerService(
+    prefs: ApplicationPreferences,
     @Qualifier("webClientLightmanager") private val webClientLightmanager: WebClient,
 ) {
 
@@ -17,8 +23,7 @@ class LightmanagerService(
         const val COLOR_OFF = "#91FFAA"
     }
 
-    @Value("\${application.services.lmair.url}")
-    private var urlLightmanager: String = ""
+    private var urlLightmanager: String = prefs.stage?.getService("lmair")?.url?:""
 
     fun params(): LMParams? {
         return webClientLightmanager

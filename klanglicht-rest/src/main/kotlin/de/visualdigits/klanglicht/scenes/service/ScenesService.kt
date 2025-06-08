@@ -1,7 +1,11 @@
 package de.visualdigits.klanglicht.scenes.service
 
 import de.visualdigits.klanglicht.configuration.ApplicationPreferences
-import de.visualdigits.klanglicht.hardware.lightmanager.model.lm.*
+import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMActionHybrid
+import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMActionLmAir
+import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMActionLmYamahaAvantage
+import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMActionPause
+import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMActionShelly
 import de.visualdigits.klanglicht.hybrid.service.HybridStageService
 import de.visualdigits.klanglicht.lightmanager.service.LightmanagerService
 import de.visualdigits.klanglicht.shelly.service.ShellyService
@@ -28,7 +32,7 @@ class ScenesService(
             lmScene
                 ?.let { s ->
                     log.info("Executing scene '$sceneName'...")
-                    if (s.condition == null || s.condition?.evaluate(prefs.preferences!!) == true) {
+                    if (s.condition == null || s.condition?.evaluate(prefs.stage!!) == true) {
                         previousSceneName = sceneName
                         s.actions.forEach { action ->
                             log.info("  Executing action '$action'...")

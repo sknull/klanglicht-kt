@@ -3,7 +3,7 @@ package de.visualdigits.klanglicht.model.dmx
 import de.visualdigits.klanglicht.model.dmx.parameter.DmxScene
 import de.visualdigits.klanglicht.model.dmx.parameter.IntParameter
 import de.visualdigits.klanglicht.model.dmx.parameter.ParameterSet
-import de.visualdigits.klanglicht.model.preferences.Preferences
+import de.visualdigits.klanglicht.model.preferences.Stage
 import de.visualdigits.kotlin.twinkly.model.color.BlendMode
 import de.visualdigits.kotlin.twinkly.model.color.RGBColor
 import org.junit.jupiter.api.Disabled
@@ -14,10 +14,7 @@ import kotlin.math.ceil
 @Disabled("for local testing only")
 class DmxInterfaceTest {
 
-    private val preferences = Preferences.load(
-        klanglichtDirectory = File(ClassLoader.getSystemResource(".klanglicht").toURI()),
-        preferencesFileName = System.getenv("preferencesFileName")?:"preferences_livingroom_dummy.json"
-    )
+    val stage = Stage.readValue(File(File(ClassLoader.getSystemResource(".klanglicht").toURI()), "preferences_livingroom_dummy.json"))
 
     @Test
     fun testInterfaceFromModel1() {
@@ -33,7 +30,7 @@ class DmxInterfaceTest {
                     )
                 )
             ),
-            preferences?.dmx!!
+            stage.devices?.dmx!!
         )
         dmxScene.write()
     }
@@ -52,7 +49,7 @@ class DmxInterfaceTest {
                     )
                 )
             ),
-            preferences?.dmx!!
+            stage.devices?.dmx!!
         )
         dmxScene.write()
     }
@@ -145,7 +142,7 @@ class DmxInterfaceTest {
         parameterSet1: ParameterSet,
         parameterSet2: ParameterSet
     ) {
-        val dmxFrameTime = preferences?.dmx!!.frameTime
+        val dmxFrameTime = stage.devices?.dmx!!.frameTime
         val steps = ceil(fadeDuration.toDouble() / dmxFrameTime.toDouble()).toInt()
         val step = 1.0 / steps
         for (f in 0..steps) {
@@ -156,7 +153,7 @@ class DmxInterfaceTest {
                 parameterSet = listOf(
                     frame
                 ),
-                preferences?.dmx!!
+                stage.devices?.dmx!!
             )
             dmxScene.write()
             Thread.sleep(dmxFrameTime)

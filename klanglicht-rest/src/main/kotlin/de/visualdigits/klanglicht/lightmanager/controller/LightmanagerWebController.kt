@@ -20,7 +20,7 @@ class LightmanagerWebController(
 
     @GetMapping("/scenes", produces = ["application/xhtml+xml"])
     fun scenes(model: Model): String {
-        model.addAttribute("theme", prefs.preferences?.theme)
+        model.addAttribute("theme", prefs.theme)
         model.addAttribute("title", "Scenes")
         model.addAttribute("content", scenes.renderScenes(lightmanagerService.scenes()))
         return "pagetemplate"
@@ -28,7 +28,7 @@ class LightmanagerWebController(
 
     @GetMapping("/zones", produces = ["application/xhtml+xml"])
     fun zones(model: Model): String {
-        model.addAttribute("theme", prefs.preferences?.theme)
+        model.addAttribute("theme", prefs.theme)
         model.addAttribute("title", "Zones")
         model.addAttribute("content", zones.renderZones())
         return "pagetemplate"

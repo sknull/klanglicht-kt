@@ -4,7 +4,7 @@ import de.visualdigits.klanglicht.hardware.shelly.model.ShellyColor
 import de.visualdigits.klanglicht.hardware.twinkly.model.XledFrameDmxFadeable
 import de.visualdigits.klanglicht.model.dmx.parameter.IntParameter
 import de.visualdigits.klanglicht.model.dmx.parameter.ParameterSet
-import de.visualdigits.klanglicht.model.preferences.Preferences
+import de.visualdigits.klanglicht.model.preferences.Stage
 import de.visualdigits.kotlin.twinkly.model.color.BlendMode
 import de.visualdigits.kotlin.twinkly.model.color.RGBColor
 import de.visualdigits.kotlin.twinkly.model.parameter.Fadeable
@@ -19,7 +19,7 @@ import kotlin.math.min
 import kotlin.math.roundToInt
 
 class HybridScene(
-    private val preferences: Preferences
+    private val stage: Stage
 ) : Fadeable<HybridScene> {
 
     private val log: Logger = LoggerFactory.getLogger(javaClass)
@@ -32,12 +32,12 @@ class HybridScene(
     private val fadeables: MutableMap<String, Fadeable<*>> = mutableMapOf()
 
     constructor(
+        stage: Stage,
         ids: List<String> = listOf(),
         hexColors: List<String> = listOf(),
         gains: List<Double> = listOf(),
-        turnOns: String? = "true",
-        preferences: Preferences
-    ) : this(preferences) {
+        turnOns: String? = "true"
+    ) : this(stage) {
         this.ids = ids
         this.hexColors = hexColors
         this.gains = gains
@@ -57,7 +57,7 @@ class HybridScene(
     }
 
     override fun clone(): HybridScene {
-        return HybridScene(ids, hexColors, gains, turnOns, preferences)
+        return HybridScene(stage, ids, hexColors, gains, turnOns)
     }
 
     fun update(nextScene: HybridScene) {
@@ -91,7 +91,7 @@ class HybridScene(
         val lIds = if (ids.isNotEmpty() == true) {
             ids
         } else {
-            preferences.getStageIds()
+            stage.devices?.stage?.map { it.id }?:listOf()
         }
 
         val nh = hexColors.size - 1
@@ -108,10 +108,10 @@ class HybridScene(
         val nt = lTurnOns.size - 1
         var t = 0
 
-        val twinklyDevices = preferences.getHybridDevices(HybridDeviceType.twinkly)
+        val twinklyDevices = stage.devices?.stage?.filter { it.type == HybridDeviceType.twinkly }?:listOf()
         if (twinklyDevices.map { it.id }.any { td -> lIds.any { td == it } } == true) {
             twinklyDevices
-                .mapNotNull { preferences.getTwinklyConfiguration(it.id) }
+                .mapNotNull { stage.devices?.twinklyMap?.get(it.id) }
                 .forEach { twinklyDevice ->
                     val xa = twinklyDevice.xledArray
                     if (xa.isLoggedIn()) {
@@ -136,7 +136,7 @@ class HybridScene(
                             deviceId = twinklyDevice.name,
                             xledFrame = frame,
                             deviceGain = twinklyDevice.gain,
-                            preferences = preferences
+                            stage = stage
                         )
                         fadeables[twinklyDevice.name] = fadeable
                     }
@@ -144,7 +144,7 @@ class HybridScene(
         }
 
         lIds.forEach { id ->
-            val device = preferences.getHybridDevice(id)
+            val device = stage.devices?.stageMap?.get(id)
             if (device != null) {
                 val hexColor = hexColors[min(nh, h++)]
                 val gain = gains.getOrNull(min(ng, g++))
@@ -152,7 +152,7 @@ class HybridScene(
                 val rgbColor = RGBColor(hexColor)
                 when (device.type) {
                     HybridDeviceType.dmx -> {
-                        val dmxDevice = preferences.dmx?.dmxDevices?.get(id)
+                        val dmxDevice = stage.devices?.dmx?.dmxDevices?.get(id)
                         if (dmxDevice != null) {
                             val effectiveGain = gain ?: dmxDevice.gain
                             val paramGain = (255 * effectiveGain).roundToInt()
@@ -167,7 +167,7 @@ class HybridScene(
                     }
 
                     HybridDeviceType.shelly -> {
-                        val shellyDevice = preferences.getShellyDevice(id)
+                        val shellyDevice = stage.devices?.shellyMap?.get(id)
                         if (shellyDevice != null) {
                             val effectiveGain = gain ?: shellyDevice.gain
                             ShellyColor(
@@ -229,7 +229,7 @@ class HybridScene(
                 }
 
                 // take total launch costs for shelly devices into account - use at least time for one dmx frame
-                val dmxFrameTime = preferences.dmx!!.frameTime
+                val dmxFrameTime = stage.devices?.dmx!!.frameTime
                 val remainingDuration = max(dmxFrameTime, fadeDuration - System.currentTimeMillis() + t)
                 val step = 1.0 / remainingDuration.toDouble() * dmxFrameTime.toDouble()
 
@@ -259,13 +259,13 @@ class HybridScene(
                             val parameterSet = parameterSets[id]
                             if (parameterSet != null && otherParameterSet.toRgbColor() != parameterSet.toRgbColor()) {
                                 val faded = parameterSet.fade(otherParameterSet, factor, BlendMode.AVERAGE)
-                                preferences.dmx!!.setDmxData(
+                                stage.devices?.dmx!!.setDmxData(
                                     baseChannel = faded.baseChannel,
                                     bytes = bytesFromParameterset(faded)
                                 )
                             }
                         }
-                        preferences.dmx!!.writeDmxData()
+                        stage.devices?.dmx!!.writeDmxData()
                     }
 
                     if (otherXledFrames.isNotEmpty()) {
@@ -288,17 +288,17 @@ class HybridScene(
     }
 
     private fun bytesFromParameterset(parameterSet: ParameterSet): ByteArray {
-        return (preferences.dmx!!.fixtures[parameterSet.baseChannel]?.map { channel ->
+        return (stage.devices?.dmx!!.fixtures[parameterSet.baseChannel]?.map { channel ->
             (parameterSet.parameterMap[channel.name] ?: 0).toByte()
         } ?: listOf()).toByteArray()
     }
 
     private fun writeParameterSet(parameterSet: ParameterSet, write: Boolean) {
         val bytes = bytesFromParameterset(parameterSet)
-        preferences.dmx!!.setDmxData(parameterSet.baseChannel, bytes)
+        stage.devices?.dmx!!.setDmxData(parameterSet.baseChannel, bytes)
         if (write) {
             log.debug("Writing parameter set {}", this)
-            preferences.dmx!!.writeDmxData()
+            stage.devices?.dmx!!.writeDmxData()
         }
     }
 
@@ -307,14 +307,14 @@ class HybridScene(
         if (parameterSets.isNotEmpty()) { // only write to dmx interface if needed
             // first collect all frame data for the dmx frame to avoid lots of costly write operations to a serial interface
             parameterSets.forEach { parameterSet ->
-                preferences.dmx!!.setDmxData(
+                stage.devices?.dmx!!.setDmxData(
                     baseChannel = parameterSet.baseChannel,
                     bytes = bytesFromParameterset(parameterSet)
                 )
             }
             if (write) {
                 log.debug("Writing hybrid scene {}", this)
-                preferences.dmx!!.writeDmxData()
+                stage.devices?.dmx!!.writeDmxData()
             }
         }
 

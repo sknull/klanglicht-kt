@@ -1,7 +1,7 @@
 package de.visualdigits.klanglicht.model.dmx.model
 
 import java.lang.Integer.toHexString
-import java.util.*
+import java.util.Arrays
 
 
 class DmxFrame(

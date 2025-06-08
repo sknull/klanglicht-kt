@@ -1,8 +1,8 @@
 package de.visualdigits.klanglicht.lightmanager.controller
 
-import de.visualdigits.klanglicht.hardware.lightmanager.model.lm.LMMarkers
-import de.visualdigits.klanglicht.hardware.lightmanager.model.lm.LMParams
-import de.visualdigits.klanglicht.hardware.lightmanager.model.lm.LMZones
+import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMMarkers
+import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMParams
+import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMZones
 import de.visualdigits.klanglicht.lightmanager.service.LightmanagerService
 import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.GetMapping

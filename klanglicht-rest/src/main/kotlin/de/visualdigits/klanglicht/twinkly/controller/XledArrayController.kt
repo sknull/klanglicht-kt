@@ -11,7 +11,14 @@ import de.visualdigits.kotlin.twinkly.model.playable.XledSequence
 import de.visualdigits.kotlin.twinkly.model.playable.transition.TransitionDirection
 import de.visualdigits.kotlin.twinkly.model.playable.transition.TransitionType
 import org.slf4j.LoggerFactory
-import org.springframework.web.bind.annotation.*
+import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PathVariable
+import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.PutMapping
+import org.springframework.web.bind.annotation.RequestBody
+import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RequestParam
+import org.springframework.web.bind.annotation.RestController
 import java.io.File
 
 @RestController()
@@ -35,13 +42,13 @@ class XledArrayController(
     @PutMapping("/power/on")
     fun powerOn() {
         log.info("Powering on")
-        prefs.preferences?.getXledArrays()?.forEach { it.powerOn() }
+        prefs.stage?.devices?.xledArrays?.values?.forEach { it.powerOn() }
     }
 
     @PutMapping("/power/off")
     fun powerOff() {
         log.info("Powering off")
-        prefs.preferences?.getXledArrays()?.forEach { it.powerOff() }
+        prefs.stage?.devices?.xledArrays?.values?.forEach { it.powerOff() }
     }
 
     @PutMapping("/brightness/{brightness}")
@@ -49,7 +56,7 @@ class XledArrayController(
         @PathVariable brightness: Float,
     ) {
         log.info("Setting brightness to $brightness")
-        prefs.preferences?.getXledArrays()?.forEach { it.setBrightness(brightness) }
+        prefs.stage?.devices?.xledArrays?.values?.forEach { it.setBrightness(brightness) }
     }
 
     @PutMapping("/saturation/{saturation}")
@@ -57,7 +64,7 @@ class XledArrayController(
         @PathVariable saturation: Float,
     ) {
         log.info("Setting saturation to $saturation")
-        prefs.preferences?.getXledArrays()?.forEach { it.setSaturation(saturation) }
+        prefs.stage?.devices?.xledArrays?.values?.forEach { it.setSaturation(saturation) }
     }
 
     @PutMapping("/mode/{mode}")
@@ -66,7 +73,7 @@ class XledArrayController(
     ) {
         log.info("Setting saturation to $mode")
         currentMode = DeviceMode.valueOf(mode)
-        prefs.preferences?.getXledArrays()?.forEach { it.setMode(currentMode) }
+        prefs.stage?.devices?.xledArrays?.values?.forEach { it.setMode(currentMode) }
     }
 
     @PutMapping("/color/{red}/{green}/{blue}/{white}")
@@ -78,8 +85,8 @@ class XledArrayController(
     ) {
         val rgbwColor = RGBWColor(red, green, blue, white)
         log.info("Showing color ${rgbwColor.ansiColor()}")
-        prefs.preferences?.getXledArrays()?.forEach { it.setMode(DeviceMode.color) }
-        prefs.preferences?.getXledArrays()?.forEach { it.setColor(rgbwColor) }
+        prefs.stage?.devices?.xledArrays?.values?.forEach { it.setMode(DeviceMode.color) }
+        prefs.stage?.devices?.xledArrays?.values?.forEach { it.setColor(rgbwColor) }
     }
 
     @PostMapping("/image")
@@ -87,9 +94,9 @@ class XledArrayController(
         if (playable != null && playable?.running == true) {
             stopLoop()
         }
-        prefs.preferences?.getXledArrays()?.forEach { it.setMode(DeviceMode.rt) }
+        prefs.stage?.devices?.xledArrays?.values?.forEach { it.setMode(DeviceMode.rt) }
         playable = XledFrame(bytes)
-        prefs.preferences?.getXledArrays()?.forEach { playable?.playAsync(xled = it) }
+        prefs.stage?.devices?.xledArrays?.values?.forEach { playable?.playAsync(xled = it) }
     }
 
     @PostMapping("/sequence")
@@ -106,10 +113,10 @@ class XledArrayController(
         if (playable != null && playable?.running == true) {
             stopLoop()
         }
-        prefs.preferences?.getXledArrays()?.forEach { it.setMode(DeviceMode.rt) }
+        prefs.stage?.devices?.xledArrays?.values?.forEach { it.setMode(DeviceMode.rt) }
         playable = XledSequence(frameDelay = frameDelay,
             directory = File(ClassLoader.getSystemResource(directory).toURI()))
-        prefs.preferences?.getXledArrays()?.forEach {
+        prefs.stage?.devices?.xledArrays?.values?.forEach {
             playable?.playAsync(
                 xled = it,
                 loop = loop,
@@ -124,19 +131,19 @@ class XledArrayController(
 
     @PutMapping("/loop/stop")
     fun stopLoop() {
-        prefs.preferences?.getXledArrays()?.forEach { it.setMode(currentMode) }
+        prefs.stage?.devices?.xledArrays?.values?.forEach { it.setMode(currentMode) }
         playable?.stop()
     }
 
     @GetMapping("/timer", produces = ["application/json"])
     fun getTimer(): Timer? {
-        return prefs.preferences?.getXledArrays()?.firstOrNull()?.getTimer()
+        return prefs.stage?.devices?.xledArrays?.values?.firstOrNull()?.getTimer()
     }
 
     @PostMapping("/timer", consumes = ["application/json"], produces = ["application/json"])
     fun setTimer(
         @RequestBody timer: Timer
     ): Timer? {
-        return prefs.preferences?.getXledArrays()?.map { it.setTimer(timer) }?.firstOrNull()
+        return prefs.stage?.devices?.xledArrays?.values?.map { it.setTimer(timer) }?.firstOrNull()
     }
 }

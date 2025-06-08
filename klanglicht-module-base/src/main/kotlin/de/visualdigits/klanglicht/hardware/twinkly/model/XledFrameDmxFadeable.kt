@@ -1,6 +1,6 @@
 package de.visualdigits.klanglicht.hardware.twinkly.model
 
-import de.visualdigits.klanglicht.model.preferences.Preferences
+import de.visualdigits.klanglicht.model.preferences.Stage
 import de.visualdigits.kotlin.twinkly.model.color.BlendMode
 import de.visualdigits.kotlin.twinkly.model.color.RGBColor
 import de.visualdigits.kotlin.twinkly.model.parameter.Fadeable
@@ -12,7 +12,7 @@ class XledFrameDmxFadeable(
     private val deviceId: String,
     private var xledFrame: XledFrame,
     private var deviceGain: Double,
-    private val preferences: Preferences
+    private val stage: Stage
 ) : Fadeable<XledFrameDmxFadeable> {
 
     private val log: Logger = LoggerFactory.getLogger(javaClass)
@@ -22,7 +22,7 @@ class XledFrameDmxFadeable(
     }
 
     override fun clone(): XledFrameDmxFadeable {
-        return XledFrameDmxFadeable(deviceId, xledFrame.clone(), deviceGain, preferences)
+        return XledFrameDmxFadeable(deviceId, xledFrame.clone(), deviceGain, stage)
     }
 
     override fun getTurnOn(): Boolean = true
@@ -45,7 +45,7 @@ class XledFrameDmxFadeable(
     }
 
     override fun write(write: Boolean, transitionDuration: Long) {
-        val twinklyDevice = preferences?.getTwinklyConfiguration(deviceId)
+        val twinklyDevice = stage.devices?.twinklyMap?.get(deviceId)
         if (twinklyDevice != null) {
             val xledArray = twinklyDevice.xledArray
             if (write && xledArray.isLoggedIn()) {
@@ -59,7 +59,7 @@ class XledFrameDmxFadeable(
     override fun fade(other: Any, factor: Double, blendMode: BlendMode): XledFrameDmxFadeable {
         return if (other is XledFrameDmxFadeable) {
             val xledFrame1 = xledFrame.fade(other.xledFrame, factor)
-            XledFrameDmxFadeable(deviceId, xledFrame1, deviceGain, preferences)
+            XledFrameDmxFadeable(deviceId, xledFrame1, deviceGain, stage)
         } else {
             throw IllegalArgumentException("Cannot not fade another type")
         }

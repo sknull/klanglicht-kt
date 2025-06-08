@@ -31,7 +31,7 @@ class WebConfig(
             prefs.klanglichtDirectory.absolutePath,
             "resources",
             "themes",
-            prefs.preferences?.theme,
+            prefs.theme,
             "templates"
         ).toFile().absolutePath.replace("\\", "/") + "/"
         templateResolver.prefix = templatesPath

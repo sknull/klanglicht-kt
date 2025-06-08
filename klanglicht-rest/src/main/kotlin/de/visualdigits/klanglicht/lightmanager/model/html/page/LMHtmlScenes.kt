@@ -1,18 +1,17 @@
 package de.visualdigits.klanglicht.lightmanager.model.html.page
 
 import de.visualdigits.klanglicht.configuration.ApplicationPreferences
-import de.visualdigits.klanglicht.hardware.lightmanager.model.lm.LMSceneGroup
-import de.visualdigits.klanglicht.hardware.lightmanager.model.lm.LMScenes
-import org.springframework.beans.factory.annotation.Value
+import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMSceneGroup
+import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMScenes
 import org.springframework.stereotype.Service
 
+/**
+ * Scenes description used to render the HTML markup.
+ */
 @Service
 class LMHtmlScenes(
     private val prefs: ApplicationPreferences
 ) : LMHtml() {
-
-    @Value("\${server.port}")
-    private var port: Int = 0
 
     fun renderScenes(scenes: LMScenes): String {
         val sb = StringBuilder()
@@ -53,7 +52,7 @@ class LMHtmlScenes(
     private fun renderScenesGroup(
         sceneGroup: LMSceneGroup
     ): String {
-        val baseUrl = prefs.preferences?.baseUrl?.let{ "$it:$port" }?:"http://localhost:$port"
+        val baseUrl = "http://${prefs.baseUrl}:${prefs.port}"
         val sb = StringBuilder()
         sb.append("  <div class=\"group")
         if (sceneGroup.hasColorWheel) {
@@ -92,7 +91,7 @@ class LMHtmlScenes(
     }
 
     private fun renderColorWheel(id: String, oddEven: Boolean): String {
-        val baseUrl = prefs.preferences?.baseUrl?.let{ "$it:$port" }?:"http://localhost:$port"
+        val baseUrl = "http://${prefs.baseUrl}:$${prefs.port}"
         val wheelId = id.replace(" ", "")
         val sb = StringBuilder()
         if (oddEven) {
@@ -125,49 +124,49 @@ class LMHtmlScenes(
     }
 
     private fun renderScriptOddEven(wheelId: String, baseUrl: String): String {
-        val keys = prefs.preferences?.stage?.map { it.id }?: listOf()
+        val keys = prefs.stage?.devices?.stage?.map { it.id }?: listOf()
         var colors = "colorOdd,colorEven,".repeat(keys.size / 2)
         if (keys.size % 2 > 0) colors += "colorOdd" else colors = colors.substring(0, keys.size - 1)
-        colors = colors.split(",").joinToString(" + \",\" + ")
-        val hexColorOdd = prefs.getColor("${wheelId}Odd")?:"000000"
-        val hexColorEven = prefs.getColor("${wheelId}Even")?:"000000"
+
+        val currentColorOdd = prefs.getColor("${wheelId}Odd")?:"000000"
+        val currentColorEven = prefs.getColor("${wheelId}Even")?:"000000"
 
         return """
             <script type="application/javascript">
               var colorWheel${wheelId}Odd = new iro.ColorPicker("#colorwheel-${wheelId}Odd", {
                 wheelLightness: false,
-                color: "$hexColorOdd"
+                color: "$currentColorOdd"
               });
               
               var colorWheel${wheelId}Even = new iro.ColorPicker("#colorwheel-${wheelId}Even", {
                 wheelLightness: false,
-                color: "$hexColorEven"
+                color: "$currentColorEven"
               });
               
               colorWheel${wheelId}Odd.on('color:change', function(color, changes){
                 var colorOdd = colorWheel${wheelId}Odd.color.hexString.substring(1);
                 var colorEven = colorWheel${wheelId}Even.color.hexString.substring(1);
-                fetch("$baseUrl/v1/hybrid/json/hexColor?wheelId=$wheelId&hexColors=" + $colors + "&transition=0&storeName=${wheelId}Odd&", {method: 'GET'}).catch(err => console.error(err));
+                fetch("$baseUrl/v1/hybrid/json/hexColor?wheelId=$wheelId&hexColors=" + ${colors.replace(",", " + \",\" + ")} + "&transition=0&storeName=${wheelId}Odd&", {method: 'GET'}).catch(err => console.error(err));
               });
               
               colorWheel${wheelId}Even.on('color:change', function(color, changes){
                 var colorOdd = colorWheel${wheelId}Odd.color.hexString.substring(1);
                 var colorEven = colorWheel${wheelId}Even.color.hexString.substring(1);
-                fetch("$baseUrl/v1/hybrid/json/hexColor?wheelId=$wheelId&hexColors=" + $colors + "&transition=0&storeName=${wheelId}Even&", {method: 'GET'}).catch(err => console.error(err));
+                fetch("$baseUrl/v1/hybrid/json/hexColor?wheelId=$wheelId&hexColors=" + ${colors.replace(",", " + \",\" + ")} + "&transition=0&storeName=${wheelId}Even&", {method: 'GET'}).catch(err => console.error(err));
               });
             </script>
         """.trimIndent()
     }
 
     private fun renderScriptStandalone(wheelId: String, baseUrl: String): String {
-        val hexColor = prefs.getColor(wheelId)?:"000000"
-        val colorWheelDevices = prefs.preferences?.getColorWheel(wheelId)?.devices?.joinToString(",")
+        val currentColor = prefs.getColor(wheelId)?:"000000"
+        val colorWheelDevices = prefs.stage?.devices?.colorWheelMap?.get(wheelId)?.devices?.joinToString(",")
 
         return """
             <script type="application/javascript">
               var colorWheel$wheelId = new iro.ColorPicker("#colorwheel-$wheelId", {
                 wheelLightness: false,
-                color: "$hexColor"
+                color: "$currentColor"
               });
               
               colorWheel$wheelId.on('color:change', function(color, changes){

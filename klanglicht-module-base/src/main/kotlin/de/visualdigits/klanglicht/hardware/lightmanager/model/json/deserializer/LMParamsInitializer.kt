@@ -1,7 +1,7 @@
 package de.visualdigits.klanglicht.hardware.lightmanager.model.json.deserializer
 
 import com.fasterxml.jackson.databind.util.StdConverter
-import de.visualdigits.klanglicht.hardware.lightmanager.model.lm.LMParams
+import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMParams
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 

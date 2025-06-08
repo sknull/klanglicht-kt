@@ -1,8 +1,8 @@
 package de.visualdigits.klanglicht.lightmanager.model.html.page
 
-import de.visualdigits.klanglicht.hardware.lightmanager.model.lm.LMDefaultRequest
-import de.visualdigits.klanglicht.hardware.lightmanager.model.lm.LMRequest
-import de.visualdigits.klanglicht.hardware.lightmanager.model.lm.LMZone
+import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMDefaultRequest
+import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMRequest
+import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMZone
 import de.visualdigits.klanglicht.lightmanager.service.LightmanagerService
 import org.springframework.stereotype.Service
 

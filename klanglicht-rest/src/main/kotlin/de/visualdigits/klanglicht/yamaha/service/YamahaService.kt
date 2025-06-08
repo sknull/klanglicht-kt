@@ -1,22 +1,22 @@
 package de.visualdigits.klanglicht.yamaha.service
 
+import de.visualdigits.klanglicht.configuration.ApplicationPreferences
 import de.visualdigits.klanglicht.hardware.yamaha.model.Menu
 import de.visualdigits.klanglicht.hardware.yamaha.model.UnitDescription
 import de.visualdigits.kotlin.util.get
 import de.visualdigits.kotlin.util.post
 import org.springframework.beans.factory.annotation.Qualifier
-import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
 import org.springframework.web.reactive.function.client.WebClient
 import java.net.URL
 
 @Service
 class YamahaService(
+    prefs: ApplicationPreferences,
     @Qualifier("webClientReceiver") private val webClientReceiver: WebClient,
 ) {
 
-    @Value("\${application.services.receiver.url}")
-    private var urlReceiver: String = ""
+    private var urlReceiver: String = prefs.stage?.getService("receiver")?.url?:""
 
     fun description(): UnitDescription? {
         return URL("$urlReceiver/YamahaRemoteControl/desc.xml").get<UnitDescription>()

@@ -4,7 +4,12 @@ import de.visualdigits.klanglicht.model.dmx.fixture.Fixture
 import de.visualdigits.kotlin.twinkly.model.color.BlendMode
 import de.visualdigits.kotlin.twinkly.model.color.RGBColor
 import de.visualdigits.kotlin.twinkly.model.parameter.Parameter
-import kotlin.math.*
+import kotlin.math.asin
+import kotlin.math.atan2
+import kotlin.math.cos
+import kotlin.math.pow
+import kotlin.math.sin
+import kotlin.math.sqrt
 
 class RotationParameter(
     /** The fixture for this rotation (needed to calculate raw values). */

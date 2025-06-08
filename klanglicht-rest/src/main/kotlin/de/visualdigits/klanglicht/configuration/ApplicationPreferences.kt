@@ -1,8 +1,8 @@
 package de.visualdigits.klanglicht.configuration
 
-import de.visualdigits.klanglicht.hardware.lightmanager.model.lm.LMScenes
+import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMScenes
 import de.visualdigits.klanglicht.model.hybrid.HybridScene
-import de.visualdigits.klanglicht.model.preferences.Preferences
+import de.visualdigits.klanglicht.model.preferences.Stage
 import de.visualdigits.kotlin.twinkly.model.parameter.Fadeable
 import jakarta.annotation.PostConstruct
 import jakarta.annotation.PreDestroy
@@ -22,9 +22,17 @@ class ApplicationPreferences {
 
     private val log: Logger = LoggerFactory.getLogger(javaClass)
 
-    var preferences: Preferences? = null
+    @Value("\${klanglicht.baseUrl}")
+    lateinit var baseUrl: String
 
-    @Value("\${application.klanglichtDirectory:#{null}}")
+    @Value("\${server.port}")
+    var port: Int = 0
+
+    @Value("\${klanglicht.theme}")
+    lateinit var theme: String
+
+    var stage: Stage? = null
+
     val klanglichtDirectory: File = File(System.getProperty("user.home"), ".klanglicht")
 
     var currentScene: HybridScene? = null
@@ -32,22 +40,32 @@ class ApplicationPreferences {
 
     @PostConstruct
     fun initialize() {
+        log.info("")
         log.info("#### setUp - start")
         log.info("##")
-        log.info("## klanglichtDirectory: " + klanglichtDirectory.absolutePath)
+        log.info("## klanglichtDirectory: " + klanglichtDirectory.canonicalPath)
 
-        preferences?.initialize(klanglichtDirectory)
-        currentScene = preferences?.initialHybridScene()
+        stage = Stage.readValue(Paths.get(klanglichtDirectory.canonicalPath, "resources", "stage.json").toFile())
+        stage?.devices?.dmx?.initialize(klanglichtDirectory)
+        currentScene = stage?.initialHybridScene()
         currentScene?.write(true, 1000)
 
+        log.info("## baseUrl            : $baseUrl")
+        log.info("## port               : $port")
+        log.info("## theme              : $theme")
+        log.info("## stage              : ${stage?.devices?.stage?.joinToString(", ") { d -> "${d.id} [${d.type}]" }}" )
+        log.info("## shelly             : ${stage?.devices?.shelly?.joinToString(", ") { s -> "${s.name} [${s.model}] ${s.ipAddress}" }}" )
+        log.info("## twinkly            : ${stage?.devices?.twinkly?.joinToString(", ") { t -> "${t.name} [${t.deviceOrigin}]" }}" )
+        log.info("## colorWheels        : ${stage?.devices?.colorWheels?.joinToString(", ") { c -> "${c.id} [${c.devices.joinToString(",")}]" }}" )
         log.info("##")
         log.info("#### setUp - end")
+        log.info("")
     }
 
     @PreDestroy
     fun tearDown() {
         log.info("#### tearDown - start")
-        preferences?.dmx?.tearDownDmx()
+        stage?.devices?.dmx?.tearDownDmx()
         log.info("#### tearDown - end")
     }
 

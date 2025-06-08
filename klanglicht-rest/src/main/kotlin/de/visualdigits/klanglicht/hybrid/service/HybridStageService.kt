@@ -37,19 +37,19 @@ class HybridStageService(
     ) {
         val currentScene = prefs.currentScene?.clone()
         val nextScene = prefs.currentScene?.clone()?.let { n ->
-            HybridScene(ids, hexColors, gains, turnOn.toString(), preferences = prefs.preferences!!).fadeableMap().forEach {
+            HybridScene(prefs.stage!!, ids, hexColors, gains, turnOn.toString()).fadeableMap().forEach {
                 n.putFadeable(it.key, it.value)
             }
             n
         }
         if (store) {
             prefs.updateScene(nextScene!!)
-            val keys = prefs.preferences?.stage?.map { it.id }
-            val remaining = prefs.preferences?.colorWheels?.map { it.id }?.toMutableSet()?:mutableSetOf()
+            val keys = prefs.stage?.devices?.stage?.map { it.id }
+            val remaining = prefs.stage?.devices?.colorWheels?.map { it.id }?.toMutableSet()?:mutableSetOf()
             val colors = hexColors.joinToString(",")
             // update other affected color wheels
             wheelId
-                ?.let { wid -> prefs.preferences?.getColorWheel(wid)?.updates }
+                ?.let { wid -> prefs.stage?.devices?.colorWheelMap?.get(wid)?.updates }
                 ?.forEach { wid -> prefs.putColor(wid, colors) }
             if (storeName != null) {
                 prefs.putColor(storeName, colors)
@@ -87,7 +87,7 @@ class HybridStageService(
             val allColors = hexColors.first()
             if (hexColors.all { it == allColors }) {
                 remaining.remove("All")
-                prefs.preferences?.colorWheels?.forEach { cw ->
+                prefs.stage?.devices?.colorWheels?.forEach { cw ->
                     prefs.putColor(cw.id, allColors)
                     remaining.remove(cw.id)
                 }
@@ -99,7 +99,7 @@ class HybridStageService(
         }
         log.info("nextScene: $nextScene")
 
-        currentScene?.fade(nextScene!!, transition?:prefs.preferences?.fadeDurationDefault?:2000)
+        currentScene?.fade(nextScene!!, transition?:prefs.stage?.fadeDurationDefault?:2000)
     }
 
     fun putColor(
@@ -115,7 +115,7 @@ class HybridStageService(
         transitionDuration: Long?
     ) {
         ids.forEach { id ->
-            prefs.getFadeable(id)?.write(transitionDuration = transitionDuration?: prefs.preferences?.fadeDurationDefault?:2000)
+            prefs.getFadeable(id)?.write(transitionDuration = transitionDuration?: prefs.stage?.fadeDurationDefault?:2000)
         }
     }
 
@@ -126,13 +126,13 @@ class HybridStageService(
     ) {
         ids.forEach { id ->
             val sid = id.trim()
-            val shellyDevice = prefs.preferences?.getShellyDevice(sid)
+            val shellyDevice = prefs.stage?.devices?.shellyMap?.get(sid)
             if (shellyDevice != null) {
                 val ipAddress: String = shellyDevice.ipAddress
                 val lastColor = prefs.getFadeable(sid)
                 lastColor?.setGain(gain.toDouble())
                 try {
-                    ShellyClient.setGain(ipAddress = ipAddress, gain = gain, transitionDuration = transitionDuration?: prefs.preferences?.fadeDurationDefault?:2000)
+                    ShellyClient.setGain(ipAddress = ipAddress, gain = gain, transitionDuration = transitionDuration?: prefs.stage?.fadeDurationDefault?:2000)
                 } catch (e: Exception) {
                     log.warn("Could not get gain for shelly at '$ipAddress'")
                 }

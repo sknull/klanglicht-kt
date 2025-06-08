@@ -22,7 +22,7 @@ class ShellyService(
     ) {
         ids.forEach { id ->
         val sid = id.trim()
-            val shellyDevice = prefs.preferences?.getShellyDevice(sid)
+            val shellyDevice = prefs.stage?.devices?.shellyMap?.get(sid)
             if (shellyDevice != null) {
                 val ipAddress: String = shellyDevice.ipAddress
                 val command: String = shellyDevice.command
@@ -33,7 +33,7 @@ class ShellyService(
                         ipAddress = ipAddress,
                         command = command,
                         turnOn = turnOn,
-                        transitionDuration = transitionDuration?: prefs.preferences?.fadeDurationDefault?:2000
+                        transitionDuration = transitionDuration?: prefs.stage?.fadeDurationDefault?:2000
                     )
                 } catch (e: Exception) {
                     log.warn("Could not set power for shelly devica at '$ipAddress'")
@@ -44,7 +44,7 @@ class ShellyService(
 
     fun status(): Map<ShellyDevice, Status> {
         val statusMap: MutableMap<ShellyDevice, Status> = LinkedHashMap()
-        val shellyDevices = prefs.preferences?.getShellyDevices()
+        val shellyDevices = prefs.stage?.devices?.shelly
         shellyDevices?.forEach { device ->
             val ipAddress: String = device.ipAddress
             var status: Status?
