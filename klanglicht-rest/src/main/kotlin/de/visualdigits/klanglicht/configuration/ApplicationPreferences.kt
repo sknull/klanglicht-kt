@@ -1,5 +1,7 @@
 package de.visualdigits.klanglicht.configuration
 
+import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMScene
+import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMSceneType
 import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMScenes
 import de.visualdigits.klanglicht.model.hybrid.HybridScene
 import de.visualdigits.klanglicht.model.preferences.Stage
@@ -81,7 +83,30 @@ class ApplicationPreferences {
         if (scenesJsonFile.exists()) {
             scenesJsonFile.renameTo(backupScenesJsonFile)
         }
-        scenes.writeValue(scenesJsonFile)
+
+        val newScenes = LMScenes(name = scenes.name)
+        newScenes.scenes.putAll(
+            scenes.scenes.map { (name, group) ->
+                group.scenes = group.scenes.map { scene ->
+                    when (scene.type) {
+                        LMSceneType.custom -> scene
+                        LMSceneType.gradient -> {
+                            val steps = scene.color.size
+                            val newScene = LMScene(
+                                name = scene.name,
+                                color = listOf(scene.color.first(), scene.color.last()),
+                                type = LMSceneType.gradient,
+                                steps = steps,
+                                initialize = false
+                            )
+                            newScene
+                        }
+                    }
+                }.toMutableList()
+                Pair(name, group)
+            })
+
+        newScenes.writeValue(scenesJsonFile)
     }
 
     fun getAbsoluteResource(relativeResourePath: String): File {

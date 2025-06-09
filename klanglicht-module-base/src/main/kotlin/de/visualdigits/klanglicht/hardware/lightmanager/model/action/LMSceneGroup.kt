@@ -5,5 +5,5 @@ class LMSceneGroup(
     val hasColorWheel: Boolean = false,
     val colorWheelOddEven: Boolean = false,
     val selectable: Boolean = false,
-    val scenes: MutableList<LMScene> = mutableListOf()
+    var scenes: MutableList<LMScene> = mutableListOf()
 )

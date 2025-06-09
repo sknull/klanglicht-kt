@@ -3,7 +3,6 @@ package de.visualdigits.klanglicht.hardware.lightmanager.model.action
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.databind.SerializationFeature
 import com.fasterxml.jackson.module.kotlin.jacksonMapperBuilder
-import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import java.io.File
 import java.util.Locale
 
@@ -52,7 +51,7 @@ class LMScenes(
             }
             attributes["color"].split(",").map { it.trim() }
         } else listOf()
-        val scene = LMScene(sceneName, color, lmScene.condition, lmScene.actions)
+        val scene = LMScene(sceneName, color, LMSceneType.custom, 0, lmScene.condition, lmScene.actions)
         scenesMap[lmScene.name] = scene
         if ("hidden" != groupName) {
             groupName

@@ -2,7 +2,7 @@ package de.visualdigits.klanglicht.hardware.lightmanager.model.action
 
 class LMActionHybrid(
     val ids: List<String> = listOf(),
-    val hexColors: List<String> = listOf(),
+    var hexColors: List<String> = listOf(),
     val gains: List<Double> = listOf(),
 ) : LMAction() {
 
