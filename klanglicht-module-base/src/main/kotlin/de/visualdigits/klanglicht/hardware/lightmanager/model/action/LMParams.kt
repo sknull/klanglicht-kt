@@ -13,25 +13,25 @@ import java.time.LocalDateTime
 
 @JsonDeserialize(converter = LMParamsInitializer::class)
 class LMParams(
-    @JsonProperty("auth enabled") @JsonDeserialize(using = NumericBooleanDeserializer::class) var authEnabled: Boolean? = null,
-    var time: String? = null,
-    var date: String? = null,
+    @JsonProperty("auth enabled") @JsonDeserialize(using = NumericBooleanDeserializer::class) val authEnabled: Boolean? = null,
+    val time: String? = null,
+    val date: String? = null,
     @JsonIgnore var dateTime: LocalDateTime? = null,
-    var weekday: String? = null,
-    @JsonProperty("is dst") @JsonDeserialize(using = NumericBooleanDeserializer::class)var dst: Boolean? = null,
-    @JsonProperty("marker state") @JsonDeserialize(using = BooleanArrayDeserializer::class) var markerState: BooleanArray = booleanArrayOf(),
-    var ssid: String? = null,
-    @JsonProperty("led off") @JsonDeserialize(using = NumericBooleanDeserializer::class) var ledOff: Boolean? = null,
-    @JsonProperty("last update") var lastUpdate: String? = null,
-    @JsonProperty("firmware ver") var firmwareVer: String? = null,
-    @JsonProperty("mac addr") var macAddr: String? = null,
-    @JsonDeserialize(using = NumericBooleanDeserializer::class) var busy: Boolean? = null,
-    @JsonProperty("master ip") var masterIp: String? = null,
-    var lon: Double? = null,
-    var lat: Double? = null,
-    @JsonProperty("mode 433") @JsonDeserialize(using = NumericBooleanDeserializer::class) var mode433: Boolean? = null,
-    @JsonProperty("mode 868") @JsonDeserialize(using = NumericBooleanDeserializer::class) var mode868: Boolean? = null,
-    @JsonDeserialize(using = NumericBooleanDeserializer::class) var mpfs: Boolean? = null
+    val weekday: String? = null,
+    @JsonProperty("is dst") @JsonDeserialize(using = NumericBooleanDeserializer::class)val dst: Boolean? = null,
+    @JsonProperty("marker state") @JsonDeserialize(using = BooleanArrayDeserializer::class) val markerState: BooleanArray = booleanArrayOf(),
+    val ssid: String? = null,
+    @JsonProperty("led off") @JsonDeserialize(using = NumericBooleanDeserializer::class) val ledOff: Boolean? = null,
+    @JsonProperty("last update") val lastUpdate: String? = null,
+    @JsonProperty("firmware ver") val firmwareVer: String? = null,
+    @JsonProperty("mac addr") val macAddr: String? = null,
+    @JsonDeserialize(using = NumericBooleanDeserializer::class) val busy: Boolean? = null,
+    @JsonProperty("master ip") val masterIp: String? = null,
+    val lon: Double? = null,
+    val lat: Double? = null,
+    @JsonProperty("mode 433") @JsonDeserialize(using = NumericBooleanDeserializer::class) val mode433: Boolean? = null,
+    @JsonProperty("mode 868") @JsonDeserialize(using = NumericBooleanDeserializer::class) val mode868: Boolean? = null,
+    @JsonDeserialize(using = NumericBooleanDeserializer::class) val mpfs: Boolean? = null
 ) {
 
     companion object {

@@ -1,11 +1,11 @@
 package de.visualdigits.klanglicht.hardware.lightmanager.model.action
 
 class LMScene(
-    var name: String,
-    var color: List<String> = listOf(),
+    val name: String,
+    val color: List<String> = listOf(),
 
-    var condition: LMCondition? = null,
-    var actions: List<LMAction> = listOf()
+    val condition: LMCondition? = null,
+    val actions: List<LMAction> = listOf()
 ) {
 
     override fun toString(): String {

@@ -26,6 +26,7 @@ class HybridStageService(
      * @param storeName An additional name to strore values.
      */
     fun hexColor(
+        sceneName: String? = null,
         wheelId: String? = null,
         ids: List<String> = listOf(),
         hexColors: List<String> = listOf(),
@@ -43,7 +44,7 @@ class HybridStageService(
             n
         }
         if (store) {
-            prefs.updateScene(nextScene!!)
+            nextScene?.also { s -> prefs.updateScene(s) }?:log.warn("No next scene")
             val keys = prefs.stage?.devices?.stage?.map { it.id }
             val remaining = prefs.stage?.devices?.colorWheels?.map { it.id }?.toMutableSet()?:mutableSetOf()
             val colors = hexColors.joinToString(",")
@@ -99,6 +100,7 @@ class HybridStageService(
         }
         log.info("nextScene: $nextScene")
 
+        sceneName?.also { s -> prefs.currentSceneName = s }
         currentScene?.fade(nextScene!!, transition?:prefs.stage?.fadeDurationDefault?:2000)
     }
 

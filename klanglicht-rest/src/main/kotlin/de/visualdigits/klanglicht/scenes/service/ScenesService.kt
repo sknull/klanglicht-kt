@@ -6,6 +6,7 @@ import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMActionLmA
 import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMActionLmYamahaAvantage
 import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMActionPause
 import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMActionShelly
+import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMScene
 import de.visualdigits.klanglicht.hybrid.service.HybridStageService
 import de.visualdigits.klanglicht.lightmanager.service.LightmanagerService
 import de.visualdigits.klanglicht.shelly.service.ShellyService
@@ -28,34 +29,24 @@ class ScenesService(
 
     fun executeScene(sceneName: String) {
         if (sceneName != previousSceneName) {
-            prefs.scenes().scenesMap[sceneName]
-                ?.let { s ->
+            prefs.loadScenes().scenesMap[sceneName]
+                ?.also { scene ->
                     log.info("Executing scene '$sceneName'...")
-                    if (s.condition == null || s.condition?.evaluate(prefs.stage!!) == true) {
+                    if (scene.condition == null || scene.condition?.evaluate(prefs.stage!!) == true) {
                         previousSceneName = sceneName
-                        s.actions.forEach { action ->
+                        scene.actions.forEach { action ->
                             log.info("  Executing action '$action'...")
                             when (action) {
-                                is LMActionLmAir -> lightmanagerService.controlIndex(index = action.sceneIndex)
-                                is LMActionShelly -> shellyService.power(ids = action.ids, turnOn = action.turnOn)
-                                is LMActionHybrid -> hybridStageService.hexColor(
-                                    ids = action.ids,
-                                    hexColors = action.hexColors,
-                                    gains = action.gains
-                                )
-
-                                is LMActionLmYamahaAvantage -> {
-                                    when (action.command) {
-                                        "surroundProgram" -> yamahaAvantageService.setSurroundProgram(program = action.program)
-                                        "setPureDirect" -> yamahaAvantageService.setPureDirect(enable = action.enable)
-                                    }
-                                }
-
-                                is LMActionPause -> action.duration?.let { Thread.sleep(it) }
+                                is LMActionLmAir ->  lmair(action.sceneIndex?:-1)
+                                is LMActionShelly -> shelly(action.ids, action.turnOn == true)
+                                is LMActionHybrid -> hybrid(action.ids, action.hexColors, action.gains, sceneName)
+                                is LMActionLmYamahaAvantage -> yamahaAvantage(action.command?:"", action.program?:"", action.enable == true)
+                                is LMActionPause -> action.duration?.also { Thread.sleep(it) }
+                                else -> log.warn("  Unsupported action '${action.javaClass}'")
                             }
                         }
                     } else {
-                        log.info("Condition '${s.condition?.javaClass?.simpleName}' not true - skipping actions")
+                        log.info("Condition '${scene.condition?.javaClass?.simpleName}' not true - skipping actions")
                     }
                 } ?: also {
                 log.info("No scene with name '$sceneName'")
@@ -65,17 +56,36 @@ class ScenesService(
         }
     }
 
-    fun sceneNames(): Set<String> = prefs.scenes().scenesMap.keys
+    fun saveScene(name: String) {
+        log.info("Saving scene '$name': ${prefs.currentScene}")
+        val scenes = prefs.loadScenes()
+        scenes.scenes["Custom"]?.scenes?.add(LMScene(
+            name = if (name.startsWith("Custom ")) name else "Custom $name",
+            color = prefs.currentScene?.fadeables()?.map { it.toRgbColor().web() }?:listOf(),
+            actions = listOf(LMActionHybrid(hexColors = prefs.currentScene?.fadeables()?.map { it.toRgbColor().hex() }?:listOf()))
+        ))
+        prefs.writeScenes(scenes)
+    }
 
-    fun hybrid(ids: List<String>, hexColors: List<String>, gains: List<Double>) {
+    fun deleteScene(name: String) {
+        log.info("Deleting scene '$name'")
+        val scenes = prefs.loadScenes()
+        scenes.scenes["Custom"]?.also {  g -> g.scenes.find { s -> s.name == name }?.also { sc -> g.scenes.remove(sc) } }
+        prefs.writeScenes(scenes)
+    }
+
+    fun sceneNames(): Set<String> = prefs.loadScenes().scenesMap.keys
+
+    fun hybrid(ids: List<String>, hexColors: List<String>, gains: List<Double>, sceneName: String? = null) {
         hybridStageService.hexColor(
+            sceneName = sceneName,
             ids = ids,
             hexColors = hexColors,
             gains = gains
         )
     }
 
-    fun shelly(ids: List<String>, turnOn: Boolean, transitionDuration: Long) {
+    fun shelly(ids: List<String>, turnOn: Boolean, transitionDuration: Long? = 2000) {
         shellyService.power(ids = ids, turnOn = turnOn, transitionDuration = transitionDuration)
     }
 

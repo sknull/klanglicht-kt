@@ -48,12 +48,12 @@ class HybridScene(
     }
 
     override fun toString(): String {
-        return fadeables
-            .mapNotNull { it.value.toRgbColor().ansiColor() }
+        return fadeables.values
+            .mapNotNull { it.toRgbColor().ansiColor() }
             .joinToString("")
             .trim() + " " +
-        fadeables
-            .mapNotNull { it.value.toRgbColor().hex() }
+        fadeables.values
+            .mapNotNull { it.toRgbColor().hex() }
     }
 
     override fun clone(): HybridScene {

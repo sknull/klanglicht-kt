@@ -1,19 +1,28 @@
 package de.visualdigits.klanglicht.hardware.lightmanager.model.action
 
 class LMMarkers(
-    var name: String,
-    private var markers: MutableMap<Int, LMMarker> = mutableMapOf()
+    val name: String,
+    private val markers: MutableMap<Int, LMMarker> = mutableMapOf()
 ) {
-    fun add(marker: LMMarker) {
-        val attributes = LMNamedAttributes(marker.name, "separate", "actorId", "state")
-        if (attributes.matched()) {
-            val name = attributes.name
-            if (name.isNotEmpty()) {
-                marker.name = name
+    fun add(lmMarker: LMMarker) {
+        val attributes = LMNamedAttributes(lmMarker.name, "separate", "actorId", "state")
+        val marker = if (attributes.matched) {
+            val name = if (attributes.name.isNotEmpty()) {
+                attributes.name
+            } else {
+                lmMarker.name
             }
-            marker.separate = attributes.getOrDefault("separate", "false").toBoolean()
-            marker.actorId = attributes["actorId"]
-            marker.markerState = attributes["state"]
+            LMMarker(
+                id = lmMarker.id,
+                name = name,
+                colorOff = lmMarker.colorOff,
+                colorOn = lmMarker.colorOn,
+                separate = (attributes["separate"]?:"false").toBoolean(),
+                actorId = attributes["actorId"],
+                markerState = attributes["state"]
+            )
+        } else {
+            lmMarker
         }
         markers[marker.id] = marker
     }

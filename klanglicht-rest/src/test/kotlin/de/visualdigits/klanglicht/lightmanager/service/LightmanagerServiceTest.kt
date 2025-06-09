@@ -17,13 +17,20 @@ class LightmanagerServiceTest @Autowired constructor(
     private val lightmanagerService: LightmanagerService
 ) {
 
+    private val mapper = jacksonMapperBuilder()
+        .serializationInclusion(JsonInclude.Include.NON_EMPTY)
+        .enable(SerializationFeature.INDENT_OUTPUT)
+        .build()
+
     @Test
-    fun testLightmanagerService() {
+    fun testZones() {
         val zones = lightmanagerService.zones()
-        println(jacksonMapperBuilder()
-            .serializationInclusion(JsonInclude.Include.NON_EMPTY)
-            .enable(SerializationFeature.INDENT_OUTPUT)
-            .build()
-            .writeValueAsString(zones))
+        println(mapper.writeValueAsString(zones))
+    }
+
+    @Test
+    fun testScenes() {
+        val scenes = lightmanagerService.scenes()
+        println(mapper.writeValueAsString(scenes))
     }
 }

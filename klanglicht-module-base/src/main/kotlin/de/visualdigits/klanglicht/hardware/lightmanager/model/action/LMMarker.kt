@@ -2,18 +2,18 @@ package de.visualdigits.klanglicht.hardware.lightmanager.model.action
 
 
 class LMMarker(
-    var id: Int,
-    var name: String,
-    var colorOff: String? = null,
-    var colorOn: String? = null,
-    var state: Boolean? = null,
+    val id: Int,
+    val name: String,
+    val colorOff: String? = null,
+    val colorOn: String? = null,
+    val state: Boolean? = null,
 
     /** Determines whether the button should stay split up (true) or should be consolidated into on toggle button (false).  */
-    var separate: Boolean? = null,
+    val separate: Boolean? = null,
 
     /** Determines to which actor id this marker belongs (if any).  */
-    var actorId: String? = null,
+    val actorId: String? = null,
 
     /** Determines the actor state to which this marker belongs (if any).  */
-    var markerState: String? = null
+    val markerState: String? = null
 )

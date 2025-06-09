@@ -8,9 +8,6 @@ class LMHtmlPanel(
 
     override fun html(indent: Int): String {
         val sindent = "  ".repeat(indent)
-        return "$sindent<div class=\"circle\" style=\"background-color:" +
-            bgColor +
-            "\">" +
-            "</div> <!-- circle -->\n"
+        return "$sindent<div class=\"circle\" style=\"background-color:$bgColor\"></div> <!-- circle -->\n"
     }
 }

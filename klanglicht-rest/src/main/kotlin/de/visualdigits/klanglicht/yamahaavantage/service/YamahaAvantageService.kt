@@ -1,6 +1,5 @@
 package de.visualdigits.klanglicht.yamahaavantage.service
 
-import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import de.visualdigits.klanglicht.hardware.yamahaadvantage.model.ResponseCode
 import de.visualdigits.klanglicht.hardware.yamahaadvantage.model.SoundProgramList
 import de.visualdigits.klanglicht.hardware.yamahaadvantage.model.deviceinfo.DeviceInfo
@@ -20,8 +19,6 @@ class YamahaAvantageService(
     private val log = LoggerFactory.getLogger(javaClass)
 
     companion object {
-
-        private val mapper = jacksonObjectMapper()
 
         private val mapPrograms: MutableMap<String, String> = HashMap()
 

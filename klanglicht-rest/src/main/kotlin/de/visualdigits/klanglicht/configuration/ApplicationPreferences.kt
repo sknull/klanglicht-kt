@@ -14,6 +14,8 @@ import org.springframework.boot.context.properties.ConfigurationPropertiesScan
 import org.springframework.context.annotation.Configuration
 import java.io.File
 import java.nio.file.Paths
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 @Configuration
 @ConfigurationProperties(prefix = "application")
@@ -35,6 +37,7 @@ class ApplicationPreferences {
 
     val klanglichtDirectory: File = File(System.getProperty("user.home"), ".klanglicht")
 
+    var currentSceneName = "All Black"
     var currentScene: HybridScene? = null
     val colorStore: MutableMap<String, String> = mutableMapOf()
 
@@ -69,7 +72,17 @@ class ApplicationPreferences {
         log.info("#### tearDown - end")
     }
 
-    fun scenes(): LMScenes = LMScenes.readValue(Paths.get(klanglichtDirectory.canonicalPath, "resources", "scenes.json").toFile())
+    fun loadScenes(): LMScenes = LMScenes.readValue(Paths.get(klanglichtDirectory.canonicalPath, "resources", "scenes.json").toFile())
+
+    fun writeScenes(scenes: LMScenes) {
+        val scenesJsonFile = Paths.get(klanglichtDirectory.canonicalPath, "resources", "scenes.json").toFile()
+        val timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss"))
+        val backupScenesJsonFile = Paths.get(klanglichtDirectory.canonicalPath, "resources", "${timestamp}_scenes.json").toFile()
+        if (scenesJsonFile.exists()) {
+            scenesJsonFile.renameTo(backupScenesJsonFile)
+        }
+        scenes.writeValue(scenesJsonFile)
+    }
 
     fun getAbsoluteResource(relativeResourePath: String): File {
         return Paths.get(klanglichtDirectory.absolutePath, "resources", relativeResourePath).toFile()

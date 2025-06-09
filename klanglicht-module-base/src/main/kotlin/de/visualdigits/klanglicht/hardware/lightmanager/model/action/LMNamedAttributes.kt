@@ -8,9 +8,14 @@ class LMNamedAttributes(
     vararg attributes: String
 ) {
 
-    private var matched = false
+    var matched: Boolean = false
     var name: String = ""
     val attributesMap: MutableMap<String, String> = TreeMap()
+
+    companion object {
+        val P_PARAMS = Pattern.compile("^([^{]*)\\{?([^}]*)\\}?.*$")
+        private const val PATTERN_TEMPLATE = ":([^;}]*)"
+    }
 
     init {
         val matcherParams = P_PARAMS.matcher(s)
@@ -28,20 +33,7 @@ class LMNamedAttributes(
         }
     }
 
-    fun matched(): Boolean {
-        return matched
-    }
-
     operator fun get(attribute: String): String {
-        return getOrDefault(attribute, "")
-    }
-
-    fun getOrDefault(attribute: String, defaultValue: String): String {
-        return attributesMap.getOrDefault(attribute, defaultValue)
-    }
-
-    companion object {
-        val P_PARAMS = Pattern.compile("^([^{]*)\\{?([^}]*)\\}?.*$")
-        private const val PATTERN_TEMPLATE = ":([^;}]*)"
+        return attributesMap[attribute]?:""
     }
 }

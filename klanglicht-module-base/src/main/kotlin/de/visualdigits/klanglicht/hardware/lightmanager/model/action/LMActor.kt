@@ -3,18 +3,18 @@ package de.visualdigits.klanglicht.hardware.lightmanager.model.action
 import com.fasterxml.jackson.annotation.JsonIgnore
 
 class LMActor(
-    var id: Int? = null,
-    var name: String? = null,
-    var actorOff: List<String> = listOf(),
-    var actorOn: List<String> = listOf(),
-    var colorOff: String? = null,
-    var colorOn: String? = null,
-    var isDimmer: Boolean? = null,
+    val id: Int? = null,
+    val name: String? = null,
+    val actorOff: List<String> = listOf(),
+    val actorOn: List<String> = listOf(),
+    val colorOff: String? = null,
+    val colorOn: String? = null,
+    val isDimmer: Boolean? = null,
 ) {
 
-    var markers: MutableMap<String, LMMarker?> = mutableMapOf()
-    var requests: MutableMap<String, LMRequest> = mutableMapOf()
-    var requestsBySmkState: MutableMap<Int, LMDefaultRequest> = mutableMapOf()
+    val markers: MutableMap<String, LMMarker?> = mutableMapOf()
+    val requests: MutableMap<String, LMRequest> = mutableMapOf()
+    val requestsBySmkState: MutableMap<Int, LMDefaultRequest> = mutableMapOf()
 
     fun addRequest(key: String, request: LMRequest) {
         requests[key] = request

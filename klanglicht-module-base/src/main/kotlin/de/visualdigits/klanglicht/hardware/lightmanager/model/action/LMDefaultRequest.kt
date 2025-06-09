@@ -5,16 +5,16 @@ import de.visualdigits.klanglicht.hardware.lightmanager.model.json.RequestType
 
 
 class LMDefaultRequest(
-    var name: String? = null,
-    var type: RequestType? = null,
-    var deviceId: Long = 0,
-    var actorId: Int? = null,
-    var actorCommand: Int? = null,
-    var sequence: Int? = null,
-    var level: Int? = null,
-    var smk: IntArray? = null,
-    var uri: String? = null,
-    var data: Array<String> = arrayOf()
+    val name: String? = null,
+    val type: RequestType? = null,
+    val deviceId: Long = 0,
+    val actorId: Int? = null,
+    val actorCommand: Int? = null,
+    val sequence: Int? = null,
+    val level: Int? = null,
+    val smk: IntArray? = null,
+    val uri: String? = null,
+    val data: Array<String> = arrayOf()
 ) : LMRequest {
 
     @JsonIgnore

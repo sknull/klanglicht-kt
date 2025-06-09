@@ -36,22 +36,27 @@ class LMZones(
     }
 
     private fun addActor(markers: LMMarkers, zone: LMZone, actorElem: Element) {
-        val actor = LMActor(
-            id = actorElem.attr("id").substring(1).toInt()
-        )
         val actorOff = actorElem.attr("data-aoff").split(",").map { it.trim() }.filter { it.isNotEmpty() }
         var colorOff = actorOff.getOrElse(1) { "" }
         val actorOn = actorElem.attr("data-aon").split(",").map { it.trim() }.filter { it.isNotEmpty() }
         val colorOn = actorOn.getOrElse(1) { "" }
         var name = actorElem.child(0).text()
         val attributes = LMNamedAttributes(name, "color")
-        if (attributes.matched()) {
+        if (attributes.matched) {
             name = attributes.name
             colorOff = attributes["color"]
         }
-        actor.colorOff = colorOff
-        actor.colorOn = colorOn
-        actor.name = name
+
+        val actor = LMActor(
+            id = actorElem.attr("id").substring(1).toInt(),
+            colorOff = colorOff,
+            colorOn = colorOn,
+            name = name,
+            actorOff = actorOff,
+            actorOn = actorOn,
+            isDimmer = actorElem.select("div[class=myslider]").isNotEmpty()
+        )
+
         val dataMarker: String = actorElem.attr("data-marker")
         if (dataMarker.isNotEmpty()) {
             val mid = dataMarker.toInt()
@@ -63,9 +68,6 @@ class LMZones(
                 actor.addMarker(marker)
             }
         }
-        actor.actorOff = actorOff
-        actor.actorOn = actorOn
-        actor.isDimmer = actorElem.select("div[class=myslider]").isNotEmpty()
         actorElem.children()
             .forEach { elem ->
                 elem.children()
@@ -78,26 +80,28 @@ class LMZones(
 
     private fun addRequest(actor: LMActor, child: Element) {
         if ("input" == child.tagName()) {
-            val rq = LMDefaultRequest()
             val name: String = child.attr("value")
-            rq.name = name
-            val allParams = setUri(child, rq)
+            val (uri, allParams) = setUri(child)
             val typ = getParams(allParams, "typ", 1)
-            rq.type = if (typ.isNotEmpty()) RequestType.getByName(typ[0]) else RequestType.UNKNOWN
             val did = getParams(allParams, "did", 1)
-            rq.deviceId = determineDeviceId(did)
             val lActorId = getParams(allParams, "aid", 1)
-            rq.actorId = if (lActorId.isNotEmpty()) lActorId[0].toInt() else -1
             val acmd = getParams(allParams, "acmd", 1)
-            rq.actorCommand = if (acmd.isNotEmpty()) acmd[0].toInt() else -1
             val seq = getParams(allParams, "seq", 1)
-            rq.sequence = if (seq.isNotEmpty()) seq[0].toInt() else -1
             val lvl = getParams(allParams, "lvl", 1)
-            rq.level = if (lvl.isNotEmpty()) lvl[0].toInt() else -1
             val lSmk = getParams(allParams, "smk", 2)
-            rq.smk = if (lSmk.isNotEmpty()) intArrayOf(lSmk[0].toInt(), lSmk[1].toInt()) else IntArray(0)
             val lData = getParams(allParams, "dta", -1)
-            rq.data = if (lData.isNotEmpty()) lData.toTypedArray() else arrayOf()
+            val rq = LMDefaultRequest(
+                name = name,
+                type = if (typ.isNotEmpty()) RequestType.getByName(typ[0]) else RequestType.UNKNOWN,
+                deviceId = determineDeviceId(did),
+                actorId = if (lActorId.isNotEmpty()) lActorId[0].toInt() else -1,
+                actorCommand = if (acmd.isNotEmpty()) acmd[0].toInt() else -1,
+                sequence = if (seq.isNotEmpty()) seq[0].toInt() else -1,
+                level = if (lvl.isNotEmpty()) lvl[0].toInt() else -1,
+                smk = if (lSmk.isNotEmpty()) intArrayOf(lSmk[0].toInt(), lSmk[1].toInt()) else IntArray(0),
+                uri = uri,
+                data = if (lData.isNotEmpty()) lData.toTypedArray() else arrayOf()
+            )
             actor.addRequest(name, rq)
         }
         else if ("a" == child.tagName()) {
@@ -118,15 +122,15 @@ class LMZones(
         return deviceId
     }
 
-    private fun setUri(child: Element, rq: LMDefaultRequest): List<String> {
+    private fun setUri(child: Element): Pair<String, List<String>> {
         var allParams: List<String> = ArrayList()
         var request = ""
         try {
-            request = URLDecoder.decode(child.attr("onclick"), StandardCharsets.UTF_8)
-            request = request.substring(9, request.length - 2)
-            allParams = ArrayList(Arrays.asList(*request.split(",".toRegex()).dropLastWhile { it.isEmpty() }
-                .toTypedArray()))
-        } catch (e: UnsupportedEncodingException) {
+            request = URLDecoder
+                .decode(child.attr("onclick"), StandardCharsets.UTF_8)
+                .substring(9, request.length - 2)
+            allParams = ArrayList(Arrays.asList(*request.split(",".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()))
+        } catch (_: UnsupportedEncodingException) {
             // ignore
         }
         val lUri = getParams(allParams, "uri", 1)
@@ -143,8 +147,7 @@ class LMZones(
         if (!uri.startsWith("http://") && !uri.startsWith("https://")) {
             uri = "http://$uri"
         }
-        rq.uri = uri
-        return allParams
+        return Pair(uri, allParams)
     }
 
     private fun getParams(allParams: List<String>, name: String, numberOfParams: Int): List<String> {

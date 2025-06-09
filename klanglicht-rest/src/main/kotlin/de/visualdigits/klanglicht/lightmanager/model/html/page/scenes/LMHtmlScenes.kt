@@ -10,23 +10,37 @@ import kotlin.math.max
  */
 class LMHtmlScenes(
     val prefs: ApplicationPreferences,
-    val scenes: LMScenes? = prefs.scenes()
+    val scenes: LMScenes? = prefs.loadScenes()
 ) : LMHtml {
 
     override fun html(indent: Int): String {
         val sindent = "  ".repeat(indent)
         val sb = StringBuilder()
         sb.append("$sindent<div class=\"title\" onclick=\"toggleFullScreen();\" title=\"Toggle Fullscreen\">")
-            .append(scenes?.name)
-            .append("</div>\n")
+        sb.append(scenes?.name)
+        sb.append("</div>\n")
         sb.append("$sindent<div class=\"center-category\">\n")
         sb.append("$sindent  <span class=\"label\">").append("C U R R E N T   S C E N E").append("</span>\n")
         sb.append("$sindent  <div class=\"center-group\">\n")
         prefs.currentScene?.fadeables()?.forEach { fadeable ->
-            val color = fadeable.toRgbColor().web() ?: "#000000"
-            val html = LMHtmlPanel(color).html(indent + 2)
-            sb.append(html)
+            sb.append(LMHtmlPanel(fadeable.toRgbColor().web() ?: "#000000").html(indent + 2))
         }
+
+        val selectableGroupNames = scenes?.selectableGroupNames()?:listOf()
+        var currentSceneName = prefs.currentSceneName
+        val parts = currentSceneName.split(' ')
+        val currentGroupName = parts.firstOrNull()?.let { gn -> selectableGroupNames.find { n -> n == gn } }
+        if (currentGroupName != null) {
+            currentSceneName = parts.drop(1).joinToString(" ")
+        }
+
+        sb.append("$sindent    <div class='inputform'>\n")
+        sb.append("$sindent      <form action='${prefs.baseUrl}:${prefs.port}/v1/scenes/json/save' method='GET'>\n")
+        sb.append("$sindent        <input type='text' id='name' name='name' value='$currentSceneName'/>\n")
+        sb.append("$sindent        <input type='submit' value='Save'/>\n")
+        sb.append("$sindent      </form>\n")
+        sb.append("$sindent    </div> <!-- input form -->\n")
+
         sb.append("$sindent  </div><!-- sub-group -->\n")
         sb.append("$sindent</div><!-- current scene -->\n")
 

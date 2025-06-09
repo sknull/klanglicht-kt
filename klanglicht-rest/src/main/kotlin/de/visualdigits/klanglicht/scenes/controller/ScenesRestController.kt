@@ -1,12 +1,16 @@
 package de.visualdigits.klanglicht.scenes.controller
 
 import de.visualdigits.klanglicht.scenes.service.ScenesService
+import jakarta.servlet.http.HttpServletRequest
+import org.springframework.http.ResponseEntity
+import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
+import java.net.URI
 
 @RestController
 @RequestMapping("/v1/scenes/json", produces = ["application/json"])
@@ -25,6 +29,18 @@ class ScenesRestController(
 
     @GetMapping("control")
     fun controlGet(@RequestParam(value = "name") name: String) = scenesService.executeScene(name)
+
+    @GetMapping("/save", produces = ["application/xhtml+xml"])
+    fun save(
+        @RequestParam(value = "name") name: String,
+        request: HttpServletRequest
+    ): ResponseEntity<Unit> {
+        scenesService.saveScene(name)
+        return ResponseEntity.status(302).location(URI.create("/v1/hybrid/web/scenes")).build()
+    }
+
+    @DeleteMapping("delete")
+    fun delete(@RequestParam(value = "name") name: String) = scenesService.deleteScene(name)
 
     @GetMapping("hybrid")
     fun hybrid(
