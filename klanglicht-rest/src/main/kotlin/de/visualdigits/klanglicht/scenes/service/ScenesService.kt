@@ -28,9 +28,9 @@ class ScenesService(
     private var previousSceneName: String = ""
 
     fun executeScene(sceneName: String) {
-        if (sceneName != previousSceneName) {
-            prefs.loadScenes().scenesMap[sceneName]
-                ?.also { scene ->
+        prefs.loadScenes().scenesMap[sceneName]
+            ?.also { scene ->
+                if (sceneName != previousSceneName || scene.repeatable) {
                     log.info("Executing scene '$sceneName'...")
                     if (scene.condition == null || scene.condition?.evaluate(prefs.stage!!) == true) {
                         previousSceneName = sceneName
@@ -48,11 +48,11 @@ class ScenesService(
                     } else {
                         log.info("Condition '${scene.condition?.javaClass?.simpleName}' not true - skipping actions")
                     }
-                } ?: also {
-                log.info("No scene with name '$sceneName'")
-            }
-        } else {
-            log.info("Scene '$sceneName' already set - skipping")
+                } else {
+                    log.info("Scene '$sceneName' already set - skipping")
+                }
+            } ?: also {
+            log.info("No scene with name '$sceneName'")
         }
     }
 

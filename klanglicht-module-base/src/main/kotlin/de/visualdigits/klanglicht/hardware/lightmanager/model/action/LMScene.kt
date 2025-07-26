@@ -11,6 +11,7 @@ class LMScene(
     val type: LMSceneType = LMSceneType.custom,
     val steps: Int = 0, // only relevant for gradients
 
+    val repeatable: Boolean = false,
     val condition: LMCondition? = null,
     var actions: List<LMAction> = listOf(),
 

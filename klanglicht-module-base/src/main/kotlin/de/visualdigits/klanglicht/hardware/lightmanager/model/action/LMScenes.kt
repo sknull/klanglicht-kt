@@ -51,7 +51,7 @@ class LMScenes(
             }
             attributes["color"].split(",").map { it.trim() }
         } else listOf()
-        val scene = LMScene(sceneName, color, LMSceneType.custom, 0, lmScene.condition, lmScene.actions)
+        val scene = LMScene(sceneName, color, LMSceneType.custom, 0, false, lmScene.condition, lmScene.actions)
         scenesMap[lmScene.name] = scene
         if ("hidden" != groupName) {
             groupName
