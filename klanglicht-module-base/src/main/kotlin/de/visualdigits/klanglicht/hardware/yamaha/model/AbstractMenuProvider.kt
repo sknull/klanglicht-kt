@@ -21,9 +21,13 @@ abstract class AbstractMenuProvider : XmlEntity {
     @Suppress("UNCHECKED_CAST")
     fun <T : AbstractMenuProvider> getMenu(path: String): T {
         var provider: AbstractMenuProvider? = this
-        for (key in path.split("/".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()) {
-            provider = provider!!.tree[key]
-        }
+        path
+            .split("/".toRegex())
+            .dropLastWhile { it.isEmpty() }
+            .toTypedArray()
+            .forEach { key ->
+                provider = provider!!.tree[key]
+            }
         return provider as T
     }
 

@@ -82,14 +82,13 @@ class Menu : AbstractMenuProvider() {
         sb.append("<YAMAHA_AV cmd=\"PUT\">")
         var index = 0
         val tagsToClose: MutableList<String> = mutableListOf()
-        for (section in sections) {
+        sections.forEach { section ->
             if (!section.contains("=")) {
                 if (!tagsToClose.contains(section)) {
                     tagsToClose.add(0, section)
                     sb.append("<").append(section).append(">")
                 }
-            }
-            else {
+            } else {
                 val elems = section.split("=".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
                 val tagName = elems[0]
                 sb.append("<").append(tagName).append(">")
@@ -97,8 +96,7 @@ class Menu : AbstractMenuProvider() {
                 val value = determineParameterValue(paramIndex)
                 if (value != null) {
                     sb.append(value)
-                }
-                else {
+                } else {
                     sb.append(params[index++])
                 }
                 sb.append("</").append(tagName).append(">")
@@ -106,7 +104,7 @@ class Menu : AbstractMenuProvider() {
         }
 
         // close remaining tags
-        for (section in tagsToClose) {
+        tagsToClose.forEach { section ->
             sb.append("</").append(section).append(">")
         }
         sb.append("</YAMAHA_AV>")
@@ -116,21 +114,21 @@ class Menu : AbstractMenuProvider() {
     private fun determineParameterValue(index: String): String? {
         var value: String? = null
         var param: Param? = null
-        if ("Param_1" == index) {
-            param = get?.param1
-        }
-        else if ("Param_2" == index) {
-            param = get?.param2
-        }
-        else if ("Param_3" == index) {
-            param = get?.param3
+        when (index) {
+            "Param_1" -> {
+                param = get?.param1
+            }
+            "Param_2" -> {
+                param = get?.param2
+            }
+            "Param_3" -> {
+                param = get?.param3
+            }
         }
         if (param != null) {
             val direct = param.direct
-            if (direct != null) {
-                if (direct.size == 1) {
-                    value = direct[0].value
-                }
+            if (direct.size == 1) {
+                value = direct[0].value
             }
         }
         return value

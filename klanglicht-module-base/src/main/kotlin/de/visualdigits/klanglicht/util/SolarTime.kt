@@ -311,17 +311,23 @@ object SolarTime {
 
 
     fun getDayPeriod(dateTime: ZonedDateTime, latitude: Double, longitude: Double): DayPeriod {
-        val period = if (isDay(dateTime, latitude, longitude)) {
-            DayPeriod.DAY
-        } else if (isCivilTwilight(dateTime, latitude, longitude)) {
-            DayPeriod.CIVIL_TWILIGHT
-        } else if (isNauticalTwilight(dateTime, latitude, longitude)) {
-            DayPeriod.NAUTICAL_TWILIGHT
-        } else if (isAstronomicalTwilight(dateTime, latitude, longitude)) {
-            DayPeriod.ASTRONOMICAL_TWILIGHT
-        } else {
-            // no need to call isNight here if this is the default case
-            DayPeriod.NIGHT
+        val period = when {
+            isDay(dateTime, latitude, longitude) -> {
+                DayPeriod.DAY
+            }
+            isCivilTwilight(dateTime, latitude, longitude) -> {
+                DayPeriod.CIVIL_TWILIGHT
+            }
+            isNauticalTwilight(dateTime, latitude, longitude) -> {
+                DayPeriod.NAUTICAL_TWILIGHT
+            }
+            isAstronomicalTwilight(dateTime, latitude, longitude) -> {
+                DayPeriod.ASTRONOMICAL_TWILIGHT
+            }
+            else -> {
+                // no need to call isNight here if this is the default case
+                DayPeriod.NIGHT
+            }
         }
 
         return period

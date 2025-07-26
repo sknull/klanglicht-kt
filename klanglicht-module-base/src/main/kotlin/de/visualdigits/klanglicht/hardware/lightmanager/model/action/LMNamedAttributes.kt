@@ -23,7 +23,7 @@ class LMNamedAttributes(
         if (matched) {
             name = matcherParams.group(1).trim { it <= ' ' }
             val params = matcherParams.group(2).trim { it <= ' ' }
-            for (attribute in attributes) {
+            attributes.forEach { attribute ->
                 val pattern = Pattern.compile(attribute + PATTERN_TEMPLATE)
                 val matcherSeparate = pattern.matcher(params)
                 if (matcherSeparate.find()) {

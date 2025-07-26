@@ -34,7 +34,7 @@ class LMMarkers(
     fun getByActorId(aid: Int): Set<LMMarker> {
         val markers: MutableList<LMMarker> = mutableListOf()
         val said = aid.toString()
-        for (m in this.markers.values) {
+        this.markers.values.forEach { m ->
             if (m.actorId.equals(said)) {
                 markers.add(m)
             }

@@ -11,7 +11,7 @@ class BooleanArrayDeserializer : JsonDeserializer<BooleanArray>() {
         val stateChars = sStates.toCharArray()
         val n = sStates.length
         val states = BooleanArray(n)
-        for (i in 0 until n) {
+        (0 until n).forEach { i ->
             states[i] = stateChars[i] == '1'
         }
         return states

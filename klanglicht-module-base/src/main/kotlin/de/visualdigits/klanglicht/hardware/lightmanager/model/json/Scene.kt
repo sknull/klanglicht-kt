@@ -8,12 +8,11 @@ class Scene(
     val children: List<Scene> = listOf()
 ) {
     fun containsActuator(actuatorIndex: Int): Boolean {
-        for (child in children) {
+        children.forEach { child ->
             if (child.properties?.actorIndex == actuatorIndex) {
                 return true
-            }
-            else {
-                for (childChild in child.children) {
+            } else {
+                child.children.forEach { childChild ->
                     if (childChild.containsActuator(actuatorIndex)) {
                         return true
                     }

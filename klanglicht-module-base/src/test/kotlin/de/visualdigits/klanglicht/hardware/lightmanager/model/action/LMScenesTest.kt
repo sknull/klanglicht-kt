@@ -19,7 +19,7 @@ class LMScenesTest {
         val green = RGBColor("00ff00")
 
         val step = 1.0 / 6.0
-        for (f in 0 ..  6) {
+        (0 ..  6).forEach { f ->
             val faded = red.fade(green, f * step, BlendMode.AVERAGE)
             println(faded.hex())
         }

@@ -26,15 +26,9 @@ enum class RequestType(
     UNKNOWN("?");
 
     companion object {
+        @OptIn(ExperimentalStdlibApi::class)
         fun getByName(type: String): RequestType? {
-            var requestType: RequestType? = null
-            for (t in values()) {
-                if (t.type == type) {
-                    requestType = t
-                    break
-                }
-            }
-            return requestType
+            return entries.find { t -> t.type == type}
         }
     }
 }

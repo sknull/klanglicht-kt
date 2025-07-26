@@ -39,11 +39,11 @@ class RotationParameter(
 
             val d = 2 * asin(sqrt(sin((lat1 - lat2) / 2).pow(2.0) + cos(lat1) * cos(lat2) * sin((lon1 - lon2) / 2).pow(2.0)))
 
-            val A = sin((1 - factor) * d) / sin(d)
-            val B = sin(factor * d) / sin(d)
-            val x = A * cos(lat1) * cos(lon1) + B * cos(lat2) * cos(lon2)
-            val y = A * cos(lat1) * sin(lon1) + B * cos(lat2) * sin(lon2)
-            val z = A * sin(lat1) + B * sin(lat2)
+            val a = sin((1 - factor) * d) / sin(d)
+            val b = sin(factor * d) / sin(d)
+            val x = a * cos(lat1) * cos(lon1) + b * cos(lat2) * cos(lon2)
+            val y = a * cos(lat1) * sin(lon1) + b * cos(lat2) * sin(lon2)
+            val z = a * sin(lat1) + b * sin(lat2)
 
             val latN = atan2(z, sqrt(x.pow(2.0) + y.pow(2.0)))
             val lonN = atan2(y, x)

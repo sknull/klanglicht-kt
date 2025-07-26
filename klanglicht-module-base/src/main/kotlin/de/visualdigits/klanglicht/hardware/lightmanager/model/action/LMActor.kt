@@ -34,10 +34,6 @@ class LMActor(
         markers[markerState] = marker
     }
 
-    private fun determineSmkState(drq: LMDefaultRequest): Boolean {
-        return drq.hasSmk() && drq.smk?.get(1) == 1
-    }
-
     @JsonIgnore
     fun getRequestByName(key: String): LMRequest? {
         return requests[key]

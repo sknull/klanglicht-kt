@@ -10,6 +10,7 @@ import de.visualdigits.kotlin.twinkly.model.color.RGBColor
 import de.visualdigits.kotlin.twinkly.model.parameter.Fadeable
 import de.visualdigits.kotlin.twinkly.model.playable.XledFrame
 import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import org.slf4j.Logger
@@ -123,7 +124,7 @@ class HybridScene(
                         )
                         val nc = hexColors.size
                         val barWidth = xa.width / nc
-                        for (x in 0 until nc - 1) {
+                        (0 until nc - 1).forEach { x ->
                             val rgbColor = RGBColor(hexColors[x])
                             val bar = XledFrame(
                                 width = barWidth,
@@ -144,45 +145,44 @@ class HybridScene(
         }
 
         lIds.forEach { id ->
-            val device = stage.devices?.stageMap?.get(id)
-            if (device != null) {
-                val hexColor = hexColors[min(nh, h++)]
-                val gain = gains.getOrNull(min(ng, g++))
-                val turnOn = lTurnOns.getOrNull(min(nt, t++)) == true
-                val rgbColor = RGBColor(hexColor)
-                when (device.type) {
-                    HybridDeviceType.dmx -> {
-                        val dmxDevice = stage.devices?.dmx?.dmxDevices?.get(id)
-                        if (dmxDevice != null) {
-                            val effectiveGain = gain ?: dmxDevice.gain
-                            val paramGain = (255 * effectiveGain).roundToInt()
-                            ParameterSet(
-                                baseChannel = dmxDevice.baseChannel,
-                                parameters = mutableListOf(
-                                    IntParameter("MasterDimmer", paramGain),
-                                    rgbColor
+            stage.devices?.also { devices ->
+                devices.stageMap[id]?.also { device ->
+                    val hexColor = hexColors[min(nh, h++)]
+                    val gain = gains.getOrNull(min(ng, g++))
+                    val turnOn = lTurnOns.getOrNull(min(nt, t++)) == true
+                    val rgbColor = RGBColor(hexColor)
+                    when (device.type) {
+                        HybridDeviceType.dmx -> {
+                            devices.dmx?.dmxDevices?.get(id)?.let { dmxDevice ->
+                                val effectiveGain = gain ?: dmxDevice.gain
+                                val paramGain = (255 * effectiveGain).roundToInt()
+                                ParameterSet(
+                                    baseChannel = dmxDevice.baseChannel,
+                                    parameters = mutableListOf(
+                                        IntParameter("MasterDimmer", paramGain),
+                                        rgbColor
+                                    )
                                 )
-                            )
-                        } else null
-                    }
+                            }
+                        }
 
-                    HybridDeviceType.shelly -> {
-                        val shellyDevice = stage.devices?.shellyMap?.get(id)
-                        if (shellyDevice != null) {
-                            val effectiveGain = gain ?: shellyDevice.gain
-                            ShellyColor(
-                                deviceId = shellyDevice.name,
-                                ipAddress = shellyDevice.ipAddress,
-                                color = rgbColor,
-                                deviceGain = effectiveGain,
-                                deviceTurnOn = turnOn
-                            )
-                        } else null
-                    }
+                        HybridDeviceType.shelly -> {
+                            devices.shellyMap[id]?.let { shellyDevice ->
+                                val effectiveGain = gain ?: shellyDevice.gain
+                                ShellyColor(
+                                    deviceId = shellyDevice.name,
+                                    ipAddress = shellyDevice.ipAddress,
+                                    color = rgbColor,
+                                    deviceGain = effectiveGain,
+                                    deviceTurnOn = turnOn
+                                )
+                            }
+                        }
 
-                    else -> null
+                        else -> null
+                    }
+                        ?.let { dd -> fadeables[id] = dd }
                 }
-                    ?.let { dd -> fadeables[id] = dd }
             }
         }
     }
@@ -259,13 +259,13 @@ class HybridScene(
                             val parameterSet = parameterSets[id]
                             if (parameterSet != null && otherParameterSet.toRgbColor() != parameterSet.toRgbColor()) {
                                 val faded = parameterSet.fade(otherParameterSet, factor, BlendMode.AVERAGE)
-                                stage.devices?.dmx!!.setDmxData(
+                                stage.devices.dmx.setDmxData(
                                     baseChannel = faded.baseChannel,
                                     bytes = bytesFromParameterset(faded)
                                 )
                             }
                         }
-                        stage.devices?.dmx!!.writeDmxData()
+                        stage.devices.dmx.writeDmxData()
                     }
 
                     if (otherXledFrames.isNotEmpty()) {
@@ -279,7 +279,7 @@ class HybridScene(
                     }
 
                     factor += step
-                    Thread.sleep(dmxFrameTime)
+                    delay(dmxFrameTime)
                 }
             }
         }
@@ -291,15 +291,6 @@ class HybridScene(
         return (stage.devices?.dmx!!.fixtures[parameterSet.baseChannel]?.map { channel ->
             (parameterSet.parameterMap[channel.name] ?: 0).toByte()
         } ?: listOf()).toByteArray()
-    }
-
-    private fun writeParameterSet(parameterSet: ParameterSet, write: Boolean) {
-        val bytes = bytesFromParameterset(parameterSet)
-        stage.devices?.dmx!!.setDmxData(parameterSet.baseChannel, bytes)
-        if (write) {
-            log.debug("Writing parameter set {}", this)
-            stage.devices?.dmx!!.writeDmxData()
-        }
     }
 
     override fun write(write: Boolean, transitionDuration: Long) {

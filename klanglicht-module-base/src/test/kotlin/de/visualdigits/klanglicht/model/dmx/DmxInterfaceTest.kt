@@ -145,7 +145,7 @@ class DmxInterfaceTest {
         val dmxFrameTime = stage.devices?.dmx!!.frameTime
         val steps = ceil(fadeDuration.toDouble() / dmxFrameTime.toDouble()).toInt()
         val step = 1.0 / steps
-        for (f in 0..steps) {
+        (0..steps).forEach { f ->
             val factor = step * f
             val frame = parameterSet1.fade(parameterSet2, factor, BlendMode.AVERAGE)
             val dmxScene = DmxScene(

@@ -34,7 +34,7 @@ open class DmxInterface {
 
     fun repr(): String {
         val lst = ArrayList<String>()
-        for (b in dmxFrame.getFrameBytes()) {
+        dmxFrame.getFrameBytes().forEach { b ->
             lst.add(toHexString(b.toInt()).padStart( 8, '0'))
         }
         return lst.toString()

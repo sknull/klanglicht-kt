@@ -31,7 +31,7 @@ class ShellyColorTest {
             val color2 = ShellyColor("bar", shellyDevice.ipAddress, RGBColor(0, 255, 0), 1.0, true)
 //            color2.write()
 
-            for (i in 0 until 5) {
+            (0 until 5).forEach { i ->
                 color1.fade(color2, 2000L)
                 Thread.sleep(2000)
                 color2.fade(color1, 2000L)

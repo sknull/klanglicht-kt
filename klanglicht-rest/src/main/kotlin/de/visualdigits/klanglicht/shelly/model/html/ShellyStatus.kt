@@ -46,7 +46,7 @@ class ShellyStatus(
                 } else {
                     val lights = status.lights
                     if (lights != null) {
-                        for (light in lights) {
+                        lights.forEach { light ->
                             lightColors.add(RGBColor(light.red!!, light.green!!, light.blue!!).web())
                             if (light.isOn == true) {
                                 isOn = true
@@ -59,13 +59,14 @@ class ShellyStatus(
                 }
             }
             renderPanel(sb, "circle", bgColor, if (isOn) "on" else "off")
-            for (lightColor in lightColors) {
+            lightColors.forEach { lightColor ->
                 renderPanel(sb, "circle", lightColor, "")
             }
             sb.append("    </div> <!-- sub-group -->\n")
             sb.append("  </div> <!-- group -->\n") // group
         }
         sb.append("</div > <!-- category -->\n") // category
+
         return sb.toString()
     }
 

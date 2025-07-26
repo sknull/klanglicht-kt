@@ -52,8 +52,8 @@ class LightmanagerService(
     fun knownActors(): Map<Int, String> {
         val actors: MutableMap<Int, String> = mutableMapOf()
         val zones: LMZones = zones()
-        for (zone in zones.zones) {
-            for (actor in zone.actors) {
+        zones.zones.forEach { zone ->
+            zone.actors.forEach { actor ->
                 actors[actor.id!!] = actor.name!!
             }
         }
