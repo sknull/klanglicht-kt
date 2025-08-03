@@ -55,7 +55,7 @@ class ShellyColor(
             log.debug("Set shelly color {}", color.ansiColor())
             log.debug("setColor: $ipAddress = ${color.ansiColor()} [$deviceGain]")
             URL("http://$ipAddress/color/0?turn=${if (getTurnOn() == true) "on" else "off"}&red=${color.red}&green=${color.green}&blue=${color.blue}&white=0&gain=${(100 * deviceGain).toInt()}&transition=$transitionDuration&")
-                .get<Light>()
+                .get<Light>(clazz = Light::class.java)
         }
     }
 

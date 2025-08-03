@@ -19,7 +19,7 @@ object ShellyClient {
         transitionDuration: Long = 1
     ): String? {
         log.debug("setPower: $ipAddress = $turnOn")
-        return URL("http://$ipAddress/$command?turn=${if (turnOn == true) "on" else "off"}&transition=$transitionDuration&").get<String>()
+        return URL("http://$ipAddress/$command?turn=${if (turnOn == true) "on" else "off"}&transition=$transitionDuration&").get<String>(clazz = String::class.java)
     }
 
     fun setGain(
@@ -28,14 +28,14 @@ object ShellyClient {
         transitionDuration: Long
     ): String? {
         log.debug("setGain: $ipAddress = $gain")
-        return URL("http://$ipAddress/color/0?gain=$gain&transition=$transitionDuration&").get<String>()
+        return URL("http://$ipAddress/color/0?gain=$gain&transition=$transitionDuration&").get<String>(clazz = String::class.java)
     }
 
     fun getStatus(
         ipAddress: String
     ): Status? {
         log.debug("getStatus: $ipAddress")
-        return URL("http://$ipAddress/status").get<Status>()
+        return URL("http://$ipAddress/status").get<Status>(clazz = Status::class.java)
     }
 
     fun setColor(
@@ -47,6 +47,6 @@ object ShellyClient {
     ): Light? {
         log.debug("setColor: $ipAddress = ${rgbColor.ansiColor()} [$gain]")
         return URL("http://$ipAddress/color/0?turn=${if (turnOn == true) "on" else "off"}&red=${rgbColor.red}&green=${rgbColor.green}&blue=${rgbColor.blue}&white=0&gain=${(100 * gain).toInt()}&transition=$transitionDuration&"
-        ).get<Light>()
+        ).get<Light>(clazz = Light::class.java)
     }
 }

@@ -19,11 +19,11 @@ class YamahaService(
     private var urlReceiver: String = prefs.stage?.getService("receiver")?.url?:""
 
     fun description(): UnitDescription? {
-        return URL("$urlReceiver/YamahaRemoteControl/desc.xml").get<UnitDescription>()
+        return URL("$urlReceiver/YamahaRemoteControl/desc.xml").get<UnitDescription>(clazz = UnitDescription::class.java)
     }
 
     fun control(body: String): String? {
-        return URL("$urlReceiver/YamahaRemoteControl/ctrl").post<String>(body.toByteArray())
+        return URL("$urlReceiver/YamahaRemoteControl/ctrl").post<String>(body = body.toByteArray(), clazz = String::class.java)
     }
 
     fun controlVolume(volume: Int) {
