@@ -134,9 +134,9 @@ class HybridScene(
                             frame.replaceSubFrame(bar, x * barWidth, 0)
                         }
                         val fadeable = XledFrameDmxFadeable(
-                            deviceId = twinklyDevice.name,
+                            deviceId = twinklyDevice.name?:error("No device id"),
                             xledFrame = frame,
-                            deviceGain = twinklyDevice.gain,
+                            deviceGain = twinklyDevice.gain?:1.0,
                             stage = stage
                         )
                         fadeables[twinklyDevice.name] = fadeable

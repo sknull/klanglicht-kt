@@ -1,10 +1,14 @@
 package de.visualdigits.klanglicht.configuration
 
+import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMActionTwinkly
 import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMScene
+import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMSceneGroup
 import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMSceneType
 import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMScenes
 import de.visualdigits.klanglicht.model.hybrid.HybridScene
 import de.visualdigits.klanglicht.model.preferences.Stage
+import de.visualdigits.kotlin.twinkly.model.device.xmusic.XMusic
+import de.visualdigits.kotlin.twinkly.model.device.xmusic.moods.Moods
 import de.visualdigits.kotlin.twinkly.model.parameter.Fadeable
 import jakarta.annotation.PostConstruct
 import jakarta.annotation.PreDestroy
@@ -52,6 +56,7 @@ class ApplicationPreferences {
 
         stage = Stage.readValue(Paths.get(klanglichtDirectory.canonicalPath, "resources", "stage.json").toFile())
         stage?.devices?.dmx?.initialize(klanglichtDirectory)
+
         currentScene = stage?.initialHybridScene()
         currentScene?.write(true, 1000)
 
@@ -74,7 +79,70 @@ class ApplicationPreferences {
         log.info("#### tearDown - end")
     }
 
-    fun loadScenes(): LMScenes = LMScenes.readValue(Paths.get(klanglichtDirectory.canonicalPath, "resources", "scenes.json").toFile())
+    @OptIn(ExperimentalStdlibApi::class)
+    fun loadScenes(): LMScenes {
+        val scenes = LMScenes.readValue(Paths.get(klanglichtDirectory.canonicalPath, "resources", "scenes.json").toFile())
+        val xledMusic = stage?.devices?.xledArrays?.values
+            ?.find { xd -> (xd.xLedDevices.firstOrNull()?.firstOrNull() ?: Any())::class == XMusic::class }
+        if (xledMusic != null) {
+            val moodScenes = mutableListOf<LMScene>()
+            moodScenes.add(LMScene(
+                name = "On",
+                color = listOf("#ffffff"),
+                type = LMSceneType.custom,
+                initialize = false,
+                actions = listOf(LMActionTwinkly("on"))
+            ))
+            moodScenes.add(LMScene(
+                name = "Off",
+                color = listOf("#000000"),
+                type = LMSceneType.custom,
+                initialize = false,
+                actions = listOf(LMActionTwinkly("off"))
+            ))
+            moodScenes.add(LMScene(
+                name = "Music On",
+                color = listOf("#ffffff"),
+                type = LMSceneType.custom,
+                initialize = false,
+                actions = listOf(LMActionTwinkly("musicOn"))
+            ))
+            moodScenes.add(LMScene(
+                name = "Music Off",
+                color = listOf("#000000"),
+                type = LMSceneType.custom,
+                initialize = false,
+                actions = listOf(LMActionTwinkly("musicOff"))
+            ))
+            moodScenes.addAll(
+                Moods.entries.flatMap { mood ->
+                    mood.effects.values.map { effect ->
+                        LMScene(
+                            name = "${mood.icon} ${mood.label} ${effect.label}",
+                            color = listOf(mood.color),
+                            type = LMSceneType.custom,
+                            initialize = false,
+                            actions = listOf(LMActionTwinkly(
+                                command = "moodsEffect",
+                                moodsIndex = mood.index,
+                                effectIndex = effect.index
+                            ))
+                        )
+                    }
+                }
+            )
+            scenes.scenes["TwinklyMusic"] = LMSceneGroup(
+                name = "Twinkly Music",
+                hasColorWheel = false,
+                colorWheelOddEven = false,
+                selectable = false,
+                scenes = moodScenes
+            )
+            scenes.refreshSceneMap()
+        }
+
+        return scenes
+    }
 
     fun writeScenes(scenes: LMScenes) {
         val scenesJsonFile = Paths.get(klanglichtDirectory.canonicalPath, "resources", "scenes.json").toFile()

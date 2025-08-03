@@ -15,7 +15,7 @@ class LMScene(
     val condition: LMCondition? = null,
     var actions: List<LMAction> = listOf(),
 
-    val  initialize: Boolean = true
+    val initialize: Boolean = true
 ) {
 
     init {

@@ -22,9 +22,14 @@ class LMScenes(
 
         fun readValue(file: File): LMScenes {
             val lmScenes = mapper.readValue(file, LMScenes::class.java)
-            lmScenes.scenes.values.forEach { g -> g.scenes.forEach { s -> lmScenes.scenesMap[s.name] = s }  }
+            lmScenes.refreshSceneMap()
             return lmScenes
         }
+    }
+
+    fun refreshSceneMap() {
+        scenesMap.clear()
+        scenes.values.forEach { g -> g.scenes.forEach { s -> scenesMap[s.name] = s } }
     }
 
     override fun toString(): String {

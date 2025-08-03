@@ -1,6 +1,6 @@
 package de.visualdigits.klanglicht.hardware.lightmanager.model.action
 
-class LMActionLmYamahaAvantage(
+class LMActionYamahaAvantage(
     val command: String? = null,
     val program: String? = null,
     val enable: Boolean? = null,

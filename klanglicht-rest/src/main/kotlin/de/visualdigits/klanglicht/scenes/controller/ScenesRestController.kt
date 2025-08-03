@@ -74,4 +74,13 @@ class ScenesRestController(
     ) {
         scenesService.yamahaAvantage(command, program, enable)
     }
+
+    @GetMapping("twinkly")
+    fun twinkly(
+        @RequestParam(value = "command") command: String,
+        @RequestParam(value = "moodsIndex") moodsIndex: Int,
+        @RequestParam(value = "effectIndex") effectIndex: Int
+    ) {
+        scenesService.twinkly(command, moodsIndex, effectIndex)
+    }
 }

@@ -2,15 +2,18 @@ package de.visualdigits.klanglicht.scenes.service
 
 import de.visualdigits.klanglicht.configuration.ApplicationPreferences
 import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMActionHybrid
-import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMActionLmAir
-import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMActionLmYamahaAvantage
+import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMActionAir
+import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMActionYamahaAvantage
 import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMActionPause
 import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMActionShelly
+import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMActionTwinkly
 import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMScene
 import de.visualdigits.klanglicht.hybrid.service.HybridStageService
 import de.visualdigits.klanglicht.lightmanager.service.LightmanagerService
 import de.visualdigits.klanglicht.shelly.service.ShellyService
+import de.visualdigits.klanglicht.twinkly.service.TwinklyService
 import de.visualdigits.klanglicht.yamahaavantage.service.YamahaAvantageService
+import de.visualdigits.kotlin.twinkly.model.device.xmusic.moods.Moods
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
 
@@ -20,7 +23,8 @@ class ScenesService(
     private val shellyService: ShellyService,
     private val lightmanagerService: LightmanagerService,
     private val hybridStageService: HybridStageService,
-    private val yamahaAvantageService: YamahaAvantageService
+    private val yamahaAvantageService: YamahaAvantageService,
+    private val twinklyService: TwinklyService
 ) {
 
     private val log = LoggerFactory.getLogger(javaClass)
@@ -37,10 +41,11 @@ class ScenesService(
                         scene.actions.forEach { action ->
                             log.info("  Executing action '$action'...")
                             when (action) {
-                                is LMActionLmAir ->  lmair(action.sceneIndex?:-1)
+                                is LMActionAir ->  lmair(action.sceneIndex?:-1)
                                 is LMActionShelly -> shelly(action.ids, action.turnOn == true)
                                 is LMActionHybrid -> hybrid(action.ids, action.hexColors, action.gains, sceneName)
-                                is LMActionLmYamahaAvantage -> yamahaAvantage(action.command?:"", action.program?:"", action.enable == true)
+                                is LMActionYamahaAvantage -> yamahaAvantage(action.command?:"", action.program?:"", action.enable == true)
+                                is LMActionTwinkly -> twinkly(action.command, action.moodsIndex, action.effectIndex)
                                 is LMActionPause -> action.duration?.also { Thread.sleep(it) }
                                 else -> log.warn("  Unsupported action '${action.javaClass}'")
                             }
@@ -97,6 +102,16 @@ class ScenesService(
         when (command) {
             "surroundProgram" -> yamahaAvantageService.setSurroundProgram(program = program)
             "setPureDirect" -> yamahaAvantageService.setPureDirect(enable = enable)
+        }
+    }
+
+    fun twinkly(command: String, moodsIndex: Int, effectIndex: Int) {
+        when (command) {
+            "on" -> twinklyService.on()
+            "off" -> twinklyService.off()
+            "musicOn" -> twinklyService.musicOn()
+            "musicOff" -> twinklyService.musicOff()
+            "moodsEffect" -> Moods.fromIndex(moodsIndex)?.effectFromIndex(effectIndex)?.also { me -> twinklyService.moodsEffect(me) }
         }
     }
 }

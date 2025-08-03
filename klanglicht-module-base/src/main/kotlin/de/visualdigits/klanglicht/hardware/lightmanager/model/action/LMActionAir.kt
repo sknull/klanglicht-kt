@@ -1,6 +1,6 @@
 package de.visualdigits.klanglicht.hardware.lightmanager.model.action
 
-class LMActionLmAir(
+class LMActionAir(
     val comment: String? = null,
     val sceneIndex: Int? = null,
 ) : LMAction() {

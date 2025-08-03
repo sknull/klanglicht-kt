@@ -10,7 +10,7 @@ class StageTest {
 
     @Test
     fun testReadStage() {
-        val stage = Stage.readValue(File(ClassLoader.getSystemResource(".klanglicht/resources/stage.json").toURI()))
+        val stage = Stage.readValue(File("C:/Users/sknul/.klanglicht/resources/stage.json"))
         println(stage)
     }
 }

@@ -14,8 +14,8 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo
     Type(name = "shelly", value = LMActionShelly::class),
     Type(name = "ir", value = LMActionIR::class),
     Type(name = "hybrid", value = LMActionHybrid::class),
-    Type(name = "yamahaAvantage", value = LMActionLmYamahaAvantage::class),
-    Type(name = "lmair", value = LMActionLmAir::class),
+    Type(name = "yamahaAvantage", value = LMActionYamahaAvantage::class),
+    Type(name = "lmair", value = LMActionAir::class),
 )
 abstract class LMAction {
 

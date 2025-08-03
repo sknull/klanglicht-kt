@@ -18,15 +18,29 @@ class Devices(
 
     val shellyMap: Map<String, ShellyDevice> = shelly.associateBy { it.name }
 
-    val twinklyMap: Map<String, TwinklyConfiguration> = twinkly.associate { Pair(it.name, it) }
+    val twinklyMap: Map<String, TwinklyConfiguration> = twinkly.associate { tc -> Pair(tc.name?:error("No device name"), tc) }
+    val xledArrays: Map<String, XledArray>
+    val xledDevices: Map<String, XLedDevice>
 
-    val stageMap: Map<String, HybridDevice> =  stage
-        .filter { it.type != HybridDeviceType.twinkly || twinklyMap[it.id]?.xledArray?.isLoggedIn() == true }
-        .associateBy { it.id }
-
-    val xledArrays: Map<String, XledArray> = twinkly.associate { config -> Pair(config.name, config.xledArray) }
-    val xledDevices = twinkly.flatMap { tc -> tc.array.flatMap { a -> a.toList() }.toList() }.associate { tc -> Pair(tc.name,
-        XLedDevice(tc.ipAddress, tc.width, tc.height)) }
+    val stageMap: Map<String, HybridDevice>
 
     val colorWheelMap: Map<String, ColorWheel> = colorWheels.associate { cw -> Pair(cw.id, cw) }
+
+    init {
+        val discoveredDevices = XLedDevice.discoverTwinklyDevices()
+        if (discoveredDevices.isNotEmpty()) {
+            twinkly.forEach { td -> td.initialize(discoveredDevices) }
+        }
+        stageMap = stage
+            .filter { it.type != HybridDeviceType.twinkly || twinklyMap[it.id]?.xledArray?.isLoggedIn() == true }
+            .associateBy { it.id }
+        xledArrays = twinklyMap
+            .map { (name, config) ->
+                Pair(name, config.xledArray)
+            }.toMap()
+        xledDevices = twinklyMap.values
+            .flatMap { tc ->
+                tc.xledDeviceMap.toList()
+            }.toMap()
+    }
 }
