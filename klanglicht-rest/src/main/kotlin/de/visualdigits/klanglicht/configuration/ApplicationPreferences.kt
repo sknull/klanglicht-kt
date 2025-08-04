@@ -7,7 +7,6 @@ import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMSceneType
 import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMScenes
 import de.visualdigits.klanglicht.model.hybrid.HybridScene
 import de.visualdigits.klanglicht.model.preferences.Stage
-import de.visualdigits.kotlin.twinkly.model.device.xmusic.XMusic
 import de.visualdigits.kotlin.twinkly.model.device.xmusic.moods.Moods
 import de.visualdigits.kotlin.twinkly.model.parameter.Fadeable
 import jakarta.annotation.PostConstruct
@@ -82,38 +81,44 @@ class ApplicationPreferences {
     @OptIn(ExperimentalStdlibApi::class)
     fun loadScenes(): LMScenes {
         val scenes = LMScenes.readValue(Paths.get(klanglichtDirectory.canonicalPath, "resources", "scenes.json").toFile())
-        val xledMusic = stage?.devices?.xledArrays?.values
-            ?.find { xd -> (xd.xLedDevices.firstOrNull()?.firstOrNull() ?: Any())::class == XMusic::class }
-        if (xledMusic != null) {
+        if (stage?.devices?.discoveredDevices?.isNotEmpty() == true) {
             val moodScenes = mutableListOf<LMScene>()
-            moodScenes.add(LMScene(
-                name = "On",
-                color = listOf("#ffffff"),
-                type = LMSceneType.custom,
-                initialize = false,
-                actions = listOf(LMActionTwinkly("on"))
-            ))
-            moodScenes.add(LMScene(
-                name = "Off",
-                color = listOf("#000000"),
-                type = LMSceneType.custom,
-                initialize = false,
-                actions = listOf(LMActionTwinkly("off"))
-            ))
-            moodScenes.add(LMScene(
-                name = "Music On",
-                color = listOf("#ffffff"),
-                type = LMSceneType.custom,
-                initialize = false,
-                actions = listOf(LMActionTwinkly("musicOn"))
-            ))
-            moodScenes.add(LMScene(
-                name = "Music Off",
-                color = listOf("#000000"),
-                type = LMSceneType.custom,
-                initialize = false,
-                actions = listOf(LMActionTwinkly("musicOff"))
-            ))
+            moodScenes.add(
+                LMScene(
+                    name = "On",
+                    color = listOf("#ffffff"),
+                    type = LMSceneType.custom,
+                    initialize = false,
+                    actions = listOf(LMActionTwinkly("on"))
+                )
+            )
+            moodScenes.add(
+                LMScene(
+                    name = "Off",
+                    color = listOf("#000000"),
+                    type = LMSceneType.custom,
+                    initialize = false,
+                    actions = listOf(LMActionTwinkly("off"))
+                )
+            )
+            moodScenes.add(
+                LMScene(
+                    name = "Music On",
+                    color = listOf("#ffffff"),
+                    type = LMSceneType.custom,
+                    initialize = false,
+                    actions = listOf(LMActionTwinkly("musicOn"))
+                )
+            )
+            moodScenes.add(
+                LMScene(
+                    name = "Music Off",
+                    color = listOf("#000000"),
+                    type = LMSceneType.custom,
+                    initialize = false,
+                    actions = listOf(LMActionTwinkly("musicOff"))
+                )
+            )
             moodScenes.addAll(
                 Moods.entries.flatMap { mood ->
                     mood.effects.values.map { effect ->
@@ -122,11 +127,13 @@ class ApplicationPreferences {
                             color = listOf(mood.color),
                             type = LMSceneType.custom,
                             initialize = false,
-                            actions = listOf(LMActionTwinkly(
-                                command = "moodsEffect",
-                                moodsIndex = mood.index,
-                                effectIndex = effect.index
-                            ))
+                            actions = listOf(
+                                LMActionTwinkly(
+                                    command = "moodsEffect",
+                                    moodsIndex = mood.index,
+                                    effectIndex = effect.index
+                                )
+                            )
                         )
                     }
                 }
