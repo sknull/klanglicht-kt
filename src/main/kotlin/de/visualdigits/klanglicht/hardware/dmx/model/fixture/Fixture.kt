@@ -27,7 +27,7 @@ class Fixture(
         fun load(klanglichtDir: File, fixtureName: String): Fixture {
             val fn = if (fixtureName.endsWith(".json")) fixtureName else "$fixtureName.json"
             return jacksonMapperBuilder().build().readValue(
-                Paths.get(klanglichtDir.canonicalPath, "fixtures", fn).toFile(),
+                Paths.get(klanglichtDir.canonicalPath, "resources", "fixtures", fn).toFile(),
                 Fixture::class.java
             )
         }
@@ -38,6 +38,40 @@ class Fixture(
      */
     fun channelsForMode(mode: String): List<Channel> = channels[mode] ?: listOf()
 
+
+    /**
+     * Returns whether the fixture has a pano parameter or not.
+     */
+    fun isRgbw(): Boolean = channelsForCurrentMode.containsKey("Red") &&
+            channelsForCurrentMode.containsKey("Green") &&
+            channelsForCurrentMode.containsKey("Blue") &&
+            channelsForCurrentMode.containsKey("White")
+
+    /**
+     * Returns whether the fixture has a pano parameter or not.
+     */
+    fun isRgba(): Boolean = channelsForCurrentMode.containsKey("Red") &&
+            channelsForCurrentMode.containsKey("Green") &&
+            channelsForCurrentMode.containsKey("Blue") &&
+            channelsForCurrentMode.containsKey("Amber")
+
+    /**
+     * Returns whether the fixture has a pano parameter or not.
+     */
+    fun isRgbwa(): Boolean = channelsForCurrentMode.containsKey("Red") &&
+            channelsForCurrentMode.containsKey("Green") &&
+            channelsForCurrentMode.containsKey("Blue") &&
+            channelsForCurrentMode.containsKey("White") &&
+            channelsForCurrentMode.containsKey("Amber")
+
+    /**
+     * Returns whether the fixture has a pano parameter or not.
+     */
+    fun isRgb(): Boolean = channelsForCurrentMode.containsKey("Red") &&
+            channelsForCurrentMode.containsKey("Green") &&
+            channelsForCurrentMode.containsKey("Blue") &&
+            !channelsForCurrentMode.containsKey("White") &&
+            !channelsForCurrentMode.containsKey("Amber")
 
     /**
      * Returns whether the fixture has a pano parameter or not.

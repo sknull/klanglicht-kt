@@ -2,7 +2,9 @@ package de.visualdigits.klanglicht.hardware.dmx.model.parameter
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import de.visualdigits.kotlin.twinkly.model.color.BlendMode
+import de.visualdigits.kotlin.twinkly.model.color.RGBAColor
 import de.visualdigits.kotlin.twinkly.model.color.RGBColor
+import de.visualdigits.kotlin.twinkly.model.color.RGBWColor
 import de.visualdigits.kotlin.twinkly.model.parameter.Fadeable
 import de.visualdigits.kotlin.twinkly.model.parameter.Parameter
 import org.slf4j.Logger
@@ -56,6 +58,14 @@ class ParameterSet(
     }
 
     override fun toRgbColor(): RGBColor = parameters.filterIsInstance<RGBColor>().firstOrNull()?: RGBColor(0,0,0)
+
+    override fun toRgbwColor(): RGBWColor {
+        return RGBWColor(0,0,0, 0)
+    }
+
+    override fun toRgbaColor(): RGBAColor {
+        return RGBAColor(0,0,0, 0)
+    }
 
     override fun setRgbColor(rgbColor: RGBColor) {
         toRgbColor().setRgbColor(rgbColor)

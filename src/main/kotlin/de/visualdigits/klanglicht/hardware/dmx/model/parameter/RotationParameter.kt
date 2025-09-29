@@ -2,7 +2,9 @@ package de.visualdigits.klanglicht.hardware.dmx.model.parameter
 
 import de.visualdigits.klanglicht.hardware.dmx.model.fixture.Fixture
 import de.visualdigits.kotlin.twinkly.model.color.BlendMode
+import de.visualdigits.kotlin.twinkly.model.color.RGBAColor
 import de.visualdigits.kotlin.twinkly.model.color.RGBColor
+import de.visualdigits.kotlin.twinkly.model.color.RGBWColor
 import de.visualdigits.kotlin.twinkly.model.parameter.Parameter
 import kotlin.math.asin
 import kotlin.math.atan2
@@ -61,5 +63,13 @@ class RotationParameter(
 
     override fun toRgbColor(): RGBColor {
         return RGBColor(0,0,0)
+    }
+
+    override fun toRgbwColor(): RGBWColor {
+        return RGBWColor(0,0,0, 0)
+    }
+
+    override fun toRgbaColor(): RGBAColor {
+        return RGBAColor(0,0,0, 0)
     }
 }

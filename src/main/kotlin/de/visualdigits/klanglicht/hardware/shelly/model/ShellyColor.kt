@@ -2,7 +2,9 @@ package de.visualdigits.klanglicht.hardware.shelly.model
 
 import de.visualdigits.klanglicht.hardware.shelly.model.status.Light
 import de.visualdigits.kotlin.twinkly.model.color.BlendMode
+import de.visualdigits.kotlin.twinkly.model.color.RGBAColor
 import de.visualdigits.kotlin.twinkly.model.color.RGBColor
+import de.visualdigits.kotlin.twinkly.model.color.RGBWColor
 import de.visualdigits.kotlin.twinkly.model.parameter.Fadeable
 import de.visualdigits.kotlin.util.get
 import org.slf4j.Logger
@@ -45,6 +47,10 @@ class ShellyColor(
     }
 
     override fun toRgbColor(): RGBColor = color.clone()
+
+    override fun toRgbwColor(): RGBWColor = toRgbColor().toRgbwColor()
+
+    override fun toRgbaColor(): RGBAColor = toRgbColor().toRgbaColor()
 
     override fun setRgbColor(rgbColor: RGBColor) {
         color = rgbColor.clone()

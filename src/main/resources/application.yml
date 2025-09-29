@@ -4,5 +4,15 @@ spring:
   config:
     import: file:${user.home}/.klanglicht/resources/application.yml
 
+management:
+  endpoint:
+    shutdown:
+      enabled: true
+      access: unrestricted
+  endpoints:
+    web:
+      exposure:
+        include: "health,shutdown"
+
 application:
   klanglichtDirectory: file:${user.home}/.klanglicht

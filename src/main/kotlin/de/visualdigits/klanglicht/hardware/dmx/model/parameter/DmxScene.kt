@@ -3,7 +3,9 @@ package de.visualdigits.klanglicht.hardware.dmx.model.parameter
 import com.fasterxml.jackson.module.kotlin.jacksonMapperBuilder
 import de.visualdigits.klanglicht.hardware.dmx.model.Dmx
 import de.visualdigits.kotlin.twinkly.model.color.BlendMode
+import de.visualdigits.kotlin.twinkly.model.color.RGBAColor
 import de.visualdigits.kotlin.twinkly.model.color.RGBColor
+import de.visualdigits.kotlin.twinkly.model.color.RGBWColor
 import de.visualdigits.kotlin.twinkly.model.parameter.Fadeable
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -74,5 +76,13 @@ class DmxScene(
 
     override fun toRgbColor(): RGBColor {
         return RGBColor(0,0,0)
+    }
+
+    override fun toRgbwColor(): RGBWColor {
+        return RGBWColor(0,0,0, 0)
+    }
+
+    override fun toRgbaColor(): RGBAColor {
+        return RGBAColor(0,0,0, 0)
     }
 }

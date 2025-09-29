@@ -183,7 +183,7 @@ class ApplicationPreferences {
     }
 
     fun getAbsoluteResource(relativeResourePath: String): File {
-        return Paths.get(klanglichtDirectory.absolutePath, "resources", relativeResourePath).toFile()
+        return Paths.get(klanglichtDirectory.canonicalPath, "resources", relativeResourePath).toFile()
     }
 
     fun getFadeable(id: String): Fadeable<*>? {
