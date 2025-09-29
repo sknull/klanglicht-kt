@@ -18,61 +18,67 @@ using a DMX interface.
 
 After researching about possible interfaces I decided for the Eurolite DMX Pro 512 for which I was able to find some information about it's link:/resources/hardware/Eurolite_USB-DMX512-PRO_serial-protocol_discussion-thread.pdf[serial protocol].
 
-Another challenge was to find a reliable serial port library which is also available on other platforms as Windows which I use to develop the software. Here I decided for the fazecast jSerialComm library which also is playing well on the raspberry pi mini computers (which was mandatory as I wanted to set up a little raspy applicance lighting in the living room).
-
 After playing around a bit a first prototype was implemented which was able to fade in a color from black and vice versa (wow!).
-
-In the meantime (and about four years later) the project went through different stages ranging from kind of modular approach to pure chaos messing up UI code with logic.
-In between the UI was also capable of reading and playing time code. But this turned out
-not to be reliable enough to use it in production environments so I tossed it.
-
-The current flavor of the project which you have in front of you now has a layered approach which strictly separates the technical stuff needed to talk with the DMX interface from the client code. The interface to the outside world such as a JAva-FX UI which still exists and a web interface which is not fully implemented yet is the REST module.
-With this approach it is possible to run the server component in form a little shaded jar on a mini computer such as the raspberry pi while running a complex user interface elsewhere.
-
-This is a complete rewrite in kotlin as I no longer want to write java code.
-To make my life easier a bit and because I only have access to one DMX interface which I anaged to find documentation for, I have
-boiled down everything to be dedicated to this which is the Eurolite DMX 512 Pro.
 
 A printout of the thread with those golden informations which kick started me once back and the original hardware manual are attached to this project
 
 * link:docs/hardware/eurolite/Eurolite_USB-DMX512-PRO_serial-protocol_discussion-thread.pdf[Discussion Thread (German)]
 * link:docs/hardware/eurolite/Eurolite_USB-DMX512_PRO_manual_german.pdf[Manual (German)]
 
-== Current State
+As the lightmanager is an abandoned piece of hardware now I started to get rid of the most functionality.
+All sequences formerly handled by the lightmanager are now controlled by the klanglicht server.
+This is also true for all shelly, dmx and video receiver operations (such as sound programs, etc.).
+State is handled within the lightmaneger so I could also get rid of all the markers formerly used in the
+lightmanager.
+Finally the lightmanager now acts only as an interface between my harmony remote and the klanglicht server.
 
-My home setup consists of
-
-- video receiver (currently a Yamaha RX-V6A)
-- 5.1.2 loudspeaker system
-* front, center and surround: Magnat Monitor Supreme series
-* upper surround for Atmos: Yamaha
-- 4k bluray player (Sony), a harmony hub along with a Harmony
-- Technics CD Player (still running after 30 years in operation)
-- Telekom Magenta Tv stick
-- 75" flat screen by LG
-- Harmony Elite universal remote with a hub
-- Some DMX fixtures
-- Some RGB Led Stripes controlled by shelly devices
-- Some House lighting also controlled by shelly devices
-- An Idual RGB light used as the default back light of my TV set
-- Finally a raspberry pi 3b running the klanglicht application
-- Lightmanager Air as the central control of all this
-
-The setup of the lightmanager contains also configurations for my DMX lighting setup behind the Hifi rack.
-AS the UI is not allowing special things like color previews for buttons I came up with a special naming convention for the comments which is then scraped out from reading the HTML markup of the lightmanagers UI.
-
-Over time the collection of light scenes grew and grew which makes maintaining this within the lightmanager pretty uncomfortable.
-
-As I have implemented handlers in this project to control
+Hardware handlers implemented so far in this project:
 
 - Shelly devices
+- DMX devices
 - Lightmanager Air scenes
 - Sound programs of my Yamaha receiver
+- Twinkly devices (developed in a link:https://github.com/sknull/twinkly-kt[side project]) also in kotlin - still work in progress
 
-The only thing not controllable directly is the one Idual back light.
+The only things not controllable directly is the one Idual back light and the Grundig stripes. For the latter I teached the IR codes into the lightmanager.
 
-So my current idea is to move away from scraping all the configuration out of the Lightmanager and building a control web page out of it.
+Currently I am working on integrating the twinkly devices in my setup. So far i am able to control single led's in those devices and can show images and slide shows. So those could be used later as decorative elements.
 
-Instead I want to have a local configuration (still not decided if this will be a little database or just a json file) within the server and generate a control webpage from that.
+== My Equipment
 
-Of course the lightmanager is still needed to act as the interface between the Harmony and the rasp berry pi. But with this setup the amount of scenes in the light manager should be reduced drastically.
+=== HiFi
+
+- video receiver Yamaha RX-V6A
+- 7.1.2 loudspeaker system
+* front, center and surround: Magnat Monitor Supreme series
+* upper surround for Atmos: Yamaha
+- 4k bluray player (Sony)
+- Technics CD Player (still running after 30 years in operation)
+
+=== TV
+
+- 75" flat screen by LG
+- Telekom Magenta Tv stick
+- Amazon Fire TV (now used as the main player device with a sideloaded Kodi which is configured to access my media library on the NAS)
+
+=== Remote Controls
+
+- Harmony Elite universal remote with a hub
+- Lightmanager Air as the central control of all this
+
+=== NAS
+
+- Qnap TS-233 NAS with 2 x 10TB hard discs
+
+=== Lighting
+
+- Some DMX fixtures
+- Some RGB Led Stripes controlled by shelly RGBW devices
+- Two Grundig RGB lightstrips which are controlled via IR
+- Some lighting in my home is also controlled by shelly devices
+- An Idual RGB light used as the default back light of my TV set
+- Four twinkly curtain and one twinkly matrix
+
+=== Server
+
+- Raspberry pi 3b with the eurolite DMX interface attached running the klanglicht application

@@ -22,15 +22,12 @@
 
     <kotlin.code.style>official</kotlin.code.style>
 
-    <version.jackson>2.16.2</version.jackson>
+    <version.twinkly>0.0.5-SNAPSHOT</version.twinkly>
+
     <version.kotlin.maven>2.2.0</version.kotlin.maven>
     <version.kotlin.language>2.2</version.kotlin.language>
     <version.spring-boot>3.3.2</version.spring-boot>
-    <version.log4j>1.2.17</version.log4j>
-    <version.slf4j>2.0.5</version.slf4j>
     <version.junit.jupiter>5.10.2</version.junit.jupiter>
-    <version.acme4j-client>2.16</version.acme4j-client>
-    <version.twinkly>0.0.5-SNAPSHOT</version.twinkly>
   </properties>
 
   <distributionManagement>
@@ -92,28 +89,28 @@
     <dependency>
       <groupId>org.apache.tika</groupId>
       <artifactId>tika-core</artifactId>
-      <version>2.8.0</version>
+      <version>2.9.1</version>
     </dependency>
 
     <!-- serial port -->
     <dependency>
       <groupId>io.github.java-native</groupId>
       <artifactId>jssc</artifactId>
-      <version>2.9.4</version>
+      <version>2.10.2</version>
     </dependency>
 
     <!-- html -->
     <dependency>
       <groupId>org.jsoup</groupId>
       <artifactId>jsoup</artifactId>
-      <version>1.16.1</version>
+      <version>1.18.1</version>
     </dependency>
 
     <!-- jackson -->
     <dependency>
       <groupId>com.fasterxml.jackson.dataformat</groupId>
       <artifactId>jackson-dataformat-yaml</artifactId>
-      <version>2.16.1</version>
+      <version>2.17.1</version>
     </dependency>
 
     <!-- commons -->

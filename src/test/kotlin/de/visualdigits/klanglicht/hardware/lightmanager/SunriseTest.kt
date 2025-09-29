@@ -15,5 +15,6 @@ class SunriseTest {
         println(sunTimes.rise)
         println(sunTimes.noon)
         println(sunTimes.set)
+        println(sunTimes.nadir)
     }
 }
