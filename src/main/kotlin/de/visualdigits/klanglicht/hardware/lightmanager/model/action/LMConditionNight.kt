@@ -1,7 +1,7 @@
 package de.visualdigits.klanglicht.hardware.lightmanager.model.action
 
-import de.visualdigits.klanglicht.model.preferences.Stage
-import de.visualdigits.klanglicht.util.SolarTime
+import de.visualdigits.klanglicht.configuration.model.Stage
+import de.visualdigits.klanglicht.solartime.SolarTime
 import java.time.ZonedDateTime
 
 class LMConditionNight(

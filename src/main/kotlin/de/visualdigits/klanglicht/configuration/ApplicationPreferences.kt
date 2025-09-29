@@ -1,12 +1,12 @@
 package de.visualdigits.klanglicht.configuration
 
+import de.visualdigits.klanglicht.configuration.model.Stage
+import de.visualdigits.klanglicht.hardware.hybrid.model.HybridScene
 import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMActionTwinkly
 import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMScene
 import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMSceneGroup
 import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMSceneType
 import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMScenes
-import de.visualdigits.klanglicht.model.hybrid.HybridScene
-import de.visualdigits.klanglicht.model.preferences.Stage
 import de.visualdigits.kotlin.twinkly.model.device.xmusic.moods.Moods
 import de.visualdigits.kotlin.twinkly.model.parameter.Fadeable
 import jakarta.annotation.PostConstruct

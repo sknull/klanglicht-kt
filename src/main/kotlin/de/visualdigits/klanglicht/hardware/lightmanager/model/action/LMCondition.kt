@@ -3,7 +3,7 @@ package de.visualdigits.klanglicht.hardware.lightmanager.model.action
 import com.fasterxml.jackson.annotation.JsonSubTypes
 import com.fasterxml.jackson.annotation.JsonSubTypes.Type
 import com.fasterxml.jackson.annotation.JsonTypeInfo
-import de.visualdigits.klanglicht.model.preferences.Stage
+import de.visualdigits.klanglicht.configuration.model.Stage
 
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,

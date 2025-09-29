@@ -7,9 +7,11 @@
 :toc-title: Inhalt
 :toclevels: 10
 
-== History and current state of the project (April 2023)
+== Status
 
-=== History
+https://github.com/sknull/klanglicht-kt/actions/workflows/github-ci.yml[image:https://github.com/sknull/klanglicht-kt/actions/workflows/github-ci.yml/badge.svg[Klanglicht Kt]]
+
+== History
 
 This project started as a simple proof of concept if it would be possible to get some simple RGB light working
 using a DMX interface.

@@ -1,7 +1,7 @@
 package de.visualdigits.klanglicht.hardware.shelly
 
 import de.visualdigits.klanglicht.hardware.shelly.model.ShellyColor
-import de.visualdigits.klanglicht.model.preferences.Stage
+import de.visualdigits.klanglicht.configuration.model.Stage
 import de.visualdigits.kotlin.twinkly.model.color.RGBColor
 import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test

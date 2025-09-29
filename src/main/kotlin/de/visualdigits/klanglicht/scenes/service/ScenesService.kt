@@ -1,6 +1,7 @@
 package de.visualdigits.klanglicht.scenes.service
 
 import de.visualdigits.klanglicht.configuration.ApplicationPreferences
+import de.visualdigits.klanglicht.hardware.hybrid.service.HybridStageService
 import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMAction
 import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMActionAir
 import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMActionHybrid
@@ -9,11 +10,10 @@ import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMActionShe
 import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMActionTwinkly
 import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMActionYamahaAvantage
 import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMScene
-import de.visualdigits.klanglicht.hybrid.service.HybridStageService
-import de.visualdigits.klanglicht.lightmanager.service.LightmanagerService
-import de.visualdigits.klanglicht.shelly.service.ShellyService
-import de.visualdigits.klanglicht.twinkly.service.TwinklyService
-import de.visualdigits.klanglicht.yamahaavantage.service.YamahaAvantageService
+import de.visualdigits.klanglicht.hardware.lightmanager.service.LightmanagerService
+import de.visualdigits.klanglicht.hardware.shelly.service.ShellyService
+import de.visualdigits.klanglicht.hardware.twinkly.service.TwinklyService
+import de.visualdigits.klanglicht.hardware.yamahaavantage.service.YamahaAvantageService
 import de.visualdigits.kotlin.twinkly.model.device.xmusic.moods.Moods
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service

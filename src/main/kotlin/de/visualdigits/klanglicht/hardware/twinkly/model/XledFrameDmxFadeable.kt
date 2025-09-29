@@ -1,6 +1,6 @@
 package de.visualdigits.klanglicht.hardware.twinkly.model
 
-import de.visualdigits.klanglicht.model.preferences.Stage
+import de.visualdigits.klanglicht.configuration.model.Stage
 import de.visualdigits.kotlin.twinkly.model.color.BlendMode
 import de.visualdigits.kotlin.twinkly.model.color.RGBColor
 import de.visualdigits.kotlin.twinkly.model.parameter.Fadeable
