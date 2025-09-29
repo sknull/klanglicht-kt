@@ -1,8 +1,0 @@
-spring:
-  profiles:
-    active: local
-  config:
-    import: file:${user.home}/.klanglicht/resources/application.yml
-
-application:
-  klanglichtDirectory: file:${user.home}/.klanglicht
