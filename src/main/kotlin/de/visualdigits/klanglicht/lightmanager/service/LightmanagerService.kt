@@ -1,0 +1,140 @@
+package de.visualdigits.klanglicht.lightmanager.service
+
+import de.visualdigits.klanglicht.configuration.ApplicationPreferences
+import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMMarker
+import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMMarkers
+import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMParams
+import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMScene
+import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMScenes
+import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMZones
+import org.jsoup.Jsoup
+import org.springframework.beans.factory.annotation.Qualifier
+import org.springframework.stereotype.Service
+import org.springframework.web.reactive.function.client.WebClient
+
+@Service
+class LightmanagerService(
+    prefs: ApplicationPreferences,
+    @Qualifier("webClientLightmanager") private val webClientLightmanager: WebClient,
+) {
+
+    companion object {
+        const val COLOR_ON = "#FF7676"
+        const val COLOR_OFF = "#91FFAA"
+    }
+
+    private var urlLightmanager: String = prefs.stage?.getService("lmair")?.url?:""
+
+    fun params(): LMParams? {
+        return webClientLightmanager
+            .get()
+            .uri("/params.json")
+            .retrieve()
+            .bodyToMono(LMParams::class.java)
+            .block()
+    }
+
+    fun zones(): LMZones {
+        val markers: LMMarkers = markers()
+        val document = html()?.let { Jsoup.parse(it) }
+        val setUpName = document
+            ?.select("div[id=mytitle]")
+            ?.firstOrNull()
+            ?.text()
+            ?:""
+        val zones = LMZones(setUpName, urlLightmanager)
+        document
+            ?.select("div[class=bigBlock]")
+            ?.forEach { zoneElem -> zones.add(markers, zoneElem) }
+        return zones
+    }
+
+    fun knownActors(): Map<Int, String> {
+        val actors: MutableMap<Int, String> = mutableMapOf()
+        val zones: LMZones = zones()
+        zones.zones.forEach { zone ->
+            zone.actors.forEach { actor ->
+                actors[actor.id!!] = actor.name!!
+            }
+        }
+        return actors
+    }
+
+    fun scenes(): LMScenes {
+        val document = html()?.let { Jsoup.parse(it) }
+        val setupName = document
+            ?.select("div[id=mytitle]")
+            ?.firstOrNull()
+            ?.text()
+            ?:""
+        val scenes = LMScenes(setupName)
+        document
+            ?.select("div[id=scenes]")
+            ?.firstOrNull()
+            ?.select("div[class=sbElement]")
+            ?.forEach { elem ->
+                scenes.add(LMScene(name = elem.child(0).text()))
+            }
+        return scenes
+    }
+
+    fun markers(): LMMarkers {
+        val markerState = params()?.markerState
+        val document = html()?.let { Jsoup.parse(it) }
+        val setupName = document
+            ?.select("div[id=mytitle]")
+            ?.firstOrNull()
+            ?.text()
+            ?:""
+        val markers = LMMarkers(name = setupName)
+        document
+            ?.select("div[id=marker]")
+            ?.firstOrNull()
+            ?.select("div[class=mk mtouch]")
+            ?.forEach { elem ->
+                val colorOff: String = elem.attr("data-coff")
+                val colorOn: String = elem.attr("data-con")
+                val id: Int = elem.attr("id").substring(1).toInt()
+                markers.add(
+                    LMMarker(
+                        id = id,
+                        name = elem.text(),
+                        colorOff = colorOff.ifEmpty { COLOR_OFF },
+                        colorOn = colorOn.ifEmpty { COLOR_ON },
+                        state = markerState?.get(id),
+                        separate = false,
+                        actorId = "",
+                        markerState = ""
+                    )
+                )
+            }
+        return markers
+    }
+
+    fun controlScene(sceneId: Int): String? {
+        return webClientLightmanager
+            .post()
+            .uri("/control?key=$sceneId")
+            .retrieve()
+            .bodyToMono(String::class.java)
+            .block()
+    }
+
+    fun controlIndex(index: Int?): String? {
+        return webClientLightmanager
+            .post()
+            .uri("/control?scene=$index")
+            .retrieve()
+            .bodyToMono(String::class.java)
+            .block()
+    }
+
+    fun html(): String? {
+        return webClientLightmanager
+            .get()
+            .uri("/")
+            .retrieve()
+            .bodyToMono(String::class.java)
+            .block()
+    }
+}
