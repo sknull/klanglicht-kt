@@ -7,6 +7,7 @@ import de.visualdigits.klanglicht.hardware.shelly.model.ShellyDevice
 import de.visualdigits.klanglicht.hardware.twinkly.model.TwinklyConfiguration
 import de.visualdigits.kotlin.twinkly.model.device.xled.XLed
 import de.visualdigits.kotlin.twinkly.model.device.xled.XLedArray
+import de.visualdigits.kotlin.twinkly.model.device.xled.XLedDevice
 import de.visualdigits.kotlin.twinkly.model.device.xmusic.XMusic
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -34,6 +35,9 @@ class Devices(
     var discoveredDevices: List<String> = listOf()
 
     init {
+        stageMap = stage
+            .filter { it.type != HybridDeviceType.twinkly || twinklyMap[it.id]?.xledArray?.isLoggedIn() == true }
+            .associateBy { it.id }
         refreshTwinklyDevices()
     }
 
@@ -42,9 +46,6 @@ class Devices(
         log.info("Discovered twinkly devices: $discoveredDevices")
         if (discoveredDevices.isNotEmpty()) {
             twinkly.forEach { td -> td.initialize(discoveredDevices) }
-            stageMap = stage
-                .filter { it.type != HybridDeviceType.twinkly || twinklyMap[it.id]?.xledArray?.isLoggedIn() == true }
-                .associateBy { it.id }
             xledArrays = twinklyMap
                 .map { (name, config) ->
                     Pair(name, config.xledArray)

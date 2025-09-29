@@ -32,11 +32,14 @@ class Dmx(
 
     fun initialize(klanglichtDirectory: File) {
         val dmxFixtures = Fixtures.load(klanglichtDirectory)
-        fixtures = devices.mapNotNull { stageFixture ->
-            dmxFixtures.getFixture(stageFixture.manufacturer, stageFixture.model)
+        fixtures = devices.mapNotNull { dmxDevice ->
+            dmxFixtures.getFixture(dmxDevice.manufacturer, dmxDevice.model)
                 ?.let { fixture ->
-                    stageFixture.fixture = fixture
-                    fixture.channelsForMode(stageFixture.mode).let { channels -> Pair(stageFixture.baseChannel, channels) }
+                    fixture.channelsForCurrentMode = fixture
+                        .channelsForMode(dmxDevice.mode)
+                        .associate { channel -> Pair(channel.name!!, channel) }
+                    dmxDevice.fixture = fixture
+                    Pair(dmxDevice.baseChannel, fixture.channelsForMode(dmxDevice.mode))
                 }
         }.toMap()
 

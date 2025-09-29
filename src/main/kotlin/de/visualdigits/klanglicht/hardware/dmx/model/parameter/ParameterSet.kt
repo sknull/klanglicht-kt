@@ -57,14 +57,25 @@ class ParameterSet(
         updateParameterMap()
     }
 
-    override fun toRgbColor(): RGBColor = parameters.filterIsInstance<RGBColor>().firstOrNull()?: RGBColor(0,0,0)
+    override fun toRgbColor(): RGBColor {
+        return parameters.filterIsInstance<RGBColor>().firstOrNull()
+            ?: parameters.filterIsInstance<RGBWColor>().firstOrNull()?.toRgbColor()
+            ?: parameters.filterIsInstance<RGBAColor>().firstOrNull()?.toRgbColor()
+            ?: RGBColor(parameterMap["Red"]?:0, parameterMap["Green"]?:0, parameterMap["Blue"]?:0)
+    }
 
     override fun toRgbwColor(): RGBWColor {
-        return RGBWColor(0,0,0, 0)
+        return parameters.filterIsInstance<RGBColor>().firstOrNull()?.toRgbwColor()
+            ?: parameters.filterIsInstance<RGBWColor>().firstOrNull()
+            ?: parameters.filterIsInstance<RGBAColor>().firstOrNull()?.toRgbwColor()
+            ?: RGBWColor(parameterMap["Red"]?:0, parameterMap["Green"]?:0, parameterMap["Blue"]?:0, parameterMap["White"]?:0)
     }
 
     override fun toRgbaColor(): RGBAColor {
-        return RGBAColor(0,0,0, 0)
+        return parameters.filterIsInstance<RGBColor>().firstOrNull()?.toRgbaColor()
+            ?: parameters.filterIsInstance<RGBWColor>().firstOrNull()?.toRgbaColor()
+            ?: parameters.filterIsInstance<RGBAColor>().firstOrNull()
+            ?: RGBAColor(parameterMap["Red"]?:0, parameterMap["Green"]?:0, parameterMap["Blue"]?:0, parameterMap["Amber"]?:0)
     }
 
     override fun setRgbColor(rgbColor: RGBColor) {

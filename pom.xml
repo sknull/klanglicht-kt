@@ -30,7 +30,7 @@
     <version.slf4j>2.0.5</version.slf4j>
     <version.junit.jupiter>5.10.2</version.junit.jupiter>
     <version.acme4j-client>2.16</version.acme4j-client>
-    <version.twinkly>0.0.4-SNAPSHOT</version.twinkly>
+    <version.twinkly>0.0.5-SNAPSHOT</version.twinkly>
   </properties>
 
   <distributionManagement>

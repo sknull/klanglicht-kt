@@ -3,6 +3,7 @@ package de.visualdigits.klanglicht.hardware.hybrid.service
 import de.visualdigits.klanglicht.configuration.ApplicationPreferences
 import de.visualdigits.klanglicht.hardware.hybrid.model.HybridScene
 import de.visualdigits.klanglicht.hardware.shelly.webclient.ShellyClient
+import jakarta.annotation.PreDestroy
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
@@ -13,6 +14,13 @@ class HybridStageService(
 ) {
 
     private val log: Logger = LoggerFactory.getLogger(javaClass)
+
+    @PreDestroy
+    fun tearDown() {
+        log.info("### Shutting down...")
+        hexColor("shutdown", hexColors = listOf("000000"), store = false)
+        prefs.stage?.devices?.dmx?.tearDownDmx()
+    }
 
     /**
      * Set hex colors.
@@ -37,12 +45,17 @@ class HybridStageService(
         storeName: String? = null
     ) {
         val currentScene = prefs.currentScene?.clone()
-        val nextScene = prefs.currentScene?.clone()?.let { n ->
-            HybridScene(prefs.stage!!, ids, hexColors, gains, turnOn.toString()).fadeableMap().forEach {
-                n.putFadeable(it.key, it.value)
+        val nextScene = prefs.currentScene?.clone()
+            ?.let { hybridScene ->
+                val hybridScene1 = HybridScene(prefs.stage!!, ids, hexColors, gains, turnOn.toString())
+                val fadeableMap = hybridScene1
+                    .fadeableMap()
+                fadeableMap
+                    .forEach {
+                        hybridScene.putFadeable(it.key, it.value)
+                    }
+                hybridScene
             }
-            n
-        }
         if (store) {
             storeScene(nextScene, hexColors, wheelId, storeName)
         }

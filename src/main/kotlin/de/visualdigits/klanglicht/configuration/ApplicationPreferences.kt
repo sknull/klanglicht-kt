@@ -10,7 +10,6 @@ import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMScenes
 import de.visualdigits.kotlin.twinkly.model.device.xmusic.moods.Moods
 import de.visualdigits.kotlin.twinkly.model.parameter.Fadeable
 import jakarta.annotation.PostConstruct
-import jakarta.annotation.PreDestroy
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Value
@@ -69,13 +68,6 @@ class ApplicationPreferences {
         log.info("##")
         log.info("#### setUp - end")
         log.info("")
-    }
-
-    @PreDestroy
-    fun tearDown() {
-        log.info("#### tearDown - start")
-        stage?.devices?.dmx?.tearDownDmx()
-        log.info("#### tearDown - end")
     }
 
     @OptIn(ExperimentalStdlibApi::class)

@@ -11,7 +11,7 @@ class Fixtures(
 
         fun load(klanglichtDir: File): Fixtures {
             if (fixtures == null) {
-                fixtures = Fixtures(Paths.get(klanglichtDir.canonicalPath, "fixtures").toFile()
+                fixtures = Fixtures(Paths.get(klanglichtDir.canonicalPath, "resources", "fixtures").toFile()
                         .listFiles()
                         ?.map { file -> Fixture.load(klanglichtDir, file.name) }
                         ?:listOf()
