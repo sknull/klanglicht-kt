@@ -28,7 +28,13 @@ class DmxScene(
     }
 
     override fun toString(): String {
-        return name
+        return parameterSet
+            .joinToString("") { it.toRgbColor().ansiColor() }
+            .trim() + " " + hex()
+    }
+
+    override fun hex(): String {
+        return "[" + parameterSet.joinToString(", ") { f -> f.hex() } + "]"
     }
 
     /**

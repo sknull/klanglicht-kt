@@ -24,6 +24,10 @@ class RotationParameter(
 
     private val RAD2DEG: Double = (180.0 / Math.PI)
 
+    override fun toString(): String = "$panDegrees/$tiltDegrees"
+
+    override fun hex(): String = ""
+
     override fun parameterMap(): Map<String, Int> =
         fixture.panoParameterSet(panDegrees).parameterMap + fixture.tiltParameterSet(tiltDegrees).parameterMap
 

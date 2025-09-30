@@ -26,7 +26,13 @@ class ParameterSet(
     }
 
     override fun toString(): String {
-        return parameters.filterIsInstance<RGBColor>().joinToString("") { it.ansiColor() }
+        return parameters
+            .joinToString("") { it.toRgbColor().ansiColor() }
+            .trim() + " " + hex()
+    }
+
+    override fun hex(): String {
+        return "[" + parameterMap.map { (k, v) -> "$k=${v.toHexString()}" } + "]"
     }
 
     override fun clone(): ParameterSet {

@@ -21,6 +21,10 @@ class IntParameter(
         } else error("Cannot not fade another type")
     }
 
+    override fun toString(): String = "$name=${hex()}"
+
+    override fun hex(): String = value.toHexString()
+
     override fun clone(): IntParameter {
         return IntParameter(name, value)
     }

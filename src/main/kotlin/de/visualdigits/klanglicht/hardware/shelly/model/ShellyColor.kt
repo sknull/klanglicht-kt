@@ -40,6 +40,10 @@ class ShellyColor(
 
     override fun getId(): String = deviceId
 
+    override fun hex(): String {
+        return color.hex()
+    }
+
     override fun getGain(): Double = deviceGain
 
     override fun setGain(gain: Double) {

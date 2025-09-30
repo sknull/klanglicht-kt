@@ -55,9 +55,11 @@ class HybridScene(
     override fun toString(): String {
         return fadeables.values
             .joinToString("") { it.toRgbColor().ansiColor() }
-            .trim() + " " +
-        fadeables.values
-            .map { it.toRgbColor().hex() }
+            .trim() + " " + hex()
+    }
+
+    override fun hex(): String {
+        return "[" + fadeables.values.joinToString(", ") { f -> f.hex() } + "]"
     }
 
     override fun clone(): HybridScene {
@@ -162,9 +164,9 @@ class HybridScene(
                                 val effectiveGain = gain ?: dmxDevice.gain
                                 val paramGain = (255 * effectiveGain).roundToInt()
                                 val color = if (dmxDevice.fixture?.isRgba() == true) {
-                                    RGBAColor(hexColor, true)
+                                    RGBAColor(hexColor, dmxDevice.normalizeMode)
                                 } else if (dmxDevice.fixture?.isRgbw() == true) {
-                                    RGBWColor(hexColor, true)
+                                    RGBWColor(hexColor, dmxDevice.normalizeMode)
                                 } else {
                                     RGBColor(hexColor)
                                 }

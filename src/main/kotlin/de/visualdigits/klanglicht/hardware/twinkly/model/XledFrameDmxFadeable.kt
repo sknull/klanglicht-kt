@@ -23,6 +23,14 @@ class XledFrameDmxFadeable(
         return xledFrame.toString()
     }
 
+    override fun hex(): String {
+        return "[\n" + (0 until xledFrame.height).joinToString(",\n") { y ->
+            "[" + (0 until xledFrame.width).joinToString(", ") { x ->
+                xledFrame.get(x, y).hex()
+            } + "]"
+        } + "\n]"
+    }
+
     override fun clone(): XledFrameDmxFadeable {
         return XledFrameDmxFadeable(deviceId, xledFrame.clone(), deviceGain, stage)
     }

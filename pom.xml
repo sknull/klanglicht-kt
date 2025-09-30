@@ -22,7 +22,7 @@
 
     <kotlin.code.style>official</kotlin.code.style>
 
-    <version.twinkly>0.0.5-SNAPSHOT</version.twinkly>
+    <version.twinkly>0.0.6-SNAPSHOT</version.twinkly>
 
     <version.kotlin.maven>2.2.0</version.kotlin.maven>
     <version.kotlin.language>2.2</version.kotlin.language>
