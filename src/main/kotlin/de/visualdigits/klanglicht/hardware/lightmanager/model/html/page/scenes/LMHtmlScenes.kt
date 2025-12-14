@@ -46,7 +46,7 @@ class LMHtmlScenes(
 
         sb.append("$sindent<div class=\"category\">\n")
         sb.append("$sindent  <span class=\"label\">").append("S C E N E S").append("</span>\n")
-        scenes.scenes.values.forEach { sceneGroup ->
+        scenes.scenes.forEach { sceneGroup ->
             val html = LMHtmlSceneGroup(prefs, sceneGroup).html(indent + 1)
             sb.append(html)
         }

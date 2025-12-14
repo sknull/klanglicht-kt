@@ -4,9 +4,10 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import de.visualdigits.kotlin.twinkly.model.color.BlendMode
 import de.visualdigits.kotlin.twinkly.model.color.RGBColor
 
-@JsonIgnoreProperties("initialize")
+@JsonIgnoreProperties("initialize", "groupName")
 class LMScene(
     val name: String,
+    var groupName: String = "",
     var color: List<String> = listOf(),
     val type: LMSceneType = LMSceneType.custom,
     val steps: Int = 0, // only relevant for gradients

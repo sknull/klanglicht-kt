@@ -13,18 +13,18 @@ class LMHtmlScene(
 ) : LMHtml {
 
     override fun html(indent: Int): String {
-        val label = if (scene.name.lowercase().startsWith(sceneGroup.name.lowercase())) {
+        val label = if (scene.name.startsWith(sceneGroup.name, ignoreCase = true)) {
             scene.name.substring(sceneGroup.name.length).trim { it <= ' ' }
         } else scene.name
         var html = LMHtmlButton(
             label = label,
-            href = "request('${prefs.baseUrl}:${prefs.port}/v1/scenes/json/control?name=${scene.name}')",
+            href = "request('${prefs.baseUrl}:${prefs.port}/v1/scenes/json/control?group=${sceneGroup.name}&scene=${scene.name}')",
             color = scene.color.joinToString(",")
         ).html(indent + 1)
         if (sceneGroup.name == "Custom") {
             html += LMHtmlButton(
                 label = "DEL",
-                href = "request('${prefs.baseUrl}:${prefs.port}/v1/scenes/json/delete?name=${scene.name}','DELETE')",
+                href = "request('${prefs.baseUrl}:${prefs.port}/v1/scenes/json/delete?scene=${scene.name}','DELETE')",
                 color = "",
                 square = true
             ).html(indent + 1)

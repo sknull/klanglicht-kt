@@ -22,25 +22,38 @@ class ScenesRestController(
     fun hybrid(): Set<String> = scenesService.sceneNames()
 
     @PostMapping("control")
-    fun controlPost(@RequestParam(value = "name") name: String) = scenesService.executeScene(name)
+    fun controlPost(
+        @RequestParam(value = "group") group: String,
+        @RequestParam(value = "scene") scene: String
+    ) = scenesService.executeScene(group, scene)
 
     @PutMapping("control")
-    fun controlPut(@RequestParam(value = "name") name: String) = scenesService.executeScene(name)
+    fun controlPut(
+        @RequestParam(value = "group") group: String,
+        @RequestParam(value = "scene") scene: String
+    ) = scenesService.executeScene(group, scene)
 
     @GetMapping("control")
-    fun controlGet(@RequestParam(value = "name") name: String) = scenesService.executeScene(name)
+    fun controlGet(
+        @RequestParam(value = "group") group: String,
+        @RequestParam(value = "scene") scene: String
+    ) = scenesService.executeScene(group, scene)
 
     @GetMapping("/save", produces = ["application/xhtml+xml"])
     fun save(
-        @RequestParam(value = "name") name: String,
+        @RequestParam(value = "group") group: String,
+        @RequestParam(value = "scene") scene: String,
         request: HttpServletRequest
     ): ResponseEntity<Unit> {
-        scenesService.saveScene(name)
+        scenesService.saveCustomScene(scene)
         return ResponseEntity.status(302).location(URI.create("/v1/hybrid/web/scenes")).build()
     }
 
     @DeleteMapping("delete")
-    fun delete(@RequestParam(value = "name") name: String) = scenesService.deleteScene(name)
+    fun delete(
+        @RequestParam(value = "group") group: String,
+        @RequestParam(value = "scene") scene: String
+    ) = scenesService.deleteCustomScene(scene)
 
     @GetMapping("hybrid")
     fun hybrid(

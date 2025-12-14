@@ -43,20 +43,26 @@ class ShellyService(
     }
 
     fun status(): Map<ShellyDevice, Status> {
-        val statusMap: MutableMap<ShellyDevice, Status> = LinkedHashMap()
-        val shellyDevices = prefs.stage?.devices?.shelly
-        shellyDevices?.forEach { device ->
-            val ipAddress: String = device.ipAddress
-            var status: Status?
-            try {
-                status = ShellyClient.getStatus(ipAddress)
-            } catch (e: Exception) {
-                log.warn("Could not get status for shelly at '$ipAddress'")
-                status = Status()
-                status.mode = "offline"
-            }
-            status?.let { statusMap[device] = it }
-        }
-        return statusMap
+        return prefs.stage?.devices?.shelly
+            ?.associate { device ->
+                Pair(device, status(device))
+            } ?: mapOf()
     }
+
+    fun status(device: ShellyDevice): Status {
+        return status(device.ipAddress)
+    }
+
+    fun status(ipAddress: String): Status {
+        var status: Status
+        try {
+            status = ShellyClient.getStatus(ipAddress) ?: Status(mode = "offline")
+        } catch (_: Exception) {
+            log.warn("Could not get status for shelly at '$ipAddress'")
+            status = Status(mode = "offline")
+        }
+        return status
+    }
+
+    fun isOn(ipAddress: String): Boolean = status(ipAddress).relays?.first()?.isOn?:false
 }

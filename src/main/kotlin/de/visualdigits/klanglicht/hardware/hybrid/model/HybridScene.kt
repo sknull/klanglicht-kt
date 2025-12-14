@@ -118,7 +118,7 @@ class HybridScene(
         var t = 0
 
         val twinklyDevices = stage.devices?.stage?.filter { it.type == HybridDeviceType.twinkly }?:listOf()
-        if (twinklyDevices.map { it.id }.any { td -> lIds.any { td == it } } == true) {
+        if (twinklyDevices.map { it.id }.any { td -> lIds.any { td == it } }) {
             twinklyDevices
                 .mapNotNull { stage.devices?.twinklyMap?.get(it.id) }
                 .forEach { twinklyDevice ->

@@ -32,36 +32,39 @@ class ScenesService(
 
     private var previousSceneName: String = ""
 
-    fun executeScene(sceneName: String) {
-        prefs.loadScenes().scenesMap[sceneName]
-            ?.also { scene ->
-                if (sceneName != previousSceneName || scene.repeatable) {
-                    log.info("Executing scene '$sceneName'...")
-                    if (scene.condition?.let { c -> c.evaluate(prefs.stage!!) == true }?:true ) {
-                        previousSceneName = sceneName
-                        scene.actions.forEach { action ->
-                            executeAction(action, sceneName)
+    fun executeScene(
+        group: String,
+        scene: String
+    ) {
+        prefs.loadScenes().scenesMap[group]?.get(scene)
+            ?.also { s ->
+                if (scene != previousSceneName || s.repeatable) {
+                    log.info("Executing scene '$group - $scene'...")
+                    if (s.condition?.evaluate(prefs.stage!!) ?:true ) {
+                        previousSceneName = scene
+                        s.actions.forEach { action ->
+                            executeAction(action, scene)
                         }
                     } else {
-                        log.info("Condition '${scene.condition?.javaClass?.simpleName}' not true - skipping actions")
+                        log.info("Condition '${s.condition.javaClass.simpleName}' not true - skipping actions")
                     }
                 } else {
-                    log.info("Scene '$sceneName' already set - skipping")
+                    log.info("Scene '$scene' already set - skipping")
                 }
             } ?: also {
-            log.info("No scene with name '$sceneName'")
+            log.info("No scene with name '$scene'")
         }
     }
 
     private fun executeAction(
         action: LMAction,
-        sceneName: String
+        scene: String
     ) {
-        log.info("  Executing action '$action'...")
+        log.info("Executing action '$action'...")
         when (action) {
             is LMActionAir -> lmair(action.sceneIndex ?: -1)
             is LMActionShelly -> shelly(action.ids, action.turnOn == true)
-            is LMActionHybrid -> hybrid(action.ids, action.hexColors, action.gains, sceneName)
+            is LMActionHybrid -> hybrid(action.ids, action.hexColors, action.gains, scene)
             is LMActionYamahaAvantage -> yamahaAvantage(
                 action.command ?: "",
                 action.program ?: "",
@@ -74,10 +77,12 @@ class ScenesService(
         }
     }
 
-    fun saveScene(name: String) {
+    fun saveCustomScene(
+        name: String
+    ) {
         log.info("Saving scene '$name': ${prefs.currentScene}")
         val scenes = prefs.loadScenes()
-        scenes.scenes["Custom"]?.scenes?.add(LMScene(
+        scenes.scenesGroupMap["Custom"]?.scenes?.add(LMScene(
             name = if (name.startsWith("Custom ")) name else "Custom $name",
             color = prefs.currentScene?.fadeables()?.map { it.toRgbColor().web() }?:listOf(),
             actions = listOf(LMActionHybrid(hexColors = prefs.currentScene?.fadeables()?.map { it.toRgbColor().hex() }?:listOf()))
@@ -85,10 +90,12 @@ class ScenesService(
         prefs.writeScenes(scenes)
     }
 
-    fun deleteScene(name: String) {
+    fun deleteCustomScene(
+        name: String
+    ) {
         log.info("Deleting scene '$name'")
         val scenes = prefs.loadScenes()
-        scenes.scenes["Custom"]?.also {  g -> g.scenes.find { s -> s.name == name }?.also { sc -> g.scenes.remove(sc) } }
+        scenes.scenesGroupMap["Custom"]?.also {  g -> g.scenes.find { s -> s.name == name }?.also { sc -> g.scenes.remove(sc) } }
         prefs.writeScenes(scenes)
     }
 

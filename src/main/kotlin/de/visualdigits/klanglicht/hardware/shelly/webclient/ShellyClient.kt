@@ -42,9 +42,10 @@ object ShellyClient {
     ): Status? {
         log.debug("getStatus: $ipAddress")
 
-        return URI("http://$ipAddress/status")
+        val status = URI("http://$ipAddress/status")
             .toURL()
             .get(clazz = Status::class.java)
+        return status
     }
 
     fun setColor(

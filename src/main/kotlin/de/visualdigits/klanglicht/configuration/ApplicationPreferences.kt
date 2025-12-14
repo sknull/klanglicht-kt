@@ -2,11 +2,7 @@ package de.visualdigits.klanglicht.configuration
 
 import de.visualdigits.klanglicht.configuration.model.Stage
 import de.visualdigits.klanglicht.hardware.hybrid.model.HybridScene
-import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMActionTwinkly
-import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMScene
-import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMSceneGroup
-import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMSceneType
-import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMScenes
+import de.visualdigits.klanglicht.hardware.lightmanager.model.action.*
 import de.visualdigits.kotlin.twinkly.model.device.xmusic.moods.Moods
 import de.visualdigits.kotlin.twinkly.model.parameter.Fadeable
 import jakarta.annotation.PostConstruct
@@ -24,7 +20,7 @@ import java.time.format.DateTimeFormatter
 @Configuration
 @ConfigurationProperties(prefix = "application")
 @ConfigurationPropertiesScan
-class ApplicationPreferences {
+class ApplicationPreferences() {
 
     private val log: Logger = LoggerFactory.getLogger(javaClass)
 
@@ -70,7 +66,6 @@ class ApplicationPreferences {
         log.info("")
     }
 
-    @OptIn(ExperimentalStdlibApi::class)
     fun loadScenes(): LMScenes {
         val scenes = LMScenes.readValue(Paths.get(klanglichtDirectory.canonicalPath, "resources", "scenes.json").toFile())
         if (stage?.devices?.discoveredDevices?.isNotEmpty() == true) {
@@ -130,7 +125,7 @@ class ApplicationPreferences {
                     }
                 }
             )
-            scenes.scenes["TwinklyMusic"] = LMSceneGroup(
+            scenes.scenesGroupMap["TwinklyMusic"] = LMSceneGroup(
                 name = "Twinkly Music",
                 hasColorWheel = false,
                 colorWheelOddEven = false,
@@ -150,8 +145,8 @@ class ApplicationPreferences {
         if (scenesJsonFile.exists() && !scenesJsonFile.renameTo(backupScenesJsonFile))  error("Could not rename scene file '${scenesJsonFile.canonicalPath}' to '${backupScenesJsonFile.canonicalPath}'")
 
         val newScenes = LMScenes(name = scenes.name)
-        newScenes.scenes.putAll(
-            scenes.scenes.map { (name, group) ->
+        newScenes.scenesGroupMap.putAll(
+            scenes.scenesGroupMap.map { (name, group) ->
                 group.scenes = group.scenes.map { scene ->
                     when (scene.type) {
                         LMSceneType.custom -> scene

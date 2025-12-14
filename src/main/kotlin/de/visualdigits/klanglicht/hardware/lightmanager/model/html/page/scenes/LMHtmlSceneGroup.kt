@@ -22,7 +22,7 @@ class LMHtmlSceneGroup(
             }
         }
         sb.append("\">\n")
-        sb.append("$sindent  <span class=\"label\">").append(sceneGroup.name).append("</span>\n")
+        sb.append("$sindent  <span class=\"label\">").append(sceneGroup.displayName).append("</span>\n")
         sb.append("$sindent  <div class=\"sub-group")
         if (sceneGroup.hasColorWheel) {
             if (sceneGroup.colorWheelOddEven) {
@@ -38,7 +38,7 @@ class LMHtmlSceneGroup(
         sb.append("$sindent  </div><!-- sub-group -->\n")
         sb.append("$sindent</div><!-- group -->\n")
         if (sceneGroup.hasColorWheel) {
-            sb.append(LMHtmlColorWheel(prefs, sceneGroup.name, sceneGroup.colorWheelOddEven).html(indent))
+            sb.append(LMHtmlColorWheel(prefs, sceneGroup.displayName, sceneGroup.colorWheelOddEven).html(indent))
         }
         return sb.toString()
     }

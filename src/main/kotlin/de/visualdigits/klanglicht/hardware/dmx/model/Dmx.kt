@@ -31,6 +31,7 @@ class Dmx(
     }
 
     fun initialize(klanglichtDirectory: File) {
+        log.info("Initialize DMX")
         val dmxFixtures = Fixtures.load(klanglichtDirectory)
         fixtures = devices.mapNotNull { dmxDevice ->
             dmxFixtures.getFixture(dmxDevice.manufacturer, dmxDevice.model)

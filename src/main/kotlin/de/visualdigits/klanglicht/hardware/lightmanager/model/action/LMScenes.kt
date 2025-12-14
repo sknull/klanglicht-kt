@@ -12,10 +12,11 @@ import java.util.Locale
 @JsonIgnoreProperties("scenesMap")
 class LMScenes(
     val name: String? = null,
-    val scenes: LinkedHashMap<String, LMSceneGroup> = LinkedHashMap()
+    val scenes: List<LMSceneGroup> = listOf()
 ) {
 
-    val scenesMap: LinkedHashMap<String, LMScene> = LinkedHashMap()
+    val scenesGroupMap: LinkedHashMap<String, LMSceneGroup> = LinkedHashMap()
+    val scenesMap: LinkedHashMap<String, LinkedHashMap<String, LMScene>> = LinkedHashMap()
 
     companion object {
         private val mapper = jacksonMapperBuilder().enable(SerializationFeature.INDENT_OUTPUT).build()
@@ -27,24 +28,35 @@ class LMScenes(
         }
     }
 
+    init {
+        refreshSceneMap()
+    }
+
     fun refreshSceneMap() {
         scenesMap.clear()
-        scenes.values.forEach { g -> g.scenes.forEach { s -> scenesMap[s.name] = s } }
+        scenes.forEach { sceneGroup ->
+            scenesGroupMap[sceneGroup.name] = sceneGroup
+            val sceneGroupMap = scenesMap.computeIfAbsent(sceneGroup.name) { LinkedHashMap() }
+            sceneGroup.scenes.forEach { scene ->
+                scene.groupName = sceneGroup.name
+                sceneGroupMap[scene.name] = scene
+            }
+        }
     }
 
     override fun toString(): String {
-        return "$name\n" + scenes.toMap().map { e -> "  ${e.key}\n    ${e.value.scenes.joinToString("\n    ")}" }.joinToString("\n")
+        return "$name\n" + scenes.joinToString("\n") { scene -> "  ${scene.name}\n    ${scene.scenes.joinToString("\n    ")}" }
     }
 
     fun writeValue(file: File) {
         mapper.writeValue(file, this)
     }
 
-    fun selectableGroupNames(): List<String> = scenes.values.filter { s -> s.selectable }.map { s -> s.name }
+    fun selectableGroupNames(): List<String> = scenes.filter { s -> s.selectable }.map { s -> s.name }
 
     fun add(lmScene: LMScene) {
         var sceneName = lmScene.name
-        var groupName: String? = "common"
+        var groupName: String = "common"
         val attributes = LMNamedAttributes(lmScene.name, "group", "color")
         val color = if (attributes.matched) {
             if (attributes.name.isNotEmpty()) {
@@ -56,14 +68,14 @@ class LMScenes(
             }
             attributes["color"].split(",").map { it.trim() }
         } else listOf()
-        val scene = LMScene(sceneName, color, LMSceneType.custom, 0, false, lmScene.condition, lmScene.actions)
-        scenesMap[lmScene.name] = scene
+        val scene = LMScene(sceneName, groupName, color, LMSceneType.custom, 0, false, lmScene.condition, lmScene.actions)
+        scenesMap[groupName]?.set(scene.name, scene)
         if ("hidden" != groupName) {
             groupName
                 ?.replaceFirstChar { fc -> if (fc.isLowerCase()) fc.titlecase(Locale.getDefault()) else fc.toString() }
-                ?.let { name -> Pair(name, scenes[name]?:LMSceneGroup(name)) }
+                ?.let { name -> Pair(name, scenesGroupMap[name]?:LMSceneGroup(name)) }
                 ?.also { (name, group) ->
-                    scenes[name] = group
+                    scenesGroupMap[name] = group
                     group.scenes.add(scene)
                 }
         }
