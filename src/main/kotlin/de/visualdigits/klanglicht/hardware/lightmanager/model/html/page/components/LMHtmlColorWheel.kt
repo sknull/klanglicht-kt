@@ -4,38 +4,39 @@ import de.visualdigits.klanglicht.configuration.ApplicationPreferences
 
 class LMHtmlColorWheel(
     val prefs: ApplicationPreferences,
-    val id: String,
+    val name: String,
+    val displayName: String,
     val oddEven: Boolean
 ) : LMHtml {
 
     override fun html(indent: Int): String {
         val sindent = "  ".repeat(indent)
-        val wheelId = id.replace(" ", "")
+        val wheelId = name.replace(" ", "")
         val sb = StringBuilder()
         if (oddEven) {
             sb.append("$sindent<div class=\"colorwheel-wrapper-oddeven\">\n")
-            sb.append(renderColorWheelPanel(id, wheelId, true, indent + 1))
-            sb.append(renderColorWheelPanel(id, wheelId, false, indent + 1))
+            sb.append(renderColorWheelPanel(displayName, wheelId, true, indent + 1))
+            sb.append(renderColorWheelPanel(displayName, wheelId, false, indent + 1))
             sb.append(renderScriptOddEven(wheelId, indent + 1))
             sb.append("$sindent</div><!-- colorwheel-wrapper-oddeven -->\n")
         } else {
             sb.append("$sindent<div class=\"colorwheel-wrapper\">\n")
-            sb.append(renderColorWheelPanel(id, wheelId, null, indent + 1))
+            sb.append(renderColorWheelPanel(displayName, wheelId, null, indent + 1))
             sb.append(renderScriptStandalone(wheelId, indent + 1))
             sb.append("$sindent</div><!-- colorwheel-wrapper -->\n")
         }
         return sb.toString()
     }
 
-    private fun renderColorWheelPanel(id: String, wheelId: String, odd: Boolean?, indent: Int): String {
+    private fun renderColorWheelPanel(displayName: String, wheelId: String, odd: Boolean?, indent: Int): String {
         val sindent = "  ".repeat(indent)
         val sb = StringBuilder()
         sb.append("$sindent<div class=\"colorwheel-panel\">\n")
         if (odd != null) {
-            sb.append("$sindent  <div class=\"colorwheel-title\"><span class=\"label\">COLORPICKER - $id - ${if (odd) "Odd" else "Even"}</span></div>\n")
+            sb.append("$sindent  <div class=\"colorwheel-title\"><span class=\"label\">COLORPICKER - $displayName - ${if (odd) "Odd" else "Even"}</span></div>\n")
             sb.append("$sindent  <div class=\"color-wheel\" id=\"colorwheel-${wheelId}${if (odd) "Odd" else "Even"}\"></div>\n")
         } else {
-            sb.append("$sindent  <div class=\"colorwheel-title\"><span class=\"label\">COLORPICKER - $id</span></div>\n")
+            sb.append("$sindent  <div class=\"colorwheel-title\"><span class=\"label\">COLORPICKER - $displayName</span></div>\n")
             sb.append("$sindent  <div class=\"color-wheel\" id=\"colorwheel-${wheelId}\"></div>\n")
         }
         sb.append("$sindent</div><!-- colorwheel-panel -->\n")

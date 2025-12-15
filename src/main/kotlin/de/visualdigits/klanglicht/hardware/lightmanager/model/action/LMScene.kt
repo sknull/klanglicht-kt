@@ -21,26 +21,15 @@ class LMScene(
 
     init {
         if (initialize) {
-            when(type) {
-                LMSceneType.gradient -> {
-                    if (color.size >= 2) {
-                        val first = RGBColor(color.first())
-                        val last = RGBColor(color.last())
-                        val step = 1.0 / (steps - 1)
-                        val hexColors = (0 ..  steps - 1).map { f ->
-                            first.fade(last, f * step, BlendMode.AVERAGE).hex()
-                        }
-                        color = hexColors.map { c -> "#$c" }
-                        actions = listOf(LMActionHybrid(hexColors = hexColors))
-                    }
+            if (type == LMSceneType.gradient && color.size >= 2) {
+                val first = RGBColor(color.first())
+                val last = RGBColor(color.last())
+                val step = 1.0 / (steps - 1)
+                val hexColors = (0 ..  steps - 1).map { f ->
+                    first.fade(last, f * step, BlendMode.AVERAGE).hex()
                 }
-                LMSceneType.custom -> {
-                    when (val action = actions.firstOrNull()) {
-                        is LMActionHybrid -> {
-                            color = action.hexColors.map { c -> "#$c" }
-                        }
-                    }
-                }
+                color = hexColors.map { c -> "#$c" }
+                actions = listOf(LMActionHybrid(hexColors = hexColors))
             }
         }
     }

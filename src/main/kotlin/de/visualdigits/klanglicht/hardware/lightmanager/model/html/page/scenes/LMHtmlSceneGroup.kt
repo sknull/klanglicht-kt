@@ -38,7 +38,7 @@ class LMHtmlSceneGroup(
         sb.append("$sindent  </div><!-- sub-group -->\n")
         sb.append("$sindent</div><!-- group -->\n")
         if (sceneGroup.hasColorWheel) {
-            sb.append(LMHtmlColorWheel(prefs, sceneGroup.displayName, sceneGroup.colorWheelOddEven).html(indent))
+            sb.append(LMHtmlColorWheel(prefs, sceneGroup.name, sceneGroup.displayName, sceneGroup.colorWheelOddEven).html(indent))
         }
         return sb.toString()
     }
