@@ -36,23 +36,33 @@ class ScenesService(
         group: String,
         scene: String
     ) {
-        prefs.loadScenes().scenesMap[group]?.get(scene)
+        val loadScenes = prefs.loadScenes()
+        val map = loadScenes.scenesMap[group]
+        val get = map?.get(scene)
+        get
             ?.also { s ->
                 if (scene != previousSceneName || s.repeatable) {
-                    log.info("Executing scene '$group - $scene'...")
-                    if (s.condition?.evaluate(prefs.stage!!) ?:true ) {
+                    val execute = if (s.condition != null) {
+                        val result = s.condition.evaluate(prefs)
+                        log.info("Evaluated condition '${s.condition.name}': $result")
+                        result
+                    } else {
+                        true
+                    }
+                    if (execute) {
+                        log.info("Executing scene '$group - $scene'...")
                         previousSceneName = scene
                         s.actions.forEach { action ->
                             executeAction(action, scene)
                         }
                     } else {
-                        log.info("Condition '${s.condition.javaClass.simpleName}' not true - skipping actions")
+                        log.info("Not executing scene '$group - $scene'...")
                     }
                 } else {
-                    log.info("Scene '$scene' already set - skipping")
+                    log.info("Scene '$group - $scene' already set - skipping")
                 }
             } ?: also {
-            log.info("No scene with name '$scene'")
+            log.info("No scene with name '$group - $scene'")
         }
     }
 
@@ -131,7 +141,11 @@ class ScenesService(
             "off" -> twinklyService.off()
             "musicOn" -> twinklyService.musicOn()
             "musicOff" -> twinklyService.musicOff()
-            "moodsEffect" -> Moods.fromIndex(moodsIndex)?.effectFromIndex(effectIndex)?.also { me -> twinklyService.moodsEffect(me) }
+            "moodsEffect" -> Moods.fromIndex(moodsIndex)
+                ?.effectFromIndex(effectIndex)
+                ?.also { me ->
+                    twinklyService.moodsEffect(me)
+                }
         }
     }
 }

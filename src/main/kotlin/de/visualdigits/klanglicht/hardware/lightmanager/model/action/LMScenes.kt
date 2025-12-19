@@ -12,7 +12,7 @@ import java.util.Locale
 @JsonIgnoreProperties("scenesMap")
 class LMScenes(
     val name: String? = null,
-    val scenes: List<LMSceneGroup> = listOf()
+    val scenes: MutableList<LMSceneGroup> = mutableListOf()
 ) {
 
     val scenesGroupMap: LinkedHashMap<String, LMSceneGroup> = LinkedHashMap()
@@ -22,9 +22,7 @@ class LMScenes(
         private val mapper = jacksonMapperBuilder().enable(SerializationFeature.INDENT_OUTPUT).build()
 
         fun readValue(file: File): LMScenes {
-            val lmScenes = mapper.readValue(file, LMScenes::class.java)
-            lmScenes.refreshSceneMap()
-            return lmScenes
+            return mapper.readValue(file, LMScenes::class.java)
         }
     }
 
@@ -33,12 +31,10 @@ class LMScenes(
     }
 
     fun refreshSceneMap() {
-        scenesMap.clear()
         scenes.forEach { sceneGroup ->
             scenesGroupMap[sceneGroup.name] = sceneGroup
             val sceneGroupMap = scenesMap.computeIfAbsent(sceneGroup.name) { LinkedHashMap() }
             sceneGroup.scenes.forEach { scene ->
-                scene.groupName = sceneGroup.name
                 sceneGroupMap[scene.name] = scene
             }
         }

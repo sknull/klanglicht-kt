@@ -14,7 +14,8 @@ class TwinklyService(
 
     fun musicOn() {
         log.info("Switching twinkly music mode on")
-        xledArrays()?.forEach { a -> a.setMusicEnabled(true) }
+        val xledArrays = xledArrays()
+        xledArrays?.forEach { a -> a.setMusicEnabled(true) }
     }
 
     fun musicOff() {

@@ -25,13 +25,13 @@ class Devices(
 
     val shellyMap: Map<String, ShellyDevice> = shelly.associateBy { it.name }
 
-    val twinklyMap: Map<String, TwinklyDeviceConfig> = twinkly.associate { tc -> Pair(tc.name?:error("No device name"), tc) }
-    var xMusicDevice: XMusic? = twinkly.find { t -> t.type == TwinklyDeviceType.xmusic }?.let { xm -> xm.ipAddress?.let { ip -> XMusic.instance(ip) } }
+    val twinklyMap: Map<String, TwinklyDeviceConfig> = twinkly.associateBy { tc -> tc.name?:error("No device name") }
+    var xMusicDevice: XMusic? = null
     var xledArrays: Map<String, XLedArray> = mapOf()
     var xledDevices: Map<String, XLed> = mapOf()
     var stageMap: Map<String, HybridDevice> = mapOf()
 
-    val colorWheelMap: Map<String, ColorWheel> = colorWheels.associate { cw -> Pair(cw.id, cw) }
+    val colorWheelMap: Map<String, ColorWheel> = colorWheels.associateBy { cw -> cw.id }
 
     var discoveredDevices: List<String> = listOf()
 
@@ -47,10 +47,21 @@ class Devices(
         val onlineTriggerDevices = twinkly
             .mapNotNull { t -> t.triggerDeviceIpAddress }
             .toSet()
-            .filter { tdip -> shellyService.isOn(tdip)  }
-        discoveredDevices = twinkly
+            .filter { tdip -> shellyService.isOn(tdip) }
+        val discoveredDevices = twinkly
             .filter { td -> onlineTriggerDevices.contains(td.triggerDeviceIpAddress) }
             .flatMap { td -> td.array.flatten().mapNotNull { tdn -> tdn.ipAddress } }
+            .toMutableList()
+        xMusicDevice = discoveredDevices.find { tid -> twinklyMap[tid]?.type == TwinklyDeviceType.xmusic }?.let { tid ->
+            twinklyMap[tid]?.ipAddress?.let { ip ->
+                XMusic.instance(
+                    ipAddress = ip
+                )
+            }
+        }
+        xMusicDevice?.also { xmd -> discoveredDevices.remove(xmd.getIpAddress()) }
+        this.discoveredDevices = discoveredDevices
+
         log.info("Discovered twinkly devices: $discoveredDevices")
         if (discoveredDevices.isNotEmpty()) {
             twinkly.forEach { td -> td.initialize(discoveredDevices) }

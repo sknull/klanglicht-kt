@@ -1,11 +1,11 @@
 package de.visualdigits.klanglicht.hardware.twinkly.model
 
-import de.visualdigits.klanglicht.hardware.shelly.model.ShellyDevice
 import de.visualdigits.kotlin.twinkly.model.device.xled.DeviceOrigin
 import de.visualdigits.kotlin.twinkly.model.device.xled.XLed
 import de.visualdigits.kotlin.twinkly.model.device.xled.XLedArray
 import de.visualdigits.kotlin.twinkly.model.device.xled.XLedDevice
 import de.visualdigits.kotlin.twinkly.model.device.xled.XledMatrixDevice
+import org.slf4j.LoggerFactory
 
 class TwinklyDeviceConfig(
     val type: TwinklyDeviceType? = null,
@@ -16,6 +16,8 @@ class TwinklyDeviceConfig(
     val triggerDeviceName: String? = null,
     val array: List<List<TwinklyDevice>> = listOf()
 ) {
+
+    private val log = LoggerFactory.getLogger(javaClass)
 
     var xledArray: XLedArray = XLedArray.instance()
     val xledDeviceMap: MutableMap<String, XLed> = mutableMapOf()
@@ -28,25 +30,28 @@ class TwinklyDeviceConfig(
             val xledColumn = mutableListOf<XLed>()
             filter
                 .forEach { twinklyDeviceNode ->
-                    val device = when (type) {
-                        TwinklyDeviceType.xled -> XLedDevice.instance(
-                            ipAddress = twinklyDeviceNode.ipAddress ?: error("No ip address"),
-                            width = twinklyDeviceNode.width ?: error("No width"),
-                            height = twinklyDeviceNode.height ?: error("No height")
-                        )
+                    try {
+                        val device = when (type) {
+                            TwinklyDeviceType.xled -> XLedDevice.instance(
+                                ipAddress = twinklyDeviceNode.ipAddress ?: error("No ip address"),
+                                width = twinklyDeviceNode.width ?: error("No width"),
+                                height = twinklyDeviceNode.height ?: error("No height")
+                            )
 
-                        TwinklyDeviceType.xledmatrix -> XledMatrixDevice.instance(
-                            ipAddress = twinklyDeviceNode.ipAddress ?: error("No ip address"),
-                            name = twinklyDeviceNode.name ?: error("No device name"),
-                            width = twinklyDeviceNode.width ?: error("No width"),
-                            height = twinklyDeviceNode.height ?: error("No height")
-                        )
+                            TwinklyDeviceType.xledmatrix -> XledMatrixDevice.instance(
+                                ipAddress = twinklyDeviceNode.ipAddress ?: error("No ip address"),
+                                name = twinklyDeviceNode.name ?: error("No device name"),
+                                width = twinklyDeviceNode.width ?: error("No width"),
+                                height = twinklyDeviceNode.height ?: error("No height")
+                            )
 
-                        else -> error("Unsupported type")
+                            else -> error("Unsupported type")
+                        }
+                        xledColumn.add(device)
+                        xledDeviceMap[twinklyDeviceNode.name ?: error("No name")] = device
+                    } catch (e: Exception) {
+                        log.warn("Could not initialize twinkly device '${twinklyDeviceNode.ipAddress}'")
                     }
-                    xledColumn.add(device)
-                    xledDeviceMap[twinklyDeviceNode.name ?: error("No name")] = device
-                    device
                 }
             xLedDevices.add(xledColumn)
         }

@@ -2,7 +2,11 @@ package de.visualdigits.klanglicht.configuration
 
 import de.visualdigits.klanglicht.configuration.model.Stage
 import de.visualdigits.klanglicht.hardware.hybrid.model.HybridScene
-import de.visualdigits.klanglicht.hardware.lightmanager.model.action.*
+import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMActionTwinkly
+import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMScene
+import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMSceneGroup
+import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMSceneType
+import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMScenes
 import de.visualdigits.kotlin.twinkly.model.device.xmusic.moods.Moods
 import de.visualdigits.kotlin.twinkly.model.parameter.Fadeable
 import jakarta.annotation.PostConstruct
@@ -72,6 +76,7 @@ class ApplicationPreferences() {
             val moodScenes = mutableListOf<LMScene>()
             moodScenes.add(
                 LMScene(
+                    groupName = "TwinklyMusic",
                     name = "On",
                     color = listOf("#ffffff"),
                     type = LMSceneType.custom,
@@ -81,6 +86,7 @@ class ApplicationPreferences() {
             )
             moodScenes.add(
                 LMScene(
+                    groupName = "TwinklyMusic",
                     name = "Off",
                     color = listOf("#000000"),
                     type = LMSceneType.custom,
@@ -90,6 +96,7 @@ class ApplicationPreferences() {
             )
             moodScenes.add(
                 LMScene(
+                    groupName = "TwinklyMusic",
                     name = "Music On",
                     color = listOf("#ffffff"),
                     type = LMSceneType.custom,
@@ -99,6 +106,7 @@ class ApplicationPreferences() {
             )
             moodScenes.add(
                 LMScene(
+                    groupName = "TwinklyMusic",
                     name = "Music Off",
                     color = listOf("#000000"),
                     type = LMSceneType.custom,
@@ -110,6 +118,7 @@ class ApplicationPreferences() {
                 Moods.entries.flatMap { mood ->
                     mood.effects.values.map { effect ->
                         LMScene(
+                            groupName = "TwinklyMusic",
                             name = "${mood.icon} ${mood.label} ${effect.label}",
                             color = listOf(mood.color),
                             type = LMSceneType.custom,
@@ -125,12 +134,15 @@ class ApplicationPreferences() {
                     }
                 }
             )
-            scenes.scenesGroupMap["TwinklyMusic"] = LMSceneGroup(
-                name = "Twinkly Music",
-                hasColorWheel = false,
-                colorWheelOddEven = false,
-                selectable = false,
-                scenes = moodScenes
+            scenes.scenes.add(
+                LMSceneGroup(
+                    name = "TwinklyMusic",
+                    displayName = "Twinkly Music",
+                    hasColorWheel = false,
+                    colorWheelOddEven = false,
+                    selectable = false,
+                    scenes = moodScenes
+                )
             )
             scenes.refreshSceneMap()
         }
