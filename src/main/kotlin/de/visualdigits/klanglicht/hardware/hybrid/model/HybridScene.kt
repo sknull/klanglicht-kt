@@ -53,9 +53,7 @@ class HybridScene(
     }
 
     override fun toString(): String {
-        return fadeables.values
-            .joinToString("") { it.toRgbColor().ansiColor() }
-            .trim() + " " + hex()
+        return fadeables.values.joinToString("") { it.toRgbColor().ansiColor() } + " [" + fadeables.values.joinToString(", ") { it.toRgbColor().hex() } + "]"
     }
 
     override fun hex(): String {
