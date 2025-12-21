@@ -3,7 +3,7 @@ package de.visualdigits.klanglicht.hardware.lightmanager.model.action
 class LMActionShelly(
     val ids: List<String> = listOf(),
     val turnOn: Boolean?= null
-) : LMAction() {
+) : LMAction("Shelly") {
 
     override fun toString(): String {
         return "[Shelly] ids=$ids turnOn=$turnOn"

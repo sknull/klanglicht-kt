@@ -1,6 +1,7 @@
 package de.visualdigits.klanglicht.hardware.lightmanager.model.action
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
+import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.databind.SerializationFeature
 import com.fasterxml.jackson.module.kotlin.jacksonMapperBuilder
 import java.io.File
@@ -9,17 +10,20 @@ import java.util.Locale
 /**
  * Scenes description beans used within the application preferences.
  */
-@JsonIgnoreProperties("scenesMap")
+@JsonIgnoreProperties("scenesMap", "scenesGroupMap")
 class LMScenes(
     val name: String? = null,
-    val scenes: MutableList<LMSceneGroup> = mutableListOf()
+    val groups: MutableList<LMSceneGroup> = mutableListOf()
 ) {
 
     val scenesGroupMap: LinkedHashMap<String, LMSceneGroup> = LinkedHashMap()
     val scenesMap: LinkedHashMap<String, LinkedHashMap<String, LMScene>> = LinkedHashMap()
 
     companion object {
-        private val mapper = jacksonMapperBuilder().enable(SerializationFeature.INDENT_OUTPUT).build()
+        private val mapper = jacksonMapperBuilder()
+            .enable(SerializationFeature.INDENT_OUTPUT)
+            .defaultPropertyInclusion(JsonInclude.Value.construct(JsonInclude.Include.NON_EMPTY, JsonInclude.Include.NON_EMPTY))
+            .build()
 
         fun readValue(file: File): LMScenes {
             return mapper.readValue(file, LMScenes::class.java)
@@ -31,7 +35,7 @@ class LMScenes(
     }
 
     fun refreshSceneMap() {
-        scenes.forEach { sceneGroup ->
+        groups.forEach { sceneGroup ->
             scenesGroupMap[sceneGroup.name] = sceneGroup
             val sceneGroupMap = scenesMap.computeIfAbsent(sceneGroup.name) { LinkedHashMap() }
             sceneGroup.scenes.forEach { scene ->
@@ -41,18 +45,18 @@ class LMScenes(
     }
 
     override fun toString(): String {
-        return "$name\n" + scenes.joinToString("\n") { scene -> "  ${scene.name}\n    ${scene.scenes.joinToString("\n    ")}" }
+        return "$name\n" + groups.joinToString("\n") { scene -> "  ${scene.name}\n    ${scene.scenes.joinToString("\n    ")}" }
     }
 
     fun writeValue(file: File) {
         mapper.writeValue(file, this)
     }
 
-    fun selectableGroupNames(): List<String> = scenes.filter { s -> s.selectable }.map { s -> s.name }
+    fun selectableGroupNames(): List<String> = groups.filter { s -> s.selectable }.map { s -> s.name }
 
     fun add(lmScene: LMScene) {
         var sceneName = lmScene.name
-        var groupName: String = "common"
+        var groupName = "common"
         val attributes = LMNamedAttributes(lmScene.name, "group", "color")
         val color = if (attributes.matched) {
             if (attributes.name.isNotEmpty()) {
@@ -64,13 +68,13 @@ class LMScenes(
             }
             attributes["color"].split(",").map { it.trim() }
         } else listOf()
-        val scene = LMScene(sceneName, groupName, color, LMSceneType.custom, 0, false, lmScene.condition, lmScene.actions)
+        val scene = LMScene(sceneName, color = color, condition = lmScene.condition, actions = lmScene.actions)
         scenesMap[groupName]?.set(scene.name, scene)
         if ("hidden" != groupName) {
             groupName
-                ?.replaceFirstChar { fc -> if (fc.isLowerCase()) fc.titlecase(Locale.getDefault()) else fc.toString() }
-                ?.let { name -> Pair(name, scenesGroupMap[name]?:LMSceneGroup(name)) }
-                ?.also { (name, group) ->
+                .replaceFirstChar { fc -> if (fc.isLowerCase()) fc.titlecase(Locale.getDefault()) else fc.toString() }
+                .let { name -> Pair(name, scenesGroupMap[name]?:LMSceneGroup(name)) }
+                .also { (name, group) ->
                     scenesGroupMap[name] = group
                     group.scenes.add(scene)
                 }

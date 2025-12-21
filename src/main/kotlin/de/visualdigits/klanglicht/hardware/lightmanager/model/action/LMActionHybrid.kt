@@ -1,10 +1,15 @@
 package de.visualdigits.klanglicht.hardware.lightmanager.model.action
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
+
+@JsonIgnoreProperties("originalHexColors", "name")
 class LMActionHybrid(
     val ids: List<String> = listOf(),
     var hexColors: List<String> = listOf(),
+    var originalHexColors: List<String>? = null,
     val gains: List<Double> = listOf(),
-) : LMAction() {
+) : LMAction("Hybrid") {
+
 
     override fun toString(): String {
         return "[Hybrid] ids=$ids hexColors=$hexColors"

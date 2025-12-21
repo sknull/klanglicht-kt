@@ -53,7 +53,8 @@ class HybridScene(
     }
 
     override fun toString(): String {
-        return fadeables.values.joinToString("") { it.toRgbColor().ansiColor() } + " [" + fadeables.values.joinToString(", ") { it.toRgbColor().hex() } + "]"
+        return "▐" + fadeables.values.joinToString("") { it.toRgbColor().ansiColor() } +
+                "▌[" + fadeables.values.joinToString(", ") { "#${it.toRgbColor().hex()}" } + "]"
     }
 
     override fun hex(): String {
@@ -122,16 +123,16 @@ class HybridScene(
                 .forEach { twinklyDevice ->
                     val xa = twinklyDevice.xledArray
                     if (xa.isLoggedIn()) {
-                        val lc = RGBColor(this@HybridScene.hexColors.last<kotlin.String>())
+                        val lc = RGBColor(hexColors.last())
                         val frame = XledFrame(
                             width = xa.width,
                             height = xa.height,
                             initialColor = RGBColor(lc.red, lc.green, lc.blue)
                         )
-                        val nc = this@HybridScene.hexColors.size
+                        val nc = hexColors.size
                         val barWidth = xa.width / nc
-                        (0 until nc - 1).forEach<kotlin.Int> { x ->
-                            val rgbColor = RGBColor(this@HybridScene.hexColors[x])
+                        (0 until nc - 1).forEach { x ->
+                            val rgbColor = RGBColor(hexColors[x])
                             val bar = XledFrame(
                                 width = barWidth,
                                 height = xa.height,
@@ -143,9 +144,9 @@ class HybridScene(
                             deviceId = twinklyDevice.name ?: error("No device id"),
                             xledFrame = frame,
                             deviceGain = twinklyDevice.gain ?: 1.0,
-                            stage = this@HybridScene.stage
+                            stage = stage
                         )
-                        this@HybridScene.fadeables[twinklyDevice.name] = fadeable
+                        fadeables[twinklyDevice.name] = fadeable
                     }
                 }
         }

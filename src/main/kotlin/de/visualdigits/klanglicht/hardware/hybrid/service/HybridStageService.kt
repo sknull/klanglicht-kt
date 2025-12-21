@@ -59,7 +59,7 @@ class HybridStageService(
         if (store) {
             storeScene(nextScene, hexColors, wheelId, storeName)
         }
-        log.info("nextScene: $nextScene")
+        log.info("nextScene:$nextScene")
 
         sceneName?.also { s -> prefs.currentSceneName = s }
         currentScene?.fade(nextScene!!, transition?:prefs.stage?.fadeDurationDefault?:2000)

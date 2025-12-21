@@ -2,6 +2,7 @@ package de.visualdigits.klanglicht.configuration
 
 import de.visualdigits.klanglicht.configuration.model.Stage
 import de.visualdigits.klanglicht.hardware.hybrid.model.HybridScene
+import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMActionHybrid
 import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMActionTwinkly
 import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMScene
 import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMSceneGroup
@@ -76,40 +77,36 @@ class ApplicationPreferences() {
             val moodScenes = mutableListOf<LMScene>()
             moodScenes.add(
                 LMScene(
-                    groupName = "TwinklyMusic",
                     name = "On",
                     color = listOf("#ffffff"),
-                    type = LMSceneType.custom,
+                    type = LMSceneType.standard,
                     initialize = false,
                     actions = listOf(LMActionTwinkly("on"))
                 )
             )
             moodScenes.add(
                 LMScene(
-                    groupName = "TwinklyMusic",
                     name = "Off",
                     color = listOf("#000000"),
-                    type = LMSceneType.custom,
+                    type = LMSceneType.standard,
                     initialize = false,
                     actions = listOf(LMActionTwinkly("off"))
                 )
             )
             moodScenes.add(
                 LMScene(
-                    groupName = "TwinklyMusic",
                     name = "Music On",
                     color = listOf("#ffffff"),
-                    type = LMSceneType.custom,
+                    type = LMSceneType.standard,
                     initialize = false,
                     actions = listOf(LMActionTwinkly("musicOn"))
                 )
             )
             moodScenes.add(
                 LMScene(
-                    groupName = "TwinklyMusic",
                     name = "Music Off",
                     color = listOf("#000000"),
-                    type = LMSceneType.custom,
+                    type = LMSceneType.standard,
                     initialize = false,
                     actions = listOf(LMActionTwinkly("musicOff"))
                 )
@@ -118,10 +115,9 @@ class ApplicationPreferences() {
                 Moods.entries.flatMap { mood ->
                     mood.effects.values.map { effect ->
                         LMScene(
-                            groupName = "TwinklyMusic",
                             name = "${mood.icon} ${mood.label} ${effect.label}",
                             color = listOf(mood.color),
-                            type = LMSceneType.custom,
+                            type = LMSceneType.standard,
                             initialize = false,
                             actions = listOf(
                                 LMActionTwinkly(
@@ -134,7 +130,7 @@ class ApplicationPreferences() {
                     }
                 }
             )
-            scenes.scenes.add(
+            scenes.groups.add(
                 LMSceneGroup(
                     name = "TwinklyMusic",
                     displayName = "Twinkly Music",
@@ -144,10 +140,22 @@ class ApplicationPreferences() {
                     scenes = moodScenes
                 )
             )
+            createReferences(scenes)
             scenes.refreshSceneMap()
         }
 
         return scenes
+    }
+
+    private fun createReferences(scenes: LMScenes) {
+        scenes.groups.forEach { sceneGroup ->
+            sceneGroup.scenes.forEach { scene ->
+                scene.group = sceneGroup
+                scene.actions.forEach { action ->
+                    action.scene = scene
+                }
+            }
+        }
     }
 
     fun writeScenes(scenes: LMScenes) {
@@ -156,27 +164,75 @@ class ApplicationPreferences() {
         val backupScenesJsonFile = Paths.get(klanglichtDirectory.canonicalPath, "resources", "${timestamp}_scenes.json").toFile()
         if (scenesJsonFile.exists() && !scenesJsonFile.renameTo(backupScenesJsonFile))  error("Could not rename scene file '${scenesJsonFile.canonicalPath}' to '${backupScenesJsonFile.canonicalPath}'")
 
-        val newScenes = LMScenes(name = scenes.name)
-        newScenes.scenesGroupMap.putAll(
-            scenes.scenesGroupMap.map { (name, group) ->
-                group.scenes = group.scenes.map { scene ->
-                    when (scene.type) {
-                        LMSceneType.custom -> scene
+        val newScenes = LMScenes(
+            name = scenes.name,
+            groups = scenes.scenesGroupMap.values.map { sg -> LMSceneGroup(
+                name = sg.name,
+                displayName = sg.displayName,
+                hasColorWheel = sg.hasColorWheel,
+                colorWheelOddEven = sg.colorWheelOddEven,
+                selectable = sg.selectable,
+                scenes = sg.scenes.map { s ->
+                    var actionHybrid = s.actions
+                        .filterIsInstance<LMActionHybrid>()
+                        .firstOrNull()
+                    when (s.type) {
                         LMSceneType.gradient -> {
-                            val steps = scene.color.size
-                            val newScene = LMScene(
-                                name = scene.name,
-                                color = listOf(scene.color.first(), scene.color.last()),
-                                type = LMSceneType.gradient,
-                                steps = steps,
+                            val action = actionHybrid
+                                ?.let { a -> LMActionHybrid(
+                                    ids = a.ids,
+                                    hexColors = listOf(a.hexColors.first(), a.hexColors.last()),
+                                    gains = a.gains
+                                ) }?:error("Invalid gradient")
+                            LMScene(
+                                name = s.name,
+                                type = s.type,
+                                color = listOf(),
+                                factor = s.factor,
+                                steps = s.steps,
+                                repeatable = s.repeatable,
+                                condition = s.condition,
+                                actions = listOf(action),
                                 initialize = false
                             )
-                            newScene
+                        }
+                        LMSceneType.sequence -> {
+                            LMScene(
+                                name = s.name,
+                                type = s.type,
+                                color = s.color,
+                                factor = s.factor,
+                                steps = s.steps,
+                                repeatable = s.repeatable,
+                                condition = s.condition,
+                                actions = s.actions,
+                                initialize = false
+                            )
+                        }
+                        else -> {
+                            val color = if (actionHybrid?.originalHexColors != null) {
+                                actionHybrid = LMActionHybrid(
+                                    hexColors = actionHybrid.originalHexColors ?: error("No original hex colors")
+                                )
+                                listOf()
+                            } else if (s.color != (actionHybrid?.hexColors ?: listOf<String>())) {
+                                s.color
+                            } else listOf()
+                            LMScene(
+                                name = s.name,
+                                type = s.type,
+                                color = color,
+                                factor = s.factor,
+                                steps = s.steps,
+                                repeatable = s.repeatable,
+                                condition = s.condition,
+                                actions = actionHybrid?.let { a -> listOf(a) } ?: listOf(),
+                                initialize = false
+                            )
                         }
                     }
                 }.toMutableList()
-                Pair(name, group)
-            })
+            ) }.toMutableList())
 
         newScenes.writeValue(scenesJsonFile)
     }

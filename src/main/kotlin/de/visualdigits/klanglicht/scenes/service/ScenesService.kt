@@ -70,7 +70,7 @@ class ScenesService(
         action: LMAction,
         scene: String
     ) {
-        log.info("Executing action '$action'...")
+        log.info("Executing action '${action.name()}'...")
         when (action) {
             is LMActionAir -> lmair(action.sceneIndex ?: -1)
             is LMActionShelly -> shelly(action.ids, action.turnOn == true)
@@ -83,7 +83,7 @@ class ScenesService(
 
             is LMActionTwinkly -> twinkly(action.command, action.moodsIndex, action.effectIndex)
             is LMActionPause -> action.duration?.also { Thread.sleep(it) }
-            else -> log.warn("  Unsupported action '${action.javaClass}'")
+            else -> log.warn("  Unsupported action '${action.name()}'")
         }
     }
 

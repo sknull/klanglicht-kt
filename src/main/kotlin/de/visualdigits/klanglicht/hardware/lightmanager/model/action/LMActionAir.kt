@@ -3,7 +3,7 @@ package de.visualdigits.klanglicht.hardware.lightmanager.model.action
 class LMActionAir(
     val comment: String? = null,
     val sceneIndex: Int? = null,
-) : LMAction() {
+) : LMAction("LMAir") {
 
     override fun toString(): String {
         return "[LMAir] $comment: $sceneIndex"

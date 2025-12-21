@@ -1,27 +1,26 @@
 package de.visualdigits.klanglicht.hardware.lightmanager.model.html.page.components
 
 import de.visualdigits.klanglicht.configuration.ApplicationPreferences
+import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMSceneGroup
 
 class LMHtmlColorWheel(
     val prefs: ApplicationPreferences,
-    val name: String,
-    val displayName: String,
-    val oddEven: Boolean
+    val sceneGroup: LMSceneGroup
 ) : LMHtml {
 
     override fun html(indent: Int): String {
         val sindent = "  ".repeat(indent)
-        val wheelId = name.replace(" ", "")
+        val wheelId = sceneGroup.name.replace(" ", "")
         val sb = StringBuilder()
-        if (oddEven) {
+        if (sceneGroup.colorWheelOddEven) {
             sb.append("$sindent<div class=\"colorwheel-wrapper-oddeven\">\n")
-            sb.append(renderColorWheelPanel(displayName, wheelId, true, indent + 1))
-            sb.append(renderColorWheelPanel(displayName, wheelId, false, indent + 1))
+            sb.append(renderColorWheelPanel(sceneGroup.displayName, wheelId, true, indent + 1))
+            sb.append(renderColorWheelPanel(sceneGroup.displayName, wheelId, false, indent + 1))
             sb.append(renderScriptOddEven(wheelId, indent + 1))
             sb.append("$sindent</div><!-- colorwheel-wrapper-oddeven -->\n")
         } else {
             sb.append("$sindent<div class=\"colorwheel-wrapper\">\n")
-            sb.append(renderColorWheelPanel(displayName, wheelId, null, indent + 1))
+            sb.append(renderColorWheelPanel(sceneGroup.displayName, wheelId, null, indent + 1))
             sb.append(renderScriptStandalone(wheelId, indent + 1))
             sb.append("$sindent</div><!-- colorwheel-wrapper -->\n")
         }

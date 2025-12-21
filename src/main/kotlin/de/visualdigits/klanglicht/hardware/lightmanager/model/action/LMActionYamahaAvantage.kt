@@ -4,7 +4,7 @@ class LMActionYamahaAvantage(
     val command: String? = null,
     val program: String? = null,
     val enable: Boolean? = null,
-) : LMAction() {
+) : LMAction("Yamaha Avantage") {
 
     override fun toString(): String {
         return "[YamahaAvantage] command=$command program=$program enable=$enable"

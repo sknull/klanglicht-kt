@@ -4,7 +4,7 @@ class LMActionTwinkly(
     val command: String,
     val moodsIndex: Int = -2,
     val effectIndex: Int = -2
-) : LMAction() {
+) : LMAction("Twinkly") {
 
     override fun toString(): String {
         return "[Twinkly] "

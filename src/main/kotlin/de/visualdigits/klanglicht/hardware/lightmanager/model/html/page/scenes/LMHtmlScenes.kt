@@ -36,7 +36,7 @@ class LMHtmlScenes(
 
         sb.append("$sindent    <div class='inputform'>\n")
         sb.append("$sindent      <form action='${prefs.baseUrl}:${prefs.port}/v1/scenes/json/save' method='GET'>\n")
-        sb.append("$sindent        <input type='text' id='name' name='name' value='$currentSceneName'/>\n")
+        sb.append("$sindent        <input type='text' id='scene' name='scene' value='$currentSceneName'/>\n")
         sb.append("$sindent        <input type='submit' value='Save'/>\n")
         sb.append("$sindent      </form>\n")
         sb.append("$sindent    </div> <!-- input form -->\n")
@@ -46,7 +46,7 @@ class LMHtmlScenes(
 
         sb.append("$sindent<div class=\"category\">\n")
         sb.append("$sindent  <span class=\"label\">").append("S C E N E S").append("</span>\n")
-        scenes.scenes.forEach { sceneGroup ->
+        scenes.groups.forEach { sceneGroup ->
             val html = LMHtmlSceneGroup(prefs, sceneGroup).html(indent + 1)
             sb.append(html)
         }

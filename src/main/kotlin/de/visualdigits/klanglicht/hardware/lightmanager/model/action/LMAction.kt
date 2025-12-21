@@ -1,12 +1,13 @@
 package de.visualdigits.klanglicht.hardware.lightmanager.model.action
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonSubTypes
 import com.fasterxml.jackson.annotation.JsonSubTypes.Type
 import com.fasterxml.jackson.annotation.JsonTypeInfo
 
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
-    include = JsonTypeInfo.As.WRAPPER_OBJECT
+    include = JsonTypeInfo.As.WRAPPER_OBJECT,
 )
 @JsonSubTypes(
     Type(name = "pause", value = LMActionPause::class),
@@ -17,8 +18,15 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo
     Type(name = "yamahaAvantage", value = LMActionYamahaAvantage::class),
     Type(name = "lmair", value = LMActionAir::class),
 )
-abstract class LMAction {
+@JsonIgnoreProperties("name")
+abstract class LMAction(
+    val name: String
+) {
+
+    var scene: LMScene? = null
 
     open fun url(): String = ""
+
+    fun name(): String = "${scene?.group?.name} - ${scene?.name} - $name"
 }
 

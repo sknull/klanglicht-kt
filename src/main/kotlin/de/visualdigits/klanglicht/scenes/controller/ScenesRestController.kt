@@ -41,9 +41,7 @@ class ScenesRestController(
 
     @GetMapping("/save", produces = ["application/xhtml+xml"])
     fun save(
-        @RequestParam(value = "group") group: String,
-        @RequestParam(value = "scene") scene: String,
-        request: HttpServletRequest
+        @RequestParam(value = "scene") scene: String
     ): ResponseEntity<Unit> {
         scenesService.saveCustomScene(scene)
         return ResponseEntity.status(302).location(URI.create("/v1/hybrid/web/scenes")).build()
@@ -51,7 +49,6 @@ class ScenesRestController(
 
     @DeleteMapping("delete")
     fun delete(
-        @RequestParam(value = "group") group: String,
         @RequestParam(value = "scene") scene: String
     ) = scenesService.deleteCustomScene(scene)
 
