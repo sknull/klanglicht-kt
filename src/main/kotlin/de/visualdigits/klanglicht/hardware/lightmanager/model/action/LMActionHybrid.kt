@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 class LMActionHybrid(
     val ids: List<String> = listOf(),
     var hexColors: List<String> = listOf(),
+    var factor: Double = 1.0,
     var originalHexColors: List<String>? = null,
     val gains: List<Double> = listOf(),
 ) : LMAction("Hybrid") {

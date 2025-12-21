@@ -18,7 +18,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo
     Type(name = "yamahaAvantage", value = LMActionYamahaAvantage::class),
     Type(name = "lmair", value = LMActionAir::class),
 )
-@JsonIgnoreProperties("name")
+@JsonIgnoreProperties("name", "scene")
 abstract class LMAction(
     val name: String
 ) {

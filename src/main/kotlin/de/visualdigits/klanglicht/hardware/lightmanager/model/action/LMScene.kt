@@ -3,14 +3,13 @@ package de.visualdigits.klanglicht.hardware.lightmanager.model.action
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import de.visualdigits.kotlin.twinkly.model.color.BlendMode
 import de.visualdigits.kotlin.twinkly.model.color.RGBColor
-import org.jetbrains.kotlin.util.prefixIfNot
 
-@JsonIgnoreProperties("initialize", "groupName")
+@JsonIgnoreProperties("initialize", "groupName", "group")
 class LMScene(
     val name: String,
     val type: LMSceneType = LMSceneType.standard,
     var color: List<String> = listOf(),
-    var factor: Double = 1.0,
+//    var factor: Double = 1.0,
     val steps: Int = 0, // only relevant for gradients
 
     val repeatable: Boolean = true,
@@ -27,25 +26,34 @@ class LMScene(
             val actionHybrid = actions
                 .filterIsInstance<LMActionHybrid>()
                 .firstOrNull()
-            if (actionHybrid != null) {
-                val colors = if (factor != 1.0) {
-                    val hexColors = actionHybrid.hexColors.map { hc -> RGBColor(hc).multiply(factor).web() }
-                    actions = listOf(LMActionHybrid(ids = actionHybrid.ids, originalHexColors = actionHybrid.hexColors, hexColors = hexColors, gains = actionHybrid.gains))
-                    hexColors
-                } else {
-                    actionHybrid.hexColors.map { hc -> hc.prefixIfNot("#") }
+            when (type) {
+                LMSceneType.standard, LMSceneType.sequence -> {
+                    actions
+                        .filterIsInstance<LMActionHybrid>()
+                        .forEach { actionHybrid ->
+                            actionHybrid.originalHexColors = actionHybrid.hexColors
+                            actionHybrid.hexColors = actionHybrid.hexColors.map { hc -> RGBColor(hc).multiply(actionHybrid.factor).web() }
+                        }
+                    color = if (color.isEmpty()) {
+                        actionHybrid?.hexColors?:listOf()
+                    } else {
+                        color
+                    }
                 }
-                if (type == LMSceneType.gradient && colors.size >= 2) {
-                    val first = RGBColor(colors.first())
-                    val last = RGBColor(colors.last())
+                LMSceneType.gradient -> {
+                    val first = RGBColor(actionHybrid?.hexColors?.first()?:"#000000").multiply(actionHybrid?.factor?:1.0)
+                    val last = RGBColor(actionHybrid?.hexColors?.last()?:"#000000").multiply(actionHybrid?.factor?:1.0)
                     val step = 1.0 / (steps - 1)
                     val hexColors = (0..<steps).map { f ->
                         first.fade(last, f * step, BlendMode.AVERAGE).web()
                     }
+                    actionHybrid?.originalHexColors = actionHybrid.hexColors
+                    actionHybrid?.hexColors = hexColors
                     color = hexColors
-                    actions = listOf(LMActionHybrid(ids = actionHybrid.ids, originalHexColors = actionHybrid.hexColors, hexColors = hexColors, gains = actionHybrid.gains))
-                } else if (color.isEmpty()) {
-                    color = colors
+                } else -> {
+                    if (color.isEmpty()) {
+                        color = actionHybrid?.hexColors?.map { hc -> RGBColor(hc).multiply(actionHybrid.factor).web() }?:listOf()
+                    }
                 }
             }
         }

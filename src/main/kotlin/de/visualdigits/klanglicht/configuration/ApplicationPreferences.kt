@@ -181,14 +181,14 @@ class ApplicationPreferences() {
                             val action = actionHybrid
                                 ?.let { a -> LMActionHybrid(
                                     ids = a.ids,
-                                    hexColors = listOf(a.hexColors.first(), a.hexColors.last()),
+                                    hexColors = listOf(a.originalHexColors?.first()?:a.hexColors.first(), a.originalHexColors?.last()?:a.hexColors.last()),
+                                    factor = actionHybrid.factor,
                                     gains = a.gains
                                 ) }?:error("Invalid gradient")
                             LMScene(
                                 name = s.name,
                                 type = s.type,
                                 color = listOf(),
-                                factor = s.factor,
                                 steps = s.steps,
                                 repeatable = s.repeatable,
                                 condition = s.condition,
@@ -201,7 +201,6 @@ class ApplicationPreferences() {
                                 name = s.name,
                                 type = s.type,
                                 color = s.color,
-                                factor = s.factor,
                                 steps = s.steps,
                                 repeatable = s.repeatable,
                                 condition = s.condition,
@@ -212,7 +211,10 @@ class ApplicationPreferences() {
                         else -> {
                             val color = if (actionHybrid?.originalHexColors != null) {
                                 actionHybrid = LMActionHybrid(
-                                    hexColors = actionHybrid.originalHexColors ?: error("No original hex colors")
+                                    ids = actionHybrid.ids,
+                                    hexColors = actionHybrid.originalHexColors ?: error("No original hex colors"),
+                                    factor = actionHybrid.factor,
+                                    gains = actionHybrid.gains
                                 )
                                 listOf()
                             } else if (s.color != (actionHybrid?.hexColors ?: listOf<String>())) {
@@ -222,7 +224,6 @@ class ApplicationPreferences() {
                                 name = s.name,
                                 type = s.type,
                                 color = color,
-                                factor = s.factor,
                                 steps = s.steps,
                                 repeatable = s.repeatable,
                                 condition = s.condition,
