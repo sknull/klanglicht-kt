@@ -4,38 +4,40 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import de.visualdigits.kotlin.twinkly.model.color.BlendMode
 import de.visualdigits.kotlin.twinkly.model.color.RGBColor
 
-@JsonIgnoreProperties("initialize", "groupName", "group")
+@JsonIgnoreProperties("initialize", "group")
 class LMScene(
     val name: String,
     val type: LMSceneType = LMSceneType.standard,
-    var color: List<String> = listOf(),
+    var color: List<String>? = listOf(),
 //    var factor: Double = 1.0,
     val steps: Int = 0, // only relevant for gradients
 
-    val repeatable: Boolean = true,
+    val repeatable: Boolean? = true,
     val condition: LMCondition? = null,
     var actions: List<LMAction> = listOf(),
 
-    val initialize: Boolean = true
+    val initialize: Boolean? = true
 ) {
 
     var group: LMSceneGroup? = null
 
     init {
-        if (initialize) {
+        if (initialize == true) {
             val actionHybrid = actions
                 .filterIsInstance<LMActionHybrid>()
                 .firstOrNull()
             when (type) {
-                LMSceneType.standard, LMSceneType.sequence -> {
+                LMSceneType.standard -> {
                     actions
                         .filterIsInstance<LMActionHybrid>()
                         .forEach { actionHybrid ->
-                            actionHybrid.originalHexColors = actionHybrid.hexColors
-                            actionHybrid.hexColors = actionHybrid.hexColors.map { hc -> RGBColor(hc).multiply(actionHybrid.factor).web() }
+                            if (actionHybrid.factor != 1.0) {
+                                actionHybrid.originalHexColors = actionHybrid.hexColors
+                                actionHybrid.hexColors = actionHybrid.hexColors.map { hc -> RGBColor(hc).multiply(actionHybrid.factor).web() }
+                            }
                         }
-                    color = if (color.isEmpty()) {
-                        actionHybrid?.hexColors?:listOf()
+                    color = if(color == null || color?.isEmpty() == true) {
+                        actionHybrid?.hexColors ?: listOf()
                     } else {
                         color
                     }
@@ -50,16 +52,12 @@ class LMScene(
                     actionHybrid?.originalHexColors = actionHybrid.hexColors
                     actionHybrid?.hexColors = hexColors
                     color = hexColors
-                } else -> {
-                    if (color.isEmpty()) {
-                        color = actionHybrid?.hexColors?.map { hc -> RGBColor(hc).multiply(actionHybrid.factor).web() }?:listOf()
-                    }
                 }
             }
         }
     }
 
     override fun toString(): String {
-        return "$name [$type]: ${color.joinToString(",")}${condition?.let { c -> ", Condition: ${c.javaClass.simpleName}" }?: "" }${if (actions.isNotEmpty()) "\n    - ${actions.joinToString("\n    - ")}" else ""}"
+        return "$name [$type]: ${color?.joinToString(",")}${condition?.let { c -> ", Condition: ${c.javaClass.simpleName}" }?: "" }${if (actions.isNotEmpty()) "\n    - ${actions.joinToString("\n    - ")}" else ""}"
     }
 }

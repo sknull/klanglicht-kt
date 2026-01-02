@@ -2,6 +2,7 @@ package de.visualdigits.klanglicht.hardware.lightmanager.model.action
 
 import de.visualdigits.kotlin.twinkly.model.color.BlendMode
 import de.visualdigits.kotlin.twinkly.model.color.RGBColor
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import java.io.File
 
@@ -11,6 +12,14 @@ class LMScenesTest {
     fun testReadScenes() {
         val scenes = LMScenes.readValue(File(ClassLoader.getSystemResource(".klanglicht/resources/scenes.json").toURI()))
         println(scenes)
+    }
+
+    @Test
+    fun testReadWriteScenes() {
+        val expected = File(ClassLoader.getSystemResource(".klanglicht/resources/scenes.json").toURI()).readText()
+        val scenes = LMScenes.readValue(expected)
+        val actual = scenes.writeValueAsString()
+        assertEquals(expected, actual)
     }
 
     @Test
@@ -49,7 +58,7 @@ class LMScenesTest {
                                 initialize = false
                             )
                         }
-                        LMSceneType.sequence -> {
+                        LMSceneType.standard -> {
                             LMScene(
                                 name = s.name,
                                 type = s.type,

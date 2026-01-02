@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo
 import de.visualdigits.klanglicht.configuration.ApplicationPreferences
 
 @JsonTypeInfo(
+    include = JsonTypeInfo.As.EXISTING_PROPERTY,
     use = JsonTypeInfo.Id.NAME,
     property = "name"
 )

@@ -2,7 +2,6 @@ package de.visualdigits.klanglicht.configuration
 
 import de.visualdigits.klanglicht.configuration.model.Stage
 import de.visualdigits.klanglicht.hardware.hybrid.model.HybridScene
-import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMActionHybrid
 import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMActionTwinkly
 import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMScene
 import de.visualdigits.klanglicht.hardware.lightmanager.model.action.LMSceneGroup
@@ -19,8 +18,6 @@ import org.springframework.boot.context.properties.ConfigurationPropertiesScan
 import org.springframework.context.annotation.Configuration
 import java.io.File
 import java.nio.file.Paths
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 
 @Configuration
 @ConfigurationProperties(prefix = "application")
@@ -73,6 +70,12 @@ class ApplicationPreferences() {
 
     fun loadScenes(): LMScenes {
         val scenes = LMScenes.readValue(Paths.get(klanglichtDirectory.canonicalPath, "resources", "scenes.json").toFile())
+        insertMoodScenes(scenes)
+
+        return scenes
+    }
+
+    private fun insertMoodScenes(scenes: LMScenes) {
         if (stage?.devices?.discoveredDevices?.isNotEmpty() == true) {
             val moodScenes = mutableListOf<LMScene>()
             moodScenes.add(
@@ -143,8 +146,6 @@ class ApplicationPreferences() {
             createReferences(scenes)
             scenes.refreshSceneMap()
         }
-
-        return scenes
     }
 
     private fun createReferences(scenes: LMScenes) {
@@ -160,82 +161,7 @@ class ApplicationPreferences() {
 
     fun writeScenes(scenes: LMScenes) {
         val scenesJsonFile = Paths.get(klanglichtDirectory.canonicalPath, "resources", "scenes.json").toFile()
-        val timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss"))
-        val backupScenesJsonFile = Paths.get(klanglichtDirectory.canonicalPath, "resources", "${timestamp}_scenes.json").toFile()
-        if (scenesJsonFile.exists() && !scenesJsonFile.renameTo(backupScenesJsonFile))  error("Could not rename scene file '${scenesJsonFile.canonicalPath}' to '${backupScenesJsonFile.canonicalPath}'")
-
-        val newScenes = LMScenes(
-            name = scenes.name,
-            groups = scenes.scenesGroupMap.values.map { sg -> LMSceneGroup(
-                name = sg.name,
-                displayName = sg.displayName,
-                hasColorWheel = sg.hasColorWheel,
-                colorWheelOddEven = sg.colorWheelOddEven,
-                selectable = sg.selectable,
-                scenes = sg.scenes.map { s ->
-                    var actionHybrid = s.actions
-                        .filterIsInstance<LMActionHybrid>()
-                        .firstOrNull()
-                    when (s.type) {
-                        LMSceneType.gradient -> {
-                            val action = actionHybrid
-                                ?.let { a -> LMActionHybrid(
-                                    ids = a.ids,
-                                    hexColors = listOf(a.originalHexColors?.first()?:a.hexColors.first(), a.originalHexColors?.last()?:a.hexColors.last()),
-                                    factor = actionHybrid.factor,
-                                    gains = a.gains
-                                ) }?:error("Invalid gradient")
-                            LMScene(
-                                name = s.name,
-                                type = s.type,
-                                color = listOf(),
-                                steps = s.steps,
-                                repeatable = s.repeatable,
-                                condition = s.condition,
-                                actions = listOf(action),
-                                initialize = false
-                            )
-                        }
-                        LMSceneType.sequence -> {
-                            LMScene(
-                                name = s.name,
-                                type = s.type,
-                                color = s.color,
-                                steps = s.steps,
-                                repeatable = s.repeatable,
-                                condition = s.condition,
-                                actions = s.actions,
-                                initialize = false
-                            )
-                        }
-                        else -> {
-                            val color = if (actionHybrid?.originalHexColors != null) {
-                                actionHybrid = LMActionHybrid(
-                                    ids = actionHybrid.ids,
-                                    hexColors = actionHybrid.originalHexColors ?: error("No original hex colors"),
-                                    factor = actionHybrid.factor,
-                                    gains = actionHybrid.gains
-                                )
-                                listOf()
-                            } else if (s.color != (actionHybrid?.hexColors ?: listOf<String>())) {
-                                s.color
-                            } else listOf()
-                            LMScene(
-                                name = s.name,
-                                type = s.type,
-                                color = color,
-                                steps = s.steps,
-                                repeatable = s.repeatable,
-                                condition = s.condition,
-                                actions = actionHybrid?.let { a -> listOf(a) } ?: listOf(),
-                                initialize = false
-                            )
-                        }
-                    }
-                }.toMutableList()
-            ) }.toMutableList())
-
-        newScenes.writeValue(scenesJsonFile)
+        scenes.writeValue(scenesJsonFile)
     }
 
     fun getAbsoluteResource(relativeResourePath: String): File {

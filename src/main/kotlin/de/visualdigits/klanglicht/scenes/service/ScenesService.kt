@@ -41,7 +41,7 @@ class ScenesService(
         val get = map?.get(scene)
         get
             ?.also { s ->
-                if (scene != previousSceneName || s.repeatable) {
+                if (scene != previousSceneName || s.repeatable == true) {
                     val execute = if (s.condition != null) {
                         val result = s.condition.evaluate(prefs)
                         log.info("Evaluated condition '${s.condition.name}': $result")

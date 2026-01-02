@@ -19,7 +19,7 @@ class LMHtmlScene(
         var html = LMHtmlButton(
             label = label,
             href = "request('${prefs.baseUrl}:${prefs.port}/v1/scenes/json/control?group=${sceneGroup.name}&scene=${scene.name}')",
-            color = scene.color.joinToString(",")
+            color = scene.color?.joinToString(",")?:""
         ).html(indent + 1)
         if (sceneGroup.name == "Custom") {
             html += LMHtmlButton(

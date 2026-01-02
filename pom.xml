@@ -28,6 +28,7 @@
         <version.kotlin.language>2.2</version.kotlin.language>
         <version.spring-boot>3.3.2</version.spring-boot>
         <version.junit.jupiter>5.10.2</version.junit.jupiter>
+        <version.smack>4.5.0-rc1</version.smack>
     </properties>
 
     <distributionManagement>
@@ -80,6 +81,11 @@
             <version>4.2</version>
         </dependency>
         <dependency>
+            <groupId>org.shredzone.commons</groupId>
+            <artifactId>commons-suncalc</artifactId>
+            <version>3.11</version>
+        </dependency>
+        <dependency>
             <groupId>com.madgag</groupId>
             <artifactId>animated-gif-lib</artifactId>
             <version>1.4</version>
@@ -89,7 +95,7 @@
         <dependency>
             <groupId>org.apache.tika</groupId>
             <artifactId>tika-core</artifactId>
-            <version>2.9.1</version>
+            <version>3.2.3</version>
         </dependency>
 
         <!-- serial port -->
@@ -113,33 +119,52 @@
             <version>2.17.1</version>
         </dependency>
 
-        <!-- commons -->
-        <dependency>
-            <groupId>org.shredzone.commons</groupId>
-            <artifactId>commons-suncalc</artifactId>
-            <version>3.11</version>
+        <!-- xmpp -->
+        <!--dependency>
+            <groupId>javax.websocket</groupId>
+            <artifactId>javax.websocket-client-api</artifactId>
+            <version>1.0</version>
         </dependency>
+        <dependency>
+            <groupId>org.glassfish.tyrus</groupId>
+            <artifactId>tyrus-client</artifactId>
+            <version>1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.tyrus</groupId>
+            <artifactId>tyrus-container-grizzly</artifactId>
+            <version>1.1</version>
+        </dependency-->
 
-        <!-- xmp -->
+        <!--dependency>
+            <groupId>com.google.inject</groupId>
+            <artifactId>guice</artifactId>
+            <version>4.1.0</version>
+        </dependency-->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>21.0</version>
+        </dependency>
         <dependency>
             <groupId>org.igniterealtime.smack</groupId>
             <artifactId>smack-core</artifactId>
-            <version>4.2.0</version>
+            <version>${version.smack}</version>
         </dependency>
         <dependency>
             <groupId>org.igniterealtime.smack</groupId>
-            <artifactId>smack-java7</artifactId>
-            <version>4.2.0</version>
+            <artifactId>smack-java11</artifactId>
+            <version>${version.smack}</version>
         </dependency>
         <dependency>
             <groupId>org.igniterealtime.smack</groupId>
             <artifactId>smack-tcp</artifactId>
-            <version>4.2.0</version>
+            <version>${version.smack}</version>
         </dependency>
         <dependency>
             <groupId>org.igniterealtime.smack</groupId>
             <artifactId>smack-debug</artifactId>
-            <version>4.2.0</version>
+            <version>${version.smack}</version>
         </dependency>
 
         <!-- springboot -->
