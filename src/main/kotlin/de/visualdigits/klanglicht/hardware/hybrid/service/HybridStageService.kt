@@ -2,8 +2,14 @@ package de.visualdigits.klanglicht.hardware.hybrid.service
 
 import de.visualdigits.klanglicht.configuration.ApplicationPreferences
 import de.visualdigits.klanglicht.hardware.hybrid.model.HybridScene
+import de.visualdigits.klanglicht.hardware.lightmanager.model.client.ClientColorPicker
+import de.visualdigits.klanglicht.hardware.lightmanager.model.client.ClientDevice
+import de.visualdigits.klanglicht.hardware.lightmanager.model.client.ClientGroup
+import de.visualdigits.klanglicht.hardware.lightmanager.model.client.ClientScene
+import de.visualdigits.klanglicht.hardware.lightmanager.model.client.ClientStage
 import de.visualdigits.klanglicht.hardware.shelly.webclient.ShellyClient
 import jakarta.annotation.PreDestroy
+import org.jetbrains.kotlin.util.prefixIfNot
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
@@ -20,6 +26,68 @@ class HybridStageService(
         log.info("### Shutting down...")
         hexColor("shutdown", hexColors = listOf("000000"), store = false)
         prefs.stage?.devices?.dmx?.tearDownDmx()
+    }
+
+    fun getClientStage(): ClientStage {
+        val scenes = prefs.loadScenes()
+
+        return ClientStage(
+            name = scenes.name?:"?",
+            currentScene = prefs.currentScene?.fadeableMap()?.map { (id, fadeable) -> ClientDevice(id, fadeable.toRgbColor().web() ) } ?: listOf(),
+            colorPickers = prefs.stage?.devices?.colorWheelMap?.map { (id, colorWheel) ->
+                val currentColor = prefs.colorStore[id]
+                Pair(id, ClientColorPicker(
+                    id = id,
+                    updates = colorWheel.devices + colorWheel.updates,
+                    currentColor = currentColor?.prefixIfNot("#")?:"#000000"
+                ))
+            }?.toMap()?:mapOf(),
+            groups = scenes.groups.map { group ->
+                val colorPickers = if (group.hasColorWheel) {
+                    if (group.colorWheelOddEven) {
+                        listOf("${group.name}Even", "${group.name}Odd")
+                    } else {
+                        listOf(group.name)
+                    }
+                } else {
+                    listOf()
+                }
+                ClientGroup(
+                    name = group.name,
+                    label = group.displayName,
+                    isSelectable = group.selectable,
+                    colorPickers = colorPickers,
+                    scenes = group.scenes.map { scene ->
+                        val label = if (scene.name.startsWith(group.name, ignoreCase = true)) {
+                            scene.name.substring(group.name.length).trim { it <= ' ' }
+                        } else {
+                            scene.name
+                        }
+
+                        ClientScene(
+                            label = label,
+                            colors = scene.color?:listOf(),
+                            url = "${prefs.baseUrl}:${prefs.port}/v1/scenes/json/control?group=${group.name}&scene=${scene.name}"
+                        )
+                    }
+                )
+            }
+        )
+    }
+
+    private fun createColorPicker(
+        id: String
+    ): ClientColorPicker? {
+        val colorWheel = prefs.stage?.devices?.colorWheelMap?.get(id)
+        return if (colorWheel != null) {
+            ClientColorPicker(
+                id = id,
+                updates = colorWheel.devices + colorWheel.updates,
+                currentColor = prefs.colorStore[id]?.prefixIfNot("#") ?: "#000000"
+            )
+        } else {
+            null
+        }
     }
 
     /**
@@ -45,12 +113,34 @@ class HybridStageService(
         storeName: String? = null
     ) {
         val currentScene = prefs.currentScene?.clone()
+
+        val finalHexColors = if (hexColors.size == 1) {
+            val hc = hexColors.first()
+            val csc = currentScene?.colors()?.toMutableList()?:mutableListOf()
+            if (storeName?.endsWith("Odd") == true && hexColors.isNotEmpty()) {
+                (1 until csc.size step 2).forEach { index ->
+                    csc[index] = hc
+                }
+                csc
+            } else if (storeName?.endsWith("Even") == true && hexColors.isNotEmpty()) {
+                (0 until csc.size step 2).forEach { index ->
+                    csc[index] = hc
+                }
+                csc
+            } else {
+                (0 until csc.size).forEach { index ->
+                    csc[index] = hc
+                }
+                csc
+            }
+        } else {
+            hexColors
+        }
+
         val nextScene = prefs.currentScene?.clone()
             ?.let { hybridScene ->
-                val hybridScene1 = HybridScene(prefs.stage!!, ids, hexColors, gains, turnOn.toString())
-                val fadeableMap = hybridScene1
+                HybridScene(prefs.stage!!, ids, finalHexColors, gains, turnOn.toString())
                     .fadeableMap()
-                fadeableMap
                     .forEach {
                         hybridScene.putFadeable(it.key, it.value)
                     }
@@ -72,78 +162,30 @@ class HybridStageService(
         storeName: String?
     ) {
         nextScene?.also { s -> prefs.updateScene(s) } ?: log.warn("No next scene")
-        val keys = prefs.stage?.devices?.stage?.map { it.id }
-        val remaining = prefs.stage?.devices?.colorWheels?.map { it.id }?.toMutableSet() ?: mutableSetOf()
         val colors = hexColors.joinToString(",")
-        // update other affected color wheels
-        wheelId
-            ?.let { wid -> prefs.stage?.devices?.colorWheelMap?.get(wid)?.updates }
-            ?.forEach { wid -> prefs.putColor(wid, colors) }
+
         if (storeName != null) {
             prefs.putColor(storeName, colors)
-            remaining.remove(storeName)
         }
 
-        val pairs = hexColors.chunked(2)
-        val stagePairs = keys?.chunked(2)
+        // update other affected color wheels
+        val colorWheel = prefs.stage?.devices?.colorWheelMap
+            ?.get(wheelId)
+            ?: prefs.stage?.devices?.colorWheelMap?.get(storeName)
+        val colorWheels = (colorWheel?.updates ?: listOf()) + (colorWheel?.devices ?: listOf())
+        colorWheels.forEach { storeName ->
+            prefs.putColor(storeName, colors)
+        }
 
-        storeOdd(pairs, stagePairs, remaining)
-        storeEven(pairs, stagePairs, remaining)
-        storeAll(hexColors, remaining)
-
+        // update remaining stores
+        val remaining = prefs.getDeviceIds().toMutableList()
+        remaining.removeAll(colorWheels)
         remaining.forEach { id ->
-            prefs.colorStore.remove(id)
-        }
-    }
-
-    private fun storeAll(
-        hexColors: List<String>,
-        remaining: MutableSet<String>
-    ) {
-        val allColors = hexColors.first()
-        if (hexColors.all { it == allColors }) {
-            remaining.remove("All")
-            prefs.stage?.devices?.colorWheels?.forEach { cw ->
-                prefs.putColor(cw.id, allColors)
-                remaining.remove(cw.id)
-            }
-        }
-    }
-
-    private fun storeEven(
-        pairs: List<List<String>>,
-        stagePairs: List<List<String>>?,
-        remaining: MutableSet<String>
-    ) {
-        val even = pairs.mapNotNull { if (it.size > 1) it[1] else null }
-        val stageEven = stagePairs?.mapNotNull { if (it.size > 1) it[1] else null }
-        val evenColor = even.firstOrNull()
-        if (even.all { it == evenColor }) {
-            prefs.putColor("AllEven", evenColor)
-            remaining.remove("AllEven")
-            stageEven?.forEach { id ->
-                prefs.putColor(id, evenColor)
-                remaining.remove(id)
-            }
-        }
-    }
-
-    private fun storeOdd(
-        pairs: List<List<String>>,
-        stagePairs: List<List<String>>?,
-        remaining: MutableSet<String>
-    ) {
-        val odd = pairs.mapNotNull { if (it.isNotEmpty()) it[0] else null }
-        val stageOdd = stagePairs?.mapNotNull { if (it.isNotEmpty()) it[0] else null }
-        val oddColor = odd.firstOrNull()
-        if (odd.all { it == oddColor }) {
-            val hexColor = oddColor
-            prefs.putColor("AllOdd", hexColor)
-            remaining.remove("AllOdd")
-            stageOdd?.forEach { id ->
-                prefs.putColor(id, oddColor)
-                remaining.remove(id)
-            }
+            prefs.currentScene
+                ?.getRgbColor(id)
+                ?.also { c ->
+                    prefs.putColor(id, c.hex())
+                }
         }
     }
 

@@ -159,6 +159,10 @@ class ApplicationPreferences() {
         }
     }
 
+    fun getDeviceIds(): List<String> {
+        return stage?.devices?.stage?.map { it.id }?:listOf()
+    }
+
     fun writeScenes(scenes: LMScenes) {
         val scenesJsonFile = Paths.get(klanglichtDirectory.canonicalPath, "resources", "scenes.json").toFile()
         scenes.writeValue(scenesJsonFile)

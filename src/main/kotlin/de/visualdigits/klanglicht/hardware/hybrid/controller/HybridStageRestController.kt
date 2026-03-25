@@ -1,7 +1,10 @@
 package de.visualdigits.klanglicht.hardware.hybrid.controller
 
 import de.visualdigits.klanglicht.hardware.hybrid.service.HybridStageService
+import de.visualdigits.klanglicht.hardware.lightmanager.model.client.ClientStage
+import org.springframework.http.MediaType
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
@@ -12,6 +15,9 @@ import org.springframework.web.bind.annotation.RestController
 class HybridStageRestController(
     private val hybridStageService: HybridStageService
 ) {
+
+    @GetMapping("stage", produces = [MediaType.APPLICATION_JSON_VALUE])
+    fun getClientScenes(): ClientStage = hybridStageService.getClientStage()
 
     @GetMapping("hexColor")
     fun hexColor(

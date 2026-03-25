@@ -21,6 +21,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo
 @JsonIgnoreProperties("name", "scene")
 abstract class LMAction(
     private val name: String
+
 ) {
 
     var scene: LMScene? = null

@@ -14,7 +14,7 @@ import kotlin.math.roundToInt
 @JsonIgnoreProperties("parameterValues")
 class ParameterSet(
     val baseChannel: Int = 0,
-    val parameters: List<Parameter<*>> = listOf(),
+    val parameters: MutableList<Parameter<*>> = mutableListOf(),
 ) : Fadeable<ParameterSet> {
 
     private val log: Logger = LoggerFactory.getLogger(javaClass)
@@ -38,7 +38,7 @@ class ParameterSet(
     override fun clone(): ParameterSet {
         return ParameterSet(
             baseChannel,
-            parameters.map { it.clone() }
+            parameters.map { it.clone() }.toMutableList()
         )
     }
 
@@ -85,7 +85,19 @@ class ParameterSet(
     }
 
     override fun setRgbColor(rgbColor: RGBColor) {
-        toRgbColor().setRgbColor(rgbColor)
+        val rgbParameter = parameters.filterIsInstance<RGBColor>().firstOrNull()
+        if (rgbParameter != null) {
+            parameters.remove(rgbParameter)
+        }
+        val rgbwParameter = parameters.filterIsInstance<RGBWColor>().firstOrNull()
+        if (rgbwParameter != null) {
+            parameters.remove(rgbwParameter)
+        }
+        val rgbaParameter = parameters.filterIsInstance<RGBAColor>().firstOrNull()
+        if (rgbaParameter != null) {
+            parameters.remove(rgbaParameter)
+        }
+        parameters.add(rgbColor.clone())
         updateParameterMap()
     }
 

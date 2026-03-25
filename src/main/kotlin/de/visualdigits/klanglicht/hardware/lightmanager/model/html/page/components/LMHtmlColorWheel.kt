@@ -44,10 +44,6 @@ class LMHtmlColorWheel(
 
     private fun renderScriptOddEven(wheelId: String, indent: Int): String {
         val sindent = "  ".repeat(indent)
-        val keys = prefs.stage?.devices?.stage?.map { it.id }?: listOf()
-        var colors = "colorOdd,colorEven,".repeat(keys.size / 2)
-        if (keys.size % 2 > 0) colors += "colorOdd" else colors = colors.substring(0, keys.size - 1)
-
         val currentColorOdd = prefs.getColor("${wheelId}Odd")?:"000000"
         val currentColorEven = prefs.getColor("${wheelId}Even")?:"000000"
 
@@ -64,14 +60,12 @@ class LMHtmlColorWheel(
                 "$sindent\n" +
                 "$sindent  colorWheel${wheelId}Odd.on('color:change', function(color, changes){\n" +
                 "$sindent    var colorOdd = colorWheel${wheelId}Odd.color.hexString.substring(1);\n" +
-                "$sindent    var colorEven = colorWheel${wheelId}Even.color.hexString.substring(1);\n" +
-                "$sindent    fetch(\"${prefs.baseUrl}:${prefs.port}/v1/hybrid/json/hexColor?wheelId=$wheelId&hexColors=\" + ${colors.replace(",", " + \",\" + ")} + \"&transition=0&storeName=${wheelId}Odd&\", {method: 'GET'}).catch(err => console.error(err));\n" +
+                "$sindent    fetch(\"${prefs.baseUrl}:${prefs.port}/v1/hybrid/json/hexColor?wheelId=$wheelId&hexColors=\" + colorOdd + \"&transition=0&storeName=${wheelId}Odd&\", {method: 'GET'}).catch(err => console.error(err));\n" +
                 "$sindent  });\n" +
                 "$sindent\n" +
                 "$sindent  colorWheel${wheelId}Even.on('color:change', function(color, changes){\n" +
-                "$sindent    var colorOdd = colorWheel${wheelId}Odd.color.hexString.substring(1);\n" +
                 "$sindent    var colorEven = colorWheel${wheelId}Even.color.hexString.substring(1);\n" +
-                "$sindent    fetch(\"${prefs.baseUrl}:${prefs.port}/v1/hybrid/json/hexColor?wheelId=$wheelId&hexColors=\" + ${colors.replace(",", " + \",\" + ")} + \"&transition=0&storeName=${wheelId}Even&\", {method: 'GET'}).catch(err => console.error(err));\n" +
+                "$sindent    fetch(\"${prefs.baseUrl}:${prefs.port}/v1/hybrid/json/hexColor?wheelId=$wheelId&hexColors=\" + colorEven + \"&transition=0&storeName=${wheelId}Even&\", {method: 'GET'}).catch(err => console.error(err));\n" +
                 "$sindent  });\n" +
                 "$sindent</script>\n"
     }

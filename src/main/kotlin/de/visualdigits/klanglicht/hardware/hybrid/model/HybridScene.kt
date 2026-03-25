@@ -6,6 +6,7 @@ import de.visualdigits.klanglicht.hardware.dmx.model.Dmx
 import de.visualdigits.klanglicht.hardware.dmx.model.parameter.IntParameter
 import de.visualdigits.klanglicht.hardware.dmx.model.parameter.ParameterSet
 import de.visualdigits.klanglicht.configuration.model.Stage
+import de.visualdigits.klanglicht.hardware.lightmanager.model.html.page.scenes.LMHtmlPanel
 import de.visualdigits.kotlin.twinkly.model.color.BlendMode
 import de.visualdigits.kotlin.twinkly.model.color.RGBAColor
 import de.visualdigits.kotlin.twinkly.model.color.RGBColor
@@ -50,6 +51,14 @@ class HybridScene(
 
         initializeFromParameters()
         initializeFromFadeables() // modify attributes after updating fadeables
+    }
+
+    fun size(): Int {
+        return ids.size
+    }
+
+    fun colors(): List<String> {
+        return fadeables().map { fadeable -> fadeable.toRgbColor().web() }
     }
 
     override fun toString(): String {
@@ -213,6 +222,22 @@ class HybridScene(
     }
 
     fun getGain(id: String): Double = fadeables[id]?.getGain() ?: 1.0
+
+    fun setOddColors(rgbColor: RGBColor) {
+        (1 until ids.size step 2).forEach { index ->
+            setRgbColor(index, rgbColor)
+        }
+    }
+
+    fun setEvenColors(rgbColor: RGBColor) {
+        (0 until ids.size step 2).forEach { index ->
+            setRgbColor(index, rgbColor)
+        }
+    }
+
+    fun setRgbColor(index: Int, rgbColor: RGBColor) {
+        setRgbColor(ids[index], rgbColor)
+    }
 
     fun setRgbColor(id: String, rgbColor: RGBColor) {
         fadeables[id]?.setRgbColor(rgbColor)
