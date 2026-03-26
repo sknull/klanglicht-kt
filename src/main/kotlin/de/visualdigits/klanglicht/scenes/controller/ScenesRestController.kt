@@ -39,18 +39,30 @@ class ScenesRestController(
         @RequestParam(value = "scene") scene: String
     ) = scenesService.executeScene(group, scene)
 
-    @GetMapping("/save", produces = ["application/xhtml+xml"])
+    @GetMapping("/save")
     fun save(
         @RequestParam(value = "scene") scene: String
     ): ResponseEntity<Unit> {
         scenesService.saveCustomScene(scene)
-        return ResponseEntity.status(302).location(URI.create("/v1/hybrid/web/scenes")).build()
+        return ResponseEntity.status(200).location(URI.create("/v1/scenes/json/scenes")).build()
+    }
+
+    @GetMapping("/add")
+    fun addScene(
+        @RequestParam(value = "sceneName") sceneName: String,
+        @RequestParam(value = "hexColors") hexColors: String,
+    ): ResponseEntity<Unit> {
+        scenesService.addCustomScene(sceneName, hexColors)
+        return ResponseEntity.status(200).location(URI.create("/v1/scenes/json/add")).build()
     }
 
     @DeleteMapping("delete")
     fun delete(
         @RequestParam(value = "scene") scene: String
-    ) = scenesService.deleteCustomScene(scene)
+    ): ResponseEntity<Unit> {
+        scenesService.deleteCustomScene(scene)
+        return ResponseEntity.status(200).location(URI.create("/v1/scenes/json/delete")).build()
+    }
 
     @GetMapping("hybrid")
     fun hybrid(

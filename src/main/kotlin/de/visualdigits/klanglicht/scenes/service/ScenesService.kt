@@ -15,6 +15,7 @@ import de.visualdigits.klanglicht.hardware.shelly.service.ShellyService
 import de.visualdigits.klanglicht.hardware.twinkly.service.TwinklyService
 import de.visualdigits.klanglicht.hardware.yamahaavantage.service.YamahaAvantageService
 import de.visualdigits.kotlin.twinkly.model.device.xmusic.moods.Moods
+import org.jetbrains.kotlin.util.prefixIfNot
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
 
@@ -88,16 +89,34 @@ class ScenesService(
     }
 
     fun saveCustomScene(
-        name: String
+        sceneName: String
     ) {
-        log.info("Saving scene '$name': ${prefs.currentScene}")
+        log.info("Saving scene '$sceneName': ${prefs.currentScene}")
         val scenes = prefs.loadScenes()
         scenes.scenesGroupMap["Custom"]?.scenes?.add(LMScene(
-            name = if (name.startsWith("Custom ")) name else "Custom $name",
+            name = if (sceneName.startsWith("Custom ")) sceneName else "Custom $sceneName",
             color = prefs.currentScene?.fadeables()?.map { it.toRgbColor().web() }?:listOf(),
             actions = listOf(LMActionHybrid(hexColors = prefs.currentScene?.fadeables()?.map { it.toRgbColor().hex() }?:listOf()))
         ))
         prefs.writeScenes(scenes)
+    }
+
+    fun addCustomScene(
+        sceneName: String,
+        hexColors: String
+    ) {
+        if (sceneName.isNotBlank() && hexColors.isNotBlank()) {
+            log.info("Adding scene '$sceneName': $hexColors")
+            val scenes = prefs.loadScenes()
+            scenes.scenesGroupMap["Custom"]?.scenes?.add(LMScene(
+                name = sceneName.prefixIfNot("Custom "),
+                color = hexColors.split(",").map { c -> c.trim().prefixIfNot("#") },
+                actions = listOf(LMActionHybrid(hexColors = hexColors.split(",").map { c -> c.trim().removePrefix("#") }))
+            ))
+            prefs.writeScenes(scenes)
+        } else {
+            log.warn("No data - not adding scene")
+        }
     }
 
     fun deleteCustomScene(
@@ -105,7 +124,16 @@ class ScenesService(
     ) {
         log.info("Deleting scene '$name'")
         val scenes = prefs.loadScenes()
-        scenes.scenesGroupMap["Custom"]?.also {  g -> g.scenes.find { s -> s.name == name }?.also { sc -> g.scenes.remove(sc) } }
+        scenes.scenesGroupMap["Custom"]
+            ?.also {  g ->
+                g.scenes
+                    .find { s ->
+                        s.name == name.prefixIfNot("Custom ")
+                    }
+                    ?.also { sc ->
+                        g.scenes.remove(sc)
+                    }
+            }
         prefs.writeScenes(scenes)
     }
 

@@ -43,14 +43,13 @@ class HybridStageService(
                 ))
             }?.toMap()?:mapOf(),
             groups = scenes.groups.map { group ->
-                val colorPickers = if (group.hasColorWheel) {
-                    if (group.colorWheelOddEven) {
-                        listOf("${group.name}Even", "${group.name}Odd")
-                    } else {
-                        listOf(group.name)
-                    }
-                } else {
-                    listOf()
+                val colorPickers = mutableListOf<Pair<String, String>>()
+                if (group.hasColorWheel) {
+                    colorPickers.add(Pair("all", group.name))
+                }
+                if (group.hasColorWheelOddEven) {
+                    colorPickers.add(Pair("even", "${group.name}Even"))
+                    colorPickers.add(Pair("odd", "${group.name}Odd"))
                 }
                 ClientGroup(
                     name = group.name,

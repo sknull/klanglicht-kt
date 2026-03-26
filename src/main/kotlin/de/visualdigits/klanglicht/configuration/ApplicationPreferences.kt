@@ -138,7 +138,7 @@ class ApplicationPreferences() {
                     name = "TwinklyMusic",
                     displayName = "Twinkly Music",
                     hasColorWheel = false,
-                    colorWheelOddEven = false,
+                    hasColorWheelOddEven = false,
                     selectable = false,
                     scenes = moodScenes
                 )

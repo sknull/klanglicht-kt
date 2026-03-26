@@ -12,7 +12,7 @@ class LMHtmlColorWheel(
         val sindent = "  ".repeat(indent)
         val wheelId = sceneGroup.name.replace(" ", "")
         val sb = StringBuilder()
-        if (sceneGroup.colorWheelOddEven) {
+        if (sceneGroup.hasColorWheelOddEven) {
             sb.append("$sindent<div class=\"colorwheel-wrapper-oddeven\">\n")
             sb.append(renderColorWheelPanel(sceneGroup.displayName, wheelId, true, indent + 1))
             sb.append(renderColorWheelPanel(sceneGroup.displayName, wheelId, false, indent + 1))

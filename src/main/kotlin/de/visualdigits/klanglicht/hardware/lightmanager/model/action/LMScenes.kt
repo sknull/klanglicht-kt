@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.databind.SerializationFeature
 import com.fasterxml.jackson.module.kotlin.jacksonMapperBuilder
-import org.w3c.dom.ls.LSInput
 import java.io.File
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -75,7 +74,7 @@ class LMScenes(
                 name = sg.name,
                 displayName = sg.displayName,
                 hasColorWheel = sg.hasColorWheel,
-                colorWheelOddEven = sg.colorWheelOddEven,
+                hasColorWheelOddEven = sg.hasColorWheelOddEven,
                 selectable = sg.selectable,
                 scenes = sg.scenes.map { s ->
                     val actionHybrid = s.actions

@@ -32,7 +32,7 @@ class LMScenesTest {
                 name = sg.name,
                 displayName = sg.displayName,
                 hasColorWheel = sg.hasColorWheel,
-                colorWheelOddEven = sg.colorWheelOddEven,
+                hasColorWheelOddEven = sg.hasColorWheelOddEven,
                 selectable = sg.selectable,
                 scenes = sg.scenes.map { s ->
                     var actionHybrid = s.actions

@@ -15,7 +15,7 @@ class LMHtmlSceneGroup(
         val sb = StringBuilder()
         sb.append("$sindent<div class=\"group")
         if (sceneGroup.hasColorWheel) {
-            if (sceneGroup.colorWheelOddEven) {
+            if (sceneGroup.hasColorWheelOddEven) {
                 sb.append(" has-colorwheel-odd-even")
             } else {
                 sb.append(" has-colorwheel")
@@ -25,7 +25,7 @@ class LMHtmlSceneGroup(
         sb.append("$sindent  <span class=\"label\">").append(sceneGroup.displayName).append("</span>\n")
         sb.append("$sindent  <div class=\"sub-group")
         if (sceneGroup.hasColorWheel) {
-            if (sceneGroup.colorWheelOddEven) {
+            if (sceneGroup.hasColorWheelOddEven) {
                 sb.append(" has-colorwheel-odd-even")
             } else {
                 sb.append(" has-colorwheel")
